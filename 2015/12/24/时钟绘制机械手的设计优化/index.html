@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="CNC,机床,机械设计,数控机床," />
+  <meta name="keywords" content="机械手,控制程序," />
 
 
 
@@ -59,49 +59,23 @@
 
 
 
-<meta name="description" content="这篇文章将介绍我设计制作的一台数控机床。为什么我要自己设计制作一台数控机床呢？部分的原因是我喜欢DIY，但最主要的原因是，公司想要一台数控机床加工少批量的PCB样品，以及做一些简单的零件。当时我下班后有很多空闲的时间，我就向老板申请了预算，我自己设计制造一台数控机床。我先读了一些机械论坛的帖子，基本掌握了如何设计制作数控机床，然后开始了我的数控世界之旅。
-因为我之前没有设计过数控机床，所以第一台机">
+<meta name="description" content="介绍一个时钟绘制机械手的小程序，这是一个非常有趣的小时钟，由两个机器人剪刀臂在一个面板上绘制时间。如果之前你从来没有看到它是怎么工作的，先看这个。这是2015年，这是我在网上看到的一个非常有趣的小机械手。当时我试图自己去做一个，但这个想法由于一些其它事情而被耽搁了，因此有很长一段时间我在想怎么去做一个？下面是我当时想的几点问题：1、最初的设计者是如何计算出的每一个手臂的长度？2、图纸面积有多大？3">
 <meta property="og:type" content="article">
-<meta property="og:title" content="从零开始设计一台CNC机床">
-<meta property="og:url" content="http://xuqianzheng.com/2016/01/18/从零开始设计一台CNC机床/index.html">
+<meta property="og:title" content="时钟绘制机械手的设计优化">
+<meta property="og:url" content="http://xuqianzheng.com/2015/12/24/时钟绘制机械手的设计优化/index.html">
 <meta property="og:site_name" content="Robotics Blog">
-<meta property="og:description" content="这篇文章将介绍我设计制作的一台数控机床。为什么我要自己设计制作一台数控机床呢？部分的原因是我喜欢DIY，但最主要的原因是，公司想要一台数控机床加工少批量的PCB样品，以及做一些简单的零件。当时我下班后有很多空闲的时间，我就向老板申请了预算，我自己设计制造一台数控机床。我先读了一些机械论坛的帖子，基本掌握了如何设计制作数控机床，然后开始了我的数控世界之旅。
-因为我之前没有设计过数控机床，所以第一台机">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC01.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/base.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/y.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/x.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC02.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC03.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-10-01-15-12-19.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-10-01-15-38-06.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-09-29-10-24-54.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-09-29-10-23-46.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-09-29-10-23-23.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-10-03-10-39-23.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-10-03-10-37-15.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-10-03-10-35-13.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC04.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-12-03-20-10-44.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC05.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2013-01-16-16-51-31.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-12-04-13-45-02.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-10-21-16-09-06.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-10-15-22-57-26.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-10-05-19-06-38.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-10-08-09-58-48.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-10-09-00-27-48.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-11-03-21-07-50.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2013-03-08-11-05-50.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-10-10-21-50-56.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-10-10-21-53-41.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-10-11-10-00-57.jpg">
-<meta property="og:updated_time" content="2016-03-29T16:25:18.000Z">
+<meta property="og:description" content="介绍一个时钟绘制机械手的小程序，这是一个非常有趣的小时钟，由两个机器人剪刀臂在一个面板上绘制时间。如果之前你从来没有看到它是怎么工作的，先看这个。这是2015年，这是我在网上看到的一个非常有趣的小机械手。当时我试图自己去做一个，但这个想法由于一些其它事情而被耽搁了，因此有很长一段时间我在想怎么去做一个？下面是我当时想的几点问题：1、最初的设计者是如何计算出的每一个手臂的长度？2、图纸面积有多大？3">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/plot-01.gif">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/plot-02.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/plot-03.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/plot-04.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/plot-05.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/plot-06.png">
+<meta property="og:updated_time" content="2016-03-29T16:26:34.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="从零开始设计一台CNC机床">
-<meta name="twitter:description" content="这篇文章将介绍我设计制作的一台数控机床。为什么我要自己设计制作一台数控机床呢？部分的原因是我喜欢DIY，但最主要的原因是，公司想要一台数控机床加工少批量的PCB样品，以及做一些简单的零件。当时我下班后有很多空闲的时间，我就向老板申请了预算，我自己设计制造一台数控机床。我先读了一些机械论坛的帖子，基本掌握了如何设计制作数控机床，然后开始了我的数控世界之旅。
-因为我之前没有设计过数控机床，所以第一台机">
-<meta name="twitter:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC01.jpg">
+<meta name="twitter:title" content="时钟绘制机械手的设计优化">
+<meta name="twitter:description" content="介绍一个时钟绘制机械手的小程序，这是一个非常有趣的小时钟，由两个机器人剪刀臂在一个面板上绘制时间。如果之前你从来没有看到它是怎么工作的，先看这个。这是2015年，这是我在网上看到的一个非常有趣的小机械手。当时我试图自己去做一个，但这个想法由于一些其它事情而被耽搁了，因此有很长一段时间我在想怎么去做一个？下面是我当时想的几点问题：1、最初的设计者是如何计算出的每一个手臂的长度？2、图纸面积有多大？3">
+<meta name="twitter:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/plot-01.gif">
 
 
 
@@ -119,7 +93,7 @@
   };
 </script>
 
-  <title> 从零开始设计一台CNC机床 | Robotics Blog </title>
+  <title> 时钟绘制机械手的设计优化 | Robotics Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -299,7 +273,7 @@
             
             
               
-                从零开始设计一台CNC机床
+                时钟绘制机械手的设计优化
               
             
           </h1>
@@ -311,8 +285,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-01-18T23:21:46+08:00" content="2016-01-18">
-              2016-01-18
+            <time itemprop="dateCreated" datetime="2015-12-24T21:42:58+08:00" content="2015-12-24">
+              2015-12-24
             </time>
           </span>
 
@@ -322,8 +296,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/01/18/从零开始设计一台CNC机床/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/18/从零开始设计一台CNC机床/" itemprop="commentsCount"></span>
+                <a href="/2015/12/24/时钟绘制机械手的设计优化/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/24/时钟绘制机械手的设计优化/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -345,31 +319,14 @@
       
 
       
-        <p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC01.jpg" alt=""><br>这篇文章将介绍我设计制作的一台数控机床。为什么我要自己设计制作一台数控机床呢？部分的原因是我喜欢DIY，但最主要的原因是，公司想要一台数控机床加工少批量的PCB样品，以及做一些简单的零件。当时我下班后有很多空闲的时间，我就向老板申请了预算，我自己设计制造一台数控机床。我先读了一些机械论坛的帖子，基本掌握了如何设计制作数控机床，然后开始了我的数控世界之旅。</p>
-<p>因为我之前没有设计过数控机床，所以第一台机器是相当不成熟的，但从设计制作的过程中我真的获得了很多的经验。所以在下一台机床时我做了很多的改进。最终机器更好用加工质量更高。我最满意的地方就是PCB打印部分。</p>
-<p>我先用SolidWorks建立模型。因为我没有太多的预算和工具，所以我的设计思路是让这台机器很容易的加工出来。因此，我用了很多标准件。我将Y轴分开了，没有将所有的轴设计成移动轴，驱动平台是X轴和Z轴。这种设计的优点是：机器更稳定并且加工精度更高。</p>
-<p>下面是支架图。两铝型材支柱用来支撑沉重的X轴和Z轴。由于铝型材可以在淘宝购买已经切割好的节省了我很多时间。此外，这些铝型材都是采用标准件，也比较便宜。</p>
-<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/base.jpg" alt=""></p>
-<p>正如我前面所说的，我将Y轴分开了。Y轴安装在基座上。另一个关于这些铝型材，槽与M5的螺栓和螺母，所以我可以很容易地把夹子来固定材料后。</p>
-<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/y.jpg" alt=""></p>
-<p>下面X轴的设计，因为我只有少量的预算，所以我没有使用铁轨，这20毫米直径的滑杆足够支撑X轴了。</p>
-<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/x.jpg" alt=""></p>
-<p>下面是Z轴的设计。它取决于X轴，即图中所示，Z轴的需要支撑的重量小于X轴所以16mm滑杆是足够的。</p>
-<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC02.jpg" alt=""></p>
-<p>然后我们可以安装Z轴了。图中的主轴支架实际上是环氧树脂板，因为我想减轻重量和成本，后来被证明是一个错误的选择，在测试了一段时间后，我终于把它换成了铝材支架，在市场上应该有很多的主轴，我建议你选择铝合金的。</p>
-<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC03.jpg" alt=""></p>
-<p>在SolidWorks中验证模型后我终于可以开始发出去加工了，可惜我只拍了几张照片。<br>下面我的旧机器的升级换代。</p>
-<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-10-01-15-12-19.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-10-01-15-38-06.jpg" alt=""></p>
-<p>下面是一些其它加工件。</p>
-<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-09-29-10-24-54.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-09-29-10-23-46.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-09-29-10-23-23.jpg" alt=""></p>
-<p>我花了很长的时间，将这些零件组装在一起，终于完成了组装。</p>
-<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-10-03-10-39-23.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-10-03-10-37-15.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-10-03-10-35-13.jpg" alt=""></p>
-<p>让我们用这台机器制造一些东西吧！因为我是主要是为了加工PCB板，所以我加工了一些印刷电路板来测试它的性能，似乎很好用。</p>
-<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC04.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-12-03-20-10-44.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC05.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2013-01-16-16-51-31.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-12-04-13-45-02.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-10-21-16-09-06.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-10-15-22-57-26.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-10-05-19-06-38.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-10-08-09-58-48.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-10-09-00-27-48.jpg" alt=""></p>
-<p>它还可以切割亚克力、PVC、铝合金。</p>
-<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-11-03-21-07-50.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2013-03-08-11-05-50.jpg" alt=""></p>
-<p>最后我还做了其它升级，使它更容易观察到加工对象并进行定位，我做了一个发光二极管环和激光交叉。</p>
-<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-10-10-21-50-56.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-10-10-21-53-41.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-10-11-10-00-57.jpg" alt=""></p>
+        <p>介绍一个时钟绘制机械手的小程序，这是一个非常有趣的小时钟，由两个机器人剪刀臂在一个面板上绘制时间。如果之前你从来没有看到它是怎么工作的，先看这个。<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/plot-01.gif" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/plot-02.jpg" alt=""><br>这是2015年，这是我在网上看到的一个非常有趣的小机械手。当时我试图自己去做一个，但这个想法由于一些其它事情而被耽搁了，因此有很长一段时间我在想怎么去做一个？下面是我当时想的几点问题：<br>1、最初的设计者是如何计算出的每一个手臂的长度？<br>2、图纸面积有多大？<br>3、我该如何使它更大？<br>4、如何提高精度？<br>在用SolidWorks绘制机械臂结构时，我做了一些数学计算，得到了它是如何工作的基本思路。然后，我决定用精确的参数，让每个手臂得到的最佳仿真结果，这是我最终得到的程序，非常完美，确实可以工作。<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/plot-03.png" alt=""></p>
+<h2 id="实施"><a href="#实施" class="headerlink" title="实施"></a>实施</h2><p>这个计划的核心是插值代码，包括直线插补和圆弧插补，所以线性插值基本上我们从给定的点，然后计算下一个相邻的点和画它，做这一路的终点，圆弧插补是一样的但我们用sin和cos函数计算各点。<br>既然插补问题就解决了，那么下一个问题是如何将手臂移动到该点呢？让我们以左臂为例。既然我们知道当前绘图点，那么我们可以计算点和左伺服中心之间的距离。因为我们知道下臂的长度（红色）和上臂（蓝色）让这个问题变得知道三边的长度和计算出三个内角，内角之后就可以计算出双手的关节位置。最后我们绘制在图形的所有元素。一个100ms定时器是用来显示动画。</p>
+<h3 id="功能和程序描述"><a href="#功能和程序描述" class="headerlink" title="功能和程序描述"></a>功能和程序描述</h3><p>1、在图形面板，青色和蓝色矩形表示伺服；<br>2、橙色派是移动范围较低的机械臂（红色），如果两个机械臂相撞则需要检查；<br>3、红色和蓝色的节段是较低和上部的机械臂；<br>4、“自动”复选框启用/禁用动画；<br>5、拖动滚动条来调整每个参数；<br>6、“面积计算”按钮显示绘图区点的样式；<br>7、“测试”按钮显示“012”绘图数的结果。</p>
+<h3 id="实验和结果"><a href="#实验和结果" class="headerlink" title="实验和结果"></a>实验和结果</h3><p>最重要的参数：各臂长（L1R1，L2R2）和两舵机的距离。所以我们会调整一个参数保持不变，看这两个参数发生了什么变化。该区域是由5度的伺服控制和点的密度成正比的精度。理想参数将有一个均匀分布的点和大的可用的绘图区。</p>
+<h4 id="调整D（两伺服的距离）"><a href="#调整D（两伺服的距离）" class="headerlink" title="调整D（两伺服的距离）"></a>调整D（两伺服的距离）</h4><p>比较下面的图表中我们可以看到，D增长的区域实际上被挤到了中心，最后消失的距离大于机械臂的总和。第一个配置是失败的因为两舵机碰撞在一起，虽然有一个精彩的点的分布。第二个有一个很好的分配和两个大的绘图区域，但是有点还是点在了“伞”下面，意味着一些输入可能会导致意想不到的位置和碰撞，所以输入角度应仔细检查。<br>至于测试数，则第二个有最好的结果，所有的数字都会变形，最后不能得出数字。<br>所以我们可以说，应该尽可能小。<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/plot-04.png" alt=""></p>
+<h4 id="调整L1R1（下臂）"><a href="#调整L1R1（下臂）" class="headerlink" title="调整L1R1（下臂）"></a>调整L1R1（下臂）</h4><p>比较下面的数字可以看出，下臂增长绘图区域也会增加，但精度下降。所以这是一个平衡，如果你想要更高的精度，走很短的下臂，如果你想要更大的绘图区域，则选择更长的下臂。值得注意的是，在过去的两个配置，其实有一些地区在“保护伞”不能被吸引，这实际上降低了有效绘图区域。这是因为上面的手臂太短了，所以上臂和下臂的长度应该与它们相配！（他们是兄弟，不要留下任何一个）。<br>第一个数字有一点，它与第二和第三个比它有着良好的性能，但它最后两个数字是完全扭曲的。<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/plot-05.png" alt=""></p>
+<h4 id="调整L2R2（上臂）"><a href="#调整L2R2（上臂）" class="headerlink" title="调整L2R2（上臂）"></a>调整L2R2（上臂）</h4><p>比较下面的数字可以看出，在绘图区域的增长和移向上的增加，这是直的，因为上手臂太长，在较低的区域，点分布变得更好。有一个问题是在程序中没有显示面板。因此，较长的上半臂需要更大的面板，而面板的下部则是被浪费的。<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/plot-06.png" alt=""></p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>对于那些自己想要设计时钟绘制机械手的童鞋们应牢记这几点（仅供参考，由于程序的错误，可能不正确）。这些技巧都是建立结构的一些优化，但是优化后它是否符合你们的设计要求，那就依靠个人的设计要求来定。<br>1、伺服系统之间的距离应该是最小的；<br>2、较长的较低的手臂，面积较大，但精度较低，反之亦然；<br>3、较长的上臂区域较高，但已略有改善；<br>4、下臂和上臂的长度应与试验误差相匹配。</p>
 
       
     </div>
@@ -384,13 +341,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/CNC/" rel="tag">#CNC</a>
+            <a href="/tags/机械手/" rel="tag">#机械手</a>
           
-            <a href="/tags/机床/" rel="tag">#机床</a>
-          
-            <a href="/tags/机械设计/" rel="tag">#机械设计</a>
-          
-            <a href="/tags/数控机床/" rel="tag">#数控机床</a>
+            <a href="/tags/控制程序/" rel="tag">#控制程序</a>
           
         </div>
       
@@ -399,13 +352,17 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/12/24/时钟绘制机械手的设计优化/" rel="next" title="时钟绘制机械手的设计优化">
-                <i class="fa fa-chevron-left"></i> 时钟绘制机械手的设计优化
+              <a href="/2015/12/12/阅读温暖，扫除迷茫/" rel="next" title="阅读温暖，扫除迷茫">
+                <i class="fa fa-chevron-left"></i> 阅读温暖，扫除迷茫
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/01/18/从零开始设计一台CNC机床/" rel="prev" title="从零开始设计一台CNC机床">
+                从零开始设计一台CNC机床 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -457,8 +414,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/01/18/从零开始设计一台CNC机床/"
-           data-title="从零开始设计一台CNC机床" data-url="http://xuqianzheng.com/2016/01/18/从零开始设计一台CNC机床/">
+      <div class="ds-thread" data-thread-key="2015/12/24/时钟绘制机械手的设计优化/"
+           data-title="时钟绘制机械手的设计优化" data-url="http://xuqianzheng.com/2015/12/24/时钟绘制机械手的设计优化/">
       </div>
     
   </div>
@@ -601,7 +558,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#实施"><span class="nav-number">1.</span> <span class="nav-text">实施</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#功能和程序描述"><span class="nav-number">1.1.</span> <span class="nav-text">功能和程序描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实验和结果"><span class="nav-number">1.2.</span> <span class="nav-text">实验和结果</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#调整D（两伺服的距离）"><span class="nav-number">1.2.1.</span> <span class="nav-text">调整D（两伺服的距离）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#调整L1R1（下臂）"><span class="nav-number">1.2.2.</span> <span class="nav-text">调整L1R1（下臂）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#调整L2R2（上臂）"><span class="nav-number">1.2.3.</span> <span class="nav-text">调整L2R2（上臂）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结论"><span class="nav-number">2.</span> <span class="nav-text">结论</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
