@@ -71,7 +71,7 @@
 <meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/plot-04.png">
 <meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/plot-05.png">
 <meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/plot-06.png">
-<meta property="og:updated_time" content="2016-03-30T15:25:29.000Z">
+<meta property="og:updated_time" content="2016-04-02T09:29:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="时钟绘制机械手的设计优化">
 <meta name="twitter:description" content="介绍一个时钟绘制机械手的小程序，这是一个非常有趣的小时钟，由两个机器人剪刀臂在一个面板上绘制时间。如果之前你从来没有看到它是怎么工作的，先看这个。这是2015年，这是我在网上看到的一个非常有趣的小机械手。当时我试图自己去做一个，但这个想法由于一些其它事情而被耽搁了，因此有很长一段时间我在想怎么去做一个？下面是我当时想的几点问题：1、最初的设计者是如何计算出的每一个手臂的长度？2、图纸面积有多大？3">
@@ -326,7 +326,7 @@
 <h4 id="调整D（两伺服的距离）"><a href="#调整D（两伺服的距离）" class="headerlink" title="调整D（两伺服的距离）"></a>调整D（两伺服的距离）</h4><p>比较下面的图表中我们可以看到，D增长的区域实际上被挤到了中心，最后消失的距离大于机械臂的总和。第一个配置是失败的因为两舵机碰撞在一起，虽然有一个精彩的点的分布。第二个有一个很好的分配和两个大的绘图区域，但是有点还是点在了“伞”下面，意味着一些输入可能会导致意想不到的位置和碰撞，所以输入角度应仔细检查。<br>至于测试数，则第二个有最好的结果，所有的数字都会变形，最后不能得出数字。<br>所以我们可以说，应该尽可能小。<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/plot-04.png" alt=""></p>
 <h4 id="调整L1R1（下臂）"><a href="#调整L1R1（下臂）" class="headerlink" title="调整L1R1（下臂）"></a>调整L1R1（下臂）</h4><p>比较下面的数字可以看出，下臂增长绘图区域也会增加，但精度下降。所以这是一个平衡，如果你想要更高的精度，走很短的下臂，如果你想要更大的绘图区域，则选择更长的下臂。值得注意的是，在过去的两个配置，其实有一些地区在“保护伞”不能被吸引，这实际上降低了有效绘图区域。这是因为上面的手臂太短了，所以上臂和下臂的长度应该与它们相配！（他们是兄弟，不要留下任何一个）。<br>第一个数字有一点，它与第二和第三个比它有着良好的性能，但它最后两个数字是完全扭曲的。<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/plot-05.png" alt=""></p>
 <h4 id="调整L2R2（上臂）"><a href="#调整L2R2（上臂）" class="headerlink" title="调整L2R2（上臂）"></a>调整L2R2（上臂）</h4><p>比较下面的数字可以看出，在绘图区域的增长和移向上的增加，这是直的，因为上手臂太长，在较低的区域，点分布变得更好。有一个问题是在程序中没有显示面板。因此，较长的上半臂需要更大的面板，而面板的下部则是被浪费的。<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/plot-06.png" alt=""></p>
-<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>对于那些自己想要设计时钟绘制机械手的童鞋们应牢记这几点（仅供参考，由于程序的错误，可能不正确）。这些技巧都是建立结构的一些优化，但是优化后它是否符合你们的设计要求，那就依靠个人的设计要求来定。<br>1、伺服系统之间的距离应该是最小的；<br>2、较长的较低的手臂，面积较大，但精度较低，反之亦然；<br>3、较长的上臂区域较高，但已略有改善；<br>4、下臂和上臂的长度应与试验误差相匹配。</p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>对于那些自己想要设计时钟绘制机械手的童鞋们应牢记这几点（仅供参考，由于程序的错误，可能不正确）。这些技巧都是建立结构的一些优化，但是优化后它是否符合你们的设计要求，那就依靠个人的设计要求来定。<br>1、伺服系统之间的距离应该是最小的；<br>2、较长的较低的手臂，面积较大，但精度较低，反之亦然；<br>3、较长的上臂区域较高，但已略有改善；<br>4、下臂和上臂的长度应与试验误差相匹配。<br><strong>更新</strong><br>我已将SolidWorks源文件上传至我的<a href="http://tu.vx.com/1603/76100.html#ad-image-0" target="_blank" rel="external">微小网</a>主页。</p>
 
       
     </div>
