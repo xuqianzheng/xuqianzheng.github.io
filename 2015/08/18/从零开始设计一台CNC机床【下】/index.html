@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="读书,思考,生活,职业规划," />
+  <meta name="keywords" content="CNC,机床,机械设计,数控机床," />
 
 
 
@@ -59,33 +59,64 @@
 
 
 
-<meta name="description" content="本文旨在帮助这个行业的年轻人于前进道路上少走弯路。
-谁的人生，都有一个慢慢修炼的过程。这个成长的修炼从来都是千转百回。在这样一个浮躁急速的时代，容易迷茫的个体很多，不要怕，不要否定自己，只要随时保持自省和行动才是对未来最好的承担。
-
-
-你在二十岁到三十岁之间，在生命力最旺盛的时候，要想清楚几件事。
-第一件事你要想清楚，这辈子最喜欢的工作是什么，热爱什么东西，这个是最关键的事情；第二要让自己成为一个">
+<meta name="description" content="这篇文章记录了我有史以来我最喜欢的数控机床的设计。它实际上已经是我做的第三台机器了，它是基于前一台的改进。在我设计这台机器之前已经有设计过一台机器，所以我这次必须设计出更复杂的部分。我的目标是做一个小型台式数控铣床，这样我可以很容易地制作一些电子或机械项目的小零件。没有这台数控机床之前，公司一直在使用这些原型板来焊接PCB。通常花好几个晚上才能焊接好一块控制板，然后再花几个晚上调试它。如果电路板">
 <meta property="og:type" content="article">
-<meta property="og:title" content="如何有效的扫除迷茫？">
-<meta property="og:url" content="http://xuqianzheng.com/2016/04/03/如何有效的扫除迷茫？/index.html">
+<meta property="og:title" content="从零开始设计一台CNC机床【下】">
+<meta property="og:url" content="http://xuqianzheng.com/2015/08/18/从零开始设计一台CNC机床【下】/index.html">
 <meta property="og:site_name" content="Robotics Blog">
-<meta property="og:description" content="本文旨在帮助这个行业的年轻人于前进道路上少走弯路。
-谁的人生，都有一个慢慢修炼的过程。这个成长的修炼从来都是千转百回。在这样一个浮躁急速的时代，容易迷茫的个体很多，不要怕，不要否定自己，只要随时保持自省和行动才是对未来最好的承担。
-
-
-你在二十岁到三十岁之间，在生命力最旺盛的时候，要想清楚几件事。
-第一件事你要想清楚，这辈子最喜欢的工作是什么，热爱什么东西，这个是最关键的事情；第二要让自己成为一个">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/001-001.jpg">
-<meta property="og:updated_time" content="2016-04-03T04:15:17.000Z">
+<meta property="og:description" content="这篇文章记录了我有史以来我最喜欢的数控机床的设计。它实际上已经是我做的第三台机器了，它是基于前一台的改进。在我设计这台机器之前已经有设计过一台机器，所以我这次必须设计出更复杂的部分。我的目标是做一个小型台式数控铣床，这样我可以很容易地制作一些电子或机械项目的小零件。没有这台数控机床之前，公司一直在使用这些原型板来焊接PCB。通常花好几个晚上才能焊接好一块控制板，然后再花几个晚上调试它。如果电路板">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC01.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC02.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC03.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC04.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC05.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC06.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC07.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC08.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC09.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC10.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC11.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC12.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC13.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC14.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC15.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC16.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC17.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC18.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC19.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC20.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC21.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC22.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC23.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC24.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC25.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC26.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC27.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC28.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC29.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC30.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC31.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC32.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC34.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC35.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC36.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC37.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC38.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC39.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC40.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC41.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC42.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC43.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC44.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC45.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC46.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC47.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC48.jpg">
+<meta property="og:updated_time" content="2016-04-03T09:04:14.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="如何有效的扫除迷茫？">
-<meta name="twitter:description" content="本文旨在帮助这个行业的年轻人于前进道路上少走弯路。
-谁的人生，都有一个慢慢修炼的过程。这个成长的修炼从来都是千转百回。在这样一个浮躁急速的时代，容易迷茫的个体很多，不要怕，不要否定自己，只要随时保持自省和行动才是对未来最好的承担。
-
-
-你在二十岁到三十岁之间，在生命力最旺盛的时候，要想清楚几件事。
-第一件事你要想清楚，这辈子最喜欢的工作是什么，热爱什么东西，这个是最关键的事情；第二要让自己成为一个">
-<meta name="twitter:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/001-001.jpg">
+<meta name="twitter:title" content="从零开始设计一台CNC机床【下】">
+<meta name="twitter:description" content="这篇文章记录了我有史以来我最喜欢的数控机床的设计。它实际上已经是我做的第三台机器了，它是基于前一台的改进。在我设计这台机器之前已经有设计过一台机器，所以我这次必须设计出更复杂的部分。我的目标是做一个小型台式数控铣床，这样我可以很容易地制作一些电子或机械项目的小零件。没有这台数控机床之前，公司一直在使用这些原型板来焊接PCB。通常花好几个晚上才能焊接好一块控制板，然后再花几个晚上调试它。如果电路板">
+<meta name="twitter:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC01.jpg">
 
 
 
@@ -103,7 +134,7 @@
   };
 </script>
 
-  <title> 如何有效的扫除迷茫？ | Robotics Blog </title>
+  <title> 从零开始设计一台CNC机床【下】 | Robotics Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -283,7 +314,7 @@
             
             
               
-                如何有效的扫除迷茫？
+                从零开始设计一台CNC机床【下】
               
             
           </h1>
@@ -295,8 +326,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-03T21:04:47+08:00" content="2016-04-03">
-              2016-04-03
+            <time itemprop="dateCreated" datetime="2015-08-18T23:21:46+08:00" content="2015-08-18">
+              2015-08-18
             </time>
           </span>
 
@@ -306,8 +337,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/03/如何有效的扫除迷茫？/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/03/如何有效的扫除迷茫？/" itemprop="commentsCount"></span>
+                <a href="/2015/08/18/从零开始设计一台CNC机床【下】/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/08/18/从零开始设计一台CNC机床【下】/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -329,38 +360,50 @@
       
 
       
-        <p>本文旨在帮助这个行业的年轻人于前进道路上少走弯路。</p>
-<blockquote class="blockquote-center">谁的人生，都有一个慢慢修炼的过程。这个成长的修炼从来都是千转百回。在这样一个浮躁急速的时代，容易迷茫的个体很多，不要怕，不要否定自己，只要随时保持自省和行动才是对未来最好的承担。</blockquote>
-
-<img src="http://7xsb4k.com1.z0.glb.clouddn.com/001-001.jpg" class="full-image" alt="alt">
-<p>你在二十岁到三十岁之间，在生命力最旺盛的时候，要想清楚几件事。</p>
-<p><strong>第一件事你要想清楚，这辈子最喜欢的工作是什么，热爱什么东西，这个是最关键的事情；<br>第二要让自己成为一个专业的人；<br>第三你愿意用未来的二十年时间去完成这件你喜欢的工作和专业的事情。</strong></p>
-<p>全文分四个部分，分别是内功心法、能力修炼、养德和突破，各部分相辅相成，缺一不可。下面就开始介绍内功心法：</p>
-<h2 id="内功心法"><a href="#内功心法" class="headerlink" title="内功心法"></a>内功心法</h2><h3 id="心法一-打破“理都懂”的幻觉"><a href="#心法一-打破“理都懂”的幻觉" class="headerlink" title="心法一:打破“理都懂”的幻觉"></a>心法一:打破“理都懂”的幻觉</h3><p>理都懂，然并卵。很多人都觉得是在讲自己，其实娱乐下是可以的，但是认真你就输了。你真的理都懂吗？那你知道理都懂，然并卵的理吗？</p>
-<p>该幻觉产生的原因无非有两点：第一，你对系统理解不到位，或根本没有系统看待问题的思想，非懂的你产生了似懂幻觉；第二，你无法坚持执行有效的解决方案，造成了然并卵的结果。该幻觉对个人成长不利，打破它，是改变的第一步。</p>
-<h3 id="心法二-停止迷信权威"><a href="#心法二-停止迷信权威" class="headerlink" title="心法二:停止迷信权威"></a>心法二:停止迷信权威</h3><p>年轻人成长过程中总会遇到一些“权威人士”。他们会告诉你错误知识，总结错误道理，营造错误激励，带来严重的负面影响。</p>
-<p>在我小的时候就有一些权威神色严肃的讲神户岛是日本四大岛之一、人不及时大便，大便会被身体反复吸收等等他们想当然的知识点或道理；长大后准备就业时又有一些过来人拿切身经历向我们讲述国企有多好私企有多苦；工作后也常遇到领导对质疑提问者挖苦讽刺，对附和者和颜悦色等等。可想而知，这些权威人士对我们的成长造成了多少负面影响。但是，如果你很早就意识到权威人士不一定是对的，你和他们之间也只是合作关系，各取所需，负面影响就会被大大削弱。</p>
-<p>即使是良师，也难免犯错。所以，停止迷信权威吧，越早越好。</p>
-<h3 id="心法三-养成同侪（chai）压抗"><a href="#心法三-养成同侪（chai）压抗" class="headerlink" title="心法三:养成同侪（chai）压抗"></a>心法三:养成同侪（chai）压抗</h3><p>同龄人和朋友之间的影响力叫同侪压力，对同侪压力的抗性就叫同侪压抗。<br>我们都常被同侪压力所操纵，毫无防守之力。我们毫不犹豫去做房奴，去考公务员，去读研，被传销，去参加义和团等等，在同侪压力下，这些都是天经地义正确的事情。我们或被永远蒙在鼓里，或直到泡沫幻灭才发现开始埋怨社会无情，骗子无义。同侪压力是你阻止你理智决策的重要敌人，你需要不断的去培养同侪压抗。</p>
-<p>总结一下，就是你知道的不一定是对的，权威人士说的不一定是对的，大家都在做的不一定是对的。（温馨提示：不一定是对的不代表一定是错的，小心矫枉过正）</p>
-<h2 id="能力修炼"><a href="#能力修炼" class="headerlink" title="能力修炼"></a>能力修炼</h2><p>有了这三点内功心法，就可以开始正儿八经的能力修炼了。<br>修炼从以下几个方面入手：</p>
-<h3 id="•-增加见识"><a href="#•-增加见识" class="headerlink" title="• 增加见识"></a>• 增加见识</h3><p>很多人由于自我设限而没有勇气改变自己：我这胖子不可能瘦下来，我不是当领导的料，我太丑追不上漂亮女孩，我双鱼座就是不能控制情绪等等。自我设限会让你永远不去尝试改变，而如果有一个人用他的亲身经历打破了你的这种认识，对你来说会是极大的鼓舞。大郅进NBA，激励了姚明当NBA状元；王祖蓝娶一米七老婆，也同样能激励你去俘获比你高的女神。</p>
-<p>因此，从成长角度来说，你的一切行为选择，都要考虑它能不能增加你的见识，从而增大遇到能打破你自我设限的牛人的几率。在此原则下，你选大学的标准自然就转变成了：城市优先于学校，学校优先于专业；你读到大二后就开始焦虑：再不辍学，你就要毕业了；之后的每一年你都会选择一个此阶段能踏上的最好的平台（包括原平台）。此时，你眼中的习以为常，成了外人眼中疯狂地成长。</p>
-<h3 id="•-持续磨练技能"><a href="#•-持续磨练技能" class="headerlink" title="• 持续磨练技能"></a>• 持续磨练技能</h3><p>定个大致计划，从现在开始几个月内重点磨练某一项技能，不论是专业技能还是辅助技能。如果是专业程度较高的技能，你需要识别自己所欠缺的重要系统知识点（后文会介绍方法），然后将其逐个攻破。比如，要修炼计算机视觉，你需要解决的重要系统知识点有线性代数、编程能力、opencv第三方库使用方法等，将其逐个攻破之后，再想提升就主要靠经验积累了，这时候就可以定制下一个技能的修炼计划了。</p>
-<h4 id="识别自己欠缺知识点的方法："><a href="#识别自己欠缺知识点的方法：" class="headerlink" title="识别自己欠缺知识点的方法："></a>识别自己欠缺知识点的方法：</h4><p>1、知乎上面搜一圈，看看过来人对该技能需要知识点的总结归纳；<br>2、登录琅琅比价网，搜目标技能的关键字，排名靠前的书一般都有不错的归纳。有钱一定要买正版，没钱去新浪微盘下载电子书，记得感恩作者；<br>3、网易公开课、可汗学院，不仅能帮你识别，还能找世界最优秀的老师帮你恶补，强烈推荐。</p>
-<h3 id="•-培养判断力"><a href="#•-培养判断力" class="headerlink" title="• 培养判断力"></a>• 培养判断力</h3><p>上文提到了一些词：系统思考、最好平台、系统知识点、同侪压抗养成等，这些都需要个人的判断力。判断力的提升是不能一蹴而就的，需要持续培养。</p>
-<h4 id="第一步，读完下面这些书："><a href="#第一步，读完下面这些书：" class="headerlink" title="第一步，读完下面这些书："></a>第一步，读完下面这些书：</h4><p>《优势谈判》<br>《难度对话》<br>《沟通的艺术》<br>《关键对话》<br>《批判性思维》<br>《谈判力》<br>《心理学与生活》<br>《学会提问》<br>《从0到1》<br>《基业长青》<br>《创业维艰》<br>《2小时品牌素养》<br>《品牌洗脑》<br>《迷恋》<br>《第五项修炼》<br>《失控》<br>《时间简史》<br>《经济学基础》（曼昆）<br>《浪潮之巅》<br>《从黎明到衰落》<br>《艺术的故事》<br>《全球通史》<br>《人类简史》<br>《奇点降临》<br>《哲学家们都干了些什么》<br>《西方哲学史》<br>《金融的逻辑》<br>《还原真实的美联储》</p>
-<h4 id="第二步：这些读得差不多后，你自然就知道适用于你的第二步怎么走了。"><a href="#第二步：这些读得差不多后，你自然就知道适用于你的第二步怎么走了。" class="headerlink" title="第二步：这些读得差不多后，你自然就知道适用于你的第二步怎么走了。"></a>第二步：这些读得差不多后，你自然就知道适用于你的第二步怎么走了。</h4><h2 id="养德"><a href="#养德" class="headerlink" title="养德"></a>养德</h2><p>正是由于技术变革和社会变革之间所产生的时间滞差，才造成了几千年来世界历史上众多的苦难和暴行——全球通史。</p>
-<p>人在前进的过程中，对力量控制的能力很容易跟不上自己的飞速成长的力量。当你开始系统地学习知识，学得越多，就越发现周围的人大多在说着不靠谱的道理，做着愚蠢的行为。你会很轻易的去跟他们争辩，好为人师，对他们鄙视，沦为喷子。这样做不但浪费了你大量的时间，还会加速破坏你的人际关系。结果就是：你懂得越多，死得越快。</p>
-<p>因此，学习和成长的过程中，不要忘记对自身修养品德的提高。要有别人说错而不指出的涵养，只跟有系统思想的人争辩讨论，并注意方式，最好做到既不争锋相对也不冷漠回避。</p>
-<p>另外我想从经济的角度谈谈秀技的收益。秀技的边际收益最高的时限大约在18-24岁（艺术类除外）。过了这个阶段，就要朝着能做事，能带队伍，能整合资源的方向去发展了。目前在很多电视节目都能看到，仅把一项技能做到极致的人，结果大多是去找综合能力强的人来投资他。所以，有天赋的年轻人应该在18到24岁之间，通过秀技去获取更多的资源或者修炼其他能力的机会。过了这个阶段，秀技可能就没那么有效了，抱大腿会更好使一点。</p>
-<h2 id="突破"><a href="#突破" class="headerlink" title="突破"></a>突破</h2><p>上面说了一堆，对你来说很有可能全是废话，因为对人的毅力有不低的要求。但是有一招，能让其变废为宝，那就是集中你全身所有的意志力，养成第一个以前没有的好习惯。可以是健身、跑步、读书、早起、写日记等等。</p>
-<p>习惯的养成，也要从简到繁。比如健身，大都是分组练，每组8到10个俯卧撑之类。尽量备齐能氛围的道具，如镜子、瑜伽垫、小伙伴等等。习惯养成的途中也要持续关注该习惯正确的打开方式，系统的学习与之相关的理论知识。</p>
-<p>相信没多久，你就可以发现自己的一些变化，胸肌变大了，体力变好了，说话有料了等等，这样你会更自信的去修炼其他的项目，上文说的那些修炼也就有了被执行的可能。</p>
-<blockquote>
-<p>你在开始学开车时，需要很多有意识的注意力，特别是如果你学开的是手动挡的车。那时，你实际上觉得很难和坐在旁边的人说话。假如旁边的人让你“减速、换低挡、下一个路口右转弯”，你可能当时就放弃了。然而，几个月以后，你不需要，或很少用有意识的注意力，就能完成这些任务，它们都成了可以被“自动”完成的任务。令人惊异的是，你很快就能在交通繁忙的路上，边开车边跟旁边的人说话，而几乎不需要有意识地注意那些需要留心应对的变量，哪怕它们实际上多达数百个——第五项修炼</p>
-</blockquote>
-<h2 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h2><p>此刻，你内心的深渊是否依然雾气茫茫？可是你愿意为你的当下付出多少的行动成本？最重要的是你有没有愿意沉浸下来的心念，给自己一段完全属于自己的寂寞时光，心平气和地有所学有所为。你接纳迷茫的态度和你努力行动的力度，却最终会让你这一路走来，重新瞥见光影。</p>
+        <img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC01.jpg" class="full-image" alt="alt">
+<p>这篇文章记录了我有史以来我最喜欢的数控机床的设计。它实际上已经是我做的第三台机器了，它是基于前一台的改进。在我设计这台机器之前已经有设计过一台机器，所以我这次必须设计出更复杂的部分。我的目标是做一个小型台式数控铣床，这样我可以很容易地制作一些电子或机械项目的小零件。没有这台数控机床之前，公司一直在使用这些原型板来焊接PCB。通常花好几个晚上才能焊接好一块控制板，然后再花几个晚上调试它。如果电路板有一个严重的问题，或者要做出一些改进，然后又不得不重新开始。有这一台机器后，一切都变得那么简单。可以使用EDA软件来设计PCB，并验证了电路板的可靠性。有些时候，我得到了一个好主意，然后我就可以直接实现，并且在一天之内就可以进行测试。我还使用SolidWorks与Altium Designer的工作，因为我的大部分项目都是机电一体化的。直接将电路板导入到SolidWorks并检查它是否符合项目需求或机器人设计要求，这样更加的方便快捷。</p>
+<p>不管怎样，让我们​​开始切入正题。下面是本机的规格参数：<br><em>尺寸：50x40x30厘米
+</em>重量：10-20公斤<br><em>工作区：22x32x10厘米（比A4纸大）
+</em>进给速度：自由运行4.5米/分钟<br>.        PCB2.5米/分钟<br>.        钻孔60-150孔/分钟<br>.        铝100-500毫米/分钟<br><em>主轴27,000 RPM，300W，BLDC
+</em>公差：&lt;=0.05毫米<br><em>电源：Swtiching电源
+</em>电机：两相步进电机<br>*控制器：CNCUSB，GRBL，我自己的控制器</p>
+<h2 id="SolidWorks建模"><a href="#SolidWorks建模" class="headerlink" title="SolidWorks建模"></a>SolidWorks建模</h2><p>在这里有很多的改进。第一个是工作面，之前的机器使用了几个月后，我意识到它的工作面很小。有时候，很多材料的尺寸为20×30厘米，有时我不得不削减的尺寸来配合这个工作面。所以，大量的材料就浪费了，因为材料的其余部分太小了，无法做其它用途。这就是为什么我决定做X轴和Y轴尺寸设计为22×32厘米，另外，我还增长了Z轴，这样我可以很容易地改变工具的位置或许我还可以在工作台上加一个虎钳。</p>
+<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC02.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC03.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC04.jpg" alt=""></p>
+<h3 id="底座"><a href="#底座" class="headerlink" title="底座"></a>底座</h3><p>底座采用10毫米铝板。我需要钻一些孔做定位。这两个支柱之间的桥梁很坚固，当我移动机器时可以作为一个手柄。</p>
+<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC05.jpg" alt=""></p>
+<h3 id="Y轴"><a href="#Y轴" class="headerlink" title="Y轴"></a>Y轴</h3><p>这一次，我取消了平台上的铝合金型材，使之更加紧凑。为了固定的更稳和省去装夹具的麻烦，我在边缘均匀的打了一些孔。在该平台上实际上有一个PVC板，以保护铝板。</p>
+<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC06.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC07.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC08.jpg" alt=""></p>
+<h3 id="X坐标"><a href="#X坐标" class="headerlink" title="X坐标"></a>X坐标</h3><p>实际上下图的棒材夹持器不在真正的机器上。这只是为了简化三个分离架设计一种尝试。原来，这不是很好的想法，因为我可以购买标准件，但我却花费大量的时间来做出这样一个相同的零件。而这种设计实际上并没有带来任何好处。也许，这种设计很适合批量生产（回想我当初的设计，我为什么要设计一个3合1的支架的原因是为了减少装配误差，并保持杆和螺钉的平行。因为当时我没有专业的校准工具，我想让装配根容易，但在权衡成本和精度后，我决定去便宜的东西，嗨～经费不足啊！）。</p>
+<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC09.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC10.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC11.jpg" alt=""></p>
+<h3 id="Z轴"><a href="#Z轴" class="headerlink" title="Z轴"></a>Z轴</h3><p>就像X轴，我使用正时皮带，来降低高度。我用滑轨而不是导杆棒，来减少尺寸和增加强度。导轨比导杆棒更贵，因此仅在Z轴使用。还有滚珠丝杠驱动器相对于X和Y轴的直径也较小。</p>
+<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC12.jpg" alt=""></p>
+<h3 id="主轴"><a href="#主轴" class="headerlink" title="主轴"></a>主轴</h3><p>这个小主轴很强悍！我找遍了市场上所有的主轴，没有比这更好的。它直径很小，但有300W的功率。它可以运行27000转。唯一的不足的是，这个是风扇散热，不是水冷却。所以这有点吵。我还做了一个铝制散热片帮助散热。</p>
+<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC13.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC14.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC15.jpg" alt=""></p>
+<p>X轴，Z轴和主轴</p>
+<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC16.jpg" alt=""></p>
+<p>X轴，Y轴，Z轴和主轴</p>
+<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC17.jpg" alt=""></p>
+<p>机器相片</p>
+<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC18.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC19.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC20.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC21.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC22.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC23.jpg" alt=""></p>
+<p>下面是控制器的特写镜头，布线有点乱。你会看到很多插槽，我用这个控制箱来测试我自己的控制软件。</p>
+<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC24.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC25.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC26.jpg" alt=""></p>
+<p>更多照片：</p>
+<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC27.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC28.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC29.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC30.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC31.jpg" alt=""></p>
+<p>工作中的机器。所以有点乱…</p>
+<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC32.jpg" alt=""></p>
+<p>打样照片<br>下面是本机制造的一些零件。<br>木雕的龙</p>
+<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC34.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC35.jpg" alt=""></p>
+<p>橡皮擦雕刻</p>
+<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC36.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC37.jpg" alt=""></p>
+<p>PVC头骨。新手加工…</p>
+<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC38.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC39.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC40.jpg" alt=""></p>
+<p>PCB蚀刻</p>
+<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC41.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC42.jpg" alt=""></p>
+<p>铝件</p>
+<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC43.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC44.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC45.jpg" alt=""></p>
+<p>其它零件</p>
+<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC46.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC47.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC48.jpg" alt=""></p>
+<h2 id="更多阅读"><a href="#更多阅读" class="headerlink" title="更多阅读"></a>更多阅读</h2><p>该项目只是整个数控项目的一部分。<br>如果你对控制器开发有兴趣，可以点击这里。<br>如果你对CAM软件开发有兴趣，加工PCB的生成刀具路径，可以点击这里。<br>还可以<a href="http://tu.vx.com/1603/76102.html#ad-image-0" target="_blank" rel="external">点击这里</a>下载SolidWorks模型文件。</p>
 
       
     </div>
@@ -375,13 +418,13 @@
       
         <div class="post-tags">
           
-            <a href="/tags/读书/" rel="tag">#读书</a>
+            <a href="/tags/CNC/" rel="tag">#CNC</a>
           
-            <a href="/tags/思考/" rel="tag">#思考</a>
+            <a href="/tags/机床/" rel="tag">#机床</a>
           
-            <a href="/tags/生活/" rel="tag">#生活</a>
+            <a href="/tags/机械设计/" rel="tag">#机械设计</a>
           
-            <a href="/tags/职业规划/" rel="tag">#职业规划</a>
+            <a href="/tags/数控机床/" rel="tag">#数控机床</a>
           
         </div>
       
@@ -390,13 +433,17 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/08/18/从零开始设计一台CNC机床【下】/" rel="next" title="从零开始设计一台CNC机床【下】">
-                <i class="fa fa-chevron-left"></i> 从零开始设计一台CNC机床【下】
+              <a href="/2015/02/04/时钟绘制机械手的设计优化/" rel="next" title="时钟绘制机械手的设计优化">
+                <i class="fa fa-chevron-left"></i> 时钟绘制机械手的设计优化
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/04/03/如何有效的扫除迷茫？/" rel="prev" title="如何有效的扫除迷茫？">
+                如何有效的扫除迷茫？ <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -448,8 +495,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/04/03/如何有效的扫除迷茫？/"
-           data-title="如何有效的扫除迷茫？" data-url="http://xuqianzheng.com/2016/04/03/如何有效的扫除迷茫？/">
+      <div class="ds-thread" data-thread-key="2015/08/18/从零开始设计一台CNC机床【下】/"
+           data-title="从零开始设计一台CNC机床【下】" data-url="http://xuqianzheng.com/2015/08/18/从零开始设计一台CNC机床【下】/">
       </div>
     
   </div>
@@ -592,7 +639,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#内功心法"><span class="nav-number">1.</span> <span class="nav-text">内功心法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#心法一-打破“理都懂”的幻觉"><span class="nav-number">1.1.</span> <span class="nav-text">心法一:打破“理都懂”的幻觉</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#心法二-停止迷信权威"><span class="nav-number">1.2.</span> <span class="nav-text">心法二:停止迷信权威</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#心法三-养成同侪（chai）压抗"><span class="nav-number">1.3.</span> <span class="nav-text">心法三:养成同侪（chai）压抗</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#能力修炼"><span class="nav-number">2.</span> <span class="nav-text">能力修炼</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#•-增加见识"><span class="nav-number">2.1.</span> <span class="nav-text">• 增加见识</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#•-持续磨练技能"><span class="nav-number">2.2.</span> <span class="nav-text">• 持续磨练技能</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#识别自己欠缺知识点的方法："><span class="nav-number">2.2.1.</span> <span class="nav-text">识别自己欠缺知识点的方法：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#•-培养判断力"><span class="nav-number">2.3.</span> <span class="nav-text">• 培养判断力</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一步，读完下面这些书："><span class="nav-number">2.3.1.</span> <span class="nav-text">第一步，读完下面这些书：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二步：这些读得差不多后，你自然就知道适用于你的第二步怎么走了。"><span class="nav-number">2.3.2.</span> <span class="nav-text">第二步：这些读得差不多后，你自然就知道适用于你的第二步怎么走了。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#养德"><span class="nav-number">3.</span> <span class="nav-text">养德</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#突破"><span class="nav-number">4.</span> <span class="nav-text">突破</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结束语"><span class="nav-number">5.</span> <span class="nav-text">结束语</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#SolidWorks建模"><span class="nav-number">1.</span> <span class="nav-text">SolidWorks建模</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#底座"><span class="nav-number">1.1.</span> <span class="nav-text">底座</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Y轴"><span class="nav-number">1.2.</span> <span class="nav-text">Y轴</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#X坐标"><span class="nav-number">1.3.</span> <span class="nav-text">X坐标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Z轴"><span class="nav-number">1.4.</span> <span class="nav-text">Z轴</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主轴"><span class="nav-number">1.5.</span> <span class="nav-text">主轴</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更多阅读"><span class="nav-number">2.</span> <span class="nav-text">更多阅读</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
