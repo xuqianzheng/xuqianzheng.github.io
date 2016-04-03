@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="伺服电机,控制硬件,惯量匹配,控制理论," />
+  <meta name="keywords" content="机械手,控制程序,Arduino," />
 
 
 
@@ -59,19 +59,23 @@
 
 
 
-<meta name="description" content="在伺服系统选型及调试中，常会碰到惯量问题。其具体表现为：在伺服系统选型时，除考虑电机的扭矩和额定速度等等因素外，我们还需要先计算得知机械系统换算到电机轴的惯量，再根据机械的实际动作要求及加工件质量要求来具体选择具有合适惯量大小的电机；在调试时，正确设定惯量比参数是充分发挥机械及伺服系统最佳效能的前提。此点在要求高速高精度的系统上表现尤为突出，这样，就有了惯量匹配的问题。
-一、什么是“惯量匹配”？">
+<meta name="description" content="介绍一个时钟绘制机械手的小程序，这是一个非常有趣的小时钟，由两个机器人剪刀臂在一个面板上绘制时间。如果之前你从来没有看到它是怎么工作的，先看这个。这是2015年，这是我在网上看到的一个非常有趣的小机械手。当时我试图自己去做一个，但这个想法由于一些其它事情而被耽搁了，因此有很长一段时间我在想怎么去做一个？下面是我当时想的几点问题：1、最初的设计者是如何计算出的每一个手臂的长度？2、图纸面积有多大？3">
 <meta property="og:type" content="article">
-<meta property="og:title" content="详解伺服电机选型中的惯量匹配">
-<meta property="og:url" content="http://xuqianzheng.com/2014/02/17/详解伺服电机选型中的惯量匹配/index.html">
+<meta property="og:title" content="时钟绘制机械手的设计优化">
+<meta property="og:url" content="http://xuqianzheng.com/2015/02/04/时钟绘制机械手的设计优化/index.html">
 <meta property="og:site_name" content="Robotics Blog">
-<meta property="og:description" content="在伺服系统选型及调试中，常会碰到惯量问题。其具体表现为：在伺服系统选型时，除考虑电机的扭矩和额定速度等等因素外，我们还需要先计算得知机械系统换算到电机轴的惯量，再根据机械的实际动作要求及加工件质量要求来具体选择具有合适惯量大小的电机；在调试时，正确设定惯量比参数是充分发挥机械及伺服系统最佳效能的前提。此点在要求高速高精度的系统上表现尤为突出，这样，就有了惯量匹配的问题。
-一、什么是“惯量匹配”？">
-<meta property="og:updated_time" content="2016-03-28T16:02:14.000Z">
+<meta property="og:description" content="介绍一个时钟绘制机械手的小程序，这是一个非常有趣的小时钟，由两个机器人剪刀臂在一个面板上绘制时间。如果之前你从来没有看到它是怎么工作的，先看这个。这是2015年，这是我在网上看到的一个非常有趣的小机械手。当时我试图自己去做一个，但这个想法由于一些其它事情而被耽搁了，因此有很长一段时间我在想怎么去做一个？下面是我当时想的几点问题：1、最初的设计者是如何计算出的每一个手臂的长度？2、图纸面积有多大？3">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/plot-01.gif">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/plot-02.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/plot-03.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/plot-04.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/plot-05.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/plot-06.png">
+<meta property="og:updated_time" content="2016-04-03T08:47:18.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="详解伺服电机选型中的惯量匹配">
-<meta name="twitter:description" content="在伺服系统选型及调试中，常会碰到惯量问题。其具体表现为：在伺服系统选型时，除考虑电机的扭矩和额定速度等等因素外，我们还需要先计算得知机械系统换算到电机轴的惯量，再根据机械的实际动作要求及加工件质量要求来具体选择具有合适惯量大小的电机；在调试时，正确设定惯量比参数是充分发挥机械及伺服系统最佳效能的前提。此点在要求高速高精度的系统上表现尤为突出，这样，就有了惯量匹配的问题。
-一、什么是“惯量匹配”？">
+<meta name="twitter:title" content="时钟绘制机械手的设计优化">
+<meta name="twitter:description" content="介绍一个时钟绘制机械手的小程序，这是一个非常有趣的小时钟，由两个机器人剪刀臂在一个面板上绘制时间。如果之前你从来没有看到它是怎么工作的，先看这个。这是2015年，这是我在网上看到的一个非常有趣的小机械手。当时我试图自己去做一个，但这个想法由于一些其它事情而被耽搁了，因此有很长一段时间我在想怎么去做一个？下面是我当时想的几点问题：1、最初的设计者是如何计算出的每一个手臂的长度？2、图纸面积有多大？3">
+<meta name="twitter:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/plot-01.gif">
 
 
 
@@ -89,7 +93,7 @@
   };
 </script>
 
-  <title> 详解伺服电机选型中的惯量匹配 | Robotics Blog </title>
+  <title> 时钟绘制机械手的设计优化 | Robotics Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -269,7 +273,7 @@
             
             
               
-                详解伺服电机选型中的惯量匹配
+                时钟绘制机械手的设计优化
               
             
           </h1>
@@ -281,8 +285,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2014-02-17T00:25:20+08:00" content="2014-02-17">
-              2014-02-17
+            <time itemprop="dateCreated" datetime="2015-02-04T11:22:23+08:00" content="2015-02-04">
+              2015-02-04
             </time>
           </span>
 
@@ -292,8 +296,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2014/02/17/详解伺服电机选型中的惯量匹配/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/02/17/详解伺服电机选型中的惯量匹配/" itemprop="commentsCount"></span>
+                <a href="/2015/02/04/时钟绘制机械手的设计优化/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/02/04/时钟绘制机械手的设计优化/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -315,24 +319,15 @@
       
 
       
-        <p>在伺服系统选型及调试中，常会碰到惯量问题。<br>其具体表现为：<br>在伺服系统选型时，除考虑电机的扭矩和额定速度等等因素外，我们还需要先计算得知机械系统换算到电机轴的惯量，再根据机械的实际动作要求及加工件质量要求来具体选择具有合适惯量大小的电机；在调试时，正确设定惯量比参数是充分发挥机械及伺服系统最佳效能的前提。此点在要求高速高精度的系统上表现尤为突出，这样，就有了惯量匹配的问题。</p>
-<h3 id="一、什么是“惯量匹配”？"><a href="#一、什么是“惯量匹配”？" class="headerlink" title="一、什么是“惯量匹配”？"></a>一、什么是“惯量匹配”？</h3><p>　　1、根据牛顿第二定律：“进给系统所需力矩T = 系统传动惯量J × 角加速度θ角”。 加速度θ影响系统的动态特性，θ越小，则由控制器发出指令到系统执行完毕的时间越长，系统反应越慢。如果θ变化，则系统反应将忽快忽慢，影响加工精度。由于马达选定后最大输出T值不变，如果希望θ的变化小，则J应该尽量小。 2、进给轴的总惯量“J＝伺服电机的旋转惯性动量JM ＋ 电机轴换算的负载惯性动量JL。负载惯量JL由（以平面金切机床为例）工作台及上面装的夹具和工件、螺杆、联轴器等直线和旋转运动件的惯量折合到马达轴上的惯量组成。 JM为伺服电机转子惯量，伺服电机选定后，此值就为定值，而JL则随工件等负载改变而变化。如果希望J变化率小些，则最好使JL所占比例小些。这就是通俗意义上的“惯量匹配”。</p>
-<h3 id="二、“惯量匹配”如何确定？"><a href="#二、“惯量匹配”如何确定？" class="headerlink" title="二、“惯量匹配”如何确定？"></a>二、“惯量匹配”如何确定？</h3><p>　　 传动惯量对伺服系统的精度，稳定性，动态响应都有影响。 惯量大，系统的机械常数大，响应慢，会使系统的固有频率下降，容易产生谐振，因而限制了伺服带宽，影响了伺服精度和响应速度，惯量的适当增大只有在改善低速爬行时有利，因此，机械设计时在不影响系统刚度的条件下，应尽量减小惯量。</p>
-<p>　　衡量机械系统的动态特性时，惯量越小，系统的动态特性反应越好；惯量越大，马达的负载也就越大，越难控制，但机械系统的惯量需和马达惯量相匹配才行。 不同的机构，对惯量匹配原则有不同的选择，且有不同的作用表现。 不同的机构动作及加工质量要求对JL与JM大小关系有不同的要求，但大多要求JL与JM的比值小于十以内。一句话，惯性匹配的确定需要根据机械的工艺特点及加工质量要求来确定。 对于基础金属切削机床，对于伺服电机来说，一般负载惯量建议应小于电机惯量的5倍。</p>
-<p>　　惯量匹配对于电机选型很重要的，同样功率的电机，有些品牌有分轻惯量，中惯量，或大惯量。其实负载惯量最好还是用公式计算出来。常见的形体惯量计算公式在以前学的书里都有现成的（可以去查机械设计手册）。 我们曾经做过一试验，在一伺服电机的轴伸，加一大的惯量盘准备用来做测试，结果是：伺服电机低速时停不住，摇头摆尾，不停地振荡怎么也停不下来。 后来改为：在两个伺服电机的轴伸对接加装联轴器，对其中一个伺服电机通电，作为动力即主动，另一个伺服电机作为从动，即做为一个小负载。原来那个摇头摆尾的伺服电机，启动、运动、停止，运转一切正常！</p>
-<h3 id="三、惯量的理论计算的功式？"><a href="#三、惯量的理论计算的功式？" class="headerlink" title="三、惯量的理论计算的功式？"></a>三、惯量的理论计算的功式？</h3><p>　　惯量计算都有公式，至于多重负载，比如齿轮又带齿轮，或涡轮蜗杆传动，只要分别算出各转动件惯量然后相加即是系统惯量，电机选型时建议根椐不同的电机进行选配。 负载的转动惯量肯定是要设计时通过计算算出来拉，如果没有这个值，电机选型肯定是不那么合理的，或者肯定会有问题的，这是选伺服的最重要的几个参数之一。至于电机惯量，电机样本手册上都有标注。 当然，对某些伺服，可以通过调整伺服的过程测出负载的惯量，作为理论设计中的计算的参考。毕竟在设计阶段，很多类似摩擦系数之类的参数只能根据经验来猜，不可能准确。 理论设计中的计算的公式：（仅供参考） 通常将转动惯量J用飞轮矩GD2来表示，它们之间的关系为</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">J=mp^2= GD^2/4g</span><br><span class="line">式中 m与G－转动部分的质量（kg）与重量（N）；</span><br><span class="line">与D－惯性半径与直径（m）；</span><br><span class="line">g=9.81m/s2 －重力加速度</span><br><span class="line">飞轮惯量=速度变化率*飞轮距/375</span><br></pre></td></tr></table></figure>
-<p>　　当然，理论与实际总会有偏差的，有些地区（如在欧洲），一般是采用中间值通过实际测试得到。这样，相对我们的经验公式要准确一些。不过，在目前还是需要计算的，也有固定公式可以去查机械设计手册的。</p>
-<h3 id="四、关于摩擦系数？"><a href="#四、关于摩擦系数？" class="headerlink" title="四、关于摩擦系数？"></a>四、关于摩擦系数？</h3><p>　　关于摩擦系数，一般电机选择只是考虑一个系数加到计算过程中，在电机调整时通常都不会考虑。不过，如果这个因素很大，或者讲，足以影响电机调整，有些日系通用伺服，据称有一个参数是用来专门测试的，至于是否好用，本人没有用过，估计应该是好用的。 有网友发贴说，曾有人发生过这样的情况：设计时照搬国外的机器，机械部分号称一样，电机功率放大了50%选型，可是电机转不动。因为样机的机械加工、装配的精度太差，负载惯量是差不多，可摩擦阻力相差太多了，对具体工况考虑不周。 当然，黏性阻尼和摩擦系数不是同一个问题。 摩擦系数是不变值，这点可以通过电机功率给予补偿，但黏性阻尼是变值，通过增大电机功率当然可以缓解，但其实是不合理的。况且没有设计依据，这个最好是在机械状态上解决，没有好的机械状态，伺服调整完全是一句空话。 还有，黏性阻尼跟机械结构设计、加工、装配等相关，这些在选型时是必须考虑的。而且跟摩擦系数也是息息相关的，正是因为加工水平不够才造成的摩擦系数不定，不同点相差较大，甚至技术工人装配水平的差异也会导致很大的差异，这些在电机选型时必须要考虑的。这样，才会有保险系数，当然归根结底还是电机功率的问题。</p>
-<h3 id="五、惯量的理论计算后，微调修正的简单化"><a href="#五、惯量的理论计算后，微调修正的简单化" class="headerlink" title="五、惯量的理论计算后，微调修正的简单化"></a>五、惯量的理论计算后，微调修正的简单化</h3><p>　　可能有些朋友觉的：太复杂了！ 实际情况是，某品牌的产品各种各样的参数已经确定，在满足功率，转矩，转速的条件下，产品型号已经确定，如果惯量仍然不能满足，能否将功率提高一档来满足惯量的要求？<br>　　答案是：功率提高可以带动加速度提高的话，应是可以的。</p>
-<h3 id="六、伺服电机选型"><a href="#六、伺服电机选型" class="headerlink" title="六、伺服电机选型"></a>六、伺服电机选型</h3><p>在选择好机械传动方案以后，就必须对伺服电机的型号和大小进行选择和确认。</p>
-<p>  1.选型条件：一般情况下，选择伺服电机需满足下列情况：<br>马达最大转速＞系统所需之最高移动转速。</p>
-<ol>
-<li>马达的转子惯量与负载惯量相匹配。</li>
-<li>连续负载工作扭力≤马达额定扭力</li>
-<li>马达最大输出扭力＞系统所需最大扭力（加速时扭力）</li>
-</ol>
-<p>（2）选型计算：<br>惯量匹配计算（JL/JM）<br>回转速度计算（负载端转速，马达端转速）<br>负载扭矩计算（连续负载工作扭矩，加速时扭矩）</p>
+        <p>介绍一个时钟绘制机械手的小程序，这是一个非常有趣的小时钟，由两个机器人剪刀臂在一个面板上绘制时间。如果之前你从来没有看到它是怎么工作的，先看这个。<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/plot-01.gif" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/plot-02.jpg" alt=""><br>这是2015年，这是我在网上看到的一个非常有趣的小机械手。当时我试图自己去做一个，但这个想法由于一些其它事情而被耽搁了，因此有很长一段时间我在想怎么去做一个？下面是我当时想的几点问题：<br>1、最初的设计者是如何计算出的每一个手臂的长度？<br>2、图纸面积有多大？<br>3、我该如何使它更大？<br>4、如何提高精度？<br>在用SolidWorks绘制机械臂结构时，我做了一些数学计算，得到了它是如何工作的基本思路。然后，我决定用精确的参数，让每个手臂得到的最佳仿真结果，这是我最终得到的程序，非常完美，确实可以工作。<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/plot-03.png" alt=""></p>
+<h2 id="实施"><a href="#实施" class="headerlink" title="实施"></a>实施</h2><p>这个计划的核心是插值代码，包括直线插补和圆弧插补，所以线性插值基本上我们从给定的点，然后计算下一个相邻的点和画它，做这一路的终点，圆弧插补是一样的但我们用sin和cos函数计算各点。<br>既然插补问题就解决了，那么下一个问题是如何将手臂移动到该点呢？让我们以左臂为例。既然我们知道当前绘图点，那么我们可以计算点和左伺服中心之间的距离。因为我们知道下臂的长度（红色）和上臂（蓝色）让这个问题变得知道三边的长度和计算出三个内角，内角之后就可以计算出双手的关节位置。最后我们绘制在图形的所有元素。一个100ms定时器是用来显示动画。</p>
+<h3 id="功能和程序描述"><a href="#功能和程序描述" class="headerlink" title="功能和程序描述"></a>功能和程序描述</h3><p>1、在图形面板，青色和蓝色矩形表示伺服；<br>2、橙色派是移动范围较低的机械臂（红色），如果两个机械臂相撞则需要检查；<br>3、红色和蓝色的节段是较低和上部的机械臂；<br>4、“自动”复选框启用/禁用动画；<br>5、拖动滚动条来调整每个参数；<br>6、“面积计算”按钮显示绘图区点的样式；<br>7、“测试”按钮显示“012”绘图数的结果。</p>
+<h3 id="实验和结果"><a href="#实验和结果" class="headerlink" title="实验和结果"></a>实验和结果</h3><p>最重要的参数：各臂长（L1R1，L2R2）和两舵机的距离。所以我们会调整一个参数保持不变，看这两个参数发生了什么变化。该区域是由5度的伺服控制和点的密度成正比的精度。理想参数将有一个均匀分布的点和大的可用的绘图区。</p>
+<h4 id="调整D（两伺服的距离）"><a href="#调整D（两伺服的距离）" class="headerlink" title="调整D（两伺服的距离）"></a>调整D（两伺服的距离）</h4><p>比较下面的图表中我们可以看到，D增长的区域实际上被挤到了中心，最后消失的距离大于机械臂的总和。第一个配置是失败的因为两舵机碰撞在一起，虽然有一个精彩的点的分布。第二个有一个很好的分配和两个大的绘图区域，但是有点还是点在了“伞”下面，意味着一些输入可能会导致意想不到的位置和碰撞，所以输入角度应仔细检查。<br>至于测试数，则第二个有最好的结果，所有的数字都会变形，最后不能得出数字。<br>所以我们可以说，应该尽可能小。<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/plot-04.png" alt=""></p>
+<h4 id="调整L1R1（下臂）"><a href="#调整L1R1（下臂）" class="headerlink" title="调整L1R1（下臂）"></a>调整L1R1（下臂）</h4><p>比较下面的数字可以看出，下臂增长绘图区域也会增加，但精度下降。所以这是一个平衡，如果你想要更高的精度，走很短的下臂，如果你想要更大的绘图区域，则选择更长的下臂。值得注意的是，在过去的两个配置，其实有一些地区在“保护伞”不能被吸引，这实际上降低了有效绘图区域。这是因为上面的手臂太短了，所以上臂和下臂的长度应该与它们相配！（他们是兄弟，不要留下任何一个）。<br>第一个数字有一点，它与第二和第三个比它有着良好的性能，但它最后两个数字是完全扭曲的。<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/plot-05.png" alt=""></p>
+<h4 id="调整L2R2（上臂）"><a href="#调整L2R2（上臂）" class="headerlink" title="调整L2R2（上臂）"></a>调整L2R2（上臂）</h4><p>比较下面的数字可以看出，在绘图区域的增长和移向上的增加，这是直的，因为上手臂太长，在较低的区域，点分布变得更好。有一个问题是在程序中没有显示面板。因此，较长的上半臂需要更大的面板，而面板的下部则是被浪费的。<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/plot-06.png" alt=""></p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>对于那些自己想要设计时钟绘制机械手的童鞋们应牢记这几点（仅供参考，由于程序的错误，可能不正确）。这些技巧都是建立结构的一些优化，但是优化后它是否符合你们的设计要求，那就依靠个人的设计要求来定。<br>1、伺服系统之间的距离应该是最小的；<br>2、较长的较低的手臂，面积较大，但精度较低，反之亦然；<br>3、较长的上臂区域较高，但已略有改善；<br>4、下臂和上臂的长度应与试验误差相匹配。</p>
+<h2 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h2><p>我已将SolidWorks源文件上传至我的<a href="http://tu.vx.com/1603/76100.html#ad-image-0" target="_blank" rel="external">微小网</a>主页。</p>
 
       
     </div>
@@ -347,13 +342,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/伺服电机/" rel="tag">#伺服电机</a>
+            <a href="/tags/机械手/" rel="tag">#机械手</a>
           
-            <a href="/tags/控制硬件/" rel="tag">#控制硬件</a>
+            <a href="/tags/控制程序/" rel="tag">#控制程序</a>
           
-            <a href="/tags/惯量匹配/" rel="tag">#惯量匹配</a>
-          
-            <a href="/tags/控制理论/" rel="tag">#控制理论</a>
+            <a href="/tags/Arduino/" rel="tag">#Arduino</a>
           
         </div>
       
@@ -362,12 +355,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2015/01/08/从零开始设计一台CNC机床【上】/" rel="next" title="从零开始设计一台CNC机床【上】">
+                <i class="fa fa-chevron-left"></i> 从零开始设计一台CNC机床【上】
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2014/03/27/浅谈国内机器人系统集成/" rel="prev" title="浅谈国内机器人系统集成">
-                浅谈国内机器人系统集成 <i class="fa fa-chevron-right"></i>
+              <a href="/2015/04/18/从零开始设计一台CNC机床【下】/" rel="prev" title="从零开始设计一台CNC机床【下】">
+                从零开始设计一台CNC机床【下】 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -420,8 +417,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2014/02/17/详解伺服电机选型中的惯量匹配/"
-           data-title="详解伺服电机选型中的惯量匹配" data-url="http://xuqianzheng.com/2014/02/17/详解伺服电机选型中的惯量匹配/">
+      <div class="ds-thread" data-thread-key="2015/02/04/时钟绘制机械手的设计优化/"
+           data-title="时钟绘制机械手的设计优化" data-url="http://xuqianzheng.com/2015/02/04/时钟绘制机械手的设计优化/">
       </div>
     
   </div>
@@ -564,7 +561,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、什么是“惯量匹配”？"><span class="nav-number">1.</span> <span class="nav-text">一、什么是“惯量匹配”？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、“惯量匹配”如何确定？"><span class="nav-number">2.</span> <span class="nav-text">二、“惯量匹配”如何确定？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、惯量的理论计算的功式？"><span class="nav-number">3.</span> <span class="nav-text">三、惯量的理论计算的功式？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、关于摩擦系数？"><span class="nav-number">4.</span> <span class="nav-text">四、关于摩擦系数？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、惯量的理论计算后，微调修正的简单化"><span class="nav-number">5.</span> <span class="nav-text">五、惯量的理论计算后，微调修正的简单化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、伺服电机选型"><span class="nav-number">6.</span> <span class="nav-text">六、伺服电机选型</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#实施"><span class="nav-number">1.</span> <span class="nav-text">实施</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#功能和程序描述"><span class="nav-number">1.1.</span> <span class="nav-text">功能和程序描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实验和结果"><span class="nav-number">1.2.</span> <span class="nav-text">实验和结果</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#调整D（两伺服的距离）"><span class="nav-number">1.2.1.</span> <span class="nav-text">调整D（两伺服的距离）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#调整L1R1（下臂）"><span class="nav-number">1.2.2.</span> <span class="nav-text">调整L1R1（下臂）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#调整L2R2（上臂）"><span class="nav-number">1.2.3.</span> <span class="nav-text">调整L2R2（上臂）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结论"><span class="nav-number">2.</span> <span class="nav-text">结论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更新"><span class="nav-number">3.</span> <span class="nav-text">更新</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

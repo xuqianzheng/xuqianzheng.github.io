@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="伺服电机,控制硬件,惯量匹配,控制理论," />
+  <meta name="keywords" content="CNC,机床,机械设计,数控机床," />
 
 
 
@@ -59,19 +59,64 @@
 
 
 
-<meta name="description" content="在伺服系统选型及调试中，常会碰到惯量问题。其具体表现为：在伺服系统选型时，除考虑电机的扭矩和额定速度等等因素外，我们还需要先计算得知机械系统换算到电机轴的惯量，再根据机械的实际动作要求及加工件质量要求来具体选择具有合适惯量大小的电机；在调试时，正确设定惯量比参数是充分发挥机械及伺服系统最佳效能的前提。此点在要求高速高精度的系统上表现尤为突出，这样，就有了惯量匹配的问题。
-一、什么是“惯量匹配”？">
+<meta name="description" content="这篇文章记录了我有史以来我最喜欢的数控机床的设计。它实际上已经是我做的第三台机器了，它是基于前一台的改进。在我设计这台机器之前已经有设计过一台机器，所以我这次必须设计出更复杂的部分。我的目标是做一个小型台式数控铣床，这样我可以很容易地制作一些电子或机械项目的小零件。没有这台数控机床之前，公司一直在使用这些原型板来焊接PCB。通常花好几个晚上才能焊接好一块控制板，然后再花几个晚上调试它。如果电路板">
 <meta property="og:type" content="article">
-<meta property="og:title" content="详解伺服电机选型中的惯量匹配">
-<meta property="og:url" content="http://xuqianzheng.com/2014/02/17/详解伺服电机选型中的惯量匹配/index.html">
+<meta property="og:title" content="从零开始设计一台CNC机床【下】">
+<meta property="og:url" content="http://xuqianzheng.com/2015/04/18/从零开始设计一台CNC机床【下】/index.html">
 <meta property="og:site_name" content="Robotics Blog">
-<meta property="og:description" content="在伺服系统选型及调试中，常会碰到惯量问题。其具体表现为：在伺服系统选型时，除考虑电机的扭矩和额定速度等等因素外，我们还需要先计算得知机械系统换算到电机轴的惯量，再根据机械的实际动作要求及加工件质量要求来具体选择具有合适惯量大小的电机；在调试时，正确设定惯量比参数是充分发挥机械及伺服系统最佳效能的前提。此点在要求高速高精度的系统上表现尤为突出，这样，就有了惯量匹配的问题。
-一、什么是“惯量匹配”？">
-<meta property="og:updated_time" content="2016-03-28T16:02:14.000Z">
+<meta property="og:description" content="这篇文章记录了我有史以来我最喜欢的数控机床的设计。它实际上已经是我做的第三台机器了，它是基于前一台的改进。在我设计这台机器之前已经有设计过一台机器，所以我这次必须设计出更复杂的部分。我的目标是做一个小型台式数控铣床，这样我可以很容易地制作一些电子或机械项目的小零件。没有这台数控机床之前，公司一直在使用这些原型板来焊接PCB。通常花好几个晚上才能焊接好一块控制板，然后再花几个晚上调试它。如果电路板">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC01.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC02.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC03.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC04.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC05.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC06.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC07.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC08.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC09.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC10.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC11.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC12.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC13.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC14.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC15.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC16.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC17.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC18.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC19.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC20.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC21.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC22.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC23.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC24.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC25.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC26.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC27.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC28.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC29.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC30.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC31.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC32.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC34.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC35.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC36.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC37.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC38.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC39.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC40.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC41.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC42.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC43.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC44.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC45.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC46.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC47.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC48.jpg">
+<meta property="og:updated_time" content="2016-04-03T08:47:31.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="详解伺服电机选型中的惯量匹配">
-<meta name="twitter:description" content="在伺服系统选型及调试中，常会碰到惯量问题。其具体表现为：在伺服系统选型时，除考虑电机的扭矩和额定速度等等因素外，我们还需要先计算得知机械系统换算到电机轴的惯量，再根据机械的实际动作要求及加工件质量要求来具体选择具有合适惯量大小的电机；在调试时，正确设定惯量比参数是充分发挥机械及伺服系统最佳效能的前提。此点在要求高速高精度的系统上表现尤为突出，这样，就有了惯量匹配的问题。
-一、什么是“惯量匹配”？">
+<meta name="twitter:title" content="从零开始设计一台CNC机床【下】">
+<meta name="twitter:description" content="这篇文章记录了我有史以来我最喜欢的数控机床的设计。它实际上已经是我做的第三台机器了，它是基于前一台的改进。在我设计这台机器之前已经有设计过一台机器，所以我这次必须设计出更复杂的部分。我的目标是做一个小型台式数控铣床，这样我可以很容易地制作一些电子或机械项目的小零件。没有这台数控机床之前，公司一直在使用这些原型板来焊接PCB。通常花好几个晚上才能焊接好一块控制板，然后再花几个晚上调试它。如果电路板">
+<meta name="twitter:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC01.jpg">
 
 
 
@@ -89,7 +134,7 @@
   };
 </script>
 
-  <title> 详解伺服电机选型中的惯量匹配 | Robotics Blog </title>
+  <title> 从零开始设计一台CNC机床【下】 | Robotics Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -269,7 +314,7 @@
             
             
               
-                详解伺服电机选型中的惯量匹配
+                从零开始设计一台CNC机床【下】
               
             
           </h1>
@@ -281,8 +326,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2014-02-17T00:25:20+08:00" content="2014-02-17">
-              2014-02-17
+            <time itemprop="dateCreated" datetime="2015-04-18T23:21:46+08:00" content="2015-04-18">
+              2015-04-18
             </time>
           </span>
 
@@ -292,8 +337,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2014/02/17/详解伺服电机选型中的惯量匹配/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/02/17/详解伺服电机选型中的惯量匹配/" itemprop="commentsCount"></span>
+                <a href="/2015/04/18/从零开始设计一台CNC机床【下】/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/04/18/从零开始设计一台CNC机床【下】/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -315,24 +360,50 @@
       
 
       
-        <p>在伺服系统选型及调试中，常会碰到惯量问题。<br>其具体表现为：<br>在伺服系统选型时，除考虑电机的扭矩和额定速度等等因素外，我们还需要先计算得知机械系统换算到电机轴的惯量，再根据机械的实际动作要求及加工件质量要求来具体选择具有合适惯量大小的电机；在调试时，正确设定惯量比参数是充分发挥机械及伺服系统最佳效能的前提。此点在要求高速高精度的系统上表现尤为突出，这样，就有了惯量匹配的问题。</p>
-<h3 id="一、什么是“惯量匹配”？"><a href="#一、什么是“惯量匹配”？" class="headerlink" title="一、什么是“惯量匹配”？"></a>一、什么是“惯量匹配”？</h3><p>　　1、根据牛顿第二定律：“进给系统所需力矩T = 系统传动惯量J × 角加速度θ角”。 加速度θ影响系统的动态特性，θ越小，则由控制器发出指令到系统执行完毕的时间越长，系统反应越慢。如果θ变化，则系统反应将忽快忽慢，影响加工精度。由于马达选定后最大输出T值不变，如果希望θ的变化小，则J应该尽量小。 2、进给轴的总惯量“J＝伺服电机的旋转惯性动量JM ＋ 电机轴换算的负载惯性动量JL。负载惯量JL由（以平面金切机床为例）工作台及上面装的夹具和工件、螺杆、联轴器等直线和旋转运动件的惯量折合到马达轴上的惯量组成。 JM为伺服电机转子惯量，伺服电机选定后，此值就为定值，而JL则随工件等负载改变而变化。如果希望J变化率小些，则最好使JL所占比例小些。这就是通俗意义上的“惯量匹配”。</p>
-<h3 id="二、“惯量匹配”如何确定？"><a href="#二、“惯量匹配”如何确定？" class="headerlink" title="二、“惯量匹配”如何确定？"></a>二、“惯量匹配”如何确定？</h3><p>　　 传动惯量对伺服系统的精度，稳定性，动态响应都有影响。 惯量大，系统的机械常数大，响应慢，会使系统的固有频率下降，容易产生谐振，因而限制了伺服带宽，影响了伺服精度和响应速度，惯量的适当增大只有在改善低速爬行时有利，因此，机械设计时在不影响系统刚度的条件下，应尽量减小惯量。</p>
-<p>　　衡量机械系统的动态特性时，惯量越小，系统的动态特性反应越好；惯量越大，马达的负载也就越大，越难控制，但机械系统的惯量需和马达惯量相匹配才行。 不同的机构，对惯量匹配原则有不同的选择，且有不同的作用表现。 不同的机构动作及加工质量要求对JL与JM大小关系有不同的要求，但大多要求JL与JM的比值小于十以内。一句话，惯性匹配的确定需要根据机械的工艺特点及加工质量要求来确定。 对于基础金属切削机床，对于伺服电机来说，一般负载惯量建议应小于电机惯量的5倍。</p>
-<p>　　惯量匹配对于电机选型很重要的，同样功率的电机，有些品牌有分轻惯量，中惯量，或大惯量。其实负载惯量最好还是用公式计算出来。常见的形体惯量计算公式在以前学的书里都有现成的（可以去查机械设计手册）。 我们曾经做过一试验，在一伺服电机的轴伸，加一大的惯量盘准备用来做测试，结果是：伺服电机低速时停不住，摇头摆尾，不停地振荡怎么也停不下来。 后来改为：在两个伺服电机的轴伸对接加装联轴器，对其中一个伺服电机通电，作为动力即主动，另一个伺服电机作为从动，即做为一个小负载。原来那个摇头摆尾的伺服电机，启动、运动、停止，运转一切正常！</p>
-<h3 id="三、惯量的理论计算的功式？"><a href="#三、惯量的理论计算的功式？" class="headerlink" title="三、惯量的理论计算的功式？"></a>三、惯量的理论计算的功式？</h3><p>　　惯量计算都有公式，至于多重负载，比如齿轮又带齿轮，或涡轮蜗杆传动，只要分别算出各转动件惯量然后相加即是系统惯量，电机选型时建议根椐不同的电机进行选配。 负载的转动惯量肯定是要设计时通过计算算出来拉，如果没有这个值，电机选型肯定是不那么合理的，或者肯定会有问题的，这是选伺服的最重要的几个参数之一。至于电机惯量，电机样本手册上都有标注。 当然，对某些伺服，可以通过调整伺服的过程测出负载的惯量，作为理论设计中的计算的参考。毕竟在设计阶段，很多类似摩擦系数之类的参数只能根据经验来猜，不可能准确。 理论设计中的计算的公式：（仅供参考） 通常将转动惯量J用飞轮矩GD2来表示，它们之间的关系为</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">J=mp^2= GD^2/4g</span><br><span class="line">式中 m与G－转动部分的质量（kg）与重量（N）；</span><br><span class="line">与D－惯性半径与直径（m）；</span><br><span class="line">g=9.81m/s2 －重力加速度</span><br><span class="line">飞轮惯量=速度变化率*飞轮距/375</span><br></pre></td></tr></table></figure>
-<p>　　当然，理论与实际总会有偏差的，有些地区（如在欧洲），一般是采用中间值通过实际测试得到。这样，相对我们的经验公式要准确一些。不过，在目前还是需要计算的，也有固定公式可以去查机械设计手册的。</p>
-<h3 id="四、关于摩擦系数？"><a href="#四、关于摩擦系数？" class="headerlink" title="四、关于摩擦系数？"></a>四、关于摩擦系数？</h3><p>　　关于摩擦系数，一般电机选择只是考虑一个系数加到计算过程中，在电机调整时通常都不会考虑。不过，如果这个因素很大，或者讲，足以影响电机调整，有些日系通用伺服，据称有一个参数是用来专门测试的，至于是否好用，本人没有用过，估计应该是好用的。 有网友发贴说，曾有人发生过这样的情况：设计时照搬国外的机器，机械部分号称一样，电机功率放大了50%选型，可是电机转不动。因为样机的机械加工、装配的精度太差，负载惯量是差不多，可摩擦阻力相差太多了，对具体工况考虑不周。 当然，黏性阻尼和摩擦系数不是同一个问题。 摩擦系数是不变值，这点可以通过电机功率给予补偿，但黏性阻尼是变值，通过增大电机功率当然可以缓解，但其实是不合理的。况且没有设计依据，这个最好是在机械状态上解决，没有好的机械状态，伺服调整完全是一句空话。 还有，黏性阻尼跟机械结构设计、加工、装配等相关，这些在选型时是必须考虑的。而且跟摩擦系数也是息息相关的，正是因为加工水平不够才造成的摩擦系数不定，不同点相差较大，甚至技术工人装配水平的差异也会导致很大的差异，这些在电机选型时必须要考虑的。这样，才会有保险系数，当然归根结底还是电机功率的问题。</p>
-<h3 id="五、惯量的理论计算后，微调修正的简单化"><a href="#五、惯量的理论计算后，微调修正的简单化" class="headerlink" title="五、惯量的理论计算后，微调修正的简单化"></a>五、惯量的理论计算后，微调修正的简单化</h3><p>　　可能有些朋友觉的：太复杂了！ 实际情况是，某品牌的产品各种各样的参数已经确定，在满足功率，转矩，转速的条件下，产品型号已经确定，如果惯量仍然不能满足，能否将功率提高一档来满足惯量的要求？<br>　　答案是：功率提高可以带动加速度提高的话，应是可以的。</p>
-<h3 id="六、伺服电机选型"><a href="#六、伺服电机选型" class="headerlink" title="六、伺服电机选型"></a>六、伺服电机选型</h3><p>在选择好机械传动方案以后，就必须对伺服电机的型号和大小进行选择和确认。</p>
-<p>  1.选型条件：一般情况下，选择伺服电机需满足下列情况：<br>马达最大转速＞系统所需之最高移动转速。</p>
-<ol>
-<li>马达的转子惯量与负载惯量相匹配。</li>
-<li>连续负载工作扭力≤马达额定扭力</li>
-<li>马达最大输出扭力＞系统所需最大扭力（加速时扭力）</li>
-</ol>
-<p>（2）选型计算：<br>惯量匹配计算（JL/JM）<br>回转速度计算（负载端转速，马达端转速）<br>负载扭矩计算（连续负载工作扭矩，加速时扭矩）</p>
+        <img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC01.jpg" class="full-image" alt="alt">
+<p>这篇文章记录了我有史以来我最喜欢的数控机床的设计。它实际上已经是我做的第三台机器了，它是基于前一台的改进。在我设计这台机器之前已经有设计过一台机器，所以我这次必须设计出更复杂的部分。我的目标是做一个小型台式数控铣床，这样我可以很容易地制作一些电子或机械项目的小零件。没有这台数控机床之前，公司一直在使用这些原型板来焊接PCB。通常花好几个晚上才能焊接好一块控制板，然后再花几个晚上调试它。如果电路板有一个严重的问题，或者要做出一些改进，然后又不得不重新开始。有这一台机器后，一切都变得那么简单。可以使用EDA软件来设计PCB，并验证了电路板的可靠性。有些时候，我得到了一个好主意，然后我就可以直接实现，并且在一天之内就可以进行测试。我还使用SolidWorks与Altium Designer的工作，因为我的大部分项目都是机电一体化的。直接将电路板导入到SolidWorks并检查它是否符合项目需求或机器人设计要求，这样更加的方便快捷。</p>
+<p>不管怎样，让我们​​开始切入正题。下面是本机的规格参数：<br><em>尺寸：50x40x30厘米
+</em>重量：10-20公斤<br><em>工作区：22x32x10厘米（比A4纸大）
+</em>进给速度：自由运行4.5米/分钟<br>.        PCB2.5米/分钟<br>.        钻孔60-150孔/分钟<br>.        铝100-500毫米/分钟<br><em>主轴27,000 RPM，300W，BLDC
+</em>公差：&lt;=0.05毫米<br><em>电源：Swtiching电源
+</em>电机：两相步进电机<br>*控制器：CNCUSB，GRBL，我自己的控制器</p>
+<h2 id="SolidWorks建模"><a href="#SolidWorks建模" class="headerlink" title="SolidWorks建模"></a>SolidWorks建模</h2><p>在这里有很多的改进。第一个是工作面，之前的机器使用了几个月后，我意识到它的工作面很小。有时候，很多材料的尺寸为20×30厘米，有时我不得不削减的尺寸来配合这个工作面。所以，大量的材料就浪费了，因为材料的其余部分太小了，无法做其它用途。这就是为什么我决定做X轴和Y轴尺寸设计为22×32厘米，另外，我还增长了Z轴，这样我可以很容易地改变工具的位置或许我还可以在工作台上加一个虎钳。</p>
+<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC02.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC03.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC04.jpg" alt=""></p>
+<h3 id="底座"><a href="#底座" class="headerlink" title="底座"></a>底座</h3><p>底座采用10毫米铝板。我需要钻一些孔做定位。这两个支柱之间的桥梁很坚固，当我移动机器时可以作为一个手柄。</p>
+<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC05.jpg" alt=""></p>
+<h3 id="Y轴"><a href="#Y轴" class="headerlink" title="Y轴"></a>Y轴</h3><p>这一次，我取消了平台上的铝合金型材，使之更加紧凑。为了固定的更稳和省去装夹具的麻烦，我在边缘均匀的打了一些孔。在该平台上实际上有一个PVC板，以保护铝板。</p>
+<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC06.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC07.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC08.jpg" alt=""></p>
+<h3 id="X坐标"><a href="#X坐标" class="headerlink" title="X坐标"></a>X坐标</h3><p>实际上下图的棒材夹持器不在真正的机器上。这只是为了简化三个分离架设计一种尝试。原来，这不是很好的想法，因为我可以购买标准件，但我却花费大量的时间来做出这样一个相同的零件。而这种设计实际上并没有带来任何好处。也许，这种设计很适合批量生产（回想我当初的设计，我为什么要设计一个3合1的支架的原因是为了减少装配误差，并保持杆和螺钉的平行。因为当时我没有专业的校准工具，我想让装配根容易，但在权衡成本和精度后，我决定去便宜的东西，嗨～经费不足啊！）。</p>
+<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC09.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC10.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC11.jpg" alt=""></p>
+<h3 id="Z轴"><a href="#Z轴" class="headerlink" title="Z轴"></a>Z轴</h3><p>就像X轴，我使用正时皮带，来降低高度。我用滑轨而不是导杆棒，来减少尺寸和增加强度。导轨比导杆棒更贵，因此仅在Z轴使用。还有滚珠丝杠驱动器相对于X和Y轴的直径也较小。</p>
+<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC12.jpg" alt=""></p>
+<h3 id="主轴"><a href="#主轴" class="headerlink" title="主轴"></a>主轴</h3><p>这个小主轴很强悍！我找遍了市场上所有的主轴，没有比这更好的。它直径很小，但有300W的功率。它可以运行27000转。唯一的不足的是，这个是风扇散热，不是水冷却。所以这有点吵。我还做了一个铝制散热片帮助散热。</p>
+<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC13.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC14.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC15.jpg" alt=""></p>
+<p>X轴，Z轴和主轴</p>
+<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC16.jpg" alt=""></p>
+<p>X轴，Y轴，Z轴和主轴</p>
+<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC17.jpg" alt=""></p>
+<p>机器相片</p>
+<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC18.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC19.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC20.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC21.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC22.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC23.jpg" alt=""></p>
+<p>下面是控制器的特写镜头，布线有点乱。你会看到很多插槽，我用这个控制箱来测试我自己的控制软件。</p>
+<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC24.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC25.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC26.jpg" alt=""></p>
+<p>更多照片：</p>
+<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC27.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC28.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC29.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC30.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC31.jpg" alt=""></p>
+<p>工作中的机器。所以有点乱…</p>
+<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC32.jpg" alt=""></p>
+<p>打样照片<br>下面是本机制造的一些零件。<br>木雕的龙</p>
+<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC34.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC35.jpg" alt=""></p>
+<p>橡皮擦雕刻</p>
+<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC36.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC37.jpg" alt=""></p>
+<p>PVC头骨。新手加工…</p>
+<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC38.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC39.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC40.jpg" alt=""></p>
+<p>PCB蚀刻</p>
+<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC41.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC42.jpg" alt=""></p>
+<p>铝件</p>
+<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC43.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC44.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC45.jpg" alt=""></p>
+<p>其它零件</p>
+<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC46.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC47.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC48.jpg" alt=""></p>
+<h2 id="更多阅读"><a href="#更多阅读" class="headerlink" title="更多阅读"></a>更多阅读</h2><p>该项目只是整个数控项目的一部分。<br>如果你对控制器开发有兴趣，可以点击这里。<br>如果你对CAM软件开发有兴趣，加工PCB的生成刀具路径，可以点击这里。<br>还可以<a href="http://tu.vx.com/1603/76102.html#ad-image-0" target="_blank" rel="external">点击这里</a>下载SolidWorks模型文件。</p>
 
       
     </div>
@@ -347,13 +418,13 @@
       
         <div class="post-tags">
           
-            <a href="/tags/伺服电机/" rel="tag">#伺服电机</a>
+            <a href="/tags/CNC/" rel="tag">#CNC</a>
           
-            <a href="/tags/控制硬件/" rel="tag">#控制硬件</a>
+            <a href="/tags/机床/" rel="tag">#机床</a>
           
-            <a href="/tags/惯量匹配/" rel="tag">#惯量匹配</a>
+            <a href="/tags/机械设计/" rel="tag">#机械设计</a>
           
-            <a href="/tags/控制理论/" rel="tag">#控制理论</a>
+            <a href="/tags/数控机床/" rel="tag">#数控机床</a>
           
         </div>
       
@@ -362,12 +433,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2015/02/04/时钟绘制机械手的设计优化/" rel="next" title="时钟绘制机械手的设计优化">
+                <i class="fa fa-chevron-left"></i> 时钟绘制机械手的设计优化
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2014/03/27/浅谈国内机器人系统集成/" rel="prev" title="浅谈国内机器人系统集成">
-                浅谈国内机器人系统集成 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/04/03/如何有效的扫除迷茫？/" rel="prev" title="如何有效的扫除迷茫？">
+                如何有效的扫除迷茫？ <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -420,8 +495,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2014/02/17/详解伺服电机选型中的惯量匹配/"
-           data-title="详解伺服电机选型中的惯量匹配" data-url="http://xuqianzheng.com/2014/02/17/详解伺服电机选型中的惯量匹配/">
+      <div class="ds-thread" data-thread-key="2015/04/18/从零开始设计一台CNC机床【下】/"
+           data-title="从零开始设计一台CNC机床【下】" data-url="http://xuqianzheng.com/2015/04/18/从零开始设计一台CNC机床【下】/">
       </div>
     
   </div>
@@ -564,7 +639,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、什么是“惯量匹配”？"><span class="nav-number">1.</span> <span class="nav-text">一、什么是“惯量匹配”？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、“惯量匹配”如何确定？"><span class="nav-number">2.</span> <span class="nav-text">二、“惯量匹配”如何确定？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、惯量的理论计算的功式？"><span class="nav-number">3.</span> <span class="nav-text">三、惯量的理论计算的功式？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、关于摩擦系数？"><span class="nav-number">4.</span> <span class="nav-text">四、关于摩擦系数？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、惯量的理论计算后，微调修正的简单化"><span class="nav-number">5.</span> <span class="nav-text">五、惯量的理论计算后，微调修正的简单化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、伺服电机选型"><span class="nav-number">6.</span> <span class="nav-text">六、伺服电机选型</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#SolidWorks建模"><span class="nav-number">1.</span> <span class="nav-text">SolidWorks建模</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#底座"><span class="nav-number">1.1.</span> <span class="nav-text">底座</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Y轴"><span class="nav-number">1.2.</span> <span class="nav-text">Y轴</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#X坐标"><span class="nav-number">1.3.</span> <span class="nav-text">X坐标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Z轴"><span class="nav-number">1.4.</span> <span class="nav-text">Z轴</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主轴"><span class="nav-number">1.5.</span> <span class="nav-text">主轴</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更多阅读"><span class="nav-number">2.</span> <span class="nav-text">更多阅读</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
