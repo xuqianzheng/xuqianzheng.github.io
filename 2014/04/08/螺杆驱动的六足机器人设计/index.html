@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Arduino,机器人,PID," />
+  <meta name="keywords" content="机器人,Arduino,PID," />
 
 
 
@@ -82,7 +82,7 @@
 <meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E5%85%AD%E8%B6%B3%E6%9C%BA%E5%99%A8%E4%BA%BA13.jpg">
 <meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E5%85%AD%E8%B6%B3%E6%9C%BA%E5%99%A8%E4%BA%BA14.jpg">
 <meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E5%85%AD%E8%B6%B3%E6%9C%BA%E5%99%A8%E4%BA%BA15.jpg">
-<meta property="og:updated_time" content="2016-04-07T16:42:30.000Z">
+<meta property="og:updated_time" content="2016-04-07T16:48:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="螺杆驱动的六足机器人设计">
 <meta name="twitter:description" content="这是一个六足机器人的项目，主要是我去年为了学习Solidworks的做的模拟练习。我先做了手工的腿部结构来验证我的想法，但它还是太复杂了。所以后来我还是选择用SolidWorks来模拟腿部的仿真。其实六足也不算一个新鲜的项目了，网上的六足项目也是多如牛毛，不过千篇一律，似乎缺乏了点创新。
@@ -336,7 +336,7 @@
 <p>最终该项目还是被放弃，但我还是决定将它张贴出来，也许有人对这样一个螺旋驱动机制的六足机器人有兴趣，也许看了我的这篇文章可以对他的项目做一些小的贡献。</p>
 <p>这个项目的灵感来源于前段时间做的雕刻机，雕刻机其实就是把步进电机的旋转运动通过丝杆转换成直线运动，以此控制刀具和工件的移动，之后一直想把这种结构运用到什么地方去，于是乎就产生了这么一个项目。<a id="more"></a></p>
 <p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E5%85%AD%E8%B6%B3%E6%9C%BA%E5%99%A8%E4%BA%BA04.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E5%85%AD%E8%B6%B3%E6%9C%BA%E5%99%A8%E4%BA%BA05.jpg" alt=""></p>
-<p>上面的效果图仅仅是个原型，用于分析结构。最终的效果可能会有差别<br>这个设计完全抛弃了舵机，采用空心杯伸缩杆+减速电机的方案来作为机器人的动力，不过原理还是和舵机相同，电机+减速+角度反馈。</p>
+<p>上面的效果图仅仅是个原型，用于分析结构。最终的效果可能会有差别这个设计完全抛弃了舵机，采用空心杯伸缩杆+减速电机的方案来作为机器人的动力，不过原理还是和舵机相同，电机+减速+角度反馈。</p>
 <h2 id="首先，先分析一下舵机方案和螺杆驱动方案的优劣："><a href="#首先，先分析一下舵机方案和螺杆驱动方案的优劣：" class="headerlink" title="首先，先分析一下舵机方案和螺杆驱动方案的优劣："></a>首先，先分析一下舵机方案和螺杆驱动方案的优劣：</h2><h3 id="舵机方案："><a href="#舵机方案：" class="headerlink" title="舵机方案："></a>舵机方案：</h3><p>舵机一体化程度高，使用简单，应用也成熟，配合舵机控制器使用非常方便。但是舵机形状比较单一，体积也比较大，速度比较慢，响应频率也低，控制频率50Hz。</p>
 <h3 id="螺杆驱动方案："><a href="#螺杆驱动方案：" class="headerlink" title="螺杆驱动方案："></a>螺杆驱动方案：</h3><p>螺杆减速驱动的方案在电机的选择方面就比较灵活，可以根据不同的情况选择不同型号的电机。响应频率高，最简单的PWM+AD就能控制电机运动，其实相当于将舵机拆开来使用。当然，螺杆方案最大的优点，就是它具有自锁功能，不用像普通模拟舵机那样要持续不断的发送角度信号，消耗的能量更少。</p>
 <p>用螺杆驱动，会面临这么几个问题：<br>1、选择合适的电机，电机要满足转速、转矩、重量、体积、电压、电流等要求；<br>2、要重新设计电机角度反馈电路和控制电路、控制程序。</p>
@@ -351,7 +351,8 @@
 <p>总结上面的一段分析，大家在给自己的机器人（不管什么类型的机器人）选择电机的时候，完全可以先用功和能的观点简单判断一款电机符不符合要求。<br>最简单的办法，就拿上面的例子来说，某款n20，9v，负载电流60ma，负载力矩22gcm，负载转速890rpm：<br>机器人所需功率&lt;电机输出功率&lt;电机总功率<br>机器人所需功率：P=W/t=（mgH+1/2mv2)/1=[0.33×10×47/1000+0.5×0.33×(47/1000)2]/1=0.156W<br>电机总功率：       P=9×0.06=0.54W<br>直流有刷电机效率一般比较低，就算50%吧<br>0.54W×50%=0.27W&gt;0.156W<br>粗略一算，这款电机符合要求！<br>再算一下它的输出功率：<br>电机输出功率：P=T×ω=22×890×2π/60×0.0000981=0.2W (一定要带上单位，W对应Nm，gcm要转换成Nm）<br>0.2W也大于0.15W，实际效率37%。<br>假如我们用的是空心杯，那它的总功率：<br>P=3.7v*0.2a=0.74W，假设输出效率50%，则P=0.37w，理论计算出来用空心杯也是可行的，不过要经过减速，而且同等体积的空心杯力矩会比铁心的差。<br>附上链接：<br><a href="http://www.me.mtu.edu/~wjendres/ProductRealization1Course/DC_Motor_Calculations.pdf" target="_blank" rel="external">MTU的一篇关于电机的详细文章</a><br><a href="http://wenku.baidu.com/view/d597401aff00bed5b9f31d49.html" target="_blank" rel="external">力矩转换表</a></p>
 <p>*注意：上面的分析方法、计算结果可能有错误，欢迎指正！</p>
 <p>以上的分析忽略了加速度，最后的结果导致偏小，由于模型比较复杂，所以改为solidworks进行运动分析。</p>
-<h2 id="关于硬件："><a href="#关于硬件：" class="headerlink" title="关于硬件："></a>关于硬件：</h2><p>硬件方面，最主要解决的问题，就是角度反馈和电机驱动<br>角度反馈计划采用AD读取电位器阻值变化，这也是大多数舵机里的角度反馈元件。电机驱动再讨论，因为电机电流很小，60ma~200ma，考虑三极管H桥或者ULN2003？再采用mega8或168作为MCU，通过串口或ISP或其他方式接收命令，统一接口兼容控制其他舵机六足的命令。电机转动的精度取决于电位器的质量和AD的精度。电机转动的速度取决于电流大小，以及AD读取速度、程序处理速度。</p>
+<h2 id="关于硬件："><a href="#关于硬件：" class="headerlink" title="关于硬件："></a>关于硬件：</h2><p>硬件方面，最主要解决的问题，就是角度反馈和电机驱动。角度反馈计划采用AD读取电位器阻值变化，这也是大多数舵机里的角度反馈元件。</p>
+<p>电机驱动再讨论，因为电机电流很小，60ma~200ma，考虑三极管H桥或者ULN2003？再采用mega8或168作为MCU，通过串口或ISP或其他方式接收命令，统一接口兼容控制其他舵机六足的命令。电机转动的精度取决于电位器的质量和AD的精度。电机转动的速度取决于电流大小，以及AD读取速度、程序处理速度。</p>
 <h2 id="关于控制程序："><a href="#关于控制程序：" class="headerlink" title="关于控制程序："></a>关于控制程序：</h2><p>这里控制程序可以分为上位机和下位机来讨论，由于硬件接口和普通舵机控制器相同，所以其他舵机控制上位机应该能很好的修改移植。<br>先说说下位机程序：<br>下位机接受的命令看起来可以是这样子：#C1P60C2P90，解释起来就是1号电机转到60°，2号电机转到90°。至于驱动电机的算法，可以采用分段PID，先实现最基本的，再改进，如加上脚底触碰开关，加上陀螺仪和加速度传感器进行姿态反馈。</p>
 <p>所以我觉得这个六足机器人主要的设计难点在于控制系统中的腿部的设计。它涉及到的电动机的转矩和速度，丝杠选择和线性反馈电位计算。</p>
 <p>下面我再贴一些关于这个机器人的图片。<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E5%85%AD%E8%B6%B3%E6%9C%BA%E5%99%A8%E4%BA%BA07.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E5%85%AD%E8%B6%B3%E6%9C%BA%E5%99%A8%E4%BA%BA08.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E5%85%AD%E8%B6%B3%E6%9C%BA%E5%99%A8%E4%BA%BA080.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E5%85%AD%E8%B6%B3%E6%9C%BA%E5%99%A8%E4%BA%BA09.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E5%85%AD%E8%B6%B3%E6%9C%BA%E5%99%A8%E4%BA%BA10.jpg" alt=""></p>
@@ -371,9 +372,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Arduino/" rel="tag">#Arduino</a>
-          
             <a href="/tags/机器人/" rel="tag">#机器人</a>
+          
+            <a href="/tags/Arduino/" rel="tag">#Arduino</a>
           
             <a href="/tags/PID/" rel="tag">#PID</a>
           
