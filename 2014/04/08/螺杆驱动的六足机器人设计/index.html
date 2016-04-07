@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="CNC,机床,机械设计,数控机床," />
+  <meta name="keywords" content="Arduino,机器人,PID," />
 
 
 
@@ -59,49 +59,35 @@
 
 
 
-<meta name="description" content="这篇文章将介绍我设计制作的一台数控机床。为什么我要自己设计制作一台数控机床呢？部分的原因是我喜欢DIY，但最主要的原因是，公司想要一台数控机床加工少批量的PCB样品，以及做一些简单的零件。当时我下班后有很多空闲的时间，我就向老板申请了预算，我自己设计制造一台数控机床。我先读了一些机械论坛的帖子，基本掌握了如何设计制作数控机床，然后开始了我的数控世界之旅。
-因为我之前没有设计过数控机床，所以第一台">
+<meta name="description" content="这是一个六足机器人的项目，主要是我去年为了学习Solidworks的做的模拟练习。我先做了手工的腿部结构来验证我的想法，但它还是太复杂了。所以后来我还是选择用SolidWorks来模拟腿部的仿真。其实六足也不算一个新鲜的项目了，网上的六足项目也是多如牛毛，不过千篇一律，似乎缺乏了点创新。
+最终该项目还是被放弃，但我还是决定将它张贴出来，也许有人对这样一个螺旋驱动机制的六足机器人有兴趣，也许看了我">
 <meta property="og:type" content="article">
-<meta property="og:title" content="从零开始设计一台CNC机床【上】">
-<meta property="og:url" content="http://xuqianzheng.com/2015/01/08/从零开始设计一台CNC机床【上】/index.html">
+<meta property="og:title" content="螺杆驱动的六足机器人设计">
+<meta property="og:url" content="http://xuqianzheng.com/2014/04/08/螺杆驱动的六足机器人设计/index.html">
 <meta property="og:site_name" content="Robotics Blog">
-<meta property="og:description" content="这篇文章将介绍我设计制作的一台数控机床。为什么我要自己设计制作一台数控机床呢？部分的原因是我喜欢DIY，但最主要的原因是，公司想要一台数控机床加工少批量的PCB样品，以及做一些简单的零件。当时我下班后有很多空闲的时间，我就向老板申请了预算，我自己设计制造一台数控机床。我先读了一些机械论坛的帖子，基本掌握了如何设计制作数控机床，然后开始了我的数控世界之旅。
-因为我之前没有设计过数控机床，所以第一台">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC001.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/base.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/y.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/x.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC002.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC003.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-10-01-15-12-19.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-10-01-15-38-06.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-09-29-10-24-54.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-09-29-10-23-46.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-09-29-10-23-23.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-10-03-10-39-23.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-10-03-10-37-15.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-10-03-10-35-13.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC004.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-12-03-20-10-44.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC005.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2013-01-16-16-51-31.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-12-04-13-45-02.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-10-21-16-09-06.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-10-15-22-57-26.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-10-05-19-06-38.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-10-08-09-58-48.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-10-09-00-27-48.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-11-03-21-07-50.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2013-03-08-11-05-50.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-10-10-21-50-56.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-10-10-21-53-41.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-10-11-10-00-57.jpg">
-<meta property="og:updated_time" content="2016-04-06T11:33:47.000Z">
+<meta property="og:description" content="这是一个六足机器人的项目，主要是我去年为了学习Solidworks的做的模拟练习。我先做了手工的腿部结构来验证我的想法，但它还是太复杂了。所以后来我还是选择用SolidWorks来模拟腿部的仿真。其实六足也不算一个新鲜的项目了，网上的六足项目也是多如牛毛，不过千篇一律，似乎缺乏了点创新。
+最终该项目还是被放弃，但我还是决定将它张贴出来，也许有人对这样一个螺旋驱动机制的六足机器人有兴趣，也许看了我">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E5%85%AD%E8%B6%B3%E6%9C%BA%E5%99%A8%E4%BA%BA01.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E5%85%AD%E8%B6%B3%E6%9C%BA%E5%99%A8%E4%BA%BA04.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E5%85%AD%E8%B6%B3%E6%9C%BA%E5%99%A8%E4%BA%BA05.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E5%85%AD%E8%B6%B3%E6%9C%BA%E5%99%A8%E4%BA%BA02.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E5%85%AD%E8%B6%B3%E6%9C%BA%E5%99%A8%E4%BA%BA03.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E5%85%AD%E8%B6%B3%E6%9C%BA%E5%99%A8%E4%BA%BA07.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E5%85%AD%E8%B6%B3%E6%9C%BA%E5%99%A8%E4%BA%BA08.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E5%85%AD%E8%B6%B3%E6%9C%BA%E5%99%A8%E4%BA%BA080.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E5%85%AD%E8%B6%B3%E6%9C%BA%E5%99%A8%E4%BA%BA09.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E5%85%AD%E8%B6%B3%E6%9C%BA%E5%99%A8%E4%BA%BA10.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E5%85%AD%E8%B6%B3%E6%9C%BA%E5%99%A8%E4%BA%BA11.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E5%85%AD%E8%B6%B3%E6%9C%BA%E5%99%A8%E4%BA%BA12.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E5%85%AD%E8%B6%B3%E6%9C%BA%E5%99%A8%E4%BA%BA13.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E5%85%AD%E8%B6%B3%E6%9C%BA%E5%99%A8%E4%BA%BA14.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E5%85%AD%E8%B6%B3%E6%9C%BA%E5%99%A8%E4%BA%BA15.jpg">
+<meta property="og:updated_time" content="2016-04-07T16:42:30.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="从零开始设计一台CNC机床【上】">
-<meta name="twitter:description" content="这篇文章将介绍我设计制作的一台数控机床。为什么我要自己设计制作一台数控机床呢？部分的原因是我喜欢DIY，但最主要的原因是，公司想要一台数控机床加工少批量的PCB样品，以及做一些简单的零件。当时我下班后有很多空闲的时间，我就向老板申请了预算，我自己设计制造一台数控机床。我先读了一些机械论坛的帖子，基本掌握了如何设计制作数控机床，然后开始了我的数控世界之旅。
-因为我之前没有设计过数控机床，所以第一台">
-<meta name="twitter:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC001.jpg">
+<meta name="twitter:title" content="螺杆驱动的六足机器人设计">
+<meta name="twitter:description" content="这是一个六足机器人的项目，主要是我去年为了学习Solidworks的做的模拟练习。我先做了手工的腿部结构来验证我的想法，但它还是太复杂了。所以后来我还是选择用SolidWorks来模拟腿部的仿真。其实六足也不算一个新鲜的项目了，网上的六足项目也是多如牛毛，不过千篇一律，似乎缺乏了点创新。
+最终该项目还是被放弃，但我还是决定将它张贴出来，也许有人对这样一个螺旋驱动机制的六足机器人有兴趣，也许看了我">
+<meta name="twitter:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E5%85%AD%E8%B6%B3%E6%9C%BA%E5%99%A8%E4%BA%BA01.jpg">
 
 
 
@@ -119,7 +105,7 @@
   };
 </script>
 
-  <title> 从零开始设计一台CNC机床【上】 | Robotics Blog </title>
+  <title> 螺杆驱动的六足机器人设计 | Robotics Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -299,7 +285,7 @@
             
             
               
-                从零开始设计一台CNC机床【上】
+                螺杆驱动的六足机器人设计
               
             
           </h1>
@@ -311,8 +297,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-01-08T20:11:36+08:00" content="2015-01-08">
-              2015-01-08
+            <time itemprop="dateCreated" datetime="2014-04-08T20:11:36+08:00" content="2014-04-08">
+              2014-04-08
             </time>
           </span>
 
@@ -322,8 +308,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/01/08/从零开始设计一台CNC机床【上】/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/01/08/从零开始设计一台CNC机床【上】/" itemprop="commentsCount"></span>
+                <a href="/2014/04/08/螺杆驱动的六足机器人设计/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/04/08/螺杆驱动的六足机器人设计/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -345,33 +331,32 @@
       
 
       
-        <img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC001.jpg" class="full-image" alt="alt">
-<p>这篇文章将介绍我设计制作的一台数控机床。为什么我要自己设计制作一台数控机床呢？部分的原因是我喜欢DIY，但最主要的原因是，公司想要一台数控机床加工少批量的PCB样品，以及做一些简单的零件。当时我下班后有很多空闲的时间，我就向老板申请了预算，我自己设计制造一台数控机床。我先读了一些机械论坛的帖子，基本掌握了如何设计制作数控机床，然后开始了我的数控世界之旅。</p>
-<p>因为我之前没有设计过数控机床，所以第一台机器是相当不成熟的，但从设计制作的过程中我真的获得了很多的经验。所以在下一台机床时我做了很多的改进。最终机器更好用加工质量更高。我最满意的地方就是PCB打印部分。<a id="more"></a></p>
-<p>我先用SolidWorks建立模型。因为我没有太多的预算和工具，所以我的设计思路是让这台机器很容易的加工出来。因此，我用了很多标准件。我将Y轴分开了，没有将所有的轴设计成移动轴，驱动平台是X轴和Z轴。这种设计的优点是：机器更稳定并且加工精度更高。</p>
-<p>下面是支架图。两铝型材支柱用来支撑沉重的X轴和Z轴。由于铝型材可以在淘宝购买已经切割好的节省了我很多时间。此外，这些铝型材都是采用标准件，也比较便宜。</p>
-<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/base.jpg" alt=""></p>
-<p>正如我前面所说的，我将Y轴分开了。Y轴安装在基座上。另一个关于这些铝型材，槽与M5的螺栓和螺母，所以我可以很容易地把夹子来固定材料后。</p>
-<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/y.jpg" alt=""></p>
-<p>下面X轴的设计，因为我只有少量的预算，所以我没有使用铁轨，这20毫米直径的滑杆足够支撑X轴了。</p>
-<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/x.jpg" alt=""></p>
-<p>下面是Z轴的设计。它取决于X轴，即图中所示，Z轴的需要支撑的重量小于X轴所以16mm滑杆是足够的。</p>
-<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC002.jpg" alt=""></p>
-<p>然后我们可以安装Z轴了。图中的主轴支架实际上是环氧树脂板，因为我想减轻重量和成本，后来被证明是一个错误的选择，在测试了一段时间后，我终于把它换成了铝材支架，在市场上应该有很多的主轴，我建议你选择铝合金的。</p>
-<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC003.jpg" alt=""></p>
-<p>在SolidWorks中验证模型后我终于可以开始发出去加工了，可惜我只拍了几张照片。<br>下面我的旧机器的升级换代。</p>
-<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-10-01-15-12-19.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-10-01-15-38-06.jpg" alt=""></p>
-<p>下面是一些其它加工件。</p>
-<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-09-29-10-24-54.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-09-29-10-23-46.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-09-29-10-23-23.jpg" alt=""></p>
-<p>我花了很长的时间，将这些零件组装在一起，终于完成了组装。</p>
-<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-10-03-10-39-23.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-10-03-10-37-15.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-10-03-10-35-13.jpg" alt=""></p>
-<p>让我们用这台机器制造一些东西吧！因为我是主要是为了加工PCB板，所以我加工了一些印刷电路板来测试它的性能，似乎很好用。</p>
-<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC004.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-12-03-20-10-44.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC005.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2013-01-16-16-51-31.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-12-04-13-45-02.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-10-21-16-09-06.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-10-15-22-57-26.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-10-05-19-06-38.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-10-08-09-58-48.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-10-09-00-27-48.jpg" alt=""></p>
-<p>它还可以切割亚克力、PVC、铝合金。</p>
-<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-11-03-21-07-50.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2013-03-08-11-05-50.jpg" alt=""></p>
-<p>最后我还做了其它升级，使它更容易观察到加工对象并进行定位，我做了一个发光二极管环和激光交叉。</p>
-<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-10-10-21-50-56.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-10-10-21-53-41.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/c360_2012-10-11-10-00-57.jpg" alt=""></p>
-<h2 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h2><p>我已将SolidWorks源文件上传至我的<a href="http://tu.vx.com/1603/76099.html#ad-image-0" target="_blank" rel="external">微小网</a>主页。</p>
+        <img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E5%85%AD%E8%B6%B3%E6%9C%BA%E5%99%A8%E4%BA%BA01.jpg" class="full-image" alt="alt">
+<p>这是一个六足机器人的项目，主要是我去年为了学习Solidworks的做的模拟练习。我先做了手工的腿部结构来验证我的想法，但它还是太复杂了。所以后来我还是选择用SolidWorks来模拟腿部的仿真。其实六足也不算一个新鲜的项目了，网上的六足项目也是多如牛毛，不过千篇一律，似乎缺乏了点创新。</p>
+<p>最终该项目还是被放弃，但我还是决定将它张贴出来，也许有人对这样一个螺旋驱动机制的六足机器人有兴趣，也许看了我的这篇文章可以对他的项目做一些小的贡献。</p>
+<p>这个项目的灵感来源于前段时间做的雕刻机，雕刻机其实就是把步进电机的旋转运动通过丝杆转换成直线运动，以此控制刀具和工件的移动，之后一直想把这种结构运用到什么地方去，于是乎就产生了这么一个项目。<a id="more"></a></p>
+<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E5%85%AD%E8%B6%B3%E6%9C%BA%E5%99%A8%E4%BA%BA04.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E5%85%AD%E8%B6%B3%E6%9C%BA%E5%99%A8%E4%BA%BA05.jpg" alt=""></p>
+<p>上面的效果图仅仅是个原型，用于分析结构。最终的效果可能会有差别<br>这个设计完全抛弃了舵机，采用空心杯伸缩杆+减速电机的方案来作为机器人的动力，不过原理还是和舵机相同，电机+减速+角度反馈。</p>
+<h2 id="首先，先分析一下舵机方案和螺杆驱动方案的优劣："><a href="#首先，先分析一下舵机方案和螺杆驱动方案的优劣：" class="headerlink" title="首先，先分析一下舵机方案和螺杆驱动方案的优劣："></a>首先，先分析一下舵机方案和螺杆驱动方案的优劣：</h2><h3 id="舵机方案："><a href="#舵机方案：" class="headerlink" title="舵机方案："></a>舵机方案：</h3><p>舵机一体化程度高，使用简单，应用也成熟，配合舵机控制器使用非常方便。但是舵机形状比较单一，体积也比较大，速度比较慢，响应频率也低，控制频率50Hz。</p>
+<h3 id="螺杆驱动方案："><a href="#螺杆驱动方案：" class="headerlink" title="螺杆驱动方案："></a>螺杆驱动方案：</h3><p>螺杆减速驱动的方案在电机的选择方面就比较灵活，可以根据不同的情况选择不同型号的电机。响应频率高，最简单的PWM+AD就能控制电机运动，其实相当于将舵机拆开来使用。当然，螺杆方案最大的优点，就是它具有自锁功能，不用像普通模拟舵机那样要持续不断的发送角度信号，消耗的能量更少。</p>
+<p>用螺杆驱动，会面临这么几个问题：<br>1、选择合适的电机，电机要满足转速、转矩、重量、体积、电压、电流等要求；<br>2、要重新设计电机角度反馈电路和控制电路、控制程序。</p>
+<h2 id="关于机械结构："><a href="#关于机械结构：" class="headerlink" title="关于机械结构："></a>关于机械结构：</h2><p>分析了一整天机械结构，话说用这种结构的机器人非常非常少见。。。<br>搜遍整个网络只发现立陶宛一个老兄用过，再一看日期，那也是3年前的了，并且之后一直没有更新（估计没成功）。。。<a href="http://circuit.lt/?page=campus" target="_blank" rel="external">那位立陶宛老兄的地址</a>。很纳闷他为啥3年不更新了？</p>
+<p>做一个六足机器人，最重要的就是腿部的设计，腿部设计的重点，就是电机的选择，如电机的力矩、转速、电流等参数，所以我们就先拿一条腿开始分析：</p>
+<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E5%85%AD%E8%B6%B3%E6%9C%BA%E5%99%A8%E4%BA%BA02.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E5%85%AD%E8%B6%B3%E6%9C%BA%E5%99%A8%E4%BA%BA03.jpg" alt=""></p>
+<p>上面两幅图展示了腿中部的运动情况，即：螺杆运动一个总行程L，机器人重心变化H，据此可以求出电机的参数。</p>
+<p>条件：<br>机器人自重500g，负重500g，总共1kg；<br>电池8.4v航模锂电池；<br>所用螺杆φ5mm，螺距p=1mm。</p>
+<p>假设运动过程中腿角度随螺杆均匀变化，拉力不变，忽略各种摩擦力<br>根据公式MgH=TN×2π<br>此公式的含义：物体上升一段距离H所需的能量=电机旋转N圈做的功<br>M=333g（六足运动中3条腿着地，1kg/3=333g)<br>H=76-29=47mm<br>N=电机转过圈数=L/p=20<br>*注意：计算功的一定要将角速度转换成弧度制，rpm×2π/60=rad/s<br>T为所求电机转矩<br>∴T=3.3N×47/1000m/20/6.28=0.00123Nm=12.3gcm<br>12.3gcm就是这个电机所需要的最大额定转矩<br>同理可求得机器人无负载的时候所需的额定转矩=6.17gcm<br>如果希望机器人上升的速度能达到4.7cm/s,那电机的转速要满足 ω=20rps=1200rpm<br>上面的计算忽略了摩擦力，也假定转动过程中所需拉力恒定，实际上拉力方向和腿转动方向所成的角度是变化的，因此要留1倍的余量<br>所以根据上面的参数就能很轻松的选择所需电机：<br>工作电压8.4v，重量10-15g，额定转矩12.3gcm-24.6gcm，额定转速1200rpm。<br>正好，目前淘宝上卖的很火的微型减速电机n20有诸多减速比，完全符合要求。</p>
+<p>经过一番折腾确定了腿部中间的那个电机，同理再分析腿下部的电机：<br>可以发现H=22mm，L=9.2mm，比值和上述的电机很接近，省略公式，计算得：<br>额定转矩：12.8-25.7gcm<br>额定转速：1200rpm<br>经过这么一番分析后，可以发现那位老外为什么不成功了，因为他用空心杯电机作为动力（MADE IN CHINA），这也是我一开始的想法，为了减轻重量。<br>直径7mm长度14mm的空心杯参数：电压3.7v，额定电流200ma，额定转速30000rpm，淘宝上大多数的空心杯都没给出转矩，网上搜了半天也很难找到，于是自己粗略算了一下，这种型号的空心杯转矩应该是1.2gcm，是不是小的可怜？</p>
+<p>另外，我猜测，烂大街的辉盛9g舵机里的电机和烂大街的n20减速电机所用的电机应该是一样的。</p>
+<p>总结上面的一段分析，大家在给自己的机器人（不管什么类型的机器人）选择电机的时候，完全可以先用功和能的观点简单判断一款电机符不符合要求。<br>最简单的办法，就拿上面的例子来说，某款n20，9v，负载电流60ma，负载力矩22gcm，负载转速890rpm：<br>机器人所需功率&lt;电机输出功率&lt;电机总功率<br>机器人所需功率：P=W/t=（mgH+1/2mv2)/1=[0.33×10×47/1000+0.5×0.33×(47/1000)2]/1=0.156W<br>电机总功率：       P=9×0.06=0.54W<br>直流有刷电机效率一般比较低，就算50%吧<br>0.54W×50%=0.27W&gt;0.156W<br>粗略一算，这款电机符合要求！<br>再算一下它的输出功率：<br>电机输出功率：P=T×ω=22×890×2π/60×0.0000981=0.2W (一定要带上单位，W对应Nm，gcm要转换成Nm）<br>0.2W也大于0.15W，实际效率37%。<br>假如我们用的是空心杯，那它的总功率：<br>P=3.7v*0.2a=0.74W，假设输出效率50%，则P=0.37w，理论计算出来用空心杯也是可行的，不过要经过减速，而且同等体积的空心杯力矩会比铁心的差。<br>附上链接：<br><a href="http://www.me.mtu.edu/~wjendres/ProductRealization1Course/DC_Motor_Calculations.pdf" target="_blank" rel="external">MTU的一篇关于电机的详细文章</a><br><a href="http://wenku.baidu.com/view/d597401aff00bed5b9f31d49.html" target="_blank" rel="external">力矩转换表</a></p>
+<p>*注意：上面的分析方法、计算结果可能有错误，欢迎指正！</p>
+<p>以上的分析忽略了加速度，最后的结果导致偏小，由于模型比较复杂，所以改为solidworks进行运动分析。</p>
+<h2 id="关于硬件："><a href="#关于硬件：" class="headerlink" title="关于硬件："></a>关于硬件：</h2><p>硬件方面，最主要解决的问题，就是角度反馈和电机驱动<br>角度反馈计划采用AD读取电位器阻值变化，这也是大多数舵机里的角度反馈元件。电机驱动再讨论，因为电机电流很小，60ma~200ma，考虑三极管H桥或者ULN2003？再采用mega8或168作为MCU，通过串口或ISP或其他方式接收命令，统一接口兼容控制其他舵机六足的命令。电机转动的精度取决于电位器的质量和AD的精度。电机转动的速度取决于电流大小，以及AD读取速度、程序处理速度。</p>
+<h2 id="关于控制程序："><a href="#关于控制程序：" class="headerlink" title="关于控制程序："></a>关于控制程序：</h2><p>这里控制程序可以分为上位机和下位机来讨论，由于硬件接口和普通舵机控制器相同，所以其他舵机控制上位机应该能很好的修改移植。<br>先说说下位机程序：<br>下位机接受的命令看起来可以是这样子：#C1P60C2P90，解释起来就是1号电机转到60°，2号电机转到90°。至于驱动电机的算法，可以采用分段PID，先实现最基本的，再改进，如加上脚底触碰开关，加上陀螺仪和加速度传感器进行姿态反馈。</p>
+<p>所以我觉得这个六足机器人主要的设计难点在于控制系统中的腿部的设计。它涉及到的电动机的转矩和速度，丝杠选择和线性反馈电位计算。</p>
+<p>下面我再贴一些关于这个机器人的图片。<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E5%85%AD%E8%B6%B3%E6%9C%BA%E5%99%A8%E4%BA%BA07.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E5%85%AD%E8%B6%B3%E6%9C%BA%E5%99%A8%E4%BA%BA08.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E5%85%AD%E8%B6%B3%E6%9C%BA%E5%99%A8%E4%BA%BA080.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E5%85%AD%E8%B6%B3%E6%9C%BA%E5%99%A8%E4%BA%BA09.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E5%85%AD%E8%B6%B3%E6%9C%BA%E5%99%A8%E4%BA%BA10.jpg" alt=""></p>
+<p>这里还有一个结构类似的六足机器人的设计。他用的是6V 700〜1000rpm的马达来驱动腿。他把伺服电机拆了下来，用印刷电路板和电位器来驱动电机，并进行反馈控制，从而节约了大量设计电机驱动系统的工作。<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E5%85%AD%E8%B6%B3%E6%9C%BA%E5%99%A8%E4%BA%BA11.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E5%85%AD%E8%B6%B3%E6%9C%BA%E5%99%A8%E4%BA%BA12.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E5%85%AD%E8%B6%B3%E6%9C%BA%E5%99%A8%E4%BA%BA13.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E5%85%AD%E8%B6%B3%E6%9C%BA%E5%99%A8%E4%BA%BA14.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E5%85%AD%E8%B6%B3%E6%9C%BA%E5%99%A8%E4%BA%BA15.jpg" alt=""></p>
+<h2 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h2><p>我已将SolidWorks源文件上传至我的<a href="http://tu.vx.com/1602/72537.html#ad-image-0" target="_blank" rel="external">微小网</a>主页。</p>
 
       
     </div>
@@ -386,13 +371,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/CNC/" rel="tag">#CNC</a>
+            <a href="/tags/Arduino/" rel="tag">#Arduino</a>
           
-            <a href="/tags/机床/" rel="tag">#机床</a>
+            <a href="/tags/机器人/" rel="tag">#机器人</a>
           
-            <a href="/tags/机械设计/" rel="tag">#机械设计</a>
-          
-            <a href="/tags/数控机床/" rel="tag">#数控机床</a>
+            <a href="/tags/PID/" rel="tag">#PID</a>
           
         </div>
       
@@ -401,16 +384,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2014/09/12/工业机器人常用精密减速器技术分析/" rel="next" title="工业机器人常用精密减速器技术分析">
-                <i class="fa fa-chevron-left"></i> 工业机器人常用精密减速器技术分析
+              <a href="/2014/03/27/浅谈国内机器人系统集成/" rel="next" title="浅谈国内机器人系统集成">
+                <i class="fa fa-chevron-left"></i> 浅谈国内机器人系统集成
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/02/04/时钟绘制机械手的设计优化/" rel="prev" title="时钟绘制机械手的设计优化">
-                时钟绘制机械手的设计优化 <i class="fa fa-chevron-right"></i>
+              <a href="/2014/06/07/工业机器人的设计思路/" rel="prev" title="工业机器人的设计思路">
+                工业机器人的设计思路 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -463,8 +446,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2015/01/08/从零开始设计一台CNC机床【上】/"
-           data-title="从零开始设计一台CNC机床【上】" data-url="http://xuqianzheng.com/2015/01/08/从零开始设计一台CNC机床【上】/">
+      <div class="ds-thread" data-thread-key="2014/04/08/螺杆驱动的六足机器人设计/"
+           data-title="螺杆驱动的六足机器人设计" data-url="http://xuqianzheng.com/2014/04/08/螺杆驱动的六足机器人设计/">
       </div>
     
   </div>
@@ -607,7 +590,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#更新"><span class="nav-number">1.</span> <span class="nav-text">更新</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#首先，先分析一下舵机方案和螺杆驱动方案的优劣："><span class="nav-number">1.</span> <span class="nav-text">首先，先分析一下舵机方案和螺杆驱动方案的优劣：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#舵机方案："><span class="nav-number">1.1.</span> <span class="nav-text">舵机方案：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#螺杆驱动方案："><span class="nav-number">1.2.</span> <span class="nav-text">螺杆驱动方案：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于机械结构："><span class="nav-number">2.</span> <span class="nav-text">关于机械结构：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于硬件："><span class="nav-number">3.</span> <span class="nav-text">关于硬件：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于控制程序："><span class="nav-number">4.</span> <span class="nav-text">关于控制程序：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更新"><span class="nav-number">5.</span> <span class="nav-text">更新</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
