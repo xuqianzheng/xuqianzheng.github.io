@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="机器人,Arduino,PID," />
+  <meta name="keywords" content="Arduino,机器人,PID," />
 
 
 
@@ -82,7 +82,7 @@
 <meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E5%85%AD%E8%B6%B3%E6%9C%BA%E5%99%A8%E4%BA%BA13.jpg">
 <meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E5%85%AD%E8%B6%B3%E6%9C%BA%E5%99%A8%E4%BA%BA14.jpg">
 <meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E5%85%AD%E8%B6%B3%E6%9C%BA%E5%99%A8%E4%BA%BA15.jpg">
-<meta property="og:updated_time" content="2016-04-07T16:48:06.000Z">
+<meta property="og:updated_time" content="2016-04-07T16:54:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="螺杆驱动的六足机器人设计">
 <meta name="twitter:description" content="这是一个六足机器人的项目，主要是我去年为了学习Solidworks的做的模拟练习。我先做了手工的腿部结构来验证我的想法，但它还是太复杂了。所以后来我还是选择用SolidWorks来模拟腿部的仿真。其实六足也不算一个新鲜的项目了，网上的六足项目也是多如牛毛，不过千篇一律，似乎缺乏了点创新。
@@ -340,7 +340,7 @@
 <h2 id="首先，先分析一下舵机方案和螺杆驱动方案的优劣："><a href="#首先，先分析一下舵机方案和螺杆驱动方案的优劣：" class="headerlink" title="首先，先分析一下舵机方案和螺杆驱动方案的优劣："></a>首先，先分析一下舵机方案和螺杆驱动方案的优劣：</h2><h3 id="舵机方案："><a href="#舵机方案：" class="headerlink" title="舵机方案："></a>舵机方案：</h3><p>舵机一体化程度高，使用简单，应用也成熟，配合舵机控制器使用非常方便。但是舵机形状比较单一，体积也比较大，速度比较慢，响应频率也低，控制频率50Hz。</p>
 <h3 id="螺杆驱动方案："><a href="#螺杆驱动方案：" class="headerlink" title="螺杆驱动方案："></a>螺杆驱动方案：</h3><p>螺杆减速驱动的方案在电机的选择方面就比较灵活，可以根据不同的情况选择不同型号的电机。响应频率高，最简单的PWM+AD就能控制电机运动，其实相当于将舵机拆开来使用。当然，螺杆方案最大的优点，就是它具有自锁功能，不用像普通模拟舵机那样要持续不断的发送角度信号，消耗的能量更少。</p>
 <p>用螺杆驱动，会面临这么几个问题：<br>1、选择合适的电机，电机要满足转速、转矩、重量、体积、电压、电流等要求；<br>2、要重新设计电机角度反馈电路和控制电路、控制程序。</p>
-<h2 id="关于机械结构："><a href="#关于机械结构：" class="headerlink" title="关于机械结构："></a>关于机械结构：</h2><p>分析了一整天机械结构，话说用这种结构的机器人非常非常少见。。。<br>搜遍整个网络只发现立陶宛一个老兄用过，再一看日期，那也是3年前的了，并且之后一直没有更新（估计没成功）。。。<a href="http://circuit.lt/?page=campus" target="_blank" rel="external">那位立陶宛老兄的地址</a>。很纳闷他为啥3年不更新了？</p>
+<h2 id="关于机械结构："><a href="#关于机械结构：" class="headerlink" title="关于机械结构："></a>关于机械结构：</h2><p>分析了一整天机械结构，话说用这种结构的机器人非常非常少见。搜遍整个网络只发现立陶宛一个老兄用过，再一看日期，那也是3年前的了，并且之后一直没有更新（估计没成功）。<a href="http://circuit.lt/?page=campus" target="_blank" rel="external">那位立陶宛老兄的地址</a>。很纳闷他为啥3年不更新了？</p>
 <p>做一个六足机器人，最重要的就是腿部的设计，腿部设计的重点，就是电机的选择，如电机的力矩、转速、电流等参数，所以我们就先拿一条腿开始分析：</p>
 <p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E5%85%AD%E8%B6%B3%E6%9C%BA%E5%99%A8%E4%BA%BA02.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E5%85%AD%E8%B6%B3%E6%9C%BA%E5%99%A8%E4%BA%BA03.jpg" alt=""></p>
 <p>上面两幅图展示了腿中部的运动情况，即：螺杆运动一个总行程L，机器人重心变化H，据此可以求出电机的参数。</p>
@@ -372,9 +372,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/机器人/" rel="tag">#机器人</a>
-          
             <a href="/tags/Arduino/" rel="tag">#Arduino</a>
+          
+            <a href="/tags/机器人/" rel="tag">#机器人</a>
           
             <a href="/tags/PID/" rel="tag">#PID</a>
           
