@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Arduino,机器人,PID," />
+  <meta name="keywords" content="机器人,Arduino,PID," />
 
 
 
@@ -445,6 +445,27 @@
     <div>
       
         
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat.png" alt="徐迁征 WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.jpg" alt="徐迁征 Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
 
       
     </div>
@@ -454,9 +475,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Arduino/" rel="tag"># Arduino</a>
-          
             <a href="/tags/机器人/" rel="tag"># 机器人</a>
+          
+            <a href="/tags/Arduino/" rel="tag"># Arduino</a>
           
             <a href="/tags/PID/" rel="tag"># PID</a>
           
