@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://xuqianzheng.com/2016/10/12/%E5%89%8D%E7%AB%AF%E5%B0%8F%E7%99%BD%E7%9A%84%E5%85%BB%E6%88%90%E8%AE%B0%EF%BC%88%E8%87%AA%E5%AD%A6%EF%BC%89/</loc>
-    <lastmod>2016-11-25T11:55:28.000Z</lastmod>
+    <lastmod>2016-11-26T04:11:42.000Z</lastmod>
     <data>
         <display>
         <title>前端小白的自学养成记</title>
@@ -22,6 +22,8 @@
         <tag>JavaScript</tag>
          
         <tag>JQuery</tag>
+         
+        <tag>Node.js</tag>
          
         <tag>Zepto.js</tag>
          
@@ -64,9 +66,9 @@
         <title>详解伺服电机选型中的惯量匹配</title>
         <pubTime>2014-02-16T16:25:20.000Z</pubTime>
         
-        <tag>伺服电机</tag>
-         
         <tag>控制硬件</tag>
+         
+        <tag>伺服电机</tag>
          
         <tag>惯量匹配</tag>
          
@@ -89,9 +91,9 @@
         
         <tag>工业机器人</tag>
          
-        <tag>控制硬件</tag>
-         
         <tag>设计</tag>
+         
+        <tag>控制硬件</tag>
          
          
            
