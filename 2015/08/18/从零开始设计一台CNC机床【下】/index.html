@@ -120,7 +120,6 @@
 <meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC26.jpg">
 <meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC27.jpg">
 <meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC28.jpg">
-<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC31.jpg">
 <meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC32.jpg">
 <meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC34.jpg">
 <meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC35.jpg">
@@ -137,7 +136,7 @@
 <meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC46.jpg">
 <meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC47.jpg">
 <meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/CNC48.jpg">
-<meta property="og:updated_time" content="2016-11-26T11:30:59.000Z">
+<meta property="og:updated_time" content="2016-11-26T11:40:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从零开始设计一台CNC机床【下】">
 <meta name="twitter:description" content="这篇文章记录了我有史以来我最喜欢的数控机床的设计。它实际上已经是我做的第三台机器了，它是基于前一台的改进。在我设计这台机器之前已经有设计过一台机器，所以我这次必须设计出更复杂的部分。我的目标是做一个小型台式数控铣床，这样我可以很容易地制作一些电子或机械项目的小零件。没有这台数控机床之前，公司一直在使用这些原型板来焊接PCB。通常花好几个晚上才能焊接好一块控制板，然后再花几个晚上调试它。如果电路板">
@@ -427,12 +426,22 @@
 
       
         <span itemprop="image" itemscope="" itemtype="http://schema.org/ImageObject"><img itemprop="url image" src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC01.jpg" class="full-image" alt="alt"><meta itemprop="width" content="auto"><meta itemprop="height" content="auto"></span>
-<p>这篇文章记录了我有史以来我最喜欢的数控机床的设计。它实际上已经是我做的第三台机器了，它是基于前一台的改进。在我设计这台机器之前已经有设计过一台机器，所以我这次必须设计出更复杂的部分。我的目标是做一个小型台式数控铣床，这样我可以很容易地制作一些电子或机械项目的小零件。没有这台数控机床之前，公司一直在使用这些原型板来焊接PCB。通常花好几个晚上才能焊接好一块控制板，然后再花几个晚上调试它。如果电路板有一个严重的问题，或者要做出一些改进，然后又不得不重新开始。有这一台机器后，一切都变得那么简单。可以使用 <font color="#1E90FF">EDA</font> 软件来设计PCB，并验证了电路板的可靠性。有些时候，我得到了一个好主意，然后我就可以直接实现，并且在一天之内就可以进行测试。我还使用 <font color="#1E90FF">SolidWorks</font> 与 <font color="#1E90FF">Altium Designer</font> 的工作，因为我的大部分项目都是机电一体化的。直接将电路板导入到SolidWorks并检查它是否符合项目需求或机器人设计要求，这样更加的方便快捷。<a id="more"></a></p>
-<p>不管怎样，让我们​​开始切入正题。下面是本机的规格参数：<br><em>尺寸：50x40x30厘米
-</em>重量：10-20公斤<br><em>工作区：22x32x10厘米（比A4纸大）
-</em>进给速度：自由运行4.5米/分钟<br>.        PCB2.5米/分钟<br>.        钻孔60-150孔/分钟<br>.        铝100-500毫米/分钟<br><em>主轴27,000 RPM，300W，BLDC
-</em>公差：&lt;=0.05毫米<br><em>电源：Swtiching电源
-</em>电机：两相步进电机<br>*控制器： <font color="#1E90FF">CNCUSB</font> ， <font color="#1E90FF">GRBL</font> ，我自己的控制器</p>
+<p>这篇文章记录了我有史以来我最喜欢的数控机床的设计。它实际上已经是我做的第三台机器了，它是基于前一台的改进。在我设计这台机器之前已经有设计过一台机器，所以我这次必须设计出更复杂的部分。我的目标是做一个小型台式数控铣床，这样我可以很容易地制作一些电子或机械项目的小零件。没有这台数控机床之前，公司一直在使用这些原型板来焊接PCB。通常花好几个晚上才能焊接好一块控制板，然后再花几个晚上调试它。如果电路板有一个严重的问题，或者要做出一些改进，然后又不得不重新开始。有这一台机器后，一切都变得那么简单。可以使用 <font color="#1E90FF">EDA</font> 软件来设计PCB，并验证了电路板的可靠性。有些时候，我得到了一个好主意，然后我就可以直接试验，并且在一天之内就可以进行测试。我还使用 <font color="#1E90FF">SolidWorks</font> 与 <font color="#1E90FF">Altium Designer</font> 的工作，因为我的大部分项目都是机电一体化的。直接将电路板导入到SolidWorks并检查它是否符合项目需求或机器人设计要求，这样更加的方便快捷。<a id="more"></a></p>
+<p>不管怎样，让我们​​开始切入正题。下面是本机的规格参数：</p>
+<ul>
+<li>尺寸：50x40x30厘米</li>
+<li>重量：10-20公斤</li>
+<li>工作区：22x32x10厘米（比A4纸大）</li>
+<li>进给速度：自由运行4.5米/分钟</li>
+<li>PCB：2.5米/分钟</li>
+<li>钻孔：60-150孔/分钟</li>
+<li>铝：100-500毫米/分钟</li>
+<li>主轴：27,000 RPM，300W，BLDC</li>
+<li>公差：&lt;=0.05毫米</li>
+<li>电源：Swtiching电源</li>
+<li>电机：两相步进电机</li>
+<li>控制器： <font color="#1E90FF">CNCUSB</font> ， <font color="#1E90FF">GRBL</font> ，我自己的控制器</li>
+</ul>
 <h2 id="SolidWorks建模"><a href="#SolidWorks建模" class="headerlink" title="SolidWorks建模"></a>SolidWorks建模</h2><p>在这里有很多的改进。第一个是工作面，之前的机器使用了几个月后，我意识到它的工作面很小。有时候，很多材料的尺寸为20×30厘米，有时我不得不削减的尺寸来配合这个工作面。所以，大量的材料就浪费了，因为材料的其余部分太小了，无法做其它用途。这就是为什么我决定做X轴和Y轴尺寸设计为22×32厘米，另外，我还增长了Z轴，这样我可以很容易地改变工具的位置或许我还可以在工作台上加一个虎钳。</p>
 <p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC02.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC03.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC04.jpg" alt=""></p>
 <h3 id="底座"><a href="#底座" class="headerlink" title="底座"></a>底座</h3><p>底座采用10毫米铝板。我需要钻一些孔做定位。这两个支柱之间的桥梁很坚固，当我移动机器时可以作为一个手柄。</p>
@@ -445,29 +454,29 @@
 <p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC12.jpg" alt=""></p>
 <h3 id="主轴"><a href="#主轴" class="headerlink" title="主轴"></a>主轴</h3><p>这个小主轴很强悍！我找遍了市场上所有的主轴，没有比这更好的。它直径很小，但有300W的功率。它可以运行 <font color="#1E90FF">27000</font> 转。唯一的不足的是，这个是风扇散热，不是水冷却。所以这有点吵。我还做了一个铝制散热片帮助散热。</p>
 <p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC13.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC14.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC15.jpg" alt=""></p>
-<p>X轴，Z轴和主轴</p>
+<p><strong>X轴，Z轴和主轴</strong></p>
 <p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC16.jpg" alt=""></p>
-<p>X轴，Y轴，Z轴和主轴</p>
+<p><strong>X轴，Y轴，Z轴和主轴</strong></p>
 <p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC17.jpg" alt=""></p>
-<p>机器相片</p>
+<p><strong>机器相片</strong></p>
 <p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC18.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC19.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC20.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC21.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC22.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC23.jpg" alt=""></p>
-<p>下面是控制器的特写镜头，布线有点乱。你会看到很多插槽，我用这个控制箱来测试我自己的控制软件。</p>
+<p><strong>控制器的特写镜头</strong>，布线有点乱。你会看到很多插槽，我用这个控制箱来测试我自己的控制软件。</p>
 <p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC24.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC25.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC26.jpg" alt=""></p>
-<p>更多照片：</p>
-<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC27.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC28.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC31.jpg" alt=""></p>
-<p>工作中的机器。所以有点乱…</p>
+<p><strong>更多照片：</strong></p>
+<p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC27.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC28.jpg" alt=""></p>
+<p><strong>工作中的机器。所以有点乱…</strong></p>
 <p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC32.jpg" alt=""></p>
-<p>打样照片<br>下面是本机制造的一些零件。<br>木雕的龙</p>
+<p><strong>打样照片</strong><br>下面是本机制造的一些零件。<br><strong>木雕的龙</strong></p>
 <p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC34.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC35.jpg" alt=""></p>
-<p>橡皮擦雕刻</p>
+<p><strong>橡皮擦雕刻</strong></p>
 <p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC36.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC37.jpg" alt=""></p>
-<p>PVC头骨。新手加工…</p>
+<p><strong>PVC头骨</strong></p>
 <p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC38.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC39.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC40.jpg" alt=""></p>
-<p>PCB蚀刻</p>
+<p><strong>PCB蚀刻</strong></p>
 <p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC41.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC42.jpg" alt=""></p>
-<p>铝件</p>
+<p><strong>铝件</strong></p>
 <p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC43.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC44.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC45.jpg" alt=""></p>
-<p>其它零件</p>
+<p><strong>其它零件</strong></p>
 <p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC46.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC47.jpg" alt=""><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/CNC48.jpg" alt=""></p>
 <h2 id="更多阅读"><a href="#更多阅读" class="headerlink" title="更多阅读"></a>更多阅读</h2><p>该项目只是整个数控项目的一部分。<br>如果你对控制器开发有兴趣，可以点击这里。<br>如果你对CAM软件开发有兴趣，加工PCB的生成刀具路径，可以点击这里。<br>还可以<a href="http://tu.vx.com/1603/76102.html#ad-image-0" target="_blank" rel="external">点击这里</a>下载SolidWorks模型文件。</p>
 
