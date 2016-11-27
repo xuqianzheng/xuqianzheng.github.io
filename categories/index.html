@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="机器人学,Robotics blog,嵌入式博客,机器人博客,机械设计博客,徐迁征,工业控制博客,现代控制博客,IT技术博客,Android开发博客,编程博客,机器学习博客,深度学习博客,人工智能博客" />
+  <meta name="keywords" content="javascript博客,前端博客,开发博客,IT博客,web开发博客,机器人学,Robotics blog,嵌入式博客,机器人博客,机械设计博客,徐迁征,工业控制博客,现代控制博客,IT技术博客,Android开发博客,编程博客,机器学习博客,深度学习博客,人工智能博客" />
 
 
 
@@ -262,7 +262,7 @@
       
         <li class="menu-item menu-item-search">
           
-            <a href="javascript:;" class="st-search-show-outputs">
+            <a href="javascript:;" class="popup-trigger">
           
             
               <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
@@ -277,19 +277,12 @@
   
     <div class="site-search">
       
-  <form class="site-search-form">
-  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
-</form>
-
-<script type="text/javascript">
-  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
-    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
-    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
-  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
-
-  _st('install', 'Wnk8iKCfVshQxXfRdQ_x','2.0.0');
-</script>
-
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
 
 
     </div>
