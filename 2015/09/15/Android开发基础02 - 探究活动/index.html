@@ -87,6 +87,7 @@
 
 
 <meta name="description" content="本篇文章主要介绍以下几个知识点：
+
 显示、隐式 Intent 的相关内容；
 活动 Activity 的生命周期；
 活动 Activity 的启动模式；
@@ -94,12 +95,13 @@
 
 
 2.1 活动是什么  活动（activity）是一种可以包含用户界面的组件，主要用于和用户进行交互。
-2.2 使用 Intent 在活动之间穿梭   Intent 大致可分为两种：显示 Inte">
+2.2 使用 Intent 在活动之间穿梭   Intent 大致可分为两种：显示 Int">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android开发基础02 - 探究活动">
 <meta property="og:url" content="http://xuqianzheng.com/2015/09/15/Android开发基础02 - 探究活动/index.html">
 <meta property="og:site_name" content="面向工资闲扯">
 <meta property="og:description" content="本篇文章主要介绍以下几个知识点：
+
 显示、隐式 Intent 的相关内容；
 活动 Activity 的生命周期；
 活动 Activity 的启动模式；
@@ -107,17 +109,18 @@
 
 
 2.1 活动是什么  活动（activity）是一种可以包含用户界面的组件，主要用于和用户进行交互。
-2.2 使用 Intent 在活动之间穿梭   Intent 大致可分为两种：显示 Inte">
+2.2 使用 Intent 在活动之间穿梭   Intent 大致可分为两种：显示 Int">
 <meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0201%E8%BF%94%E5%9B%9E%E6%A0%88%E5%B7%A5%E4%BD%9C%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg">
 <meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0202%E6%B4%BB%E5%8A%A8%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.jpg">
 <meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0203standard%E6%A8%A1%E5%BC%8F%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg">
 <meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0206singleTop%E6%A8%A1%E5%BC%8F%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg">
 <meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0204singleTask%E6%A8%A1%E5%BC%8F%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg">
 <meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0205singleInstance%E6%A8%A1%E5%BC%8F%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg">
-<meta property="og:updated_time" content="2016-12-15T16:19:50.000Z">
+<meta property="og:updated_time" content="2016-12-15T16:21:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android开发基础02 - 探究活动">
 <meta name="twitter:description" content="本篇文章主要介绍以下几个知识点：
+
 显示、隐式 Intent 的相关内容；
 活动 Activity 的生命周期；
 活动 Activity 的启动模式；
@@ -125,7 +128,7 @@
 
 
 2.1 活动是什么  活动（activity）是一种可以包含用户界面的组件，主要用于和用户进行交互。
-2.2 使用 Intent 在活动之间穿梭   Intent 大致可分为两种：显示 Inte">
+2.2 使用 Intent 在活动之间穿梭   Intent 大致可分为两种：显示 Int">
 <meta name="twitter:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0201%E8%BF%94%E5%9B%9E%E6%A0%88%E5%B7%A5%E4%BD%9C%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg">
 
 
@@ -414,7 +417,8 @@
 
       
         <blockquote>
-<h1 id="本篇文章主要介绍以下几个知识点："><a href="#本篇文章主要介绍以下几个知识点：" class="headerlink" title="本篇文章主要介绍以下几个知识点："></a>本篇文章主要介绍以下几个知识点：</h1><ul>
+<p><strong>本篇文章主要介绍以下几个知识点：</strong></p>
+<ul>
 <li>显示、隐式 Intent 的相关内容；</li>
 <li>活动 Activity 的生命周期；</li>
 <li>活动 Activity 的启动模式；</li>
@@ -768,7 +772,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#本篇文章主要介绍以下几个知识点："><span class="nav-number">1.</span> <span class="nav-text">本篇文章主要介绍以下几个知识点：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-1-活动是什么"><span class="nav-number">2.</span> <span class="nav-text">2.1 活动是什么</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-2-使用-Intent-在活动之间穿梭"><span class="nav-number">3.</span> <span class="nav-text">2.2 使用 Intent 在活动之间穿梭</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-1-使用显示-Intent"><span class="nav-number">3.1.</span> <span class="nav-text">2.2.1 使用显示 Intent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-2-使用隐式-Intent"><span class="nav-number">3.2.</span> <span class="nav-text">2.2.2 使用隐式 Intent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-3-更多隐式-Intent-的用法"><span class="nav-number">3.3.</span> <span class="nav-text">2.2.3 更多隐式 Intent 的用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-4-向下一个活动传递数据"><span class="nav-number">3.4.</span> <span class="nav-text">2.2.4 向下一个活动传递数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-5-返回数据给上一个活动"><span class="nav-number">3.5.</span> <span class="nav-text">2.2.5 返回数据给上一个活动</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-3-活动的生命周期"><span class="nav-number">4.</span> <span class="nav-text">2.3 活动的生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-1-返回栈"><span class="nav-number">4.1.</span> <span class="nav-text">2.3.1 返回栈</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-2-活动状态"><span class="nav-number">4.2.</span> <span class="nav-text">2.3.2 活动状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-3-活动的生存期"><span class="nav-number">4.3.</span> <span class="nav-text">2.3.3 活动的生存期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-4-活动被回收了怎么办"><span class="nav-number">4.4.</span> <span class="nav-text">2.3.4 活动被回收了怎么办</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-4-活动的启动模式"><span class="nav-number">5.</span> <span class="nav-text">2.4 活动的启动模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-1-standard"><span class="nav-number">5.1.</span> <span class="nav-text">2.4.1 standard</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-2-singleTop"><span class="nav-number">5.2.</span> <span class="nav-text">2.4.2 singleTop</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-3-singleTask"><span class="nav-number">5.3.</span> <span class="nav-text">2.4.3 singleTask</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-4-singleInstance"><span class="nav-number">5.4.</span> <span class="nav-text">2.4.4 singleInstance</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-5-活动的最佳实践"><span class="nav-number">6.</span> <span class="nav-text">2.5 活动的最佳实践</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-5-1-随时随地退出程序"><span class="nav-number">6.1.</span> <span class="nav-text">2.5.1 随时随地退出程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-5-2-启动活动的最佳写法"><span class="nav-number">6.2.</span> <span class="nav-text">2.5.2 启动活动的最佳写法</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2-1-活动是什么"><span class="nav-number">1.</span> <span class="nav-text">2.1 活动是什么</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-2-使用-Intent-在活动之间穿梭"><span class="nav-number">2.</span> <span class="nav-text">2.2 使用 Intent 在活动之间穿梭</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-1-使用显示-Intent"><span class="nav-number">2.1.</span> <span class="nav-text">2.2.1 使用显示 Intent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-2-使用隐式-Intent"><span class="nav-number">2.2.</span> <span class="nav-text">2.2.2 使用隐式 Intent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-3-更多隐式-Intent-的用法"><span class="nav-number">2.3.</span> <span class="nav-text">2.2.3 更多隐式 Intent 的用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-4-向下一个活动传递数据"><span class="nav-number">2.4.</span> <span class="nav-text">2.2.4 向下一个活动传递数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-5-返回数据给上一个活动"><span class="nav-number">2.5.</span> <span class="nav-text">2.2.5 返回数据给上一个活动</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-3-活动的生命周期"><span class="nav-number">3.</span> <span class="nav-text">2.3 活动的生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-1-返回栈"><span class="nav-number">3.1.</span> <span class="nav-text">2.3.1 返回栈</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-2-活动状态"><span class="nav-number">3.2.</span> <span class="nav-text">2.3.2 活动状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-3-活动的生存期"><span class="nav-number">3.3.</span> <span class="nav-text">2.3.3 活动的生存期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-4-活动被回收了怎么办"><span class="nav-number">3.4.</span> <span class="nav-text">2.3.4 活动被回收了怎么办</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-4-活动的启动模式"><span class="nav-number">4.</span> <span class="nav-text">2.4 活动的启动模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-1-standard"><span class="nav-number">4.1.</span> <span class="nav-text">2.4.1 standard</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-2-singleTop"><span class="nav-number">4.2.</span> <span class="nav-text">2.4.2 singleTop</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-3-singleTask"><span class="nav-number">4.3.</span> <span class="nav-text">2.4.3 singleTask</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-4-singleInstance"><span class="nav-number">4.4.</span> <span class="nav-text">2.4.4 singleInstance</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-5-活动的最佳实践"><span class="nav-number">5.</span> <span class="nav-text">2.5 活动的最佳实践</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-5-1-随时随地退出程序"><span class="nav-number">5.1.</span> <span class="nav-text">2.5.1 随时随地退出程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-5-2-启动活动的最佳写法"><span class="nav-number">5.2.</span> <span class="nav-text">2.5.2 启动活动的最佳写法</span></a></li></ol></li></ol></div>
             
 
           </div>
