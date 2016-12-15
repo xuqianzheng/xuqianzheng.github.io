@@ -4,6 +4,29 @@
 
     
   <url>
+    <loc>http://xuqianzheng.com/2015/09/08/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%8001%20-%20%E5%90%AF%E7%A8%8B/</loc>
+    <lastmod>2016-12-15T15:10:01.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android开发基础01 - 启程</title>
+        <pubTime>2015-09-08T05:11:03.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>gradle</tag>
+         
+        <tag>Android Studio</tag>
+         
+        <tag>java</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://xuqianzheng.com/2016/03/08/%E5%B0%8F%E7%99%BD%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9%E8%87%AA%E5%B7%B1%E7%9A%84%E7%AC%AC%E4%B8%80%E9%97%A8%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/</loc>
     <lastmod>2016-12-05T11:15:01.000Z</lastmod>
     <data>
@@ -11,8 +34,6 @@
         <title>小白如何选择自己的第一门编程语言</title>
         <pubTime>2016-03-08T15:11:03.000Z</pubTime>
         
-        <tag>JavaScript</tag>
-         
         <tag>Android</tag>
          
         <tag>Java</tag>
@@ -22,6 +43,8 @@
         <tag>ruby</tag>
          
         <tag>C</tag>
+         
+        <tag>JavaScript</tag>
          
         <tag>Golang</tag>
          
@@ -75,9 +98,9 @@
         
         <tag>Android</tag>
          
-        <tag>Java</tag>
-         
         <tag>Android Studio</tag>
+         
+        <tag>Java</tag>
          
         <tag>Gradle</tag>
          
@@ -195,6 +218,8 @@
         <title>前端小白的自学养成记</title>
         <pubTime>2016-09-30T12:30:13.000Z</pubTime>
         
+        <tag>JavaScript</tag>
+         
         <tag>前端学习</tag>
          
         <tag>html5</tag>
@@ -202,8 +227,6 @@
         <tag>CSS3</tag>
          
         <tag>Bootstrap</tag>
-         
-        <tag>JavaScript</tag>
          
         <tag>JQuery</tag>
          
