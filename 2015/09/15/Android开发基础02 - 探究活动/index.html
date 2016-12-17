@@ -86,7 +86,7 @@
 
 
 
-<meta name="description" content="本篇文章主要介绍以下几个知识点：
+<meta name="description" content="本文主要介绍以下几个知识点：
 
 显示、隐式 Intent 的相关内容；
 活动 Activity 的生命周期；
@@ -95,12 +95,12 @@
 
 
 2.1 活动是什么  活动（ activity ）是一种可以包含用户界面的组件，主要用于和用户进行交互。
-2.2 使用 Intent 在活动之间穿梭   Intent 大致可分为两种：显示 I">
+2.2 使用 Intent 在活动之间穿梭   Intent 大致可分为两种：显示 Int">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android开发基础2 - 探究活动">
 <meta property="og:url" content="http://xuqianzheng.com/2015/09/15/Android开发基础02 - 探究活动/index.html">
 <meta property="og:site_name" content="面向工资闲扯">
-<meta property="og:description" content="本篇文章主要介绍以下几个知识点：
+<meta property="og:description" content="本文主要介绍以下几个知识点：
 
 显示、隐式 Intent 的相关内容；
 活动 Activity 的生命周期；
@@ -109,17 +109,17 @@
 
 
 2.1 活动是什么  活动（ activity ）是一种可以包含用户界面的组件，主要用于和用户进行交互。
-2.2 使用 Intent 在活动之间穿梭   Intent 大致可分为两种：显示 I">
+2.2 使用 Intent 在活动之间穿梭   Intent 大致可分为两种：显示 Int">
 <meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0201%E8%BF%94%E5%9B%9E%E6%A0%88%E5%B7%A5%E4%BD%9C%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg">
 <meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0202%E6%B4%BB%E5%8A%A8%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.jpg">
 <meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0203standard%E6%A8%A1%E5%BC%8F%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg">
 <meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0206singleTop%E6%A8%A1%E5%BC%8F%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg">
 <meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0204singleTask%E6%A8%A1%E5%BC%8F%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg">
 <meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0205singleInstance%E6%A8%A1%E5%BC%8F%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg">
-<meta property="og:updated_time" content="2016-12-17T07:44:01.000Z">
+<meta property="og:updated_time" content="2016-12-17T12:39:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android开发基础2 - 探究活动">
-<meta name="twitter:description" content="本篇文章主要介绍以下几个知识点：
+<meta name="twitter:description" content="本文主要介绍以下几个知识点：
 
 显示、隐式 Intent 的相关内容；
 活动 Activity 的生命周期；
@@ -128,7 +128,7 @@
 
 
 2.1 活动是什么  活动（ activity ）是一种可以包含用户界面的组件，主要用于和用户进行交互。
-2.2 使用 Intent 在活动之间穿梭   Intent 大致可分为两种：显示 I">
+2.2 使用 Intent 在活动之间穿梭   Intent 大致可分为两种：显示 Int">
 <meta name="twitter:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0201%E8%BF%94%E5%9B%9E%E6%A0%88%E5%B7%A5%E4%BD%9C%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg">
 
 
@@ -417,7 +417,7 @@
 
       
         <blockquote>
-<p><strong>本篇文章主要介绍以下几个知识点：</strong></p>
+<p><strong>本文主要介绍以下几个知识点：</strong></p>
 <ul>
 <li>显示、隐式 Intent 的相关内容；</li>
 <li>活动 Activity 的生命周期；</li>
@@ -456,7 +456,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> * 处理得到的返回数据 </span><br><span class="line"> * @param requestCode  启动活动时传入的请求码</span><br><span class="line"> * @param resultCode  返回数据时传入的处理结果</span><br><span class="line"> * @param data  携带返回数据的Intent </span><br><span class="line">*/</span><br><span class="line">@Override</span><br><span class="line">protected void onActivityResult(int requestCode, int resultCode, Intent data) &#123;    </span><br><span class="line">       switch (requestCode)&#123;       </span><br><span class="line">            <span class="keyword">case</span> 1:           </span><br><span class="line">                 <span class="keyword">if</span> (resultCode == RESULT_OK)&#123;                </span><br><span class="line">                     String returnedData = data.getStringExtra(<span class="string">"data_return"</span>);           </span><br><span class="line">                     Log.d(TAG, returnedData);           </span><br><span class="line">                 &#125;            </span><br><span class="line">                 <span class="built_in">break</span>;                </span><br><span class="line">            default:           </span><br><span class="line">                 <span class="built_in">break</span>;   </span><br><span class="line">       &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>  若在SecondActivity是通过按下Back键回到FirstActivity，可以在SecondActivity中重写<font color="#1E90FF"> onBackPressed() </font>方法：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public void <span class="function"><span class="title">onBackPressed</span></span>() &#123;    </span><br><span class="line">     Intent intent = new Intent();</span><br><span class="line">     intent.putExtra(<span class="string">"data_return"</span>,<span class="string">"hello FirstActivity"</span>);</span><br><span class="line">     <span class="built_in">set</span>Result(RESULT_OK,intent);</span><br><span class="line">     finish();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="2-3-活动的生命周期"><a href="#2-3-活动的生命周期" class="headerlink" title="2.3 活动的生命周期"></a>2.3 活动的生命周期</h1><h2 id="2-3-1-返回栈"><a href="#2-3-1-返回栈" class="headerlink" title="2.3.1 返回栈"></a>2.3.1 返回栈</h2><p>  Android 是使用任务<font color="#1E90FF"> （Task） </font>来管理活动的，一个任务就是一组存放在栈里的活动的集合，这个栈也被称作返回栈<font color="#1E90FF"> （Back Stack） </font>。栈是一种后进先出的数据结构，在默认情况下，每当我们启动了一个新的活动，它会在返回栈中入栈，并处于栈顶的位置。而每当我们 按下 Back 键或调用 finish()方法去销毁一个活动时，处于栈顶的活动会出栈，这时前一个入栈的活动就会重新处于栈顶的位置。系统总是会显示处于栈顶的活动给用户。<br>如图所示：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0201%E8%BF%94%E5%9B%9E%E6%A0%88%E5%B7%A5%E4%BD%9C%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg" alt=""></p>
+<h1 id="2-3-活动的生命周期"><a href="#2-3-活动的生命周期" class="headerlink" title="2.3 活动的生命周期"></a>2.3 活动的生命周期</h1><h2 id="2-3-1-返回栈"><a href="#2-3-1-返回栈" class="headerlink" title="2.3.1 返回栈"></a>2.3.1 返回栈</h2><p>  Android 是使用任务<font color="#1E90FF"> （Task） </font>来管理活动的，一个任务就是一组存放在栈里的活动的集合，这个栈也被称作返回栈<font color="#1E90FF"> （Back Stack） </font>。栈是一种后进先出的数据结构，在默认情况下，每当我们启动了一个新的活动，它会在返回栈中入栈，并处于栈顶的位置。而每当我们 按下 Back 键或调用 finish()方法去销毁一个活动时，处于栈顶的活动会出栈，这时前一个入栈的活动就会重新处于栈顶的位置。系统总是会显示处于栈顶的活动给用户。<br>如图所示：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0201%E8%BF%94%E5%9B%9E%E6%A0%88%E5%B7%A5%E4%BD%9C%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg" alt="" title="返回栈工作示意图"></p>
 <h2 id="2-3-2-活动状态"><a href="#2-3-2-活动状态" class="headerlink" title="2.3.2 活动状态"></a>2.3.2 活动状态</h2><p>  每个活动在其生命周期中最多可能会有四种状态。</p>
 <ol>
 <li><p>运行状态<br>  活动位于返回栈的栈顶。系统最不愿意回收的就是处于运行状态的活动，因为这会带来非常差的用户体验。</p>
@@ -486,17 +486,17 @@
 </li>
 </ol>
 <p>  以上七个方法中除了 onRestart()方法，其他都是两两相对的，从而又可以将活动分为三种生存期。<br>  1. 完整生存期： 活动在 onCreate()方法和 onDestroy()方法之间所经历的；<br>  2. 可见生存期： 活动在 onStart()方法和 onStop()方法之间所经历的；<br>  3. 前台生存期： 活动在 onResume()方法和 onPause()方法之间所经历的。</p>
-<p>  Android 官方提供了一张活动生命周期的示意图，如图所示：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0202%E6%B4%BB%E5%8A%A8%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.jpg" alt=""></p>
+<p>  Android 官方提供了一张活动生命周期的示意图，如图所示：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0202%E6%B4%BB%E5%8A%A8%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.jpg" alt="" title="活动的生命周期"></p>
 <h2 id="2-3-4-活动被回收了怎么办"><a href="#2-3-4-活动被回收了怎么办" class="headerlink" title="2.3.4 活动被回收了怎么办"></a>2.3.4 活动被回收了怎么办</h2><p>  Activity 中提供了一个<font color="#1E90FF"> onSaveInstanceState() </font>回调方法，这 个方法会保证一定在活动被回收之前调用。<br>  onSaveInstanceState()方法会携带一个 Bundle 类型的参数，Bundle 提供了一系列的方法用于保存数据，如用<font color="#1E90FF"> putString() </font>方法保存字符串，用<font color="#1E90FF"> putInt() </font>方法保存整型数据， 以此类推。每个保存方法需要传入两个参数，第一个参数是键，用于后面从 Bundle 中取值， 第二个参数是真正要保存的内容。</p>
 <p>  在Activity 中添加如下代码就可以将临时数据进行保存：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">protected void onSaveInstanceState(Bundle outState) &#123;    </span><br><span class="line">    super.onSaveInstanceState(outState);</span><br><span class="line">    String tempData = <span class="string">"Something you just typed"</span>;</span><br><span class="line">    outState.putString(<span class="string">"data_key"</span>, tempData);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>  Activity 被回收后的恢复操作，修改其onCreate()方法，如下所示：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">protected void onCreate(Bundle savedInstanceState) &#123;    </span><br><span class="line">    super.onCreate(savedInstanceState);</span><br><span class="line">    <span class="built_in">set</span>ContentView(R.layout.activity_main);</span><br><span class="line">    <span class="keyword">if</span> (savedInstanceState != null) &#123; // 若不为空，取出相应的数据</span><br><span class="line">        String tempData = savedInstanceState.getString(<span class="string">"data_key"</span>); </span><br><span class="line">        Log.d(TAG, tempData);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="2-4-活动的启动模式"><a href="#2-4-活动的启动模式" class="headerlink" title="2.4 活动的启动模式"></a>2.4 活动的启动模式</h1><p>  启动模式一共有四种，分别是 standard 、singleTop 、singleTask 和 singleInstance，可以在AndroidManifest.xml 中通过给 <activity> 标签指定 android:launchMode 属性来选择启动模式。</activity></p>
-<h2 id="2-4-1-standard"><a href="#2-4-1-standard" class="headerlink" title="2.4.1 standard"></a>2.4.1 standard</h2><p>  standard 是活动默认的启动模式，在不进行显式指定的情况下，所有活动都会自动使用这种启动模式。<br>  在<font color="#1E90FF"> standard </font>模式（即默认情况）下，每当启动一个新的活动，它就会在返回栈中入栈，并处于栈顶的位置。对于使用 standard 模式的活动，系统不会在乎这个活动是否已经在返回栈中存在，每次启动都会创建 该活动的一个新的实例。<br>  standard 模式的原理示意图，如图所示：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0203standard%E6%A8%A1%E5%BC%8F%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg" alt=""></p>
-<h2 id="2-4-2-singleTop"><a href="#2-4-2-singleTop" class="headerlink" title="2.4.2 singleTop"></a>2.4.2 singleTop</h2><p>  当活动的启动模式指定为<font color="#1E90FF"> singleTop </font>，在启动活动时如果发现返回栈的栈顶已经是该活动，则认为可以直接使用它，不会再创建新的活动实例。<br>  singleTop模式的原理示意图，如图所示：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0206singleTop%E6%A8%A1%E5%BC%8F%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg" alt=""></p>
-<h2 id="2-4-3-singleTask"><a href="#2-4-3-singleTask" class="headerlink" title="2.4.3 singleTask"></a>2.4.3 singleTask</h2><p>  当活动的启动模式指定为<font color="#1E90FF"> singleTask </font>，每次启动该活动时系统首先 会在返回栈中检查是否存在该活动的实例，如果发现已经存在则直接使用该实例，并把在这个活动之上的所有活动统统出栈，如果没有发现就会创建一个新的活动实例。<br>  singleTask模式的原理示意图，如图所示：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0204singleTask%E6%A8%A1%E5%BC%8F%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg" alt=""></p>
-<h2 id="2-4-4-singleInstance"><a href="#2-4-4-singleInstance" class="headerlink" title="2.4.4 singleInstance"></a>2.4.4 singleInstance</h2><p>  不同于以上三种启动模式，指定为<font color="#1E90FF"> singleInstance </font>模式的活动会启用一 个新的返回栈来管理这个活动（其实如果 singleTask 模式指定了不同的 taskAffinity，也会启动一个新的返回栈）。<br>  singleInstance模式的原理示意图，如图所示：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0205singleInstance%E6%A8%A1%E5%BC%8F%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg" alt=""></p>
+<h2 id="2-4-1-standard"><a href="#2-4-1-standard" class="headerlink" title="2.4.1 standard"></a>2.4.1 standard</h2><p>  standard 是活动默认的启动模式，在不进行显式指定的情况下，所有活动都会自动使用这种启动模式。<br>  在<font color="#1E90FF"> standard </font>模式（即默认情况）下，每当启动一个新的活动，它就会在返回栈中入栈，并处于栈顶的位置。对于使用 standard 模式的活动，系统不会在乎这个活动是否已经在返回栈中存在，每次启动都会创建 该活动的一个新的实例。<br>  standard 模式的原理示意图，如图所示：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0203standard%E6%A8%A1%E5%BC%8F%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg" alt="" title="standard模式示意图"></p>
+<h2 id="2-4-2-singleTop"><a href="#2-4-2-singleTop" class="headerlink" title="2.4.2 singleTop"></a>2.4.2 singleTop</h2><p>  当活动的启动模式指定为<font color="#1E90FF"> singleTop </font>，在启动活动时如果发现返回栈的栈顶已经是该活动，则认为可以直接使用它，不会再创建新的活动实例。<br>  singleTop模式的原理示意图，如图所示：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0206singleTop%E6%A8%A1%E5%BC%8F%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg" alt="" title="singleTop模式示意图"></p>
+<h2 id="2-4-3-singleTask"><a href="#2-4-3-singleTask" class="headerlink" title="2.4.3 singleTask"></a>2.4.3 singleTask</h2><p>  当活动的启动模式指定为<font color="#1E90FF"> singleTask </font>，每次启动该活动时系统首先 会在返回栈中检查是否存在该活动的实例，如果发现已经存在则直接使用该实例，并把在这个活动之上的所有活动统统出栈，如果没有发现就会创建一个新的活动实例。<br>  singleTask模式的原理示意图，如图所示：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0204singleTask%E6%A8%A1%E5%BC%8F%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg" alt="" title="singleTask模式示意图"></p>
+<h2 id="2-4-4-singleInstance"><a href="#2-4-4-singleInstance" class="headerlink" title="2.4.4 singleInstance"></a>2.4.4 singleInstance</h2><p>  不同于以上三种启动模式，指定为<font color="#1E90FF"> singleInstance </font>模式的活动会启用一 个新的返回栈来管理这个活动（其实如果 singleTask 模式指定了不同的 taskAffinity，也会启动一个新的返回栈）。<br>  singleInstance模式的原理示意图，如图所示：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0205singleInstance%E6%A8%A1%E5%BC%8F%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg" alt="" title="singleInstance模式示意图"></p>
 <h1 id="2-5-活动的最佳实践"><a href="#2-5-活动的最佳实践" class="headerlink" title="2.5 活动的最佳实践"></a>2.5 活动的最佳实践</h1><h2 id="2-5-1-随时随地退出程序"><a href="#2-5-1-随时随地退出程序" class="headerlink" title="2.5.1 随时随地退出程序"></a>2.5.1 随时随地退出程序</h2><p>  用一个专门的集合类对所有的活动进行管理，新建一个 ActivityCollector 类作为活动管理器，代码如下所示：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public class ActivityCollector &#123;</span><br><span class="line">    // 通过一个List来缓存活动</span><br><span class="line">    public static List&lt;Activity&gt; activities = new ArrayList&lt;Activity&gt;();</span><br><span class="line">    // 用于向List中添加一个活动</span><br><span class="line">    public static void addActivity(Activity activity) &#123;</span><br><span class="line">        activities.add(activity);</span><br><span class="line">    &#125;</span><br><span class="line">    // 用于从List中移除活动</span><br><span class="line">    public static void removeActivity(Activity activity) &#123;</span><br><span class="line">        activities.remove(activity);</span><br><span class="line">    &#125;</span><br><span class="line">    // 将List中存储的活动全部销毁掉</span><br><span class="line">    public static void <span class="function"><span class="title">finishAll</span></span>() &#123;</span><br><span class="line">        <span class="keyword">for</span> (Activity activity : activities) &#123;</span><br><span class="line">           <span class="keyword">if</span> (!activity.isFinishing()) &#123;</span><br><span class="line">               activity.finish();</span><br><span class="line">           &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>  在活动管理器中，我们通过一个 List 来暂存活动，然后提供了一个<font color="#1E90FF"> addActivity() </font>方法用于向 List 中添加一个活动，提供了一个<font color="#1E90FF"> removeActivity() </font>方法用于从 List 中移除活动，最后提供了一个<font color="#1E90FF"> finishAll() </font>方法用于将 List 中存储的活动全部都销毁掉。</p>
