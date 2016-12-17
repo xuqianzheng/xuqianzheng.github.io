@@ -68,13 +68,13 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="机器人学,Robotics blog,嵌入式博客,机器人博客,机械设计博客,徐迁征,工业控制博客,现代控制博客,IT技术博客,Android开发博客,编程博客,机器学习博客,深度学习博客,人工智能博客" />
+  <meta name="keywords" content="javascript博客,前端博客,开发博客,IT博客,web开发博客,机器人学,Robotics blog,嵌入式博客,机器人博客,机械设计博客,徐迁征,工业控制博客,现代控制博客,IT技术博客,Android开发博客,编程博客,机器学习博客,深度学习博客,人工智能博客" />
 
 
 
 
 
-  <link rel="alternate" href="/atom.xml" title="面向工资闲扯" type="application/atom+xml" />
+  <link rel="alternate" href="/rss2.xml" title="面向工资闲扯" type="application/atom+xml" />
 
 
 
@@ -86,15 +86,15 @@
 
 
 
-<meta name="description" content="Python+Javascript+Android">
+<meta name="description" content="前端+Android（Python+Ruby）">
 <meta property="og:type" content="website">
 <meta property="og:title" content="面向工资闲扯">
 <meta property="og:url" content="http://xuqianzheng.com/page/3/index.html">
 <meta property="og:site_name" content="面向工资闲扯">
-<meta property="og:description" content="Python+Javascript+Android">
+<meta property="og:description" content="前端+Android（Python+Ruby）">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="面向工资闲扯">
-<meta name="twitter:description" content="Python+Javascript+Android">
+<meta name="twitter:description" content="前端+Android（Python+Ruby）">
 
 
 
@@ -149,6 +149,15 @@
 
 
 
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=56301679";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
 
 
 
@@ -175,7 +184,7 @@
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
-  <p class="site-subtitle">-Python、Javascript、Android</p>
+  <p class="site-subtitle">读书、生活、思考</p>
 </div>
 
 <div class="site-nav-toggle">
@@ -246,7 +255,7 @@
       
         <li class="menu-item menu-item-search">
           
-            <a href="javascript:;" class="st-search-show-outputs">
+            <a href="javascript:;" class="popup-trigger">
           
             
               <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
@@ -261,19 +270,12 @@
   
     <div class="site-search">
       
-  <form class="site-search-form">
-  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
-</form>
-
-<script type="text/javascript">
-  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
-    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
-    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
-  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
-
-  _st('install', 'Wnk8iKCfVshQxXfRdQ_x','2.0.0');
-</script>
-
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
 
 
     </div>
@@ -291,135 +293,6 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://xuqianzheng.com/2014/02/17/详解伺服电机选型中的惯量匹配/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="徐迁征">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.png">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="面向工资闲扯">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="面向工资闲扯" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/02/17/详解伺服电机选型中的惯量匹配/" itemprop="url">
-                  详解伺服电机选型中的惯量匹配
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-02-17T00:25:20+08:00">
-                2014-02-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <a href="/2014/02/17/详解伺服电机选型中的惯量匹配/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/02/17/详解伺服电机选型中的惯量匹配/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>本文主要探讨伺服系统中的惯量匹配。在伺服系统选型及调试中，常会碰到惯量问题。<br>其具体表现为：<br>在伺服系统选型时，除考虑电机的扭矩和额定速度等等因素外，我们还需要先计算得知机械系统换算到电机轴的惯量，再根据机械的实际动作要求及加工件质量要求来具体选择具有合适惯量大小的电机；在调试时，正确设定惯量比参数是充分发挥机械及伺服系统最佳效能的前提。此点在要求高速高精度的系统上表现尤为突出，这样，就有了惯量匹配的问题。</p>
-<h3 id="一、什么是“惯量匹配”？"><a href="#一、什么是“惯量匹配”？" class="headerlink" title="一、什么是“惯量匹配”？"></a>一、什么是“惯量匹配”？</h3><p>　　1、根据牛顿第二定律：“进给系统所需力矩T = 系统传动惯量J × 角加速度θ角”。 加速度θ影响系统的动态特性，θ越小，则由控制器发出指令到系统执行完毕的时间越长，系统反应越慢。如果θ变化，则系统反应将忽快忽慢，影响加工精度。由于马达选定后最大输出T值不变，如果希望θ的变化小，则J应该尽量小。 2、进给轴的总惯量“J＝伺服电机的旋转惯性动量JM ＋ 电机轴换算的负载惯性动量JL。负载惯量JL由（以平面金切机床为例）工作台及上面装的夹具和工件、螺杆、联轴器等直线和旋转运动件的惯量折合到马达轴上的惯量组成。 JM为伺服电机转子惯量，伺服电机选定后，此值就为定值，而JL则随工件等负载改变而变化。如果希望J变化率小些，则最好使JL所占比例小些。这就是通俗意义上的“惯量匹配”。
-          <!--noindex-->
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2014/02/17/详解伺服电机选型中的惯量匹配/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
     
       
 
@@ -456,7 +329,7 @@
               
                 
                 <a class="post-title-link" href="/2014/01/02/工业4.0时代 — 机械工程师的职业规划/" itemprop="url">
-                  工业4.0时代 — 机械工程师的职业规划
+                  工业4.0时代 - 机械工程师的职业规划
                 </a>
               
             
@@ -514,10 +387,10 @@
 
       
         
-          <span itemprop="image" itemscope itemtype="http://schema.org/ImageObject"><img itemprop="url image" src="http://7xsb4k.com1.z0.glb.clouddn.com/%E6%9C%BA%E6%A2%B0%E5%B7%A5%E7%A8%8B%E5%B8%88%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB%E5%9B%BE.jpg" class="full-image" alt="alt" /><meta itemprop="width" content="auto"><meta itemprop="height" content="auto"></span>
-<h3 id="常见误区一："><a href="#常见误区一：" class="headerlink" title="常见误区一："></a>常见误区一：</h3><p>机械只是搞结构，结构只是使用PRO/E、solidworks或者其他什么软件；</p>
-<h3 id="常见误区二："><a href="#常见误区二：" class="headerlink" title="常见误区二："></a>常见误区二：</h3><p>机械行业越老越吃香，切勿相信这句心灵鸡汤。越老越吃香是骗人的，这主要看你在什么平台了。一个浮躁的企业，靠山寨生存，什么挣钱干什么，你要在这公司里，干再多年也只是画图狗，画图会把人累死，天天画图改图，天天加班，你连玩儿的心情都木有了，那还有心情学习？不学习，哪能越老越吃香？</p>
-<h3 id="常见误区三："><a href="#常见误区三：" class="headerlink" title="常见误区三："></a>常见误区三：</h3><p>学机械不需要了解编程知识。编程作为互联网时代工程师的基本技能，也是机械工程师的基础。
+          <h1 id="机械工程师的知识体系："><a href="#机械工程师的知识体系：" class="headerlink" title="机械工程师的知识体系："></a>机械工程师的知识体系：</h1><p>下面这张图告诉你，作为一个合格机械工程师有多难！请注意是“合格”的机械工程师。或许你在工作中没有确切的提到图中的某一项工作，但是做一个行业的设备方案设计，或者做一项应用技术研究，你或多或少的都会考虑到或者用到图中的知识点。<br><span itemprop="image" itemscope itemtype="http://schema.org/ImageObject"><img itemprop="url image" src="http://7xsb4k.com1.z0.glb.clouddn.com/%E6%9C%BA%E6%A2%B0%E5%B7%A5%E7%A8%8B%E5%B8%88%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB%E5%9B%BE.jpg" class="full-image" alt="alt" /><meta itemprop="width" content="auto"><meta itemprop="height" content="auto"></span></p>
+<h1 id="初级机械工程师（绘图员）常见误区："><a href="#初级机械工程师（绘图员）常见误区：" class="headerlink" title="初级机械工程师（绘图员）常见误区："></a>初级机械工程师（绘图员）常见误区：</h1><h2 id="常见误区一："><a href="#常见误区一：" class="headerlink" title="常见误区一："></a>常见误区一：</h2><p>机械只是搞结构，结构只是使用<font color=#1E90FF>creo</font>、<font color=#1E90FF>solidworks</font>或者其他什么软件；</p>
+<h2 id="常见误区二："><a href="#常见误区二：" class="headerlink" title="常见误区二："></a>常见误区二：</h2><p>机械行业越老越吃香，切勿相信这句心灵鸡汤。越老越吃香是骗人的，这主要看你在什么平台了。一个浮躁的企业，靠山寨生存，什么挣钱干什么，你要在这公司里，干再多年也只是画图狗，画图会把人累死，天天画图改图，天天加班，你连玩儿的心情都木有了，那还有心情学习？不学习，哪能越老越吃香？</p>
+<h2 id="常见误区三："><a href="#常见误区三：" class="headerlink" title="常见误区三："></a>常见误区三：</h2><p>搞机械不需要了解<font color=#1E90FF>编程知识</font>。编程作为互联网时代工程师的基本技能，也是机械工程师的基础。
           <!--noindex-->
           <div class="post-more-link text-center">
             <a class="btn" href="/2014/01/02/工业4.0时代 — 机械工程师的职业规划/#more" rel="contents">
@@ -592,12 +465,12 @@
                src="/images/avatar.png"
                alt="徐迁征" />
           <p class="site-author-name" itemprop="name">徐迁征</p>
-          <p class="site-description motion-element" itemprop="description">Python+Javascript+Android</p>
+          <p class="site-description motion-element" itemprop="description">前端+Android（Python+Ruby）</p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-count">17</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -607,7 +480,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-count">52</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -617,7 +490,7 @@
 
         
           <div class="feed-link motion-element">
-            <a href="/atom.xml" rel="alternate">
+            <a href="/rss2.xml" rel="alternate">
               <i class="fa fa-rss"></i>
               RSS
             </a>
@@ -818,6 +691,130 @@
 
   
   
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
 
   
 
