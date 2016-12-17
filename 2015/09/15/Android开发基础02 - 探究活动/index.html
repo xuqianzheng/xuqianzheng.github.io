@@ -116,7 +116,7 @@
 <meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0206singleTop%E6%A8%A1%E5%BC%8F%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg">
 <meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0204singleTask%E6%A8%A1%E5%BC%8F%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg">
 <meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0205singleInstance%E6%A8%A1%E5%BC%8F%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg">
-<meta property="og:updated_time" content="2016-12-15T16:28:52.000Z">
+<meta property="og:updated_time" content="2016-12-17T07:44:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android开发基础2 - 探究活动">
 <meta name="twitter:description" content="本篇文章主要介绍以下几个知识点：
@@ -431,7 +431,7 @@
 <p>  代码如下所示：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 显示Intent</span><br><span class="line">Intent intent = new Intent(FirstActivity.this,SecondActivity.class);</span><br><span class="line">startActivity(intent);</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
-<h2 id="2-2-2-使用隐式-Intent"><a href="#2-2-2-使用隐式-Intent" class="headerlink" title="2.2.2 使用隐式 Intent"></a>2.2.2 使用隐式 Intent</h2><p>  隐式 Intent并不明确指出想要启动哪一个活动，而是指定了一系列更为抽象的action和category等信息，然后交由系统去分析这个Intent，并找出合适的活动去启动。</p>
+<h2 id="2-2-2-使用隐式-Intent"><a href="#2-2-2-使用隐式-Intent" class="headerlink" title="2.2.2 使用隐式 Intent"></a>2.2.2 使用隐式 Intent</h2><p>  隐式 Intent并不明确指出想要启动哪一个活动，而是指定了一系列更为抽象的<font color="#1E90FF"> action </font>和<font color="#1E90FF"> category </font>等信息，然后交由系统去分析这个Intent，并找出合适的活动去启动。</p>
 <p>  用法：打开<font color="#1E90FF"> AndroidManifest.xml </font>，添加如下代码：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;activity android:name=<span class="string">".inquiry_activity.SecondActivity"</span>&gt;   </span><br><span class="line">      &lt;intent-filter&gt;       </span><br><span class="line">            &lt;!-- 指定活动能响应的action和category --&gt;        </span><br><span class="line">            &lt;action android:name=<span class="string">"com.wonderful.ACTION_START"</span>/&gt;       </span><br><span class="line">            &lt;category android:name=<span class="string">"android.intent.category.DEFAULT"</span>/&gt;   </span><br><span class="line">      &lt;/intent-filter&gt;</span><br><span class="line">&lt;/activity&gt;</span><br></pre></td></tr></table></figure>
 <p>  此时在activity中的代码修改为：</p>
