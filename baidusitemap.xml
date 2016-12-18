@@ -4,6 +4,73 @@
 
     
   <url>
+    <loc>http://xuqianzheng.com/2015/09/20/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%8004%20-%20%E6%8E%A2%E7%A9%B6%E7%A2%8E%E7%89%87/</loc>
+    <lastmod>2016-12-18T15:07:24.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android开发基础3 - 探究碎片</title>
+        <pubTime>2015-09-20T11:29:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>Android Studio</tag>
+         
+        <tag>java</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://xuqianzheng.com/2015/09/20/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%8003%20-%20UI%20%E5%BC%80%E5%8F%91/</loc>
+    <lastmod>2016-12-18T05:56:31.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android开发基础3 - UI 开发</title>
+        <pubTime>2015-09-20T11:29:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>Android Studio</tag>
+         
+        <tag>java</tag>
+         
+        <tag>UI</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://xuqianzheng.com/2015/03/18/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E8%AE%BE%E8%AE%A1%E4%B8%80%E5%8F%B0CNC%E6%9C%BA%E5%BA%8A%E3%80%90%E4%B8%8B%E3%80%91/</loc>
+    <lastmod>2016-12-18T05:42:52.000Z</lastmod>
+    <data>
+        <display>
+        <title>从零开始设计一台CNC机床【下】</title>
+        <pubTime>2015-03-18T15:21:46.000Z</pubTime>
+        
+        <tag>CNC</tag>
+         
+        <tag>机床</tag>
+         
+        <tag>机械设计</tag>
+         
+        <tag>数控机床</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://xuqianzheng.com/2014/03/27/%E6%B5%85%E8%B0%88%E5%9B%BD%E5%86%85%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%B3%BB%E7%BB%9F%E9%9B%86%E6%88%90/</loc>
     <lastmod>2016-12-18T04:45:44.000Z</lastmod>
     <data>
@@ -49,9 +116,9 @@
         <title>工业机器人常用精密减速器技术分析</title>
         <pubTime>2014-09-12T02:24:08.000Z</pubTime>
         
-        <tag>工业机器人</tag>
-         
         <tag>减速机</tag>
+         
+        <tag>工业机器人</tag>
          
          
            
@@ -101,11 +168,11 @@
         
         <tag>Android</tag>
          
-        <tag>gradle</tag>
-         
         <tag>Android Studio</tag>
          
         <tag>java</tag>
+         
+        <tag>gradle</tag>
          
          
            
@@ -124,34 +191,11 @@
         
         <tag>生活</tag>
          
+        <tag>职业规划</tag>
+         
         <tag>读书</tag>
          
         <tag>思考</tag>
-         
-        <tag>职业规划</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://xuqianzheng.com/2015/09/20/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%8003%20-%20UI%20%E5%BC%80%E5%8F%91/</loc>
-    <lastmod>2016-12-17T13:33:34.000Z</lastmod>
-    <data>
-        <display>
-        <title>Android开发基础3 - UI 开发</title>
-        <pubTime>2015-09-20T11:29:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>Android Studio</tag>
-         
-        <tag>java</tag>
-         
-        <tag>UI</tag>
          
          
            
@@ -193,11 +237,11 @@
          
         <tag>机械设计</tag>
          
-        <tag>读书</tag>
-         
         <tag>职业规划</tag>
          
         <tag>机械工程师</tag>
+         
+        <tag>读书</tag>
          
          
            
@@ -334,29 +378,6 @@
         <tag>Node.js</tag>
          
         <tag>Zepto.js</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://xuqianzheng.com/2015/08/18/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E8%AE%BE%E8%AE%A1%E4%B8%80%E5%8F%B0CNC%E6%9C%BA%E5%BA%8A%E3%80%90%E4%B8%8B%E3%80%91/</loc>
-    <lastmod>2016-11-26T11:40:51.000Z</lastmod>
-    <data>
-        <display>
-        <title>从零开始设计一台CNC机床【下】</title>
-        <pubTime>2015-08-18T15:21:46.000Z</pubTime>
-        
-        <tag>CNC</tag>
-         
-        <tag>机床</tag>
-         
-        <tag>机械设计</tag>
-         
-        <tag>数控机床</tag>
          
          
            
