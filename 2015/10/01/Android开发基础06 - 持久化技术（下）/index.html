@@ -1,0 +1,1151 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android,Android Studio,java,《第一行代码》（第2版）," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="面向工资闲扯" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="本篇文章主要介绍以下几个知识点：
+
+SQLite 数据库存储；
+开源数据库框架 LitePal。
+
+
+6.3 SQLite 数据库存储  前面介绍的两种存储方式很难应付得了需要存储大量复杂的关系型数据的时候，而使用数据库就可以做到。
+  SQLite 是一款轻量级的关系型数据库，它的运算速度非常快， 占用资源很少，通常只需几百 K 的内存就足够了，因而特别适合在移动设备上使用。SQLite 不仅">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android开发基础6 - 持久化技术（下）">
+<meta property="og:url" content="http://xuqianzheng.com/2015/10/01/Android开发基础06 - 持久化技术（下）/index.html">
+<meta property="og:site_name" content="面向工资闲扯">
+<meta property="og:description" content="本篇文章主要介绍以下几个知识点：
+
+SQLite 数据库存储；
+开源数据库框架 LitePal。
+
+
+6.3 SQLite 数据库存储  前面介绍的两种存储方式很难应付得了需要存储大量复杂的关系型数据的时候，而使用数据库就可以做到。
+  SQLite 是一款轻量级的关系型数据库，它的运算速度非常快， 占用资源很少，通常只需几百 K 的内存就足够了，因而特别适合在移动设备上使用。SQLite 不仅">
+<meta property="og:image" content="http://xuqianzheng.com/"创建数据表成功"">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0606%E8%BF%9B%E5%85%A5%E8%AE%BE%E5%A4%87%E7%9A%84%E6%8E%A7%E5%88%B6%E5%8F%B0.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0607%E6%9F%A5%E7%9C%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E6%96%87%E4%BB%B6.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0608%E6%89%93%E5%BC%80BookStore.db%20%E6%95%B0%E6%8D%AE%E5%BA%93.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0607%E6%9F%A5%E7%9C%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E6%96%87%E4%BB%B6.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0610%E6%9F%A5%E7%9C%8B%E5%BB%BA%E8%A1%A8%E8%AF%AD%E5%8F%A5.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/06101%E6%9F%A5%E7%9C%8B%E6%96%B0%E5%A2%9E%E8%A1%A8.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/06102%E6%9F%A5%E7%9C%8B%E6%96%B0%E5%A2%9E%E5%BB%BA%E8%A1%A8%E8%AF%AD%E5%8F%A5.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0611%E4%BF%AE%E6%94%B9%E5%90%8E%E7%9A%84%E5%B8%83%E5%B1%80.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0612%E6%9F%A5%E7%9C%8B%E6%B7%BB%E5%8A%A0%E7%9A%84%E6%95%B0%E6%8D%AE.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0613%E6%9F%A5%E7%9C%8B%E6%9B%B4%E6%96%B0%E5%90%8E%E7%9A%84%E6%95%B0%E6%8D%AE.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0614%E6%9F%A5%E7%9C%8B%E5%88%A0%E9%99%A4%E5%90%8E%E7%9A%84%E6%95%B0%E6%8D%AE.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0616%E6%89%93%E5%8D%B0%E6%9F%A5%E8%AF%A2%E7%9A%84%E6%95%B0%E6%8D%AE.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0617LitePal%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93%E5%B8%83%E5%B1%80.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0618%E6%9F%A5%E7%9C%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E6%96%87%E4%BB%B6.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0619%E6%9F%A5%E7%9C%8B%E5%BB%BA%E8%A1%A8%E8%AF%AD%E5%8F%A5.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0620%E5%8D%87%E7%BA%A7%E6%95%B0%E6%8D%AE%E5%BA%93%E5%90%8E%E7%9A%84%E5%BB%BA%E8%A1%A8%E8%AF%AD%E5%8F%A5.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0621%E6%9F%A5%E7%9C%8B%E6%B7%BB%E5%8A%A0%E7%9A%84%E6%95%B0%E6%8D%AE.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0622%E6%9F%A5%E7%9C%8B%E6%9B%B4%E6%96%B0%E5%90%8E%E7%9A%84%E6%95%B0%E6%8D%AE.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0623%E6%89%93%E5%8D%B0%E6%9F%A5%E8%AF%A2%E7%9A%84%E6%95%B0%E6%8D%AE.png">
+<meta property="og:updated_time" content="2016-12-19T11:10:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android开发基础6 - 持久化技术（下）">
+<meta name="twitter:description" content="本篇文章主要介绍以下几个知识点：
+
+SQLite 数据库存储；
+开源数据库框架 LitePal。
+
+
+6.3 SQLite 数据库存储  前面介绍的两种存储方式很难应付得了需要存储大量复杂的关系型数据的时候，而使用数据库就可以做到。
+  SQLite 是一款轻量级的关系型数据库，它的运算速度非常快， 占用资源很少，通常只需几百 K 的内存就足够了，因而特别适合在移动设备上使用。SQLite 不仅">
+<meta name="twitter:image" content="http://xuqianzheng.com/"创建数据表成功"">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://xuqianzheng.com/2015/10/01/Android开发基础06 - 持久化技术（下）/"/>
+
+
+
+
+
+  <title> Android开发基础6 - 持久化技术（下） | 面向工资闲扯 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?3f7ae1fa714b160af9e4a2f1cc75d137";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=56301679";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">面向工资闲扯</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">读书、生活、思考</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            时间轴
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://xuqianzheng.com/2015/10/01/Android开发基础06 - 持久化技术（下）/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="徐迁征">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="面向工资闲扯">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="面向工资闲扯" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android开发基础6 - 持久化技术（下）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-10-01T17:31:48+08:00">
+                2015-10-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2015/10/01/Android开发基础06 - 持久化技术（下）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/01/Android开发基础06 - 持久化技术（下）/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p><strong>本篇文章主要介绍以下几个知识点：</strong></p>
+<ul>
+<li>SQLite 数据库存储；</li>
+<li>开源数据库框架 LitePal。</li>
+</ul>
+</blockquote>
+<h1 id="6-3-SQLite-数据库存储"><a href="#6-3-SQLite-数据库存储" class="headerlink" title="6.3 SQLite 数据库存储"></a>6.3 SQLite 数据库存储</h1><p>  前面介绍的两种存储方式很难应付得了需要存储大量复杂的关系型数据的时候，而使用数据库就可以做到。</p>
+<p>  SQLite 是一款轻量级的关系型数据库，它的运算速度非常快， 占用资源很少，通常只需几百 K 的内存就足够了，因而特别适合在移动设备上使用。SQLite 不仅支持标准的 SQL 语法，还遵循了数据库的 ACID 事务，只要你以前用过其他的关系型数据库，就可以很快地上手 SQLite。</p>
+<h2 id="6-3-1-创建数据库"><a href="#6-3-1-创建数据库" class="headerlink" title="6.3.1 创建数据库"></a>6.3.1 创建数据库</h2><p>  Android 为了让我们更加方便地管理数据库，专门提供了一个 SQLiteOpenHelper 帮助类，借助这个类可以非常简单地对数据库进行创建和升级。</p>
+<p>  SQLiteOpenHelper 是一个抽象类，意味着若要使用它的话， 就需要创建一个自己的帮助类去继承它并且重写它的两个抽象方法，即 onCreate() 和 onUpgrade()，去实现创建、升级数据库的逻辑。<a id="more"></a></p>
+<p>  SQLiteOpenHelper 中有两个重要的实例方法 ， getReadableDatabase() 和 getWritableDatabase()。它们都可以创建或打开一个现有的数据库（若已存在则打开，否则创建一个新的），并返回一个可对数据库进行读写操作的对象。不同的是，当数据库不可写入的时候（如磁盘空间已满）getReadableDatabase()方法返回的对象将以只读的方式去打开数据库，而 getWritableDatabase()方法则将出现异常。</p>
+<p>  SQLiteOpenHelper 中有两个构造方法可供重写，一般使用参数少一点的那个构造方法即可。构建出 SQLiteOpenHelper 的实例之后，再调用它的 getReadableDatabase() 或 getWritableDatabase() 方法就能够创建数据库了，数据库文件会存放在/data/data/<package name="">/databases/目录下。 此时，重写的 onCreate() 方法也会得到执行，在这里去处理一些创建表的逻辑。</package></p>
+<p>  说了这么多，还是举例子实在。这里我们希望创建一个名为 BookStore.db 的数据库，然后在这个数据库中新建一张 book表，表中有 id（主键）、作者、价格、页数和书名等列。</p>
+<p>  首先，在你的项目中新建 MyDatabaseHelper类继承自 SQLiteOpenHelper，代码如下所示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 数据库帮助类</span><br><span class="line"> * Created by KXwon on 2016/12/16.</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">public class MyDatabaseHelper extends SQLiteOpenHelper &#123;</span><br><span class="line"></span><br><span class="line">    // Book表的建表语句</span><br><span class="line">    private static final String CREATE_BOOK = <span class="string">"create table book("</span></span><br><span class="line">            +<span class="string">"id integer primary key autoincrement,"</span></span><br><span class="line">            +<span class="string">"author text,"</span></span><br><span class="line">            +<span class="string">"price real,"</span></span><br><span class="line">            +<span class="string">"pages integer,"</span></span><br><span class="line">            +<span class="string">"name text)"</span>;</span><br><span class="line"></span><br><span class="line">    private Context mContext;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 构造方法</span><br><span class="line">     * @param context</span><br><span class="line">     * @param name 数据库名</span><br><span class="line">     * @param factory 允许我们在查询数据的时候返回一个自定义的 Cursor，一般都是传入 null</span><br><span class="line">     * @param version 当前数据库的版本号，可用于对数据库进行升级操作</span><br><span class="line">     */</span><br><span class="line">    public MyDatabaseHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) &#123;</span><br><span class="line">        super(context, name, factory, version);</span><br><span class="line">        mContext = context;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 创建数据库</span><br><span class="line">     * @param db</span><br><span class="line">     */</span><br><span class="line">    @Override</span><br><span class="line">    public void onCreate(SQLiteDatabase db) &#123;</span><br><span class="line">        // 执行建表语句</span><br><span class="line">        db.execSQL(CREATE_BOOK);</span><br><span class="line">        ToastUtils.showShort(<span class="string">"创建成功"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 升级数据库</span><br><span class="line">     * @param db</span><br><span class="line">     * @param oldVersion</span><br><span class="line">     * @param newVersion</span><br><span class="line">     */</span><br><span class="line">    @Override</span><br><span class="line">    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  然后修改布局 activity_sqlite.xml 中代码，添加个按钮来创建数据库：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;LinearLayout xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">    android:layout_height=<span class="string">"match_parent"</span></span><br><span class="line">    android:padding=<span class="string">"15dp"</span></span><br><span class="line">    android:orientation=<span class="string">"vertical"</span> &gt;</span><br><span class="line"></span><br><span class="line">    &lt;Button</span><br><span class="line">        android:id=<span class="string">"@+id/btn_create_database"</span></span><br><span class="line">        android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">        android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">        android:text=<span class="string">"创建数据库"</span>/&gt;</span><br><span class="line"></span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
+<p>  最后修改 activity 中的代码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public class SQLiteActivity extends AppCompatActivity &#123;</span><br><span class="line"></span><br><span class="line">    private MyDatabaseHelper dbHelper;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        <span class="built_in">set</span>ContentView(R.layout.activity_sqlite);</span><br><span class="line"></span><br><span class="line">        // 构建MyDatabaseHelper对象，指定数据库名为<span class="string">"BookStore.db、版本号为1</span><br><span class="line">        dbHelper = new MyDatabaseHelper(this, "</span>BookStore.db<span class="string">", null, 1);</span><br><span class="line"></span><br><span class="line">        Button btn_create_database = (Button) findViewById(R.id.btn_create_database);</span><br><span class="line">        btn_create_database.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(View view) &#123;</span><br><span class="line">                // 创建或打开一个现有的数据库（已存在则打开，否则创建一个新的）</span><br><span class="line">                dbHelper.getWritableDatabase();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>  上述代码，当第一次点击按钮时，会检测到当前程序中并没有 BookStore.db 这个数据库，于是会创建该数据库并调用 MyDatabaseHelper中的 onCreate()方法，创建 book 表，然后弹出一个 Toast 提示创建成功。再次点击按钮时，会发现此时已存在 BookStore.db 数据库了，因此不会再创建一次。</p>
+<p>  运行代码，点击按钮，结果如下：<br><img src="&quot;创建数据表成功&quot;" alt="http://7xsb4k.com1.z0.glb.clouddn.com/0605%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E8%A1%A8%E6%88%90%E5%8A%9F.png"><br>  下面检查 book 表是否创建成功（木有兴趣可跳过）。</p>
+<p>  adb 是 Android SDK 中自带的一个调试工具，使用这个工具可以直接对连接在电脑上的手机或模拟器进行调试操作。它存放在 sdk 的 platform-tools 目录下，如果想要在命令行中使用这个工具，就要先把它的路径配置到环境变量里。</p>
+<p>  配置好环境变量后，就可以使用 adb 工具了。打开命令行界面，输入 adb shell，进入到设备的控制台，如下：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0606%E8%BF%9B%E5%85%A5%E8%AE%BE%E5%A4%87%E7%9A%84%E6%8E%A7%E5%88%B6%E5%8F%B0.png" alt="" title="进入设备的控制台"><br>  然后使用 cd 命令进行到/data/data/com.wonderful.myfirstcode/databases/目录下，并使用 ls命令查看到该目录里的文件，如下：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0607%E6%9F%A5%E7%9C%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E6%96%87%E4%BB%B6.png" alt="" title="查看数据库文件"><br>  此目录下出现了两个数据库文件，一个是我们创建的 BookStore.db ，而另一个 BookStore.db-journal 则是为了让数据库能够支持事务而产生的临时日志文件，通常情况下这个文件的大小都是 0 字节。</p>
+<p>  接下来借助 sqlite 命令来打开数据库，键入 sqlite3，后面加上数据库名即可，如下：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0608%E6%89%93%E5%BC%80BookStore.db%20%E6%95%B0%E6%8D%AE%E5%BA%93.png" alt="" title="打开BookStore.db 数据库"><br>  这时已经打开了 BookStore.db 数据库，现在可以对这个数据库中的表进行管理了。 首先来看一下目前数据库中有哪些表，键入.table 命令，如下：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0607%E6%9F%A5%E7%9C%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E6%96%87%E4%BB%B6.png" alt="" title="查看表"><br>  可以看到，此时数据库中有两张表，android_metadata 表是每个数据库中都会自动生成的，不用管它，而另外一张 book 表就是我们在 MyDatabaseHelper 中创建的了。这里还可以通过.schema 命令来查看它们的建表语句，如下：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0610%E6%9F%A5%E7%9C%8B%E5%BB%BA%E8%A1%A8%E8%AF%AD%E5%8F%A5.png" alt="" title="查看建表语句"><br>  由此证明，BookStore.db 数据库和 book 表已经创建成功了。之后键入.exit 或.quit命令可以退出数据库的编辑，再键入 exit 命令就可以退出设备控制台了。</p>
+<h2 id="6-3-2-升级数据库"><a href="#6-3-2-升级数据库" class="headerlink" title="6.3.2 升级数据库"></a>6.3.2 升级数据库</h2><p>  MyDatabaseHelper 中的onUpgrade() 方法是用于对数据库进行升级的，它在整个数据库的管理工作当中起着非常重要的作用。</p>
+<p>  目前项目中已经有一张 book 表用于存放书的各种详细数据，若我们想再添加一张 category 表用于记录书籍的分类该怎么做呢？</p>
+<p>  修改 MyDatabaseHelper 中的代码，如下所示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 数据库帮助类</span><br><span class="line"> * Created by KXwon on 2016/12/16.</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">public class MyDatabaseHelper extends SQLiteOpenHelper &#123;</span><br><span class="line"></span><br><span class="line">    // Book表的建表语句</span><br><span class="line">    private static final String CREATE_BOOK = <span class="string">"create table book("</span></span><br><span class="line">            +<span class="string">"id integer primary key autoincrement,"</span></span><br><span class="line">            +<span class="string">"author text,"</span></span><br><span class="line">            +<span class="string">"price real,"</span></span><br><span class="line">            +<span class="string">"pages integer,"</span></span><br><span class="line">            +<span class="string">"name text)"</span>;</span><br><span class="line"></span><br><span class="line">    // Category表的建表语句</span><br><span class="line">    private static final String CREATE_CATEGORY = <span class="string">"create table category("</span></span><br><span class="line">            +<span class="string">"id integer primary key autoincrement,"</span></span><br><span class="line">            +<span class="string">"category_name text,"</span></span><br><span class="line">            +<span class="string">"category_code integer)"</span>;</span><br><span class="line"></span><br><span class="line">    private Context mContext;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 构造方法</span><br><span class="line">     * @param context</span><br><span class="line">     * @param name 数据库名</span><br><span class="line">     * @param factory 允许我们在查询数据的时候返回一个自定义的 Cursor，一般都是传入 null</span><br><span class="line">     * @param version 当前数据库的版本号，可用于对数据库进行升级操作</span><br><span class="line">     */</span><br><span class="line">    public MyDatabaseHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) &#123;</span><br><span class="line">        super(context, name, factory, version);</span><br><span class="line">        mContext = context;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 创建数据库</span><br><span class="line">     * @param db</span><br><span class="line">     */</span><br><span class="line">    @Override</span><br><span class="line">    public void onCreate(SQLiteDatabase db) &#123;</span><br><span class="line">        // 执行建表语句</span><br><span class="line">        db.execSQL(CREATE_BOOK);</span><br><span class="line">        db.execSQL(CREATE_CATEGORY);</span><br><span class="line">        ToastUtils.showShort(<span class="string">"创建成功"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 升级数据库</span><br><span class="line">     * @param db</span><br><span class="line">     * @param oldVersion</span><br><span class="line">     * @param newVersion</span><br><span class="line">     */</span><br><span class="line">    @Override</span><br><span class="line">    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) &#123;</span><br><span class="line">        // 若发现数据库中已存在 book 表或 category 表，将这两张表删除掉</span><br><span class="line">        db.execSQL(<span class="string">"drop table if exists book"</span>);</span><br><span class="line">        db.execSQL(<span class="string">"drop table if exists category"</span>);</span><br><span class="line">        // 重新创建表</span><br><span class="line">        onCreate(db);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  接着修改 activity 中的代码，在 SQLiteOpenHelper 的构造方法里接收的第四个参数传入一个比之前传入的版本号 1 大的数，就可以让 onUpgrade()方法得到执行了。如下所示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public class SQLiteActivity extends AppCompatActivity &#123;</span><br><span class="line"></span><br><span class="line">    private MyDatabaseHelper dbHelper;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        <span class="built_in">set</span>ContentView(R.layout.activity_sqlite);</span><br><span class="line"></span><br><span class="line">        // 构建MyDatabaseHelper对象，指定数据库名为<span class="string">"BookStore.db、版本号为1</span><br><span class="line">        //dbHelper = new MyDatabaseHelper(this, "</span>BookStore.db<span class="string">", null, 1);</span><br><span class="line">        // 将数据库版本号指定为2</span><br><span class="line">        dbHelper = new MyDatabaseHelper(this, "</span>BookStore.db<span class="string">", null, 2);</span><br><span class="line"></span><br><span class="line">        Button btn_create_database = (Button) findViewById(R.id.btn_create_database);</span><br><span class="line">        btn_create_database.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(View view) &#123;</span><br><span class="line">                // 创建或打开一个现有的数据库（已存在则打开，否则创建一个新的）</span><br><span class="line">                dbHelper.getWritableDatabase();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>  现在重新运行程序，并点击按钮，这时就会再次弹出创建成功的提示。</p>
+<p>  为了验证一下 category 表是 不是已经创建成功了，我们在 adb shell 中打开 BookStore.db 数据库，然后键入.table 命令， 结果如下：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/06101%E6%9F%A5%E7%9C%8B%E6%96%B0%E5%A2%9E%E8%A1%A8.png" alt="" title="查看新增表"><br>  接着键入.schema 命令查看一下建表语句，如下：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/06102%E6%9F%A5%E7%9C%8B%E6%96%B0%E5%A2%9E%E5%BB%BA%E8%A1%A8%E8%AF%AD%E5%8F%A5.png" alt="" title="查看新增建表语句"><br>  由此表明，category 表已创建成功了，同时也说明升级功能起作用了。</p>
+<h2 id="6-3-3-增删查改"><a href="#6-3-3-增删查改" class="headerlink" title="6.3.3 增删查改"></a>6.3.3 增删查改</h2><p>  接下来学习一下如何对表中的数据进行操作。对数据进行的操作无非四种，即 CRUD：添加（Create），查询（Retrieve），更新（Update），删除（Delete）。SQLiteOpenHelper 中的 getReadableDatabase() 或 getWritableDatabase() 方法都会返回一个 SQLiteDatabase对象，借助这个对象可以对数据进行 CRUD 操作。</p>
+<p>  首先修改下布局 activity_sqlite.xml 的代码如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&lt;LinearLayout xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">    android:layout_height=<span class="string">"match_parent"</span></span><br><span class="line">    android:padding=<span class="string">"15dp"</span></span><br><span class="line">    android:orientation=<span class="string">"vertical"</span> &gt;</span><br><span class="line"></span><br><span class="line">    &lt;Button</span><br><span class="line">        android:id=<span class="string">"@+id/btn_create_database"</span></span><br><span class="line">        android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">        android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">        android:text=<span class="string">"创建数据库"</span>/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;Button</span><br><span class="line">        android:id=<span class="string">"@+id/btn_add_data"</span></span><br><span class="line">        android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">        android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">        android:text=<span class="string">"添加数据"</span>/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;Button</span><br><span class="line">        android:id=<span class="string">"@+id/btn_update_data"</span></span><br><span class="line">        android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">        android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">        android:text=<span class="string">"更新数据"</span>/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;Button</span><br><span class="line">        android:id=<span class="string">"@+id/btn_delete_data"</span></span><br><span class="line">        android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">        android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">        android:text=<span class="string">"删除数据"</span>/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;Button</span><br><span class="line">        android:id=<span class="string">"@+id/btn_query_data"</span></span><br><span class="line">        android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">        android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">        android:text=<span class="string">"查询数据"</span>/&gt;</span><br><span class="line"></span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
+<p>  修改后是这样的：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0611%E4%BF%AE%E6%94%B9%E5%90%8E%E7%9A%84%E5%B8%83%E5%B1%80.png" alt="" title="修改后的布局"></p>
+<h3 id="6-3-3-1-添加数据"><a href="#6-3-3-1-添加数据" class="headerlink" title="6.3.3.1 添加数据"></a>6.3.3.1 添加数据</h3><p>  SQLiteDatabase 中提供了一个 insert() 方法用于添加数据。它接收三个参数，第一个参数是表名；第二个参数用于在未指定添加数据的情况下给某些可为空的列自动赋值 NULL，一般直接传入 null 即可；第三个参数是一个 ContentValues 对象，它提供了一系列的 put() 方法重载，用于向 ContentValues 中添加数据，只需要将表中的每个列名以及相应的待添加数据传入即可。</p>
+<p>  修改 activity 中的代码，如下所示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">public class SQLiteActivity extends AppCompatActivity &#123;</span><br><span class="line"></span><br><span class="line">    private MyDatabaseHelper dbHelper;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        <span class="built_in">set</span>ContentView(R.layout.activity_sqlite);</span><br><span class="line"></span><br><span class="line">        . . .</span><br><span class="line"></span><br><span class="line">        // 添加数据</span><br><span class="line">        Button btn_add_data = (Button) findViewById(R.id.btn_add_data);</span><br><span class="line">        btn_add_data.setOnClickListener(new View.<span class="function"><span class="title">OnClickListener</span></span>() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(View view) &#123;</span><br><span class="line">                SQLiteDatabase db = dbHelper.getWritableDatabase();</span><br><span class="line">                ContentValues values = new ContentValues();</span><br><span class="line">                // 开始组装第一条数据</span><br><span class="line">                values.put(<span class="string">"name"</span>,<span class="string">"The Da Vinci Code"</span>);</span><br><span class="line">                values.put(<span class="string">"author"</span>,<span class="string">"Dan Brown"</span>);</span><br><span class="line">                values.put(<span class="string">"pages"</span>,454);</span><br><span class="line">                values.put(<span class="string">"price"</span>,16.96);</span><br><span class="line">                db.insert(<span class="string">"book"</span>,null,values); //插入第一条数据</span><br><span class="line">                values.clear();</span><br><span class="line">                // 开始组装第二条数据</span><br><span class="line">                values.put(<span class="string">"name"</span>,<span class="string">"The Lost Symbol"</span>);</span><br><span class="line">                values.put(<span class="string">"author"</span>,<span class="string">"Dan Brown"</span>);</span><br><span class="line">                values.put(<span class="string">"pages"</span>,510);</span><br><span class="line">                values.put(<span class="string">"price"</span>,19.95);</span><br><span class="line">                db.insert(<span class="string">"book"</span>,null,values); //插入第二条数据</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  运行程序，点击添加数据按钮，此时两条数据应该都已经添加成功了。为了证实一下，打开 BookStore.db 数据库，输入 SQL 查询语句 “select * from Book；”，结果如下：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0612%E6%9F%A5%E7%9C%8B%E6%B7%BB%E5%8A%A0%E7%9A%84%E6%95%B0%E6%8D%AE.png" alt="" title="查看添加的数据"><br>  上图中由于我不小心点了两次按钮，所以出现了四条数据，但可以看出，刚刚组装的两条数据，已经添加到 book 表中了。</p>
+<h3 id="6-3-3-2-更新数据"><a href="#6-3-3-2-更新数据" class="headerlink" title="6.3.3.2 更新数据"></a>6.3.3.2 更新数据</h3><p>   SQLiteDatabase 中提供了一个 update() 方法用于更新数据。它接收四个参数，第一个参数和 insert()方法一样，是表名；第二个参数是 ContentValues 对象，要把更新数据在这里组装进去。第三、第四个参数用于去约束更新某一行或某几行中的数据，不指定的话默认就是更新所有行。</p>
+<p>  修改 activity 中的代码，如下所示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">public class SQLiteActivity extends AppCompatActivity &#123;</span><br><span class="line"></span><br><span class="line">    private MyDatabaseHelper dbHelper;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        <span class="built_in">set</span>ContentView(R.layout.activity_sqlite);</span><br><span class="line"></span><br><span class="line">        . . . </span><br><span class="line"></span><br><span class="line">        // 更新数据</span><br><span class="line">        Button btn_update_data = (Button) findViewById(R.id.btn_update_data);</span><br><span class="line">        btn_update_data.setOnClickListener(new View.<span class="function"><span class="title">OnClickListener</span></span>() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(View view) &#123;</span><br><span class="line">                SQLiteDatabase db = dbHelper.getWritableDatabase();</span><br><span class="line">                ContentValues values = new ContentValues();</span><br><span class="line">                // 把名字为 The Da Vinci Code 的这本书的更新成666.66</span><br><span class="line">                values.put(<span class="string">"price"</span>,666.66);</span><br><span class="line">                db.update(<span class="string">"book"</span>,values, <span class="string">"name = ?"</span>, new String[]&#123;<span class="string">"The Da Vinci Code"</span>&#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  运行程序，点击更新数据按钮后，再次输入查询语句查看表中的数据情况，结果如下：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0613%E6%9F%A5%E7%9C%8B%E6%9B%B4%E6%96%B0%E5%90%8E%E7%9A%84%E6%95%B0%E6%8D%AE.png" alt="" title="查看更新后的数据"><br>  可以看到，The Da Vinci Code 这本书的价格已经被成功改为 666.66 了。</p>
+<h3 id="6-3-3-3-删除数据"><a href="#6-3-3-3-删除数据" class="headerlink" title="6.3.3.3 删除数据"></a>6.3.3.3 删除数据</h3><p>   SQLiteDatabase 中提供了一个 delete()方法用于删除数据。这个方法接收三个参数，第一 个参数仍然是表名；第二、第三个参数又是用于去约束删除某一 行或某几行的数据，不指定的话默认就是删除所有行。</p>
+<p>  修改 activity 中的代码，如下所示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">public class SQLiteActivity extends AppCompatActivity &#123;</span><br><span class="line"></span><br><span class="line">    private MyDatabaseHelper dbHelper;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        <span class="built_in">set</span>ContentView(R.layout.activity_sqlite);</span><br><span class="line"></span><br><span class="line">        . . . </span><br><span class="line"></span><br><span class="line">        // 删除数据</span><br><span class="line">        Button btn_delete_data = (Button) findViewById(R.id.btn_delete_data);</span><br><span class="line">        btn_delete_data.setOnClickListener(new View.<span class="function"><span class="title">OnClickListener</span></span>() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(View view) &#123;</span><br><span class="line">                SQLiteDatabase db = dbHelper.getWritableDatabase();</span><br><span class="line">                // 删除页数超过500页的书</span><br><span class="line">                db.delete(<span class="string">"book"</span>, <span class="string">"pages &gt; ?"</span>, new String[]&#123;<span class="string">"500"</span>&#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  运行程序，点击删除数据按钮后，再次输入查询语句查看表中的数据情况，结果如下：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0614%E6%9F%A5%E7%9C%8B%E5%88%A0%E9%99%A4%E5%90%8E%E7%9A%84%E6%95%B0%E6%8D%AE.png" alt="" title="查看删除后的数据"><br>  其中 The Lost Symbol 这本书的页数超过了 500 页，被删除掉了。</p>
+<h3 id="6-3-3-4-查询数据"><a href="#6-3-3-4-查询数据" class="headerlink" title="6.3.3.4 查询数据"></a>6.3.3.4 查询数据</h3><p>   SQLiteDatabase 中提供了一个 query()方法用于查询数据。 这个方法的参数非常复杂，最短的一个方法重载也需要传入七个参数。</p>
+<ul>
+<li>第一个参数不用说，当然还是表名；</li>
+<li>第二个参数用于指定去查询哪几列，如果不指定则默认查询所有列；</li>
+<li>第三、第四个参数用于去约束查询某一行或某几行的数据，不指定则默认是查询所有行的数据；</li>
+<li>第五个参数用于指定需要去 group by 的列，不指定则表示不对查询结果进行 group by 操作；</li>
+<li>第六个参数用于对 group by 之后的数据进行进一步的过滤，不指定则表示不进行过滤；</li>
+<li>第七个参数用 于指定查询结果的排序方式，不指定则表示使用默认的排序方式。<br>更多详细的内容可以参考下表。其他几个 query()方法的重载其实也大同小异。</li>
+</ul>
+<p>query() 方法参数内容<br>  调用 query() 方法后会返回一个 Cursor 对象，查询到的所有数据都将从这个对象中取出。</p>
+<p>  修改 activity 中的代码，如下所示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">public class SQLiteActivity extends AppCompatActivity &#123;</span><br><span class="line"></span><br><span class="line">    private MyDatabaseHelper dbHelper;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        <span class="built_in">set</span>ContentView(R.layout.activity_sqlite);</span><br><span class="line"></span><br><span class="line">        . . . </span><br><span class="line"></span><br><span class="line">        // 查询数据</span><br><span class="line">        Button btn_query_data = (Button) findViewById(R.id.btn_query_data);</span><br><span class="line">        btn_query_data.setOnClickListener(new View.<span class="function"><span class="title">OnClickListener</span></span>() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(View view) &#123;</span><br><span class="line">                SQLiteDatabase db = dbHelper.getWritableDatabase();</span><br><span class="line">                // 查询 book 表中所有数据</span><br><span class="line">                Cursor cursor = db.query(<span class="string">"book"</span>, null,null,null,null,null,null,null);</span><br><span class="line">                <span class="keyword">if</span> (cursor.moveToFirst())&#123;</span><br><span class="line">                    <span class="keyword">do</span> &#123;</span><br><span class="line">                        // 遍历 Cursor 对象，取出数据并打印</span><br><span class="line">                        String name = cursor.getString(cursor.getColumnIndex(<span class="string">"name"</span>));</span><br><span class="line">                        String author = cursor.getString(cursor.getColumnIndex(<span class="string">"author"</span>));</span><br><span class="line">                        int pages = cursor.getInt(cursor.getColumnIndex(<span class="string">"pages"</span>));</span><br><span class="line">                        double price = cursor.getDouble(cursor.getColumnIndex(<span class="string">"price"</span>));</span><br><span class="line"></span><br><span class="line">                        Log.d(<span class="string">"SQLiteActivity_query"</span>, <span class="string">"book name is: "</span> + name);</span><br><span class="line">                        Log.d(<span class="string">"SQLiteActivity_query"</span>, <span class="string">"book author is: "</span> + author);</span><br><span class="line">                        Log.d(<span class="string">"SQLiteActivity_query"</span>, <span class="string">"book pages are: "</span> + pages);</span><br><span class="line">                        Log.d(<span class="string">"SQLiteActivity_query"</span>, <span class="string">"book price is: "</span> + price);</span><br><span class="line">                    &#125;<span class="keyword">while</span> (cursor.moveToNext());</span><br><span class="line">                &#125;</span><br><span class="line">                cursor.close();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  运行程序，点击查询数据按钮后，查看Log的打印内容，结果如下：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0616%E6%89%93%E5%8D%B0%E6%9F%A5%E8%AF%A2%E7%9A%84%E6%95%B0%E6%8D%AE.png" alt="" title="打印查询的数据"><br>  可以看到，这里已经将 book 表中剩余两条数据成功地读取出来了。</p>
+<h2 id="6-3-4-使用-SQL-操作数据库"><a href="#6-3-4-使用-SQL-操作数据库" class="headerlink" title="6.3.4 使用 SQL 操作数据库"></a>6.3.4 使用 SQL 操作数据库</h2><p>  下面来简略演示一下，如何直接使用 SQL 来完成前面几小节中学过的 CRUD 操作。</p>
+<ul>
+<li>添加数据的方法如下：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">db.execSQL(<span class="string">"insert into book (name, author, pages, price) values(?, ?, ?, ?)"</span>, new String[] &#123; <span class="string">"The Da Vinci Code"</span>, <span class="string">"Dan Brown"</span>, <span class="string">"454"</span>, <span class="string">"16.96"</span> &#125;); </span><br><span class="line">db.execSQL(<span class="string">"insert into book (name, author, pages, price) values(?, ?, ?, ?)"</span>,  new String[] &#123; <span class="string">"The Lost Symbol"</span>, <span class="string">"Dan Brown"</span>, <span class="string">"510"</span>, <span class="string">"19.95"</span> &#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>更新数据的方法如下：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.execSQL(<span class="string">"update Book set price = ? where name = ?"</span>, new String[] &#123; <span class="string">"666.66"</span>, <span class="string">"The Da Vinci Code"</span> &#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>删除数据的方法如下：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.execSQL(<span class="string">"delete from Book where pages &gt; ?"</span>, new String[] &#123; <span class="string">"500"</span> &#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查询数据的方法如下：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.rawQuery(<span class="string">"select * from Book"</span>, null);</span><br></pre></td></tr></table></figure>
+<h1 id="6-4-使用-LitePal-操作数据库"><a href="#6-4-使用-LitePal-操作数据库" class="headerlink" title="6.4 使用 LitePal 操作数据库"></a>6.4 使用 LitePal 操作数据库</h1><p>  LitePal 是一款开源的 Android 数据库框架，它采用了对象关系映射（ORM）的模式，并将我们平时开发最常用到的一些数据库功能进行了封装，使得不用编写一行 SQL 语句就可以完成各种建表和增删查改的操作。LitePal 的项目主页上也有详细的使用文档，地址是：<a href="https://github.com/LitePalFramework/LitePal" target="_blank" rel="external">https://github.com/LitePalFramework/LitePal</a></p>
+<h2 id="6-4-1-配置-LitePal"><a href="#6-4-1-配置-LitePal" class="headerlink" title="6.4.1 配置 LitePal"></a>6.4.1 配置 LitePal</h2><p>  使用 LitePal 的第一步，在 app/build.gradle 文件中引入 LitePal 的最新版本：</p>
+<p>compile ‘org.litepal.android:core:1.4.1’<br>  项目中引入 LitePal 成功后，需要配置 litepal.xml 文件。右击 app/src/main 目录→New→Directory，创建一个 assets 目录，然后在 assets 目录下再新建一个 litepal.xml 文件，接着编辑 litepal.xml 文件中的内容，如下所示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"utf-8"</span>?&gt;</span><br><span class="line">&lt;litepal&gt;</span><br><span class="line">    &lt;!-- 指定数据库名 --&gt;</span><br><span class="line">    &lt;dbname value=<span class="string">"MyBookStore"</span>&gt;&lt;/dbname&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 指定数据库版本号 --&gt;</span><br><span class="line">    &lt;version value=<span class="string">"1"</span>&gt;&lt;/version&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 指定所有的映射模型 --&gt;</span><br><span class="line">    &lt;list&gt;</span><br><span class="line"></span><br><span class="line">    &lt;/list&gt;</span><br><span class="line">&lt;/litepal&gt;</span><br></pre></td></tr></table></figure>
+<p>  最后还要在 Application 中调用 LitePal 的初始化方法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 全局</span><br><span class="line"> * Created by KXwon on 2016/12/9.</span><br><span class="line"> */</span><br><span class="line">public class MyApplication extends Application &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void <span class="function"><span class="title">onCreate</span></span>() &#123;</span><br><span class="line">        super.onCreate();</span><br><span class="line">        // 调用 LitePal 的初始化方法</span><br><span class="line">        LitePal.initialize(this);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  当然别忘了在 AndroidManifest.xml 中配置 Application：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;application</span><br><span class="line">    android:name=<span class="string">".MyApplication"</span></span><br><span class="line">    android:allowBackup=<span class="string">"true"</span></span><br><span class="line">    android:icon=<span class="string">"@mipmap/ic_launcher"</span></span><br><span class="line">    android:label=<span class="string">"@string/app_name"</span></span><br><span class="line">    android:supportsRtl=<span class="string">"true"</span></span><br><span class="line">    android:theme=<span class="string">"@style/AppTheme"</span>&gt;</span><br><span class="line">    . . .</span><br><span class="line"> &lt;/application&gt;</span><br></pre></td></tr></table></figure>
+<p>  现在 LitePal 的配置工作完成了，下面正式开始使用它吧。</p>
+<h2 id="6-4-2-创建和升级数据库"><a href="#6-4-2-创建和升级数据库" class="headerlink" title="6.4.2 创建和升级数据库"></a>6.4.2 创建和升级数据库</h2><p>  介绍时说过 LitePal 采取的是对象关系映射（ORM）的模式，即把面向面向对象的语言和面向关系的数据库之间建立一种映射关系。对象关系映射模式可以用面向对象的思维来操作数据库，这样就不用和 SQL 语句打交道了。</p>
+<p>  下面用 LitePal 实现和上面几小节中同样的功能，为了方便测试，突出对比，把数据库命名为 MyBookStore 。修改布局 activity_lite_pal.xm 中的代码和上面例子的布局类似：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">&lt;LinearLayout xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">    android:layout_height=<span class="string">"match_parent"</span></span><br><span class="line">    android:padding=<span class="string">"15dp"</span></span><br><span class="line">    android:orientation=<span class="string">"vertical"</span> &gt;</span><br><span class="line"></span><br><span class="line">    &lt;TextView</span><br><span class="line">        android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">        android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">        android:gravity=<span class="string">"center"</span></span><br><span class="line">        android:padding=<span class="string">"10dp"</span></span><br><span class="line">        android:text=<span class="string">"LitePal 操作数据库"</span>/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;Button</span><br><span class="line">        android:id=<span class="string">"@+id/btn_create_database"</span></span><br><span class="line">        android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">        android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">        android:text=<span class="string">"创建数据库"</span>/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;Button</span><br><span class="line">        android:id=<span class="string">"@+id/btn_add_data"</span></span><br><span class="line">        android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">        android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">        android:text=<span class="string">"添加数据"</span>/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;Button</span><br><span class="line">        android:id=<span class="string">"@+id/btn_update_data"</span></span><br><span class="line">        android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">        android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">        android:text=<span class="string">"更新数据"</span>/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;Button</span><br><span class="line">        android:id=<span class="string">"@+id/btn_delete_data"</span></span><br><span class="line">        android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">        android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">        android:text=<span class="string">"删除数据"</span>/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;Button</span><br><span class="line">        android:id=<span class="string">"@+id/btn_query_data"</span></span><br><span class="line">        android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">        android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">        android:text=<span class="string">"查询数据"</span>/&gt;</span><br><span class="line"></span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
+<p>  长这样的：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0617LitePal%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93%E5%B8%83%E5%B1%80.png" alt="" title="LitePal操作数据库布局"><br>  首先，为了创建一张 Book 表，先定义一个 Book 类，如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Book 实体类</span><br><span class="line"> * Created by KXwon on 2016/12/16.</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">public class Book &#123;</span><br><span class="line">    private int id;</span><br><span class="line">    private String author;</span><br><span class="line">    private double price;</span><br><span class="line">    private int pages;</span><br><span class="line">    private String name;</span><br><span class="line"></span><br><span class="line">    public int <span class="function"><span class="title">getId</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void <span class="built_in">set</span>Id(int id) &#123;</span><br><span class="line">        this.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String <span class="function"><span class="title">getAuthor</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> author;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void <span class="built_in">set</span>Author(String author) &#123;</span><br><span class="line">        this.author = author;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public double <span class="function"><span class="title">getPrice</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> price;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void <span class="built_in">set</span>Price(double price) &#123;</span><br><span class="line">        this.price = price;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int <span class="function"><span class="title">getPages</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> pages;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void <span class="built_in">set</span>Pages(int pages) &#123;</span><br><span class="line">        this.pages = pages;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String <span class="function"><span class="title">getName</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void <span class="built_in">set</span>Name(String name) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  接下来将 Book 类添加到映射关系列表中，修改 litepal.xml 中的代码如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;litepal&gt;</span><br><span class="line">    &lt;!-- 指定数据库名 --&gt;</span><br><span class="line">    &lt;dbname value=<span class="string">"MyBookStore"</span>&gt;&lt;/dbname&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 指定数据库版本号 --&gt;</span><br><span class="line">    &lt;version value=<span class="string">"1"</span>&gt;&lt;/version&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 指定所有的映射模型 --&gt;</span><br><span class="line">    &lt;list&gt;</span><br><span class="line">        &lt;mapping class=<span class="string">"com.wonderful.myfirstcode.chapter6.litepal_persistence.Book"</span>&gt;&lt;/mapping&gt;</span><br><span class="line">    &lt;/list&gt;</span><br><span class="line">&lt;/litepal&gt;</span><br></pre></td></tr></table></figure>
+<p>  这里使用<mapping>标签来声明我们要配置的映射模型类，注意一定要使用完整的类名。不管有多少模型类型需要映射，都使用同样的方式配置在<list>标签下即可。</list></mapping></p>
+<p>  这样就已经把所有工作完成了，现只要进行任意一次数据库的操作，MyBookStore.db 数据库就会自动创建出来。修改 activity 中的代码如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public class LitePalActivity extends AppCompatActivity &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        <span class="built_in">set</span>ContentView(R.layout.activity_lite_pal);</span><br><span class="line"></span><br><span class="line">        // 创建数据库</span><br><span class="line">        Button btn_create_database = (Button) findViewById(R.id.btn_create_database);</span><br><span class="line">        btn_create_database.setOnClickListener(new View.<span class="function"><span class="title">OnClickListener</span></span>() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(View view) &#123;</span><br><span class="line">                Connector.getDatabase();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  其中调用 Connector.getDatabase() 方法就是一次最简单的数据库操作。运行程序并点击一下创建数据库按钮数据库就自动创建完成了，通过adb shell 查看数据库创建情况，如下：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0618%E6%9F%A5%E7%9C%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E6%96%87%E4%BB%B6.png" alt="" title="查看数据库文件"><br>  可以看到，数据库文件已经创建成功了（前面两张表是上面例子创建的）。</p>
+<p>  接下来使用 sqlite3 命令打开 MyBookStore.db 文件，然后用 .schema 命令来查看见表语句，如下：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0619%E6%9F%A5%E7%9C%8B%E5%BB%BA%E8%A1%A8%E8%AF%AD%E5%8F%A5.png" alt="" title="查看建表语句"><br>  可以看到，这有3张建表语句，其中 android_metadata 不用管，table_schema 表是 LitePal 内部使用的，也可忽视，book 表就是根据定义的 Book 类以及类中的字段生成的。</p>
+<p>  前面使用 SQLiteOpenHelper 升级数据库时，会把之前的表 drop 掉，造成数据丢失（当然也可已通过复杂的逻辑来避免），而使用 LitePal 这些就不再是问题了。使用 LitePal 升级数据库很简单，不用思考任何的逻辑，只需要改你想改的任何内容，然后版本加1就行了。</p>
+<p>  比如想要向 Book 表中添加一个press(出版社)列，直接在 Book 类中添加一个 press 字段即可，如下所示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public class Book &#123;</span><br><span class="line">    . . .</span><br><span class="line">    private String press;</span><br><span class="line"></span><br><span class="line">    public String <span class="function"><span class="title">getPress</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> press;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void <span class="built_in">set</span>Press(String press) &#123;</span><br><span class="line">        this.press = press;</span><br><span class="line">    &#125;</span><br><span class="line">    . . .</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  与此同时，若还想在添加一张 Category 表，那么只需要新建一个 Category 类就可以了，代码如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Category 实体类</span><br><span class="line"> * Created by KXwon on 2016/12/16.</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">public class Category &#123;</span><br><span class="line">    private int id;</span><br><span class="line">    private String categoryName;</span><br><span class="line">    private int categoryCode;</span><br><span class="line"></span><br><span class="line">    public int <span class="function"><span class="title">getId</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void <span class="built_in">set</span>Id(int id) &#123;</span><br><span class="line">        this.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String <span class="function"><span class="title">getCategoryName</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> categoryName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void <span class="built_in">set</span>CategoryName(String categoryName) &#123;</span><br><span class="line">        this.categoryName = categoryName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int <span class="function"><span class="title">getCategoryCode</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> categoryCode;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void <span class="built_in">set</span>CategoryCode(int categoryCode) &#123;</span><br><span class="line">        this.categoryCode = categoryCode;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  改完了想改的东西，修改下 litepal.xml 中的代码如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;litepal&gt;</span><br><span class="line">    &lt;!-- 指定数据库名 --&gt;</span><br><span class="line">    &lt;dbname value=<span class="string">"MyBookStore"</span>&gt;&lt;/dbname&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 指定数据库版本号 --&gt;</span><br><span class="line">    &lt;version value=<span class="string">"2"</span>&gt;&lt;/version&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 指定所有的映射模型 --&gt;</span><br><span class="line">    &lt;list&gt;</span><br><span class="line">        &lt;mapping class=<span class="string">"com.wonderful.myfirstcode.chapter6.litepal_persistence.Book"</span>&gt;&lt;/mapping&gt;</span><br><span class="line">        &lt;mapping class=<span class="string">"com.wonderful.myfirstcode.chapter6.litepal_persistence.Category"</span>&gt;&lt;/mapping&gt;</span><br><span class="line">    &lt;/list&gt;</span><br><span class="line">&lt;/litepal&gt;</span><br></pre></td></tr></table></figure>
+<p>  将版本号加1，并把新的模型类添加到映射列表中。重新运行下程序，然后点击创建数据库按钮，再查看一下新的建表语句，如下：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0620%E5%8D%87%E7%BA%A7%E6%95%B0%E6%8D%AE%E5%BA%93%E5%90%8E%E7%9A%84%E5%BB%BA%E8%A1%A8%E8%AF%AD%E5%8F%A5.png" alt="" title="升级数据库后的建表语句"><br>  这样数据库修改或升级就完成了，并且保留了之前表中的所有数据。</p>
+<h2 id="6-4-3-使用-LitePal-增删查改"><a href="#6-4-3-使用-LitePal-增删查改" class="headerlink" title="6.4.3 使用 LitePal 增删查改"></a>6.4.3 使用 LitePal 增删查改</h2><h3 id="6-4-3-1-添加数据"><a href="#6-4-3-1-添加数据" class="headerlink" title="6.4.3.1 添加数据"></a>6.4.3.1 添加数据</h3><p>  使用 LitePal 添加数据，只需要创建出模型类的实例，再将所有要存储的数据设置好，最后调用一下 save() 方法就可以了。</p>
+<p>  LitePal 进行表管理操作时不需要模型类有任何继承结构，但进行 CRUD 操作时必须继承 DataSupport 类才行，因此需要修改 Book 类的代码如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">public class Book extends DataSupport&#123;</span><br><span class="line">    . . .</span><br><span class="line">&#125;</span><br><span class="line">  接着向 Book 表中添加数据，修改 activity 中的代码如下：</span><br><span class="line"></span><br><span class="line">public class LitePalActivity extends AppCompatActivity &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        <span class="built_in">set</span>ContentView(R.layout.activity_lite_pal);</span><br><span class="line"></span><br><span class="line">        . . .</span><br><span class="line"></span><br><span class="line">        // 添加数据</span><br><span class="line">        Button btn_add_data = (Button) findViewById(R.id.btn_add_data);</span><br><span class="line">        btn_add_data.setOnClickListener(new View.<span class="function"><span class="title">OnClickListener</span></span>() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(View view) &#123;</span><br><span class="line">                // 创建 Book 实例</span><br><span class="line">                Book book = new Book();</span><br><span class="line">                // 设置数据</span><br><span class="line">                book.setName(<span class="string">"第一行代码"</span>);</span><br><span class="line">                book.setAuthor(<span class="string">"郭霖"</span>);</span><br><span class="line">                book.setPages(570);</span><br><span class="line">                book.setPrice(79.00);</span><br><span class="line">                book.setPress(<span class="string">"人民邮电出版社"</span>);</span><br><span class="line">                // 添加数据</span><br><span class="line">                book.save();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  现重新运行程序，点击 添加数据 按钮，此时数据就已经添加了。同样打开 MyBookStore.db，输入 select*from Book；结果如下：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0621%E6%9F%A5%E7%9C%8B%E6%B7%BB%E5%8A%A0%E7%9A%84%E6%95%B0%E6%8D%AE.png" alt="" title="查看添加的数据"></p>
+<h3 id="6-4-3-2-更新数据"><a href="#6-4-3-2-更新数据" class="headerlink" title="6.4.3.2 更新数据"></a>6.4.3.2 更新数据</h3><p>  使用 LitePal 更新数据，它的接口比较多，这里只介绍几种常用的。</p>
+<p>方式1<br>  对已存储的对象重新设值，然后调用 save() 方法即可。修改 activity 中的代码如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">public class LitePalActivity extends AppCompatActivity &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        <span class="built_in">set</span>ContentView(R.layout.activity_lite_pal);</span><br><span class="line"></span><br><span class="line">        . . .</span><br><span class="line"></span><br><span class="line">       // 更新数据</span><br><span class="line">        Button btn_update_data = (Button) findViewById(R.id.btn_update_data);</span><br><span class="line">        btn_update_data.setOnClickListener(new View.<span class="function"><span class="title">OnClickListener</span></span>() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(View view) &#123;</span><br><span class="line">                Book book = new Book();</span><br><span class="line">                book.setName(<span class="string">"第一行代码"</span>);</span><br><span class="line">                book.setAuthor(<span class="string">"郭霖"</span>);</span><br><span class="line">                book.setPages(570);</span><br><span class="line">                book.setPrice(79.00);</span><br><span class="line">                book.setPress(<span class="string">"人民邮电出版社"</span>);</span><br><span class="line">                book.save();</span><br><span class="line">                // 修改书的名称和价格</span><br><span class="line">                book.setName(<span class="string">"第二行代码"</span>);</span><br><span class="line">                book.setPrice(88.88);</span><br><span class="line">                book.save();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>方式2<br>  对需要更新的数据进行设值，最后调用 updateAll() 方法去执行更新操作。修改 activity 中的代码如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public class LitePalActivity extends AppCompatActivity &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        <span class="built_in">set</span>ContentView(R.layout.activity_lite_pal);</span><br><span class="line"></span><br><span class="line">        . . .</span><br><span class="line"></span><br><span class="line">        // 更新数据</span><br><span class="line">        Button btn_update_data = (Button) findViewById(R.id.btn_update_data);</span><br><span class="line">        btn_update_data.setOnClickListener(new View.<span class="function"><span class="title">OnClickListener</span></span>() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(View view) &#123;</span><br><span class="line">                Book book = new Book();</span><br><span class="line">                book.setName(<span class="string">"第二行代码"</span>);</span><br><span class="line">                book.setPrice(88.88);</span><br><span class="line">                book.updateAll(<span class="string">"name = ? and author = ?"</span>,<span class="string">"第一行代码"</span>,<span class="string">"郭霖"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  现重新运行程序，点击 更新数据 按钮，查询表中的数据情况，结果如下：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0622%E6%9F%A5%E7%9C%8B%E6%9B%B4%E6%96%B0%E5%90%8E%E7%9A%84%E6%95%B0%E6%8D%AE.png" alt="" title="查看更新后的数据"><br>  注意事项：在使用 updateAll() 方法时，若你把一个字段的值更新为默认值时，是不可以使用上面的方式来 set 数据的。对于想要将数据更新为默认值，LitePal 统一提供了一个 setToDefault() 方法，然后传入相应的列名就可以了。如将所有书的页数都更新为默认值 0，直接调用 book.setPages(0) 是不可以的，但可以这样写：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Book book = new Book();</span><br><span class="line">book.setToDefault(<span class="string">"pages"</span>);</span><br><span class="line">book.updateAll();</span><br></pre></td></tr></table></figure>
+<h3 id="6-4-3-3-删除数据"><a href="#6-4-3-3-删除数据" class="headerlink" title="6.4.3.3 删除数据"></a>6.4.3.3 删除数据</h3><p>  使用 LitePal 删除数据的方式主要有两种：第一种就是直接调用已存储的对象的 delete() 方法就可以了；第二种是调用 DataSupport.deleteAll() 方法来删除。</p>
+<p>  这里演示下第二种方式，修改 activity 中的代码如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public class LitePalActivity extends AppCompatActivity &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        <span class="built_in">set</span>ContentView(R.layout.activity_lite_pal);</span><br><span class="line"></span><br><span class="line">        . . .</span><br><span class="line"></span><br><span class="line">        // 删除数据</span><br><span class="line">        Button btn_delete_data = (Button) findViewById(R.id.btn_delete_data);</span><br><span class="line">        btn_delete_data.setOnClickListener(new View.<span class="function"><span class="title">OnClickListener</span></span>() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(View view) &#123;</span><br><span class="line">                // 删除 Book 表中价格低于15的书</span><br><span class="line">                DataSupport.deleteAll(Book.class, <span class="string">"price &lt; ?"</span>, <span class="string">"15"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  另外，deleteAll() 方法若不指定约束条件，就意味着删除表中的所有数据。</p>
+<h3 id="6-4-3-4-查询数据"><a href="#6-4-3-4-查询数据" class="headerlink" title="6.4.3.4 查询数据"></a>6.4.3.4 查询数据</h3><p>  使用 LitePal 查询数据一点都不复杂。</p>
+<p>  比如想要实现上节中的查询 Book 表，修改 activity 的代码如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">public class LitePalActivity extends AppCompatActivity &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        <span class="built_in">set</span>ContentView(R.layout.activity_lite_pal);</span><br><span class="line"></span><br><span class="line">        . . .</span><br><span class="line"></span><br><span class="line">        // 查询数据</span><br><span class="line">        Button btn_query_data = (Button) findViewById(R.id.btn_query_data);</span><br><span class="line">        btn_query_data.setOnClickListener(new View.<span class="function"><span class="title">OnClickListener</span></span>() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(View view) &#123;</span><br><span class="line">                // 查询 Book 表</span><br><span class="line">                List&lt;Book&gt; books = DataSupport.findAll(Book.class);</span><br><span class="line">                // 打印 Book 表中的信息</span><br><span class="line">                <span class="keyword">for</span> (Book book: books)&#123;</span><br><span class="line">                    Log.d(<span class="string">"LitePalActivity_query"</span>, <span class="string">"book name is: "</span> + book.getName());</span><br><span class="line">                    Log.d(<span class="string">"LitePalActivity_query"</span>, <span class="string">"book author is: "</span> + book.getAuthor());</span><br><span class="line">                    Log.d(<span class="string">"LitePalActivity_query"</span>, <span class="string">"book pages are: "</span> + book.getPages());</span><br><span class="line">                    Log.d(<span class="string">"LitePalActivity_query"</span>, <span class="string">"book price is: "</span> + book.getPrice());</span><br><span class="line">                    Log.d(<span class="string">"LitePalActivity_query"</span>, <span class="string">"book press is: "</span> + book.getPress());</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  没错，就是这么简单。现重新运行程序，点击 查询数据 按钮，查看Log信息如下：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0623%E6%89%93%E5%8D%B0%E6%9F%A5%E8%AF%A2%E7%9A%84%E6%95%B0%E6%8D%AE.png" alt="" title="打印查询的数据"><br>  除了 findAll() 方法之外，LitePal 还提供了其他非常有用的 API。比如:</p>
+<ul>
+<li>查询 Book 表中的第一条数据：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Book firstBook = DataSupport.findFirst(Book.class);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查询 Book 表中的最后一条数据：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Book LastBook = DataSupport.findLast(Book.class);</span><br></pre></td></tr></table></figure>
+<p>  还可以通过连缀查询来制定更多的查询功能：</p>
+<ul>
+<li>select() 方法用于指定查询哪几列的数据。<br>如查询 name 和 author 这两列数据：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Book&gt; books = DataSupport.select(<span class="string">"name"</span>,<span class="string">"author"</span>).find(Book.class);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>where() 方法用于指定查询的约束条件。<br>如查询页数大450的数据：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Book&gt; books = DataSupport.where(&quot;pages &gt; ?&quot;,&quot;450&quot;).find(Book.class);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>order() 方法用于指定结果的排序方式。<br>如查询结果按书价从高到低排列：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 其中 desc 表示降序，asc 或者不写表示升序</span><br><span class="line">List&lt;Book&gt; books = DataSupport.order(<span class="string">"price desc"</span>).find(Book.class);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>limit() 方法用于指定查询结果的数量。<br>如查询表中前3条数据：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Book&gt; books = DataSupport.limit(3).find(Book.class);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>offset() 方法用于指定查询结果的偏移量。</li>
+</ul>
+<p>如查询表中的第2、3、4条数据：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Book&gt; books = DataSupport.limit(3).offset(1).find(Book.class);</span><br></pre></td></tr></table></figure>
+<p>  当然你也可以对这5个方法进行任意的连缀组合，如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 查询 Book 表中第11-20跳满足页数大于450这个条件的 name、author 和 pages 这3列数据，</span><br><span class="line">// 并将查询结果按照页数升序排序</span><br><span class="line">List&lt;Book&gt; books = DataSupport.select(<span class="string">"name"</span>,<span class="string">"author"</span>,<span class="string">"pages"</span>)</span><br><span class="line">        .where(<span class="string">"pages &gt; ?"</span>,<span class="string">"450"</span>)</span><br><span class="line">        .order(<span class="string">"pages"</span>)</span><br><span class="line">        .limit(10)</span><br><span class="line">        .offset(10)</span><br><span class="line">        .find(Book.class);</span><br></pre></td></tr></table></figure>
+<p>  LitePal 也可以支持使用原生的 SQL 语句来进行查询：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cursor c = DataSupport.findBySQL(<span class="string">"select * from Book where pages &gt; ? and price &lt; ?"</span>,<span class="string">"450"</span>,<span class="string">"20"</span>);</span><br></pre></td></tr></table></figure>
+<p>  关于 LitePal 就介绍到这，下篇文章将进入内容提供器的学习。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/wechat-qcode.jpg" alt="徐迁征 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>如果我的文章对您有用，请打赏我一个红包吧！鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat.png" alt="徐迁征 WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.jpg" alt="徐迁征 Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+            <a href="/tags/Android-Studio/" rel="tag"># Android Studio</a>
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+            <a href="/tags/《第一行代码》（第2版）/" rel="tag"># 《第一行代码》（第2版）</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/10/01/Android开发基础06 - 持久化技术（上）/" rel="next" title="Android开发基础6 - 持久化技术（上）">
+                <i class="fa fa-chevron-left"></i> Android开发基础6 - 持久化技术（上）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/01/03/如何有效的扫除迷茫？/" rel="prev" title="如何有效的扫除迷茫？">
+                如何有效的扫除迷茫？ <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/10/01/Android开发基础06 - 持久化技术（下）/"
+           data-title="Android开发基础6 - 持久化技术（下）" data-url="http://xuqianzheng.com/2015/10/01/Android开发基础06 - 持久化技术（下）/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="徐迁征" />
+          <p class="site-author-name" itemprop="name">徐迁征</p>
+          <p class="site-description motion-element" itemprop="description">前端+Android（Python+Ruby）</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">21</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">53</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/rss2.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/xuqianzheng" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://7xsb4k.com1.z0.glb.clouddn.com/%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%AD%A6.jpg" target="_blank" title="微信">
+                  
+                    <i class="fa fa-fw fa-weixin"></i>
+                  
+                  微信
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/xu-qian-zheng" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/3339723692/profile?topnav=1&wvr=6&is_all=1" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#6-3-SQLite-数据库存储"><span class="nav-number">1.</span> <span class="nav-text">6.3 SQLite 数据库存储</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-3-1-创建数据库"><span class="nav-number">1.1.</span> <span class="nav-text">6.3.1 创建数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-3-2-升级数据库"><span class="nav-number">1.2.</span> <span class="nav-text">6.3.2 升级数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-3-3-增删查改"><span class="nav-number">1.3.</span> <span class="nav-text">6.3.3 增删查改</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-3-1-添加数据"><span class="nav-number">1.3.1.</span> <span class="nav-text">6.3.3.1 添加数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-3-2-更新数据"><span class="nav-number">1.3.2.</span> <span class="nav-text">6.3.3.2 更新数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-3-3-删除数据"><span class="nav-number">1.3.3.</span> <span class="nav-text">6.3.3.3 删除数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-3-4-查询数据"><span class="nav-number">1.3.4.</span> <span class="nav-text">6.3.3.4 查询数据</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-3-4-使用-SQL-操作数据库"><span class="nav-number">1.4.</span> <span class="nav-text">6.3.4 使用 SQL 操作数据库</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-4-使用-LitePal-操作数据库"><span class="nav-number">2.</span> <span class="nav-text">6.4 使用 LitePal 操作数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-4-1-配置-LitePal"><span class="nav-number">2.1.</span> <span class="nav-text">6.4.1 配置 LitePal</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-4-2-创建和升级数据库"><span class="nav-number">2.2.</span> <span class="nav-text">6.4.2 创建和升级数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-4-3-使用-LitePal-增删查改"><span class="nav-number">2.3.</span> <span class="nav-text">6.4.3 使用 LitePal 增删查改</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-4-3-1-添加数据"><span class="nav-number">2.3.1.</span> <span class="nav-text">6.4.3.1 添加数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-4-3-2-更新数据"><span class="nav-number">2.3.2.</span> <span class="nav-text">6.4.3.2 更新数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-4-3-3-删除数据"><span class="nav-number">2.3.3.</span> <span class="nav-text">6.4.3.3 删除数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-4-3-4-查询数据"><span class="nav-number">2.3.4.</span> <span class="nav-text">6.4.3.4 查询数据</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">徐迁征</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"xuqianzheng"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+</body>
+</html>

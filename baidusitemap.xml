@@ -4,6 +4,98 @@
 
     
   <url>
+    <loc>http://xuqianzheng.com/2015/10/01/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%8006%20-%20%E6%8C%81%E4%B9%85%E5%8C%96%E6%8A%80%E6%9C%AF%EF%BC%88%E4%B8%8B%EF%BC%89/</loc>
+    <lastmod>2016-12-19T11:10:08.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android开发基础6 - 持久化技术（下）</title>
+        <pubTime>2015-10-01T09:31:48.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>Android Studio</tag>
+         
+        <tag>java</tag>
+         
+        <tag>《第一行代码》（第2版）</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://xuqianzheng.com/2015/10/01/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%8006%20-%20%E6%8C%81%E4%B9%85%E5%8C%96%E6%8A%80%E6%9C%AF%EF%BC%88%E4%B8%8A%EF%BC%89/</loc>
+    <lastmod>2016-12-19T11:09:35.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android开发基础6 - 持久化技术（上）</title>
+        <pubTime>2015-10-01T01:17:36.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>Android Studio</tag>
+         
+        <tag>java</tag>
+         
+        <tag>《第一行代码》（第2版）</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://xuqianzheng.com/2015/09/25/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%8005%20-%20%E5%B9%BF%E6%92%AD%E6%9C%BA%E5%88%B6/</loc>
+    <lastmod>2016-12-19T11:08:02.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android开发基础5 - 广播机制</title>
+        <pubTime>2015-09-25T10:09:06.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>Android Studio</tag>
+         
+        <tag>java</tag>
+         
+        <tag>《第一行代码》（第2版）</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://xuqianzheng.com/2015/09/15/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%8002%20-%20%E6%8E%A2%E7%A9%B6%E6%B4%BB%E5%8A%A8/</loc>
+    <lastmod>2016-12-18T17:16:10.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android开发基础2 - 探究活动</title>
+        <pubTime>2015-09-15T14:47:43.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>Android Studio</tag>
+         
+        <tag>java</tag>
+         
+        <tag>《第一行代码》（第2版）</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://xuqianzheng.com/2015/09/20/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%8003%20-%20UI%20%E5%BC%80%E5%8F%91/</loc>
     <lastmod>2016-12-18T17:16:10.000Z</lastmod>
     <data>
@@ -68,29 +160,6 @@
         <tag>《第一行代码》（第2版）</tag>
          
         <tag>gradle</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://xuqianzheng.com/2015/09/15/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%8002%20-%20%E6%8E%A2%E7%A9%B6%E6%B4%BB%E5%8A%A8/</loc>
-    <lastmod>2016-12-18T17:16:10.000Z</lastmod>
-    <data>
-        <display>
-        <title>Android开发基础2 - 探究活动</title>
-        <pubTime>2015-09-15T14:47:43.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>Android Studio</tag>
-         
-        <tag>java</tag>
-         
-        <tag>《第一行代码》（第2版）</tag>
          
          
            
@@ -168,9 +237,9 @@
         <title>工业机器人常用精密减速器技术分析</title>
         <pubTime>2014-09-12T02:24:08.000Z</pubTime>
         
-        <tag>减速机</tag>
-         
         <tag>工业机器人</tag>
+         
+        <tag>减速机</tag>
          
          
            

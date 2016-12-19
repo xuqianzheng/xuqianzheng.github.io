@@ -835,7 +835,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://xuqianzheng.com/2015/09/25/Android开发基础04 - 探究碎片/">
+  <link itemprop="mainEntityOfPage" href="http://xuqianzheng.com/2015/10/01/Android开发基础06 - 持久化技术（下）/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="徐迁征">
@@ -860,8 +860,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/09/25/Android开发基础04 - 探究碎片/" itemprop="url">
-                  Android开发基础4 - 探究碎片
+                <a class="post-title-link" href="/2015/10/01/Android开发基础06 - 持久化技术（下）/" itemprop="url">
+                  Android开发基础6 - 持久化技术（下）
                 </a>
               
             
@@ -875,8 +875,8 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-09-25T18:09:06+08:00">
-                2015-09-25
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-10-01T17:31:48+08:00">
+                2015-10-01
               </time>
             
 
@@ -891,8 +891,8 @@
             
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
-                <a href="/2015/09/25/Android开发基础04 - 探究碎片/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/09/25/Android开发基础04 - 探究碎片/" itemprop="commentCount"></span>
+                <a href="/2015/10/01/Android开发基础06 - 持久化技术（下）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/01/Android开发基础06 - 持久化技术（下）/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -922,17 +922,17 @@
           <blockquote>
 <p><strong>本篇文章主要介绍以下几个知识点：</strong></p>
 <ul>
-<li>碎片 fragment 的用法；</li>
-<li>碎片 fragment 的生命周期；</li>
-<li>动态加载布局的技巧，限定符的使用；</li>
-<li>实战：简易版的新闻应用</li>
+<li>SQLite 数据库存储；</li>
+<li>开源数据库框架 LitePal。</li>
 </ul>
 </blockquote>
-<h1 id="4-1-碎片是什么"><a href="#4-1-碎片是什么" class="headerlink" title="4.1 碎片是什么"></a>4.1 碎片是什么</h1><p>  碎片（Fragment）是一种可以嵌入在活动当中的 UI 片段，它能让程序更加合理和充分 地利用大屏幕的空间，因而在平板上应用的非常广泛。</p>
-<p>  那么究竟要如何使用碎片才能充分地利用平板屏幕的空间呢？想象我们正在开发一个新闻应用，其中一个界面使用 RecyclerView 展示了一组新闻的标题，当点击了其中一个标题，就打开另一个界面显示新闻的详细内容。若是在手机中设计，我们可以将新闻标题列表放在 一个活动中，将新闻的详细内容放在另一个活动中，如图所示：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0401%E6%89%8B%E6%9C%BA%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88.jpg" alt="" title="手机的设计方案"><br>但显示在平板上，那么新闻标题列表将会被拉长至填充满整个平板的屏幕，而新闻的标题一般都不会太长，这样将会导致界面上有大量的空白区域，如图所示：
+<h1 id="6-3-SQLite-数据库存储"><a href="#6-3-SQLite-数据库存储" class="headerlink" title="6.3 SQLite 数据库存储"></a>6.3 SQLite 数据库存储</h1><p>  前面介绍的两种存储方式很难应付得了需要存储大量复杂的关系型数据的时候，而使用数据库就可以做到。</p>
+<p>  SQLite 是一款轻量级的关系型数据库，它的运算速度非常快， 占用资源很少，通常只需几百 K 的内存就足够了，因而特别适合在移动设备上使用。SQLite 不仅支持标准的 SQL 语法，还遵循了数据库的 ACID 事务，只要你以前用过其他的关系型数据库，就可以很快地上手 SQLite。</p>
+<h2 id="6-3-1-创建数据库"><a href="#6-3-1-创建数据库" class="headerlink" title="6.3.1 创建数据库"></a>6.3.1 创建数据库</h2><p>  Android 为了让我们更加方便地管理数据库，专门提供了一个 SQLiteOpenHelper 帮助类，借助这个类可以非常简单地对数据库进行创建和升级。</p>
+<p>  SQLiteOpenHelper 是一个抽象类，意味着若要使用它的话， 就需要创建一个自己的帮助类去继承它并且重写它的两个抽象方法，即 onCreate() 和 onUpgrade()，去实现创建、升级数据库的逻辑。
           <!--noindex-->
           <div class="post-more-link text-center">
-            <a class="btn" href="/2015/09/25/Android开发基础04 - 探究碎片/#more" rel="contents">
+            <a class="btn" href="/2015/10/01/Android开发基础06 - 持久化技术（下）/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -968,7 +968,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1009,7 +1009,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">18</span>
+              <span class="site-state-item-count">21</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
