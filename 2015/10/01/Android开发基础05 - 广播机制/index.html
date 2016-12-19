@@ -96,7 +96,8 @@
 
 
 5.1 广播机制简介  Android 中的广播主要分两种类型：标准广播和有序广播。
-标准广播（Normal broadcasts）  是一种完全异步执行的广播，在广播发出之后，所有的广播接收器几乎都会在同一时刻接收到这条广播消息，因此它们之间没有">
+
+标准广播（Normal broadcasts）  是一种完全异步执行的广播，在广播发出之后，所有的广播接收器几乎都会在同一时刻接收到这条广播消息，因此它们之间没">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android开发基础5 - 广播机制">
 <meta property="og:url" content="http://xuqianzheng.com/2015/10/01/Android开发基础05 - 广播机制/index.html">
@@ -111,7 +112,8 @@
 
 
 5.1 广播机制简介  Android 中的广播主要分两种类型：标准广播和有序广播。
-标准广播（Normal broadcasts）  是一种完全异步执行的广播，在广播发出之后，所有的广播接收器几乎都会在同一时刻接收到这条广播消息，因此它们之间没有">
+
+标准广播（Normal broadcasts）  是一种完全异步执行的广播，在广播发出之后，所有的广播接收器几乎都会在同一时刻接收到这条广播消息，因此它们之间没">
 <meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0501%E6%A0%87%E5%87%86%E5%B9%BF%E6%92%AD%E5%B7%A5%E4%BD%9C%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg">
 <meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0502%E6%9C%89%E5%BA%8F%E5%B9%BF%E6%92%AD%E5%B7%A5%E4%BD%9C%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg">
 <meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0503%E7%A6%81%E7%94%A8%E7%B3%BB%E7%BB%9F%E7%BD%91%E7%BB%9C.png">
@@ -125,7 +127,7 @@
 <meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0511%E7%99%BB%E9%99%86%E7%95%8C%E9%9D%A2.png">
 <meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0512%E4%B8%BB%E7%95%8C%E9%9D%A2.png">
 <meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0513%E5%BC%BA%E5%88%B6%E4%B8%8B%E7%BA%BF%E6%8F%90%E7%A4%BA.png">
-<meta property="og:updated_time" content="2016-12-19T11:35:47.000Z">
+<meta property="og:updated_time" content="2016-12-19T15:31:44.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android开发基础5 - 广播机制">
 <meta name="twitter:description" content="本篇文章主要介绍以下几个知识点：
@@ -138,7 +140,8 @@
 
 
 5.1 广播机制简介  Android 中的广播主要分两种类型：标准广播和有序广播。
-标准广播（Normal broadcasts）  是一种完全异步执行的广播，在广播发出之后，所有的广播接收器几乎都会在同一时刻接收到这条广播消息，因此它们之间没有">
+
+标准广播（Normal broadcasts）  是一种完全异步执行的广播，在广播发出之后，所有的广播接收器几乎都会在同一时刻接收到这条广播消息，因此它们之间没">
 <meta name="twitter:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0501%E6%A0%87%E5%87%86%E5%B9%BF%E6%92%AD%E5%B7%A5%E4%BD%9C%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg">
 
 
@@ -437,9 +440,10 @@
 </ul>
 </blockquote>
 <h1 id="5-1-广播机制简介"><a href="#5-1-广播机制简介" class="headerlink" title="5.1 广播机制简介"></a>5.1 广播机制简介</h1><p>  Android 中的广播主要分两种类型：标准广播和有序广播。</p>
-<h2 id="标准广播（Normal-broadcasts）"><a href="#标准广播（Normal-broadcasts）" class="headerlink" title="标准广播（Normal broadcasts）"></a>标准广播（Normal broadcasts）</h2><p>  是一种完全异步执行的广播，在广播发出之后，所有的广播接收器几乎都会在同一时刻接收到这条广播消息，因此它们之间没有任何先后顺序可 言。这种广播的效率会比较高，但同时也意味着它是无法被截断的。标准广播的工作流程如下：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0501%E6%A0%87%E5%87%86%E5%B9%BF%E6%92%AD%E5%B7%A5%E4%BD%9C%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg" alt="" title="标准广播工作示意图"></p>
-<h2 id="有序广播（Ordered-broadcasts）"><a href="#有序广播（Ordered-broadcasts）" class="headerlink" title="有序广播（Ordered broadcasts）"></a>有序广播（Ordered broadcasts）</h2><p>  是一种同步执行的广播，在广播发出之后，同一时刻只会有一个广播接收器能够收到这条广播消息，当这个广播接收器中的逻辑执行完毕后，广播才会继续传递。<a id="more"></a>所以此时的广播接收器是有先后顺序的，优先级高的广播接收器就可以先收到广播消息，并且前面的广播接收器还可以截断正在传递的广播，这样后面的广播接收器就无法收到广播消息了。有序广播的工作流程如下：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0502%E6%9C%89%E5%BA%8F%E5%B9%BF%E6%92%AD%E5%B7%A5%E4%BD%9C%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg" alt="" title="有序广播工作示意图"></p>
-<h1 id="5-2-接收系统广播"><a href="#5-2-接收系统广播" class="headerlink" title="5.2 接收系统广播"></a>5.2 接收系统广播</h1><p>  Android 内置了很多系统级别的广播，我们可以在应用程序中通过监听这些广播来得到各种系统的状态信息。若想要接收到这些广播，就需要使用广播接收器。</p>
+<ul>
+<li>标准广播（Normal broadcasts）<br>  是一种完全异步执行的广播，在广播发出之后，所有的广播接收器几乎都会在同一时刻接收到这条广播消息，因此它们之间没有任何先后顺序可 言。这种广播的效率会比较高，但同时也意味着它是无法被截断的。标准广播的工作流程如下：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0501%E6%A0%87%E5%87%86%E5%B9%BF%E6%92%AD%E5%B7%A5%E4%BD%9C%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg" alt="" title="标准广播工作示意图"></li>
+<li>有序广播（Ordered broadcasts）<br>  是一种同步执行的广播，在广播发出之后，同一时刻只会有一个广播接收器能够收到这条广播消息，当这个广播接收器中的逻辑执行完毕后，广播才会继续传递。<a id="more"></a>所以此时的广播接收器是有先后顺序的，优先级高的广播接收器就可以先收到广播消息，并且前面的广播接收器还可以截断正在传递的广播，这样后面的广播接收器就无法收到广播消息了。有序广播的工作流程如下：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0502%E6%9C%89%E5%BA%8F%E5%B9%BF%E6%92%AD%E5%B7%A5%E4%BD%9C%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg" alt="" title="有序广播工作示意图"><h1 id="5-2-接收系统广播"><a href="#5-2-接收系统广播" class="headerlink" title="5.2 接收系统广播"></a>5.2 接收系统广播</h1>  Android 内置了很多系统级别的广播，我们可以在应用程序中通过监听这些广播来得到各种系统的状态信息。若想要接收到这些广播，就需要使用广播接收器。</li>
+</ul>
 <h2 id="5-2-1-动态注册监听网络变化"><a href="#5-2-1-动态注册监听网络变化" class="headerlink" title="5.2.1 动态注册监听网络变化"></a>5.2.1 动态注册监听网络变化</h2><p>  注册广播的方式有两种，在代码中注册（动态注册）和在 AndroidManifest.xml 中注册（静态注册）。</p>
 <p>  创建一个广播接收器：新建一个类，继承 BroadcastReceiver， 并重写父类的 onReceive() 方法。当有广播到来时，onReceive()方法就会得到执行， 具体的逻辑在这个方法中处理。</p>
 <p>  接下来先通过动态注册的方式编写一个能够监听网络变化的程序，学习一下广播接收器的基本用法。代码如下：</p>
@@ -490,9 +494,11 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">public class BroadcastActivity extends AppCompatActivity &#123;</span><br><span class="line"></span><br><span class="line">    private IntentFilter intentFilter;</span><br><span class="line"></span><br><span class="line">    private LocalReceiver <span class="built_in">local</span>Receiver;</span><br><span class="line"></span><br><span class="line">    private LocalBroadcastManager <span class="built_in">local</span>BroadcastManager;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        <span class="built_in">set</span>ContentView(R.layout.activity_broadcast);</span><br><span class="line"></span><br><span class="line">        // 获取实例</span><br><span class="line">        <span class="built_in">local</span>BroadcastManager = LocalBroadcastManager.getInstance(this);</span><br><span class="line"></span><br><span class="line">        Button btn_send_broadcast = (Button) findViewById(R.id.btn_send_broadcast);</span><br><span class="line">        btn_send_broadcast.setOnClickListener(new View.<span class="function"><span class="title">OnClickListener</span></span>() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(View view) &#123;</span><br><span class="line">                // 构建 Intent 对象</span><br><span class="line">                Intent intent = new Intent(<span class="string">"com.wonderful.myfirstcode.LOCAL_BROADCAST"</span>);</span><br><span class="line">                // 发送有序广播</span><br><span class="line">                <span class="built_in">local</span>BroadcastManager.sendBroadcast(intent);</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        // 创建 IntentFilter 实例</span><br><span class="line">        intentFilter = new IntentFilter();</span><br><span class="line">        // 添加广播值</span><br><span class="line">        intentFilter.addAction(<span class="string">"com.wonderful.myfirstcode.LOCAL_BROADCAST"</span>);</span><br><span class="line">        // 创建 LocalReceiver 实例</span><br><span class="line">        <span class="built_in">local</span>Receiver = new LocalReceiver();</span><br><span class="line">        // 注册本地广播监听器</span><br><span class="line">        <span class="built_in">local</span>BroadcastManager.registerReceiver(<span class="built_in">local</span>Receiver,intentFilter);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void <span class="function"><span class="title">onDestroy</span></span>() &#123;</span><br><span class="line">        super.onDestroy();</span><br><span class="line">        // 取消注册</span><br><span class="line">        <span class="built_in">local</span>BroadcastManager.unregisterReceiver(<span class="built_in">local</span>Receiver);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 本地广播接收器</span><br><span class="line">     */</span><br><span class="line">    class LocalReceiver extends BroadcastReceiver&#123;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public void onReceive(Context context, Intent intent) &#123;</span><br><span class="line">            ToastUtils.showShort(<span class="string">"收到本地广播"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>  基本上就和前面的动态注册广播接收器以及发送广播的代码是一样。<br>  运行效果如下：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0510%E6%8E%A5%E6%94%B6%E6%9C%AC%E5%9C%B0%E5%B9%BF%E6%92%AD.png" alt="" title="接收本地广播"><br>  另外还有一点需要说明，本地广播是无法通过静态注册的方式来接收的。</p>
 <p>  最后盘点一下使用本地广播的优势：</p>
-<p>可以明确知道正在发送的广播不会离开我们的程序，不需要担心机密数据泄漏的问题。</p>
-<p>其他的程序无法将广播发送到我们程序的内部，不需要担心会有安全漏洞的隐患。</p>
-<p>发送本地广播比起发送系统全局广播将会更加高效。</p>
+<ul>
+<li>可以明确知道正在发送的广播不会离开我们的程序，不需要担心机密数据泄漏的问题。</li>
+<li>其他的程序无法将广播发送到我们程序的内部，不需要担心会有安全漏洞的隐患。</li>
+<li>发送本地广播比起发送系统全局广播将会更加高效。</li>
+</ul>
 <h1 id="5-5-广播的最佳实践——实现强制下线功能"><a href="#5-5-广播的最佳实践——实现强制下线功能" class="headerlink" title="5.5 广播的最佳实践——实现强制下线功能"></a>5.5 广播的最佳实践——实现强制下线功能</h1><p>  又到了实战环节了。此次的需求是：强制下线后在界面上弹出一个对话框，让用户无法进行任何其他操作，必须要点击对话框中的确定按钮， 然后回到登录界面。</p>
 <p>  借助本次所学的广播知识，可以轻松实现这一功能。</p>
 <p>  首先，创建一个 ActivityCollector 类用于管理所有的活动：</p>
@@ -773,7 +779,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#5-1-广播机制简介"><span class="nav-number">1.</span> <span class="nav-text">5.1 广播机制简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#标准广播（Normal-broadcasts）"><span class="nav-number">1.1.</span> <span class="nav-text">标准广播（Normal broadcasts）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#有序广播（Ordered-broadcasts）"><span class="nav-number">1.2.</span> <span class="nav-text">有序广播（Ordered broadcasts）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-2-接收系统广播"><span class="nav-number">2.</span> <span class="nav-text">5.2 接收系统广播</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-1-动态注册监听网络变化"><span class="nav-number">2.1.</span> <span class="nav-text">5.2.1 动态注册监听网络变化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-2-静态注册实现开机启动"><span class="nav-number">2.2.</span> <span class="nav-text">5.2.2 静态注册实现开机启动</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-3-发送自定义广播"><span class="nav-number">3.</span> <span class="nav-text">5.3 发送自定义广播</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3-1-发送标准广播"><span class="nav-number">3.1.</span> <span class="nav-text">5.3.1 发送标准广播</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3-1-发送有序广播"><span class="nav-number">3.2.</span> <span class="nav-text">5.3.1 发送有序广播</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-4-使用本地广播"><span class="nav-number">4.</span> <span class="nav-text">5.4 使用本地广播</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-5-广播的最佳实践——实现强制下线功能"><span class="nav-number">5.</span> <span class="nav-text">5.5 广播的最佳实践——实现强制下线功能</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#5-1-广播机制简介"><span class="nav-number">1.</span> <span class="nav-text">5.1 广播机制简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-2-接收系统广播"><span class="nav-number">2.</span> <span class="nav-text">5.2 接收系统广播</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-1-动态注册监听网络变化"><span class="nav-number">2.1.</span> <span class="nav-text">5.2.1 动态注册监听网络变化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-2-静态注册实现开机启动"><span class="nav-number">2.2.</span> <span class="nav-text">5.2.2 静态注册实现开机启动</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-3-发送自定义广播"><span class="nav-number">3.</span> <span class="nav-text">5.3 发送自定义广播</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3-1-发送标准广播"><span class="nav-number">3.1.</span> <span class="nav-text">5.3.1 发送标准广播</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3-1-发送有序广播"><span class="nav-number">3.2.</span> <span class="nav-text">5.3.1 发送有序广播</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-4-使用本地广播"><span class="nav-number">4.</span> <span class="nav-text">5.4 使用本地广播</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-5-广播的最佳实践——实现强制下线功能"><span class="nav-number">5.</span> <span class="nav-text">5.5 广播的最佳实践——实现强制下线功能</span></a></li></ol></div>
             
 
           </div>

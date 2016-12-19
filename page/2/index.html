@@ -674,8 +674,9 @@
 </ul>
 </blockquote>
 <h1 id="5-1-广播机制简介"><a href="#5-1-广播机制简介" class="headerlink" title="5.1 广播机制简介"></a>5.1 广播机制简介</h1><p>  Android 中的广播主要分两种类型：标准广播和有序广播。</p>
-<h2 id="标准广播（Normal-broadcasts）"><a href="#标准广播（Normal-broadcasts）" class="headerlink" title="标准广播（Normal broadcasts）"></a>标准广播（Normal broadcasts）</h2><p>  是一种完全异步执行的广播，在广播发出之后，所有的广播接收器几乎都会在同一时刻接收到这条广播消息，因此它们之间没有任何先后顺序可 言。这种广播的效率会比较高，但同时也意味着它是无法被截断的。标准广播的工作流程如下：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0501%E6%A0%87%E5%87%86%E5%B9%BF%E6%92%AD%E5%B7%A5%E4%BD%9C%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg" alt="" title="标准广播工作示意图"></p>
-<h2 id="有序广播（Ordered-broadcasts）"><a href="#有序广播（Ordered-broadcasts）" class="headerlink" title="有序广播（Ordered broadcasts）"></a>有序广播（Ordered broadcasts）</h2><p>  是一种同步执行的广播，在广播发出之后，同一时刻只会有一个广播接收器能够收到这条广播消息，当这个广播接收器中的逻辑执行完毕后，广播才会继续传递。
+<ul>
+<li>标准广播（Normal broadcasts）<br>  是一种完全异步执行的广播，在广播发出之后，所有的广播接收器几乎都会在同一时刻接收到这条广播消息，因此它们之间没有任何先后顺序可 言。这种广播的效率会比较高，但同时也意味着它是无法被截断的。标准广播的工作流程如下：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0501%E6%A0%87%E5%87%86%E5%B9%BF%E6%92%AD%E5%B7%A5%E4%BD%9C%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg" alt="" title="标准广播工作示意图"></li>
+<li>有序广播（Ordered broadcasts）<br>  是一种同步执行的广播，在广播发出之后，同一时刻只会有一个广播接收器能够收到这条广播消息，当这个广播接收器中的逻辑执行完毕后，广播才会继续传递。
           <!--noindex-->
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/10/01/Android开发基础05 - 广播机制/#more" rel="contents">
