@@ -1,0 +1,1077 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android,Android Studio,java,《第一行代码》（第2版）," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="面向工资闲扯" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="本篇文章主要介绍以下几个知识点：
+
+广播机制的简介；
+接收系统广播：动态注册与静态注册；
+发送自定义广播；
+使用本地广播；
+实战：实现强制下线。
+
+
+5.1 广播机制简介  Android 中的广播主要分两种类型：标准广播和有序广播。
+标准广播（Normal broadcasts）  是一种完全异步执行的广播，在广播发出之后，所有的广播接收器几乎都会在同一时刻接收到这条广播消息，因此它们之间没有">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android开发基础5 - 广播机制">
+<meta property="og:url" content="http://xuqianzheng.com/2015/09/29/Android开发基础05 - 广播机制/index.html">
+<meta property="og:site_name" content="面向工资闲扯">
+<meta property="og:description" content="本篇文章主要介绍以下几个知识点：
+
+广播机制的简介；
+接收系统广播：动态注册与静态注册；
+发送自定义广播；
+使用本地广播；
+实战：实现强制下线。
+
+
+5.1 广播机制简介  Android 中的广播主要分两种类型：标准广播和有序广播。
+标准广播（Normal broadcasts）  是一种完全异步执行的广播，在广播发出之后，所有的广播接收器几乎都会在同一时刻接收到这条广播消息，因此它们之间没有">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0501%E6%A0%87%E5%87%86%E5%B9%BF%E6%92%AD%E5%B7%A5%E4%BD%9C%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0502%E6%9C%89%E5%BA%8F%E5%B9%BF%E6%92%AD%E5%B7%A5%E4%BD%9C%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0503%E7%A6%81%E7%94%A8%E7%B3%BB%E7%BB%9F%E7%BD%91%E7%BB%9C.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0504%E5%90%AF%E7%94%A8%E7%B3%BB%E7%BB%9F%E7%BD%91%E7%BB%9C.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0505%E5%88%9B%E5%BB%BA%E5%B9%BF%E6%92%AD%E6%8E%A5%E6%94%B6%E5%99%A8%E7%9A%84%E7%AA%97%E5%8F%A3.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0506%E6%8E%A5%E6%94%B6%E7%B3%BB%E7%BB%9F%E5%BC%80%E6%9C%BA%E5%B9%BF%E6%92%AD.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0507%E6%8E%A5%E6%94%B6%E5%88%B0%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B9%BF%E6%92%AD.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0508%E4%B8%A4%E4%B8%AA%E7%A8%8B%E5%BA%8F%E9%83%BD%E6%94%B6%E5%88%B0%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B9%BF%E6%92%AD%201.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0509%E4%B8%A4%E4%B8%AA%E7%A8%8B%E5%BA%8F%E9%83%BD%E6%94%B6%E5%88%B0%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B9%BF%E6%92%AD%202.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0510%E6%8E%A5%E6%94%B6%E6%9C%AC%E5%9C%B0%E5%B9%BF%E6%92%AD.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0511%E7%99%BB%E9%99%86%E7%95%8C%E9%9D%A2.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0512%E4%B8%BB%E7%95%8C%E9%9D%A2.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0513%E5%BC%BA%E5%88%B6%E4%B8%8B%E7%BA%BF%E6%8F%90%E7%A4%BA.png">
+<meta property="og:updated_time" content="2016-12-19T11:16:58.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android开发基础5 - 广播机制">
+<meta name="twitter:description" content="本篇文章主要介绍以下几个知识点：
+
+广播机制的简介；
+接收系统广播：动态注册与静态注册；
+发送自定义广播；
+使用本地广播；
+实战：实现强制下线。
+
+
+5.1 广播机制简介  Android 中的广播主要分两种类型：标准广播和有序广播。
+标准广播（Normal broadcasts）  是一种完全异步执行的广播，在广播发出之后，所有的广播接收器几乎都会在同一时刻接收到这条广播消息，因此它们之间没有">
+<meta name="twitter:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0501%E6%A0%87%E5%87%86%E5%B9%BF%E6%92%AD%E5%B7%A5%E4%BD%9C%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://xuqianzheng.com/2015/09/29/Android开发基础05 - 广播机制/"/>
+
+
+
+
+
+  <title> Android开发基础5 - 广播机制 | 面向工资闲扯 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?3f7ae1fa714b160af9e4a2f1cc75d137";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=56301679";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">面向工资闲扯</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">读书、生活、思考</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            时间轴
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://xuqianzheng.com/2015/09/29/Android开发基础05 - 广播机制/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="徐迁征">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="面向工资闲扯">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="面向工资闲扯" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android开发基础5 - 广播机制
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-09-29T19:39:26+08:00">
+                2015-09-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2015/09/29/Android开发基础05 - 广播机制/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/09/29/Android开发基础05 - 广播机制/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p><strong>本篇文章主要介绍以下几个知识点：</strong></p>
+<ul>
+<li>广播机制的简介；</li>
+<li>接收系统广播：动态注册与静态注册；</li>
+<li>发送自定义广播；</li>
+<li>使用本地广播；</li>
+<li>实战：实现强制下线。</li>
+</ul>
+</blockquote>
+<h1 id="5-1-广播机制简介"><a href="#5-1-广播机制简介" class="headerlink" title="5.1 广播机制简介"></a>5.1 广播机制简介</h1><p>  Android 中的广播主要分两种类型：标准广播和有序广播。</p>
+<h2 id="标准广播（Normal-broadcasts）"><a href="#标准广播（Normal-broadcasts）" class="headerlink" title="标准广播（Normal broadcasts）"></a>标准广播（Normal broadcasts）</h2><p>  是一种完全异步执行的广播，在广播发出之后，所有的广播接收器几乎都会在同一时刻接收到这条广播消息，因此它们之间没有任何先后顺序可 言。这种广播的效率会比较高，但同时也意味着它是无法被截断的。标准广播的工作流程如下：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0501%E6%A0%87%E5%87%86%E5%B9%BF%E6%92%AD%E5%B7%A5%E4%BD%9C%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg" alt="" title="标准广播工作示意图"></p>
+<h2 id="有序广播（Ordered-broadcasts）"><a href="#有序广播（Ordered-broadcasts）" class="headerlink" title="有序广播（Ordered broadcasts）"></a>有序广播（Ordered broadcasts）</h2><p>  是一种同步执行的广播，在广播发出之后，同一时刻只会有一个广播接收器能够收到这条广播消息，当这个广播接收器中的逻辑执行完毕后，广播才会继续传递。<a id="more"></a>所以此时的广播接收器是有先后顺序的，优先级高的广播接收器就可以先收到广播消息，并且前面的广播接收器还可以截断正在传递的广播，这样后面的广播接收器就无法收到广播消息了。有序广播的工作流程如下：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0502%E6%9C%89%E5%BA%8F%E5%B9%BF%E6%92%AD%E5%B7%A5%E4%BD%9C%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg" alt="" title="有序广播工作示意图"></p>
+<h1 id="5-2-接收系统广播"><a href="#5-2-接收系统广播" class="headerlink" title="5.2 接收系统广播"></a>5.2 接收系统广播</h1><p>  Android 内置了很多系统级别的广播，我们可以在应用程序中通过监听这些广播来得到各种系统的状态信息。若想要接收到这些广播，就需要使用广播接收器。</p>
+<h2 id="5-2-1-动态注册监听网络变化"><a href="#5-2-1-动态注册监听网络变化" class="headerlink" title="5.2.1 动态注册监听网络变化"></a>5.2.1 动态注册监听网络变化</h2><p>  注册广播的方式有两种，在代码中注册（动态注册）和在 AndroidManifest.xml 中注册（静态注册）。</p>
+<p>  创建一个广播接收器：新建一个类，继承 BroadcastReceiver， 并重写父类的 onReceive() 方法。当有广播到来时，onReceive()方法就会得到执行， 具体的逻辑在这个方法中处理。</p>
+<p>  接下来先通过动态注册的方式编写一个能够监听网络变化的程序，学习一下广播接收器的基本用法。代码如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 广播，动态监听网络变化</span><br><span class="line"> */</span><br><span class="line">public class BroadcastActivity extends AppCompatActivity &#123;</span><br><span class="line"></span><br><span class="line">    private IntentFilter intentFilter;</span><br><span class="line"></span><br><span class="line">    private NetworkChangeReceiver networkChangeReceiver;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        <span class="built_in">set</span>ContentView(R.layout.activity_broadcast);</span><br><span class="line">        // 创建 IntentFilter 实例</span><br><span class="line">        intentFilter = new IntentFilter();</span><br><span class="line">        // 添加广播值</span><br><span class="line">        intentFilter.addAction(<span class="string">"android.net.conn.CONNECTIVITY_CHANGE"</span>);</span><br><span class="line">        // 创建 NetworkChangeReceiver 实例</span><br><span class="line">        networkChangeReceiver = new NetworkChangeReceiver();</span><br><span class="line">        // 注册广播</span><br><span class="line">        registerReceiver(networkChangeReceiver,intentFilter);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void <span class="function"><span class="title">onDestroy</span></span>() &#123;</span><br><span class="line">        super.onDestroy();</span><br><span class="line">        // 取消注册</span><br><span class="line">        unregisterReceiver(networkChangeReceiver);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    class NetworkChangeReceiver extends BroadcastReceiver&#123;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public void onReceive(Context context, Intent intent) &#123;</span><br><span class="line">            // 获取管理网络连接的系统服务类的实例</span><br><span class="line">            ConnectivityManager connectivityManager = (ConnectivityManager)</span><br><span class="line">                    getSystemService(Context.CONNECTIVITY_SERVICE);</span><br><span class="line">            NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();</span><br><span class="line">            // 判断网络是否可用</span><br><span class="line">            <span class="keyword">if</span> (networkInfo != null &amp;&amp; networkInfo.isAvailable())&#123;</span><br><span class="line">                ToastUtils.showShort(<span class="string">"网络可用"</span>);</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                ToastUtils.showShort(<span class="string">"网络不可用"</span>);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  注意事项：</p>
+<ul>
+<li>动态注册的广播接收器一定都要取消注册才行，这里我们是在 onDestroy()方法中通过调用 unregisterReceiver()方法来实现的。</li>
+<li>在 AndroidManifest.xml 文件中加入访问系统的网络状态权限：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;uses-permission android:name=<span class="string">"android.permission.ACCESS_NETWORK_STATE"</span>/&gt;</span><br></pre></td></tr></table></figure>
+<p>  运行程序，然后按下 Home 键→按下 Menu 键→System settings→Data usage 进入到数据使用详情界面，关闭 Mobile Data 会弹出网络不可用的提示：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0503%E7%A6%81%E7%94%A8%E7%B3%BB%E7%BB%9F%E7%BD%91%E7%BB%9C.png" alt="" title="禁用系统网络"><br>  重新打开 Mobile Data 又会弹出网络可用的提示：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0504%E5%90%AF%E7%94%A8%E7%B3%BB%E7%BB%9F%E7%BD%91%E7%BB%9C.png" alt="" title="启用系统网络"></p>
+<h2 id="5-2-2-静态注册实现开机启动"><a href="#5-2-2-静态注册实现开机启动" class="headerlink" title="5.2.2 静态注册实现开机启动"></a>5.2.2 静态注册实现开机启动</h2><p>  动态注册的广播接收器可以自由地控制注册与注销，在灵活性方面有很大的优势，但它也存在着一个缺点，即必须要在程序启动之后才能接收到广播，因为注册的逻辑是写在 onCreate()方法中的。使用静态注册的方式就可以让程序在未启动的情况下接收到广播。</p>
+<p>  接下来让程序接收一条开机广播，收到这条广播时在 onReceive() 方法中相应的逻辑，从而实现开机启动的功能。Android Studio 创建广播接收器：右击com.wonderful.myfirstcode.chapter5（你的包名）→New→Other→Broadcast Receiver，会弹出窗口：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0505%E5%88%9B%E5%BB%BA%E5%B9%BF%E6%92%AD%E6%8E%A5%E6%94%B6%E5%99%A8%E7%9A%84%E7%AA%97%E5%8F%A3.png" alt="" title="创建广播接收器的窗口"><br>  这里把广播接收器命名为 BootCompleteReceiver，Exported 表示是否允许此广播接收本程序以外的广播，Enabled 表示是否启用这个广播接收器。</p>
+<p>  点击 Finish 完成创建后，修改 BootCompleteReceiver 中的代码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class BootCompleteReceiver extends BroadcastReceiver &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onReceive(Context context, Intent intent) &#123;</span><br><span class="line">        // 执行相应的逻辑</span><br><span class="line">        ToastUtils.showShort(<span class="string">"开机完成"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  静态的广播接收器一定要在 AndroidManifest.xml 文件中注册才可使用，刚使用 Android Studio 创建的广播接收器已经自动帮我们完成注册了，如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;manifest xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    package=<span class="string">"com.wonderful.myfirstcode"</span>&gt;</span><br><span class="line"></span><br><span class="line">    &lt;uses-permission android:name=<span class="string">"android.permission.ACCESS_NETWORK_STATE"</span> /&gt;</span><br><span class="line"></span><br><span class="line">    &lt;application</span><br><span class="line">        android:name=<span class="string">".MyApplication"</span></span><br><span class="line">        android:allowBackup=<span class="string">"true"</span></span><br><span class="line">        android:icon=<span class="string">"@mipmap/ic_launcher"</span></span><br><span class="line">        android:label=<span class="string">"@string/app_name"</span></span><br><span class="line">        android:supportsRtl=<span class="string">"true"</span></span><br><span class="line">        android:theme=<span class="string">"@style/AppTheme"</span>&gt;</span><br><span class="line"></span><br><span class="line">        . . .</span><br><span class="line"></span><br><span class="line">        &lt;receiver</span><br><span class="line">            android:name=<span class="string">".chapter5.BootCompleteReceiver"</span></span><br><span class="line">            android:enabled=<span class="string">"true"</span></span><br><span class="line">            android:exported=<span class="string">"true"</span>&gt;&lt;/receiver&gt;</span><br><span class="line">    &lt;/application&gt;</span><br><span class="line"></span><br><span class="line">&lt;/manifest&gt;</span><br></pre></td></tr></table></figure>
+<p>  接下来修改 AndroidManifest.xml 文件中的标签<receiver>中的内容，使 BootCompleteReceiver 接收开机广播：</receiver></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;receiver</span><br><span class="line">    android:name=<span class="string">".chapter5.BootCompleteReceiver"</span></span><br><span class="line">    android:enabled=<span class="string">"true"</span></span><br><span class="line">    android:exported=<span class="string">"true"</span>&gt;</span><br><span class="line">    &lt;intent-filter&gt;</span><br><span class="line">       &lt;action android:name=<span class="string">"android.intent.action.BOOT_COMPLETED"</span> /&gt;</span><br><span class="line">    &lt;/intent-filter&gt;</span><br><span class="line">&lt;/receiver&gt;</span><br></pre></td></tr></table></figure>
+<p>  由于系统启动后会发出一条值为 android.intent.action.BOOT_COMPLETED 的广播，因此在 <intent-filter> 标签中添加相应的 action。另外，别忘了声明监听系统开机广播的权限：</intent-filter></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;uses-permission android:name=<span class="string">"android.permission.RECEIVE_BOOT_COMPLETED"</span> /&gt;</span><br></pre></td></tr></table></figure>
+<p>  这样程序可以接收到开机广播了，将模拟器关闭并重启，如下：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0506%E6%8E%A5%E6%94%B6%E7%B3%BB%E7%BB%9F%E5%BC%80%E6%9C%BA%E5%B9%BF%E6%92%AD.png" alt="" title="接收系统开机广播"><br>  注意事项：不要在 onReceive() 方法中添加过多的逻辑或者进行耗时操作，因为广播接收器中是不允许开启线程的。</p>
+<h1 id="5-3-发送自定义广播"><a href="#5-3-发送自定义广播" class="headerlink" title="5.3 发送自定义广播"></a>5.3 发送自定义广播</h1><p>  接下来学习如何在应用程序中发送自定义广播，通过实践的方式来看一下标准广播和有序广播的区别。</p>
+<h2 id="5-3-1-发送标准广播"><a href="#5-3-1-发送标准广播" class="headerlink" title="5.3.1 发送标准广播"></a>5.3.1 发送标准广播</h2><p>  在发送广播之前，先新建一个广播接收器 MyBroadcastReceiver 来接收自定义广播，收到广播时弹提示，代码如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class MyBroadcastReceiver extends BroadcastReceiver &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onReceive(Context context, Intent intent) &#123;</span><br><span class="line">        ToastUtils.showShort(<span class="string">"收到自定义广播"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  然后修改 AndroidManifest.xml 文件中的标签<receiver>中的内容，让 MyBroadcastReceiver 收到一条值为 com.wonderful.myfirstcode.MY_BROADCAST 的广播：</receiver></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;receiver</span><br><span class="line">    android:name=<span class="string">".chapter5.MyBroadcastReceiver"</span></span><br><span class="line">    android:enabled=<span class="string">"true"</span></span><br><span class="line">    android:exported=<span class="string">"true"</span>&gt;</span><br><span class="line">    &lt;intent-filter&gt;</span><br><span class="line">       &lt;action android:name=<span class="string">"com.wonderful.myfirstcode.MY_BROADCAST"</span> /&gt;</span><br><span class="line">    &lt;/intent-filter&gt;</span><br><span class="line">&lt;/receiver&gt;</span><br></pre></td></tr></table></figure>
+<p>  接下来在布局文件中添加一个按钮作为发送广播的触发点：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;RelativeLayout xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">    android:layout_height=<span class="string">"match_parent"</span>&gt;</span><br><span class="line"></span><br><span class="line">    &lt;Button</span><br><span class="line">        android:id=<span class="string">"@+id/btn_send_broadcast"</span></span><br><span class="line">        android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">        android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">        android:text=<span class="string">"发送广播"</span>/&gt;</span><br><span class="line"></span><br><span class="line">&lt;/RelativeLayout&gt;</span><br></pre></td></tr></table></figure>
+<p>  然后修改 activity 中的代码，在按钮点击事件中加入发送自定义广播逻辑，如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public class BroadcastActivity extends AppCompatActivity &#123;</span><br><span class="line"></span><br><span class="line">    . . .</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        <span class="built_in">set</span>ContentView(R.layout.activity_broadcast);</span><br><span class="line"></span><br><span class="line">        Button btn_send_broadcast= (Button) findViewById(R.id.btn_send_broadcast);</span><br><span class="line">        btn_send_broadcast.setOnClickListener(new View.<span class="function"><span class="title">OnClickListener</span></span>() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(View view) &#123;</span><br><span class="line">                // 构建 Intent 对象</span><br><span class="line">                Intent intent = new Intent(<span class="string">"com.wonderful.myfirstcode.MY_BROADCAST"</span>);</span><br><span class="line">                // 发送广播</span><br><span class="line">                sendBroadcast(intent);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">      . . .</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   . . .</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  运行程序，点击按钮，效果如下：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0507%E6%8E%A5%E6%94%B6%E5%88%B0%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B9%BF%E6%92%AD.png" alt="" title="接收到自定义广播"><br>  这样就完成了发送自定义广播的功能。另外，由于广播是使用 Intent 进行传递的，因此你还可以在 Intent 中携带一些数据传递给广播接收器。</p>
+<h2 id="5-3-1-发送有序广播"><a href="#5-3-1-发送有序广播" class="headerlink" title="5.3.1 发送有序广播"></a>5.3.1 发送有序广播</h2><p>  广播是一种可以跨进程的通信方式，这一点从前面接收系统广播的时候可以看出来。因此在我们应用程序内发出的广播，其他的应用程序应该也是可以收到的。为了验证这一点，我们需要再新建一个 BroadcastTest2 项目。</p>
+<p>  项目创建好后，定义一个接收上一小节中的自定义广播的广播接收器 AnotherBroadcastReceiver，如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class AnotherBroadcastReceiver extends BroadcastReceiver &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onReceive(Context context, Intent intent) &#123;</span><br><span class="line">        Toast.makeText(context, <span class="string">"另外一个广播接收器收到广播了！"</span>, Toast.LENGTH_SHORT).show();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  然后修改 AndroidManifest.xml 文件中的标签<receiver>中的内容，让 AnotherBroadcastReceiver 同样收到一条值为 com.wonderful.myfirstcode.MY_BROADCAST 的广播：</receiver></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;receiver</span><br><span class="line">    android:name=<span class="string">".AnotherBroadcastReceiver"</span></span><br><span class="line">    android:enabled=<span class="string">"true"</span></span><br><span class="line">    android:exported=<span class="string">"true"</span>&gt;</span><br><span class="line">    &lt;intent-filter&gt;</span><br><span class="line">        &lt;action android:name=<span class="string">"com.wonderful.myfirstcode.MY_BROADCAST"</span> /&gt;</span><br><span class="line">    &lt;/intent-filter&gt;</span><br><span class="line">&lt;/receiver&gt;</span><br></pre></td></tr></table></figure>
+<p>  现在把项目 BroadcastTest2 安装到模拟器上，然后重新回到上一个项目的界面上，点击发送广播按钮，就会弹两次提示信息，如图：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0508%E4%B8%A4%E4%B8%AA%E7%A8%8B%E5%BA%8F%E9%83%BD%E6%94%B6%E5%88%B0%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B9%BF%E6%92%AD%201.png" alt="" title="两个程序都收到自定义广播 1"><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0509%E4%B8%A4%E4%B8%AA%E7%A8%8B%E5%BA%8F%E9%83%BD%E6%94%B6%E5%88%B0%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B9%BF%E6%92%AD%202.png" alt="" title="两个程序都收到自定义广播 2"><br>  到目前为止，发送的都是标准广播，接下来尝试一下发送有序广播。 回到前面的项目，修改 Activity 中的代码，如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">public class BroadcastActivity extends AppCompatActivity &#123;</span><br><span class="line"></span><br><span class="line">    . . .</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        <span class="built_in">set</span>ContentView(R.layout.activity_broadcast);</span><br><span class="line"></span><br><span class="line">        Button btn_send_broadcast = (Button) findViewById(R.id.btn_send_broadcast);</span><br><span class="line">        btn_send_broadcast.setOnClickListener(new View.<span class="function"><span class="title">OnClickListener</span></span>() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(View view) &#123;</span><br><span class="line">                // 构建 Intent 对象</span><br><span class="line">                Intent intent = new Intent(<span class="string">"com.wonderful.myfirstcode.MY_BROADCAST"</span>);</span><br><span class="line">                // 发送标准广播</span><br><span class="line">                //sendBroadcast(intent);</span><br><span class="line">                // 发送有序广播</span><br><span class="line">                sendOrderedBroadcast(intent, null);</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        . . .</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    . . .</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  发送有序广播 sendOrderedBroadcast() 方法接收两个参数，第一个是 Intent，第二个是与权限相关的字符串，在这传 null 就行了。当然现在运行程序点击按钮两个应用程序还是会收到广播，接下来还需要修改 AndroidManifest.xml 文件中的标签<receiver>中的代码，设定广播接收器的先后顺序：</receiver></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;receiver</span><br><span class="line">    android:name=<span class="string">".chapter5.MyBroadcastReceiver"</span></span><br><span class="line">    android:enabled=<span class="string">"true"</span></span><br><span class="line">    android:exported=<span class="string">"true"</span>&gt;</span><br><span class="line">    &lt;intent-filter android:priority=<span class="string">"100"</span>&gt;</span><br><span class="line">        &lt;action android:name=<span class="string">"com.wonderful.myfirstcode.MY_BROADCAST"</span> /&gt;</span><br><span class="line">    &lt;/intent-filter&gt;</span><br><span class="line">&lt;/receiver&gt;</span><br></pre></td></tr></table></figure>
+<p>  上述代码，通过 android:priority 属性给广播接收器设置了优先级，优先级比较高的广播接收器就可以先收到广播。把 MyBroadcastReceiver 的优先级设成了 100，保证它一定会在 AnotherBroadcastReceiver 之前收到广播。</p>
+<p>  接下来，修改 MyBroadcastReceiver 中的代码，设置是否允许广播继续传递。在 onReceive()方法中调用 abortBroadcast()方法，表示将这条广播截断，后面的广播接收器将无法再接收到这条广播。如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class MyBroadcastReceiver extends BroadcastReceiver &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onReceive(Context context, Intent intent) &#123;</span><br><span class="line">        ToastUtils.showShort(<span class="string">"收到自定义广播"</span>);</span><br><span class="line">        // 将这条广播拦截</span><br><span class="line">        abortBroadcast();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  现在重新运行程序，就只有 MyBroadcastReceiver 可以接收到广播弹提示信息了。</p>
+<h1 id="5-4-使用本地广播"><a href="#5-4-使用本地广播" class="headerlink" title="5.4 使用本地广播"></a>5.4 使用本地广播</h1><p>  本地广播只能够在应用程序的内部进行传递，并且广播接收器也只能接收来自本应用程序发出的广播。本地广播的用法并不复杂，主要使用了一个 LocalBroadcastManager 来对广播进行管理，并提供了发送广播和注册广播接收器的方法。</p>
+<p>  通过具体的实例来尝试一下它的用法，修改 Activity 中的代码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">public class BroadcastActivity extends AppCompatActivity &#123;</span><br><span class="line"></span><br><span class="line">    private IntentFilter intentFilter;</span><br><span class="line"></span><br><span class="line">    private LocalReceiver <span class="built_in">local</span>Receiver;</span><br><span class="line"></span><br><span class="line">    private LocalBroadcastManager <span class="built_in">local</span>BroadcastManager;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        <span class="built_in">set</span>ContentView(R.layout.activity_broadcast);</span><br><span class="line"></span><br><span class="line">        // 获取实例</span><br><span class="line">        <span class="built_in">local</span>BroadcastManager = LocalBroadcastManager.getInstance(this);</span><br><span class="line"></span><br><span class="line">        Button btn_send_broadcast = (Button) findViewById(R.id.btn_send_broadcast);</span><br><span class="line">        btn_send_broadcast.setOnClickListener(new View.<span class="function"><span class="title">OnClickListener</span></span>() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(View view) &#123;</span><br><span class="line">                // 构建 Intent 对象</span><br><span class="line">                Intent intent = new Intent(<span class="string">"com.wonderful.myfirstcode.LOCAL_BROADCAST"</span>);</span><br><span class="line">                // 发送有序广播</span><br><span class="line">                <span class="built_in">local</span>BroadcastManager.sendBroadcast(intent);</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        // 创建 IntentFilter 实例</span><br><span class="line">        intentFilter = new IntentFilter();</span><br><span class="line">        // 添加广播值</span><br><span class="line">        intentFilter.addAction(<span class="string">"com.wonderful.myfirstcode.LOCAL_BROADCAST"</span>);</span><br><span class="line">        // 创建 LocalReceiver 实例</span><br><span class="line">        <span class="built_in">local</span>Receiver = new LocalReceiver();</span><br><span class="line">        // 注册本地广播监听器</span><br><span class="line">        <span class="built_in">local</span>BroadcastManager.registerReceiver(<span class="built_in">local</span>Receiver,intentFilter);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void <span class="function"><span class="title">onDestroy</span></span>() &#123;</span><br><span class="line">        super.onDestroy();</span><br><span class="line">        // 取消注册</span><br><span class="line">        <span class="built_in">local</span>BroadcastManager.unregisterReceiver(<span class="built_in">local</span>Receiver);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 本地广播接收器</span><br><span class="line">     */</span><br><span class="line">    class LocalReceiver extends BroadcastReceiver&#123;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public void onReceive(Context context, Intent intent) &#123;</span><br><span class="line">            ToastUtils.showShort(<span class="string">"收到本地广播"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  基本上就和前面的动态注册广播接收器以及发送广播的代码是一样。<br>  运行效果如下：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0510%E6%8E%A5%E6%94%B6%E6%9C%AC%E5%9C%B0%E5%B9%BF%E6%92%AD.png" alt="" title="接收本地广播"><br>  另外还有一点需要说明，本地广播是无法通过静态注册的方式来接收的。</p>
+<p>  最后盘点一下使用本地广播的优势：</p>
+<p>可以明确知道正在发送的广播不会离开我们的程序，不需要担心机密数据泄漏的问题。</p>
+<p>其他的程序无法将广播发送到我们程序的内部，不需要担心会有安全漏洞的隐患。</p>
+<p>发送本地广播比起发送系统全局广播将会更加高效。</p>
+<h1 id="5-5-广播的最佳实践——实现强制下线功能"><a href="#5-5-广播的最佳实践——实现强制下线功能" class="headerlink" title="5.5 广播的最佳实践——实现强制下线功能"></a>5.5 广播的最佳实践——实现强制下线功能</h1><p>  又到了实战环节了。此次的需求是：强制下线后在界面上弹出一个对话框，让用户无法进行任何其他操作，必须要点击对话框中的确定按钮， 然后回到登录界面。</p>
+<p>  借助本次所学的广播知识，可以轻松实现这一功能。</p>
+<p>  首先，创建一个 ActivityCollector 类用于管理所有的活动：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 活动管理器</span><br><span class="line"> * Created by KXwon on 2016/12/9.</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">public class ActivityCollector &#123;</span><br><span class="line">    // 通过一个List来缓存活动</span><br><span class="line">    public static List&lt;Activity&gt; activities = new ArrayList&lt;Activity&gt;();</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 用于向List中添加一个活动</span><br><span class="line">     * @param activity</span><br><span class="line">     */</span><br><span class="line">    public static void addActivity(Activity activity) &#123;</span><br><span class="line">        activities.add(activity);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 用于从List中移除活动</span><br><span class="line">     * @param activity</span><br><span class="line">     */</span><br><span class="line">    public static void removeActivity(Activity activity) &#123;</span><br><span class="line">        activities.remove(activity);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 将List中存储的活动全部销毁掉</span><br><span class="line">     */</span><br><span class="line">    public static void <span class="function"><span class="title">finishAll</span></span>() &#123;</span><br><span class="line">        <span class="keyword">for</span> (Activity activity : activities) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!activity.isFinishing()) &#123;</span><br><span class="line">                activity.finish();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  然后创建 BaseActivity 类作为所有活动的父类（忽略一些不必要的内容，主要看ActivityCollector 相关的）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 基类</span><br><span class="line"> * Created by KXwon on 2016/12/9.</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">public abstract class BaseActivity extends AppCompatActivity &#123;</span><br><span class="line"></span><br><span class="line">    protected Context mContext;</span><br><span class="line">    protected Unbinder mBinder;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 初始化布局id</span><br><span class="line">     * @<span class="built_in">return</span> 布局id</span><br><span class="line">     */</span><br><span class="line">    protected abstract int initLayoutId();</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(@Nullable Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        <span class="built_in">set</span>ContentView(initLayoutId());</span><br><span class="line"></span><br><span class="line">        Log.d(<span class="string">"BaseActivity"</span>, getClass().getSimpleName());// 知晓当前是在哪一个活动</span><br><span class="line">        ActivityCollector.addActivity(this);// 将当前正在创建的活动添加到活动管理期里</span><br><span class="line"></span><br><span class="line">        mContext = this;</span><br><span class="line">        mBinder = ButterKnife.bind(this);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void <span class="function"><span class="title">onDestroy</span></span>() &#123;</span><br><span class="line">        // 取消绑定</span><br><span class="line">        mBinder.unbind();</span><br><span class="line">        super.onDestroy();</span><br><span class="line">        // 将一个马上要销毁的活动从管理器里移除</span><br><span class="line">        ActivityCollector.removeActivity(this);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  接下来创建一个登录界面，新建 LoginActivity，编辑 activity_login.xml 如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">&lt;LinearLayout xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">    android:layout_height=<span class="string">"match_parent"</span></span><br><span class="line">    android:orientation=<span class="string">"vertical"</span>&gt;</span><br><span class="line"></span><br><span class="line">    &lt;LinearLayout</span><br><span class="line">        android:orientation=<span class="string">"horizontal"</span></span><br><span class="line">        android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">        android:layout_height=<span class="string">"60dp"</span>&gt;</span><br><span class="line">        &lt;TextView</span><br><span class="line">            android:layout_width=<span class="string">"90dp"</span></span><br><span class="line">            android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">            android:layout_gravity=<span class="string">"center_vertical"</span></span><br><span class="line">            android:gravity=<span class="string">"center"</span></span><br><span class="line">            android:textSize=<span class="string">"18sp"</span></span><br><span class="line">            android:text=<span class="string">"账号："</span>/&gt;</span><br><span class="line"></span><br><span class="line">        &lt;EditText</span><br><span class="line">            android:id=<span class="string">"@+id/et_account"</span></span><br><span class="line">            android:layout_width=<span class="string">"0dp"</span></span><br><span class="line">            android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">            android:layout_weight=<span class="string">"1"</span></span><br><span class="line">            android:layout_gravity=<span class="string">"center_vertical"</span>/&gt;</span><br><span class="line">    &lt;/LinearLayout&gt;</span><br><span class="line"></span><br><span class="line">    &lt;LinearLayout</span><br><span class="line">        android:orientation=<span class="string">"horizontal"</span></span><br><span class="line">        android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">        android:layout_height=<span class="string">"60dp"</span>&gt;</span><br><span class="line">        &lt;TextView</span><br><span class="line">            android:layout_width=<span class="string">"90dp"</span></span><br><span class="line">            android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">            android:layout_gravity=<span class="string">"center_vertical"</span></span><br><span class="line">            android:gravity=<span class="string">"center"</span></span><br><span class="line">            android:textSize=<span class="string">"18sp"</span></span><br><span class="line">            android:text=<span class="string">"密码："</span>/&gt;</span><br><span class="line"></span><br><span class="line">        &lt;EditText</span><br><span class="line">            android:id=<span class="string">"@+id/et_password"</span></span><br><span class="line">            android:layout_width=<span class="string">"0dp"</span></span><br><span class="line">            android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">            android:layout_weight=<span class="string">"1"</span></span><br><span class="line">            android:layout_gravity=<span class="string">"center_vertical"</span>/&gt;</span><br><span class="line">    &lt;/LinearLayout&gt;</span><br><span class="line"></span><br><span class="line">    &lt;Button</span><br><span class="line">        android:id=<span class="string">"@+id/btn_login"</span></span><br><span class="line">        android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">        android:layout_height=<span class="string">"60dp"</span></span><br><span class="line">        android:layout_margin=<span class="string">"10dp"</span></span><br><span class="line">        android:text=<span class="string">"登录"</span>/&gt;</span><br><span class="line"></span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
+<p>  接着修改 LoginActivity 中的代码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">public class LoginActivity extends BaseActivity &#123;</span><br><span class="line"></span><br><span class="line">    private EditText et_account, et_password;</span><br><span class="line">    private Button btn_login;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line"></span><br><span class="line">        et_account = (EditText) findViewById(R.id.et_account);</span><br><span class="line">        et_password = (EditText) findViewById(R.id.et_password);</span><br><span class="line">        btn_login = (Button) findViewById(R.id.btn_login);</span><br><span class="line"></span><br><span class="line">        btn_login.setOnClickListener(new View.<span class="function"><span class="title">OnClickListener</span></span>() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(View view) &#123;</span><br><span class="line">                String account = et_account.getText().toString();</span><br><span class="line">                String password = et_password.getText().toString();</span><br><span class="line">                // 若账号是 wonderful 且密码是 123456，就认为登录成功</span><br><span class="line">                <span class="keyword">if</span> (account.equals(<span class="string">"wonderful"</span>) &amp;&amp; password.equals(<span class="string">"123456"</span>))&#123;</span><br><span class="line">                    // 登录成功跳转到主界面</span><br><span class="line">                    IntentUtils.myIntent(LoginActivity.this,ForceOfflineActivity.class);</span><br><span class="line">                    finish();</span><br><span class="line">                &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                    ToastUtils.showShort(<span class="string">"账号或密码无效！"</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected int <span class="function"><span class="title">initLayoutId</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> R.layout.activity_login;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  登录成功后跳转到 ForceOfflineActivity 主界面，在主界面加入一个强制下线的功能即可，其布局 activity_force_offline.xml 代码为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;RelativeLayout xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">    android:layout_height=<span class="string">"match_parent"</span></span><br><span class="line">    android:padding=<span class="string">"10dp"</span>&gt;</span><br><span class="line"></span><br><span class="line">    &lt;Button</span><br><span class="line">        android:id=<span class="string">"@+id/btn_force_offline"</span></span><br><span class="line">        android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">        android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">        android:text=<span class="string">"发送强制下线广播"</span>/&gt;</span><br><span class="line"></span><br><span class="line">&lt;/RelativeLayout&gt;</span><br></pre></td></tr></table></figure>
+<p>  只有一个按钮，用于触发强制下线功能，然后修改 ForceOfflineActivity 中的代码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public class ForceOfflineActivity extends BaseActivity &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line"></span><br><span class="line">        Button btn_force_offline = (Button) findViewById(R.id.btn_force_offline);</span><br><span class="line">        btn_force_offline.setOnClickListener(new View.<span class="function"><span class="title">OnClickListener</span></span>() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(View view) &#123;</span><br><span class="line">                Intent intent = new Intent(<span class="string">"com.wonderful.myfirstcode.FORCE_OFFLINE"</span>);</span><br><span class="line">                // 发送强制下线广播</span><br><span class="line">                sendBroadcast(intent);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected int <span class="function"><span class="title">initLayoutId</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> R.layout.activity_force_offline;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  上述代码，在按钮的点击事件里面发送了一条广播，广播的值为 com.wonderful.myfirstcode.FORCE_OFFLINE，这条广播就是用于通知程序强制用户下线的。也就是说强制用户下线的逻辑并不是写在 ForceOfflineActivity 里的，而是写在接收这条广播的广播接收器里面，这样强制下线的功能就不会依附于任何的界面，不管是在程序的任何地方，只需要发出这样一条广播，就可以完成强制下线的操作了。</p>
+<p>  毫无疑问，要在 BaseActivity 中动态注册一个广播接收器，因为所有的活动都继承 BaseActivity 的，修改 BaseActivity 中的代码，如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 基类</span><br><span class="line"> * Created by KXwon on 2016/12/9.</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">public abstract class BaseActivity extends AppCompatActivity &#123;</span><br><span class="line"></span><br><span class="line">    protected Context mContext;</span><br><span class="line">    protected Unbinder mBinder;</span><br><span class="line"></span><br><span class="line">    private ForceOfflineReceiver receiver;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 初始化布局id</span><br><span class="line">     * @<span class="built_in">return</span> 布局id</span><br><span class="line">     */</span><br><span class="line">    protected abstract int initLayoutId();</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(@Nullable Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        <span class="built_in">set</span>ContentView(initLayoutId());</span><br><span class="line"></span><br><span class="line">        Log.d(<span class="string">"BaseActivity"</span>, getClass().getSimpleName());// 知晓当前是在哪一个活动</span><br><span class="line">        ActivityCollector.addActivity(this);// 将当前正在创建的活动添加到活动管理期里</span><br><span class="line"></span><br><span class="line">        mContext = this;</span><br><span class="line">        mBinder = ButterKnife.bind(this);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void <span class="function"><span class="title">onResume</span></span>() &#123;</span><br><span class="line">        super.onResume();</span><br><span class="line">        IntentFilter intentFilter = new IntentFilter();</span><br><span class="line">        intentFilter.addAction(<span class="string">"com.wonderful.myfirstcode.FORCE_OFFLINE"</span>);</span><br><span class="line">        receiver = new ForceOfflineReceiver();</span><br><span class="line">        registerReceiver(receiver,intentFilter);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void <span class="function"><span class="title">onPause</span></span>() &#123;</span><br><span class="line">        super.onPause();</span><br><span class="line">        <span class="keyword">if</span> (receiver != null)&#123;</span><br><span class="line">            unregisterReceiver(receiver);</span><br><span class="line">            receiver = null;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void <span class="function"><span class="title">onDestroy</span></span>() &#123;</span><br><span class="line">        // 取消绑定</span><br><span class="line">        mBinder.unbind();</span><br><span class="line">        super.onDestroy();</span><br><span class="line">        // 将一个马上要销毁的活动从管理器里移除</span><br><span class="line">        ActivityCollector.removeActivity(this);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    class ForceOfflineReceiver extends BroadcastReceiver&#123;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public void onReceive(final Context context, Intent intent) &#123;</span><br><span class="line">            AlertDialog.Builder builder = new AlertDialog.Builder(context);</span><br><span class="line">            builder.setTitle(<span class="string">"警告"</span>);</span><br><span class="line">            builder.setMessage(<span class="string">"你已被下线，请重新登录"</span>);</span><br><span class="line">            // 设置不可取消</span><br><span class="line">            builder.setCancelable(<span class="literal">false</span>);</span><br><span class="line">            // 设置点击事件</span><br><span class="line">            builder.setPositiveButton(<span class="string">"OK"</span>, new DialogInterface.<span class="function"><span class="title">OnClickListener</span></span>() &#123;</span><br><span class="line">                @Override</span><br><span class="line">                public void onClick(DialogInterface dialogInterface, int i) &#123;</span><br><span class="line">                    // 销毁所有活动</span><br><span class="line">                    ActivityCollector.finishAll();</span><br><span class="line">                    // 重新启动 LoginActivity</span><br><span class="line">                    IntentUtils.myIntent(context, LoginActivity.class);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">            builder.show();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  上述代码中，重写了 onResume() 和 onPause() 这两个生命周期的函数，然后分别在这两个方法里注册和取消注册了 ForceOfflineReceiver，之所以这样写而不是在 onCreate() 和 onDestroy() 方法里注册和取消注册是因为我们始终需要保证只有处于栈顶的活动才能接收到下线广播，非栈顶活动不必要接收这条广播，写在 onResume() 和 onPause() 方法里很好的解决了这个问题，当活动失去栈顶位置时就会自动取消广播接收器的注册。</p>
+<p>  现在，所有强制下线的逻辑处理完了，接下来运行程序，首先进入登录界面：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0511%E7%99%BB%E9%99%86%E7%95%8C%E9%9D%A2.png" alt="" title="登陆界面"><br>  输入正确的账号和密码后，点击登录进入主界面：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0512%E4%B8%BB%E7%95%8C%E9%9D%A2.png" alt="" title="主界面"><br>  这时点击按钮，就会发出一条强制下线的广播，ForceOfflineReceiver 接收到这条广播后会弹出一个提示对话框，这时就无法对其他界面的任何元素进行操作，只能点击 OK 按钮，重新回到登录界面，如下：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0513%E5%BC%BA%E5%88%B6%E4%B8%8B%E7%BA%BF%E6%8F%90%E7%A4%BA.png" alt="" title="强制下线提示"><br>  关于广播机制的学习就到这，下篇文章将进入持久化技术的学习。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/wechat-qcode.jpg" alt="徐迁征 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>如果我的文章对您有用，请打赏我一个红包吧！鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat.png" alt="徐迁征 WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.jpg" alt="徐迁征 Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+            <a href="/tags/Android-Studio/" rel="tag"># Android Studio</a>
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+            <a href="/tags/《第一行代码》（第2版）/" rel="tag"># 《第一行代码》（第2版）</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/09/25/Android开发基础04 - 探究碎片/" rel="next" title="Android开发基础4 - 探究碎片">
+                <i class="fa fa-chevron-left"></i> Android开发基础4 - 探究碎片
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/10/01/Android开发基础06 - 持久化技术（上）/" rel="prev" title="Android开发基础6 - 持久化技术（上）">
+                Android开发基础6 - 持久化技术（上） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/09/29/Android开发基础05 - 广播机制/"
+           data-title="Android开发基础5 - 广播机制" data-url="http://xuqianzheng.com/2015/09/29/Android开发基础05 - 广播机制/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="徐迁征" />
+          <p class="site-author-name" itemprop="name">徐迁征</p>
+          <p class="site-description motion-element" itemprop="description">前端+Android（Python+Ruby）</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">21</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">53</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/rss2.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/xuqianzheng" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://7xsb4k.com1.z0.glb.clouddn.com/%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%AD%A6.jpg" target="_blank" title="微信">
+                  
+                    <i class="fa fa-fw fa-weixin"></i>
+                  
+                  微信
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/xu-qian-zheng" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/3339723692/profile?topnav=1&wvr=6&is_all=1" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#5-1-广播机制简介"><span class="nav-number">1.</span> <span class="nav-text">5.1 广播机制简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#标准广播（Normal-broadcasts）"><span class="nav-number">1.1.</span> <span class="nav-text">标准广播（Normal broadcasts）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#有序广播（Ordered-broadcasts）"><span class="nav-number">1.2.</span> <span class="nav-text">有序广播（Ordered broadcasts）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-2-接收系统广播"><span class="nav-number">2.</span> <span class="nav-text">5.2 接收系统广播</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-1-动态注册监听网络变化"><span class="nav-number">2.1.</span> <span class="nav-text">5.2.1 动态注册监听网络变化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-2-静态注册实现开机启动"><span class="nav-number">2.2.</span> <span class="nav-text">5.2.2 静态注册实现开机启动</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-3-发送自定义广播"><span class="nav-number">3.</span> <span class="nav-text">5.3 发送自定义广播</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3-1-发送标准广播"><span class="nav-number">3.1.</span> <span class="nav-text">5.3.1 发送标准广播</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3-1-发送有序广播"><span class="nav-number">3.2.</span> <span class="nav-text">5.3.1 发送有序广播</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-4-使用本地广播"><span class="nav-number">4.</span> <span class="nav-text">5.4 使用本地广播</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-5-广播的最佳实践——实现强制下线功能"><span class="nav-number">5.</span> <span class="nav-text">5.5 广播的最佳实践——实现强制下线功能</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">徐迁征</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"xuqianzheng"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+</body>
+</html>
