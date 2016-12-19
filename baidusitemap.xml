@@ -73,6 +73,29 @@
 
     
   <url>
+    <loc>http://xuqianzheng.com/2015/09/25/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%8004%20-%20%E6%8E%A2%E7%A9%B6%E7%A2%8E%E7%89%87/</loc>
+    <lastmod>2016-12-18T17:16:10.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android开发基础4 - 探究碎片</title>
+        <pubTime>2015-09-25T10:09:06.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>Android Studio</tag>
+         
+        <tag>java</tag>
+         
+        <tag>《第一行代码》（第2版）</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://xuqianzheng.com/2015/09/20/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%8003%20-%20UI%20%E5%BC%80%E5%8F%91/</loc>
     <lastmod>2016-12-18T17:16:10.000Z</lastmod>
     <data>
@@ -98,12 +121,12 @@
 
     
   <url>
-    <loc>http://xuqianzheng.com/2015/09/25/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%8004%20-%20%E6%8E%A2%E7%A9%B6%E7%A2%8E%E7%89%87/</loc>
+    <loc>http://xuqianzheng.com/2015/09/15/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%8002%20-%20%E6%8E%A2%E7%A9%B6%E6%B4%BB%E5%8A%A8/</loc>
     <lastmod>2016-12-18T17:16:10.000Z</lastmod>
     <data>
         <display>
-        <title>Android开发基础4 - 探究碎片</title>
-        <pubTime>2015-09-25T10:09:06.000Z</pubTime>
+        <title>Android开发基础2 - 探究活动</title>
+        <pubTime>2015-09-15T14:47:43.000Z</pubTime>
         
         <tag>Android</tag>
          
@@ -131,29 +154,6 @@
         <tag>Android</tag>
          
         <tag>gradle</tag>
-         
-        <tag>Android Studio</tag>
-         
-        <tag>java</tag>
-         
-        <tag>《第一行代码》（第2版）</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://xuqianzheng.com/2015/09/15/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%8002%20-%20%E6%8E%A2%E7%A9%B6%E6%B4%BB%E5%8A%A8/</loc>
-    <lastmod>2016-12-18T17:16:10.000Z</lastmod>
-    <data>
-        <display>
-        <title>Android开发基础2 - 探究活动</title>
-        <pubTime>2015-09-15T14:47:43.000Z</pubTime>
-        
-        <tag>Android</tag>
          
         <tag>Android Studio</tag>
          
@@ -289,11 +289,11 @@
         
         <tag>生活</tag>
          
+        <tag>职业规划</tag>
+         
         <tag>读书</tag>
          
         <tag>思考</tag>
-         
-        <tag>职业规划</tag>
          
          
            
@@ -314,11 +314,11 @@
          
         <tag>机械设计</tag>
          
-        <tag>读书</tag>
-         
         <tag>职业规划</tag>
          
         <tag>机械工程师</tag>
+         
+        <tag>读书</tag>
          
          
            
