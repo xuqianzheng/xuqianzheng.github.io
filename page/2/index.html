@@ -675,8 +675,7 @@
 </blockquote>
 <h1 id="5-1-广播机制简介"><a href="#5-1-广播机制简介" class="headerlink" title="5.1 广播机制简介"></a>5.1 广播机制简介</h1><p>  Android 中的广播主要分两种类型：标准广播和有序广播。</p>
 <ul>
-<li>标准广播（Normal broadcasts）<br>  是一种完全异步执行的广播，在广播发出之后，所有的广播接收器几乎都会在同一时刻接收到这条广播消息，因此它们之间没有任何先后顺序可 言。这种广播的效率会比较高，但同时也意味着它是无法被截断的。标准广播的工作流程如下：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0501%E6%A0%87%E5%87%86%E5%B9%BF%E6%92%AD%E5%B7%A5%E4%BD%9C%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg" alt="" title="标准广播工作示意图"></li>
-<li>有序广播（Ordered broadcasts）<br>  是一种同步执行的广播，在广播发出之后，同一时刻只会有一个广播接收器能够收到这条广播消息，当这个广播接收器中的逻辑执行完毕后，广播才会继续传递。
+<li>标准广播（Normal broadcasts）<br>  是一种完全异步执行的广播，在广播发出之后，所有的广播接收器几乎都会在同一时刻接收到这条广播消息，因此它们之间没有任何先后顺序可 言。这种广播的效率会比较高，但同时也意味着它是无法被截断的。标准广播的工作流程如下：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0501%E6%A0%87%E5%87%86%E5%B9%BF%E6%92%AD%E5%B7%A5%E4%BD%9C%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg" alt="" title="标准广播工作示意图">
           <!--noindex-->
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/10/01/Android开发基础05 - 广播机制/#more" rel="contents">
@@ -814,7 +813,7 @@
 </ul>
 </blockquote>
 <h1 id="4-1-碎片是什么"><a href="#4-1-碎片是什么" class="headerlink" title="4.1 碎片是什么"></a>4.1 碎片是什么</h1><p>  碎片（Fragment）是一种可以嵌入在活动当中的 UI 片段，它能让程序更加合理和充分 地利用大屏幕的空间，因而在平板上应用的非常广泛。</p>
-<p>  那么究竟要如何使用碎片才能充分地利用平板屏幕的空间呢？想象我们正在开发一个新闻应用，其中一个界面使用 RecyclerView 展示了一组新闻的标题，当点击了其中一个标题，就打开另一个界面显示新闻的详细内容。若是在手机中设计，我们可以将新闻标题列表放在 一个活动中，将新闻的详细内容放在另一个活动中，如图所示：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0401%E6%89%8B%E6%9C%BA%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88.jpg" alt="" title="手机的设计方案"><br>但显示在平板上，那么新闻标题列表将会被拉长至填充满整个平板的屏幕，而新闻的标题一般都不会太长，这样将会导致界面上有大量的空白区域，如图所示：
+<p>  那么究竟要如何使用碎片才能充分地利用平板屏幕的空间呢？想象我们正在开发一个新闻应用，其中一个界面使用 RecyclerView 展示了一组新闻的标题，当点击了其中一个标题，就打开另一个界面显示新闻的详细内容。若是在手机中设计，我们可以将新闻标题列表放在 一个活动中，将新闻的详细内容放在另一个活动中，如图所示：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0401%E6%89%8B%E6%9C%BA%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88.jpg" alt="" title="手机的设计方案">
           <!--noindex-->
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/09/25/Android开发基础04 - 探究碎片/#more" rel="contents">
