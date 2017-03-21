@@ -1,0 +1,1087 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android,Android Studio,java,《第一行代码》（第2版）," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="Third Type Of Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="本篇文章主要介绍以下几个知识点：
+
+碎片 fragment 的用法；
+碎片 fragment 的生命周期；
+动态加载布局的技巧，限定符的使用；
+实战：简易版的新闻应用
+
+
+4.1 碎片是什么  碎片（Fragment）是一种可以嵌入在活动当中的 UI 片段，它能让程序更加合理和充分 地利用大屏幕的空间，因而在平板上应用的非常广泛。
+  那么究竟要如何使用碎片才能充分地利用平板屏幕的空间呢？想象我">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android开发基础4 - 探究碎片">
+<meta property="og:url" content="http://xuqianzheng.com/2015/09/25/Android开发基础04-探究碎片/index.html">
+<meta property="og:site_name" content="Third Type Of Blog">
+<meta property="og:description" content="本篇文章主要介绍以下几个知识点：
+
+碎片 fragment 的用法；
+碎片 fragment 的生命周期；
+动态加载布局的技巧，限定符的使用；
+实战：简易版的新闻应用
+
+
+4.1 碎片是什么  碎片（Fragment）是一种可以嵌入在活动当中的 UI 片段，它能让程序更加合理和充分 地利用大屏幕的空间，因而在平板上应用的非常广泛。
+  那么究竟要如何使用碎片才能充分地利用平板屏幕的空间呢？想象我">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0401%E6%89%8B%E6%9C%BA%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0402%E5%B9%B3%E6%9D%BF%E7%9A%84%E6%96%B0%E9%97%BB%E5%88%97%E8%A1%A8.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0403%E5%B9%B3%E6%9D%BF%E7%9A%84%E5%8F%8C%E9%A1%B5%E8%AE%BE%E8%AE%A1.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0404%E7%A2%8E%E7%89%87%E7%9A%84%E7%AE%80%E5%8D%95%E8%BF%90%E8%A1%8C%E6%95%88%E6%9E%9C.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0405%E5%8A%A8%E6%80%81%E6%B7%BB%E5%8A%A0%E7%A2%8E%E7%89%87%E7%9A%84%E6%95%88%E6%9E%9C.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0406%E7%A2%8E%E7%89%87%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0407%E5%8F%8C%E9%A1%B5%E6%A8%A1%E5%BC%8F%E8%BF%90%E8%A1%8C%E6%95%88%E6%9E%9C.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0408%E5%8D%95%E9%A1%B5%E6%A8%A1%E5%BC%8F%E8%BF%90%E8%A1%8C%E6%95%88%E6%9E%9C.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/04060%E5%B8%B8%E8%A7%81%E7%9A%84%E9%99%90%E5%AE%9A%E7%AC%A6.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0409%E5%8D%95%E9%A1%B5%E6%A8%A1%E5%BC%8F%E7%9A%84%E6%96%B0%E9%97%BB%E5%88%97%E8%A1%A8%E7%95%8C%E9%9D%A2.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0410%E5%8D%95%E9%A1%B5%E6%A8%A1%E5%BC%8F%E7%9A%84%E6%96%B0%E9%97%BB%E5%86%85%E5%AE%B9%E7%95%8C%E9%9D%A2.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0411%E5%8F%8C%E9%A1%B5%E6%A8%A1%E5%BC%8F%E7%9A%84%E6%96%B0%E9%97%BB%E6%A0%87%E9%A2%98%E5%92%8C%E5%86%85%E5%AE%B9%E7%95%8C%E9%9D%A2.png">
+<meta property="og:updated_time" content="2016-12-20T12:18:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android开发基础4 - 探究碎片">
+<meta name="twitter:description" content="本篇文章主要介绍以下几个知识点：
+
+碎片 fragment 的用法；
+碎片 fragment 的生命周期；
+动态加载布局的技巧，限定符的使用；
+实战：简易版的新闻应用
+
+
+4.1 碎片是什么  碎片（Fragment）是一种可以嵌入在活动当中的 UI 片段，它能让程序更加合理和充分 地利用大屏幕的空间，因而在平板上应用的非常广泛。
+  那么究竟要如何使用碎片才能充分地利用平板屏幕的空间呢？想象我">
+<meta name="twitter:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0401%E6%89%8B%E6%9C%BA%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://xuqianzheng.com/2015/09/25/Android开发基础04-探究碎片/"/>
+
+
+
+
+
+  <title> Android开发基础4 - 探究碎片 | Third Type Of Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?3f7ae1fa714b160af9e4a2f1cc75d137";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=56301679";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Third Type Of Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Machine Learning</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://xuqianzheng.com/2015/09/25/Android开发基础04-探究碎片/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Jason Xu">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Third Type Of Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Third Type Of Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android开发基础4 - 探究碎片
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-09-25T18:09:06+08:00">
+                2015-09-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2015/09/25/Android开发基础04-探究碎片/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/09/25/Android开发基础04-探究碎片/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p><strong>本篇文章主要介绍以下几个知识点：</strong></p>
+<ul>
+<li>碎片 fragment 的用法；</li>
+<li>碎片 fragment 的生命周期；</li>
+<li>动态加载布局的技巧，限定符的使用；</li>
+<li>实战：简易版的新闻应用</li>
+</ul>
+</blockquote>
+<h1 id="4-1-碎片是什么"><a href="#4-1-碎片是什么" class="headerlink" title="4.1 碎片是什么"></a>4.1 碎片是什么</h1><p>  碎片（Fragment）是一种可以嵌入在活动当中的 UI 片段，它能让程序更加合理和充分 地利用大屏幕的空间，因而在平板上应用的非常广泛。</p>
+<p>  那么究竟要如何使用碎片才能充分地利用平板屏幕的空间呢？想象我们正在开发一个新闻应用，其中一个界面使用 RecyclerView 展示了一组新闻的标题，当点击了其中一个标题，就打开另一个界面显示新闻的详细内容。若是在手机中设计，我们可以将新闻标题列表放在 一个活动中，将新闻的详细内容放在另一个活动中，如图所示：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0401%E6%89%8B%E6%9C%BA%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88.jpg" alt="" title="手机的设计方案"><a id="more"></a><br>但显示在平板上，那么新闻标题列表将会被拉长至填充满整个平板的屏幕，而新闻的标题一般都不会太长，这样将会导致界面上有大量的空白区域，如图所示：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0402%E5%B9%B3%E6%9D%BF%E7%9A%84%E6%96%B0%E9%97%BB%E5%88%97%E8%A1%A8.jpg" alt="" title="平板的新闻列表"><br>因此，更好的设计方案是将新闻标题列表界面和新闻详细内容界面分别放在两个碎片中，然后在同一个活动里引入这两个碎片，这样就可以将屏幕空间充分地利用起来了，如图所示：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0403%E5%B9%B3%E6%9D%BF%E7%9A%84%E5%8F%8C%E9%A1%B5%E8%AE%BE%E8%AE%A1.jpg" alt="" title="平板的双页设计"></p>
+<h1 id="4-2-碎片的使用方式"><a href="#4-2-碎片的使用方式" class="headerlink" title="4.2 碎片的使用方式"></a>4.2 碎片的使用方式</h1><h2 id="4-2-1-碎片的简单用法"><a href="#4-2-1-碎片的简单用法" class="headerlink" title="4.2.1 碎片的简单用法"></a>4.2.1 碎片的简单用法</h2><p>  这里我们准备先写一个最简单的碎片示例来练练手，在一个活动当中添加两个碎片，并让这两个碎片平分活动空间。<br>新建一个左侧碎片布局 fragment_left.xml，代码如下所示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;LinearLayout xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">    android:layout_height=<span class="string">"match_parent"</span></span><br><span class="line">    android:orientation=<span class="string">"vertical"</span>&gt;</span><br><span class="line"></span><br><span class="line">    &lt;Button</span><br><span class="line">        android:id=<span class="string">"@+id/button"</span></span><br><span class="line">        android:layout_width=<span class="string">"wrap_content"</span></span><br><span class="line">        android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">        android:layout_gravity=<span class="string">"center_horizontal"</span></span><br><span class="line">        android:text=<span class="string">"按钮"</span>/&gt;</span><br><span class="line"></span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
+<p>  这个布局非常简单，只放置了一个按钮，并让它水平居中显示。然后新建右侧碎片布局fragment_right.xml，代码如下所示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;LinearLayout xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">    android:layout_height=<span class="string">"match_parent"</span></span><br><span class="line">    android:orientation=<span class="string">"vertical"</span></span><br><span class="line">    android:background=<span class="string">"#00ff00"</span>&gt;</span><br><span class="line"></span><br><span class="line">    &lt;TextView</span><br><span class="line">        android:layout_width=<span class="string">"wrap_content"</span></span><br><span class="line">        android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">        android:layout_gravity=<span class="string">"center_horizontal"</span></span><br><span class="line">        android:textSize=<span class="string">"20sp"</span></span><br><span class="line">        android:text=<span class="string">"这是右边的fragment"</span>/&gt;</span><br><span class="line"></span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
+<p>  可以看到，我们将这个布局的背景色设置成绿色，并放置了一个 TextView 用于显示一段文本。</p>
+<p>  接着新建一个 LeftFragment 类，继承自 Fragment。注意，这里可能会有两个不同包 下的 Fragment 供你选择，一个是系统内置的android.app.Fragment，一个是 support-v4 库中的 android.support.v4.app.Fragment 。这里强烈建议使用 support-v4 库中的 Fragment，因为它可以让碎片在所有 Android 系统版本中保持功能一致性。</p>
+<p>  LeftFragment 的代码如下所示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class LeftFragment extends Fragment &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public View onCreateView(LayoutInflater inflater, ViewGroup container,</span><br><span class="line">                             Bundle savedInstanceState) &#123;</span><br><span class="line">        View view = inflater.inflate(R.layout.fragment_left, container, <span class="literal">false</span>);</span><br><span class="line">        <span class="built_in">return</span> view;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  这里仅仅是重写了 Fragment 的 onCreateView()方法，然后在这个方法中通过 LayoutInflater 的 inflate()方法将刚才定义的 fragment_left 布局动态加载进来，整个方法简单明了。接着我们用同样的方法再新建一个 RightFragment：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class RightFragment extends Fragment &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public View onCreateView(LayoutInflater inflater, ViewGroup container,</span><br><span class="line">                          Bundle savedInstanceState) &#123;</span><br><span class="line">        View view = inflater.inflate(R.layout.fragment_right, container, <span class="literal">false</span>);</span><br><span class="line">        <span class="built_in">return</span> view;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  接下来修改 activity_fragment.xml 中的代码，如下所示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;LinearLayout xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    android:id=<span class="string">"@+id/activity_fragment"</span></span><br><span class="line">    android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">    android:layout_height=<span class="string">"match_parent"</span></span><br><span class="line">    android:orientation=<span class="string">"horizontal"</span>&gt;</span><br><span class="line"></span><br><span class="line">    &lt;fragment</span><br><span class="line">        android:id=<span class="string">"@+id/fragment_left"</span></span><br><span class="line">        android:name=<span class="string">"com.wonderful.myfirstcode.inquiry_fragment.LeftFragment"</span></span><br><span class="line">        android:layout_width=<span class="string">"0dp"</span></span><br><span class="line">        android:layout_height=<span class="string">"match_parent"</span></span><br><span class="line">        android:layout_weight=<span class="string">"1"</span>/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;fragment</span><br><span class="line">        android:id=<span class="string">"@+id/fragment_right"</span></span><br><span class="line">        android:name=<span class="string">"com.wonderful.myfirstcode.inquiry_fragment.RightFragment"</span></span><br><span class="line">        android:layout_width=<span class="string">"0dp"</span></span><br><span class="line">        android:layout_height=<span class="string">"match_parent"</span></span><br><span class="line">        android:layout_weight=<span class="string">"1"</span>/&gt;</span><br><span class="line"></span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
+<p>  可以看到，我们使用了<fragment>标签在布局中添加碎片，通过 android:name 属性来显式指明要添加的碎片类名，注意一 定要将类的包名也加上。</fragment></p>
+<p>  这样最简单的碎片示例就已经写好了，运行一下程序，（平板上）效果如图:<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0404%E7%A2%8E%E7%89%87%E7%9A%84%E7%AE%80%E5%8D%95%E8%BF%90%E8%A1%8C%E6%95%88%E6%9E%9C.png" alt="" title="碎片的简单运行效果"></p>
+<h2 id="4-2-2-动态添加碎片"><a href="#4-2-2-动态添加碎片" class="headerlink" title="4.2.2 动态添加碎片"></a>4.2.2 动态添加碎片</h2><p>  碎片真正的强大之处在于，它可以在程序运行时动态地添加到活动当中。根据具体情况来动态地添加碎片，你就 可以将程序界面定制得更加多样化。</p>
+<p>  在上一节代码的基础上继续完善，新建 fragment_another_right.xml，代码如下所示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;LinearLayout xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">    android:layout_height=<span class="string">"match_parent"</span></span><br><span class="line">    android:orientation=<span class="string">"vertical"</span></span><br><span class="line">    android:background=<span class="string">"#ffff00"</span>&gt;</span><br><span class="line"></span><br><span class="line">    &lt;TextView</span><br><span class="line">        android:layout_width=<span class="string">"wrap_content"</span></span><br><span class="line">        android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">        android:layout_gravity=<span class="string">"center_horizontal"</span></span><br><span class="line">        android:textSize=<span class="string">"20sp"</span></span><br><span class="line">        android:text=<span class="string">"这是另外一个右边的fragment"</span>/&gt;</span><br><span class="line"></span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
+<p>  然后新建 AnotherRightFragment 作为另一个右侧碎片，代码如下所示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class AnotherRightFragment extends Fragment &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public View onCreateView(LayoutInflater inflater, ViewGroup container,</span><br><span class="line">                             Bundle savedInstanceState) &#123;</span><br><span class="line">        View view = inflater.inflate(R.layout.fragment_another_right, container, <span class="literal">false</span>);</span><br><span class="line">        <span class="built_in">return</span> view;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  接下来看一下如何将它动态地添加到活动当中。修改 activity_fragment.xml，代码如下所示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;LinearLayout xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    android:id=<span class="string">"@+id/activity_fragment"</span></span><br><span class="line">    android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">    android:layout_height=<span class="string">"match_parent"</span></span><br><span class="line">    android:orientation=<span class="string">"horizontal"</span>&gt;</span><br><span class="line"></span><br><span class="line">    &lt;fragment</span><br><span class="line">        android:id=<span class="string">"@+id/fragment_left"</span></span><br><span class="line">        android:name=<span class="string">"com.wonderful.myfirstcode.inquiry_fragment.LeftFragment"</span></span><br><span class="line">        android:layout_width=<span class="string">"0dp"</span></span><br><span class="line">        android:layout_height=<span class="string">"match_parent"</span></span><br><span class="line">        android:layout_weight=<span class="string">"1"</span>/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;FrameLayout</span><br><span class="line">        android:id=<span class="string">"@+id/right_layout"</span></span><br><span class="line">        android:layout_width=<span class="string">"0dp"</span></span><br><span class="line">        android:layout_height=<span class="string">"match_parent"</span></span><br><span class="line">        android:layout_weight=<span class="string">"1"</span>/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!--</span><br><span class="line">    &lt;fragment</span><br><span class="line">        android:id=<span class="string">"@+id/fragment_right"</span></span><br><span class="line">        android:name=<span class="string">"com.wonderful.myfirstcode.inquiry_fragment.RightFragment"</span></span><br><span class="line">        android:layout_width=<span class="string">"0dp"</span></span><br><span class="line">        android:layout_height=<span class="string">"match_parent"</span></span><br><span class="line">        android:layout_weight=<span class="string">"1"</span>/&gt;</span><br><span class="line">         --&gt;</span><br><span class="line"></span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
+<p>  可以看到，现在将右侧碎片放在了一个 FrameLayout 中，下面在代码中向 FrameLayout 里添加内容，从而实现动态添加碎片的功能。修改 Activity 中的代码，如下所示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">public class FragmentActivity extends AppCompatActivity implements View.OnClickListener &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        <span class="built_in">set</span>ContentView(R.layout.activity_fragment);</span><br><span class="line"></span><br><span class="line">        Button button = (Button) findViewById(R.id.button);</span><br><span class="line">        button.setOnClickListener(this);</span><br><span class="line">        replaceFragment(new RightFragment());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onClick(View view) &#123;</span><br><span class="line">        switch (view.getId())&#123;</span><br><span class="line">            <span class="keyword">case</span> R.id.button:</span><br><span class="line">                replaceFragment(new AnotherRightFragment());</span><br><span class="line">                <span class="built_in">break</span>;</span><br><span class="line"></span><br><span class="line">            default:</span><br><span class="line">                <span class="built_in">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void replaceFragment(Fragment fragment)&#123;</span><br><span class="line">        // 获取FragmentManager</span><br><span class="line">        FragmentManager fragmentManager = getSupportFragmentManager();</span><br><span class="line">        // 开启事务</span><br><span class="line">        FragmentTransaction transaction = fragmentManager.beginTransaction();</span><br><span class="line">        // 添加或替换碎片</span><br><span class="line">        transaction.replace(R.id.right_layout,fragment);</span><br><span class="line">        // 提交事务</span><br><span class="line">        transaction.commit();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  上述代码，给左侧碎片中的按钮注册了一个点击事件，调用 replaceFragment() 方法动态添加碎片。结合代码可看出，动态添加碎片主要分为 5 步。</p>
+<p>  1. 创建待添加的碎片实例。</p>
+<p>  2. 获取 FragmentManager，在活动中可以直接调用 getSupportFragmentManager()方法得到。</p>
+<p>  3. 开启一个事务，通过调用 beginTransaction()方法开启。</p>
+<p>  4. 向容器内添加或替换碎片，一般使用 replace() 方法实现，需要传入容器的 id 和待添加的碎 片实例。</p>
+<p>  5. 提交事务，调用 commit()方法来完成。</p>
+<p>  重新运行程序，效果如图：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0405%E5%8A%A8%E6%80%81%E6%B7%BB%E5%8A%A0%E7%A2%8E%E7%89%87%E7%9A%84%E6%95%88%E6%9E%9C.png" alt="" title="动态添加碎片的效果"></p>
+<h2 id="4-2-3-在碎片中模拟返回栈"><a href="#4-2-3-在碎片中模拟返回栈" class="headerlink" title="4.2.3 在碎片中模拟返回栈"></a>4.2.3 在碎片中模拟返回栈</h2><p>  在上一小节中，我们实现了向活动中动态添加碎片的功能，但通过点击按钮添加了一个碎片之后，按下 Back 键程序就会直接退出。如果这里我们想模仿类似于返回栈的效果，按下 Back 键可以回到上一个碎片，该如何实现呢？</p>
+<p>  FragmentTransaction 中提供了一个 addToBackStack() 方法，可以用于将一个事务添加到返回栈中，修改 Activity 中的代码，如下所示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public class FragmentActivity extends AppCompatActivity implements View.OnClickListener &#123;</span><br><span class="line"></span><br><span class="line">    . . .</span><br><span class="line"></span><br><span class="line">    private void replaceFragment(Fragment fragment)&#123;</span><br><span class="line">        // 获取FragmentManager</span><br><span class="line">        FragmentManager fragmentManager = getSupportFragmentManager();</span><br><span class="line">        // 开启事务</span><br><span class="line">        FragmentTransaction transaction = fragmentManager.beginTransaction();</span><br><span class="line">        // 添加或替换碎片</span><br><span class="line">        transaction.replace(R.id.right_layout,fragment);</span><br><span class="line">        // 用于描述返回栈的状态</span><br><span class="line">        transaction.addToBackStack(null);</span><br><span class="line">        // 提交事务</span><br><span class="line">        transaction.commit();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  在事务提交之前调用了 FragmentTransaction 的 addToBackStack() 方法，它可以接收一个名字用于描述返回栈的状态，一般传入 null 即可。这样问题就解决了。</p>
+<h2 id="4-2-4-碎片和活动之间进行通信"><a href="#4-2-4-碎片和活动之间进行通信" class="headerlink" title="4.2.4 碎片和活动之间进行通信"></a>4.2.4 碎片和活动之间进行通信</h2><p>  为了方便碎片和活动之间进行通信，FragmentManager 提供了一个类似于 findViewById() 的方法，专门用于从布局文件中获取碎片的实例。在活动中调用碎片里的方法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RightFragment rightFragment = (RightFragment) getFragmentManager().findFragmentById(R.id.right_fragment);</span><br></pre></td></tr></table></figure>
+<p>  在碎片中调用活动里的方法：通过调用 getActivity()方法来得到和当前碎片相关联的活动实例，代码如下所示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MainActivity activity = (MainActivity) getActivity();</span><br></pre></td></tr></table></figure>
+<h1 id="4-3-碎片的生命周期"><a href="#4-3-碎片的生命周期" class="headerlink" title="4.3 碎片的生命周期"></a>4.3 碎片的生命周期</h1><p>  每个活动在其生命周期内可能会有四种状态：运行状态、暂停 状态、停止状态和销毁状态。类似地，每个碎片在其生命周期内也可能会经历这几种状态，只不过在一些细小的地方会有部分区别。</p>
+<p>运行状态：<br>  当一个碎片是可见的，并且它所关联的活动正处于运行状态时，该碎片也处于运行状态。</p>
+<p>暂停状态：<br>  当一个活动进入暂停状态时（由于另一个未占满屏幕的活动被添加到了栈顶），与它相关联的可见碎片就会进入到暂停状态。</p>
+<p>停止状态：<br>  当一个活动进入停止状态时，与它相关联的碎片就会进入到停止状态。或者通过调用 FragmentTransaction 的 remove()、replace()方法将碎片从活动中移除，但若在事务提交之前调用 addToBackStack() 方法，这时的碎片也会进入到停止状态。总的来说，进入停止状态的碎片对用户来说是完全不可见的，有可能会被系统回收。</p>
+<p>销毁状态：<br>  碎片总是依附于活动而存在的，因此当活动被销毁时，与它相关联的碎片就会进入到销毁状态。或者通过调用 FragmentTransaction 的 remove()、replace()方法将碎片从活动中移除，但在事务提交之前并没有调用 addToBackStack()方法，这时的碎片也会进入 到销毁状态。</p>
+<p>  和活动 Acitvity 相似，Fragment 类中也提供了一系列的回调方法，以覆盖碎片生命周期的每个环节。其中，活动中有的回调方法，碎片中几乎都有，不过碎片还提供了一些附加的回调方法，重点来看下这几个回调：</p>
+<ul>
+<li>onAttach() 当碎片和活动建立关联的时候调用。</li>
+<li>onCreateView() 为碎片创建视图（加载布局）时调用。</li>
+<li>onActivityCreated() 确保与碎片相关联的活动一定已经创建完毕的时候调用。</li>
+<li>onDestroyView() 当与碎片关联的视图被移除的时候调用。</li>
+<li>onDetach() 当碎片和活动解除关联的时候调用。</li>
+</ul>
+<p>  碎片完整的生命周期可参考源自 Android 官网图的示意图：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0406%E7%A2%8E%E7%89%87%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.png" alt="" title="碎片的生命周期"><br>  另外，在碎片中你也可以通过 onSaveInstanceState()方法来保存数据， 因为进入停止状态的碎片有可能在系统内存不足的时候被回收。保存下来的数据在 onCreate()、onCreateView() 和 onActivityCreated()这三个方法中你都可以重新得到，它们都含有一个 Bundle 类型的 savedInstanceState 参数。</p>
+<h1 id="4-4-动态加载布局的技巧"><a href="#4-4-动态加载布局的技巧" class="headerlink" title="4.4 动态加载布局的技巧"></a>4.4 动态加载布局的技巧</h1><h2 id="4-4-1-使用限定符"><a href="#4-4-1-使用限定符" class="headerlink" title="4.4.1 使用限定符"></a>4.4.1 使用限定符</h2><p>  现有个需求：在平板上使用双页模式，在手机上显示单页模式。那么怎样才能在运行时判断程序应该是使用双页模式还是单页模式呢？这就需要借助限定符（Qualifiers）来实现了。</p>
+<p>  我们通过一个例子来学习一下它的用法，修改项目中 activity_fragment.xml 的代码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;LinearLayout xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    android:id=<span class="string">"@+id/activity_fragment"</span></span><br><span class="line">    android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">    android:layout_height=<span class="string">"match_parent"</span></span><br><span class="line">    android:orientation=<span class="string">"horizontal"</span>&gt;</span><br><span class="line"></span><br><span class="line">    &lt;fragment</span><br><span class="line">        android:id=<span class="string">"@+id/fragment_left"</span></span><br><span class="line">        android:name=<span class="string">"com.wonderful.myfirstcode.inquiry_fragment.LeftFragment"</span></span><br><span class="line">        android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">        android:layout_height=<span class="string">"match_parent"</span> /&gt;</span><br><span class="line"></span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
+<p>  这里将多余的代码都删掉，只留下一个左侧碎片，并让它充满整个父布局。接着在 res 目录下新建 layout-large 文件夹，在这个文件夹下新建一个布局，也叫做 activity_fragment.xml， 代码如下所示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;LinearLayout xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    android:id=<span class="string">"@+id/activity_fragment"</span></span><br><span class="line">    android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">    android:layout_height=<span class="string">"match_parent"</span></span><br><span class="line">    android:orientation=<span class="string">"horizontal"</span>&gt;</span><br><span class="line"></span><br><span class="line">    &lt;fragment</span><br><span class="line">        android:id=<span class="string">"@+id/fragment_left"</span></span><br><span class="line">        android:name=<span class="string">"com.wonderful.myfirstcode.inquiry_fragment.LeftFragment"</span></span><br><span class="line">        android:layout_width=<span class="string">"0dp"</span></span><br><span class="line">        android:layout_height=<span class="string">"match_parent"</span> </span><br><span class="line">        android:layout_weight=<span class="string">"1"</span>/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;fragment</span><br><span class="line">        android:id=<span class="string">"@+id/fragment_right"</span></span><br><span class="line">        android:name=<span class="string">"com.wonderful.myfirstcode.inquiry_fragment.RightFragment"</span></span><br><span class="line">        android:layout_width=<span class="string">"0dp"</span></span><br><span class="line">        android:layout_height=<span class="string">"match_parent"</span></span><br><span class="line">        android:layout_weight=<span class="string">"3"</span>/&gt;</span><br><span class="line"></span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
+<p>  可以看到，layout/activity_fragment 布局只包含了一个碎片，即单页模式，而 layout-large/activity_fragment 布局包含了两个碎片，即双页模式。其中 large 就是一个限定符，那些屏幕被认 为是 large 的设备就会自动加载 layout-large 文件夹下的布局，而小屏幕的设备则还是会加载 layout 文件夹下的布局。</p>
+<p>  然后将 Activity 中 replaceFragment() 方法注释掉，并在平板模拟器上重新运行程序， 效果如图：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0407%E5%8F%8C%E9%A1%B5%E6%A8%A1%E5%BC%8F%E8%BF%90%E8%A1%8C%E6%95%88%E6%9E%9C.png" alt="" title="双页模式运行效果"><br>  再启动一个手机模拟器，并在这个模拟器上重新运行程序，效果如图：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0408%E5%8D%95%E9%A1%B5%E6%A8%A1%E5%BC%8F%E8%BF%90%E8%A1%8C%E6%95%88%E6%9E%9C.png" alt="" title="单页模式运行效果"><br>  Android 中一些常见的限定符可以参考下表：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/04060%E5%B8%B8%E8%A7%81%E7%9A%84%E9%99%90%E5%AE%9A%E7%AC%A6.png" alt="" title="常见限定符"></p>
+<h2 id="4-4-2-使用最小宽度限定符"><a href="#4-4-2-使用最小宽度限定符" class="headerlink" title="4.4.2 使用最小宽度限定符"></a>4.4.2 使用最小宽度限定符</h2><p>  有时候我们希望可以更加灵活地为不同设备加载布局，不管它们是不是被系统 认定为 “ large ”，这时就可以使用最小宽度限定符（Smallest-width Qualifier）了。</p>
+<p>  最小宽度限定符允许我们对屏幕的宽度指定一个最小指（以 dp 为单位），然后以这个最小值为临界点，屏幕宽度大于这个值的设备就加载一个布局，屏幕宽度小于这个值的设备就加载另一个布局。</p>
+<p>  在 res 目录下新建 layout-sw600dp 文件夹，然后在这个文件夹下新建 activity_fragment .xml布局，代码与上面 layout-large/activity_fragment 中的一样。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>  这就意味着，当程序运行在屏幕宽度大于 600dp 的设备上时，会加载 layout-sw600dp/ activity_fragment 布局，当程序运行在屏幕宽度小于 600dp 的设备上时，则仍然加载默认的 layout/activity_fragment 布局。</p>
+<h1 id="4-5-碎片的最佳实践——一个简易版的新闻应用"><a href="#4-5-碎片的最佳实践——一个简易版的新闻应用" class="headerlink" title="4.5 碎片的最佳实践——一个简易版的新闻应用"></a>4.5 碎片的最佳实践——一个简易版的新闻应用</h1><p>  需求：一个简易的新闻应用，可以同时兼容手机和平板。</p>
+<p>  首先，在 app/build.gradle 中添加后面需要用到的 RecyclerView 依赖库：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">    compile fileTree(dir: <span class="string">'libs'</span>, include: [<span class="string">'*.jar'</span>])</span><br><span class="line">    compile <span class="string">'com.android.support:appcompat-v7:24.2.1'</span></span><br><span class="line">    compile <span class="string">'com.android.support:recyclerview-v7:24.2.1'</span></span><br><span class="line">    <span class="built_in">test</span>Compile <span class="string">'junit:junit:4.12'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  接下来，准备好一个新闻的实体类，新建类 News，代码如下所示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 新闻实体类</span><br><span class="line"> * Created by KXwon on 2016/12/12.</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">public class News &#123;</span><br><span class="line"></span><br><span class="line">    private String title;   // 新闻标题</span><br><span class="line"></span><br><span class="line">    private String content; // 新闻内容</span><br><span class="line"></span><br><span class="line">    public String <span class="function"><span class="title">getTitle</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> title;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void <span class="built_in">set</span>Title(String title) &#123;</span><br><span class="line">        this.title = title;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String <span class="function"><span class="title">getContent</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> content;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void <span class="built_in">set</span>Content(String content) &#123;</span><br><span class="line">        this.content = content;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  接着新建一个 news_content_frag.xml 布局，作为新闻内容的布局：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">&lt;RelativeLayout xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">    android:layout_height=<span class="string">"match_parent"</span>&gt;</span><br><span class="line"></span><br><span class="line">    &lt;LinearLayout</span><br><span class="line">        android:id=<span class="string">"@+id/visibility_layout"</span></span><br><span class="line">        android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">        android:layout_height=<span class="string">"match_parent"</span></span><br><span class="line">        android:orientation=<span class="string">"vertical"</span></span><br><span class="line">        android:visibility=<span class="string">"invisible"</span>&gt;</span><br><span class="line"></span><br><span class="line">        &lt;TextView</span><br><span class="line">            android:id=<span class="string">"@+id/news_title"</span></span><br><span class="line">            android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">            android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">            android:gravity=<span class="string">"center"</span></span><br><span class="line">            android:textSize=<span class="string">"20sp"</span></span><br><span class="line">            android:padding=<span class="string">"10dp"</span>/&gt;</span><br><span class="line"></span><br><span class="line">        &lt;View</span><br><span class="line">            android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">            android:layout_height=<span class="string">"1dp"</span></span><br><span class="line">            android:background=<span class="string">"#000"</span>/&gt;</span><br><span class="line"></span><br><span class="line">        &lt;TextView</span><br><span class="line">            android:id=<span class="string">"@+id/news_content"</span></span><br><span class="line">            android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">            android:layout_height=<span class="string">"0dp"</span></span><br><span class="line">            android:layout_weight=<span class="string">"1"</span></span><br><span class="line">            android:textSize=<span class="string">"18sp"</span></span><br><span class="line">            android:padding=<span class="string">"15dp"</span>/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;/LinearLayout&gt;</span><br><span class="line"></span><br><span class="line">    &lt;View</span><br><span class="line">        android:layout_width=<span class="string">"1dp"</span></span><br><span class="line">        android:layout_height=<span class="string">"match_parent"</span></span><br><span class="line">        android:layout_alignParentLeft=<span class="string">"true"</span></span><br><span class="line">        android:background=<span class="string">"#000"</span>/&gt;</span><br><span class="line"></span><br><span class="line">&lt;/RelativeLayout&gt;</span><br></pre></td></tr></table></figure>
+<p>  新闻内容的布局主要分为两个部分，头部显示新闻标题，正文显示新闻内容，中间使用一条细线分隔开。</p>
+<p>  然后再新建一个 NewsContentFragment 类，如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 新闻内容fragment</span><br><span class="line"> * Created by KXwon on 2016/12/12.</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">public class NewsContentFragment extends Fragment &#123;</span><br><span class="line"></span><br><span class="line">    private View view;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) &#123;</span><br><span class="line">        view = inflater.inflate(R.layout.news_content_frag, container, <span class="literal">false</span>);</span><br><span class="line">        <span class="built_in">return</span> view;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 将新闻标题和新闻内容显示在界面上</span><br><span class="line">     * @param newsTitle   标题</span><br><span class="line">     * @param newsContent 内容</span><br><span class="line">     */</span><br><span class="line">    public void refresh(String newsTitle, String newsContent) &#123;</span><br><span class="line">        View visibilityLayout = view.findViewById(R.id.visibility_layout);</span><br><span class="line">        visibilityLayout.setVisibility(View.VISIBLE);</span><br><span class="line">        TextView newsTitleText = (TextView) view.findViewById (R.id.news_title);</span><br><span class="line">        TextView newsContentText = (TextView) view.findViewById(R.id.news_content);</span><br><span class="line">        newsTitleText.setText(newsTitle); // 刷新新闻的标题</span><br><span class="line">        newsContentText.setText(newsContent); // 刷新新闻的内容</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  这样就把新闻内容的碎片和布局创建好了，但它们都是在双页模式下使用的，若要在单页模式中使用，还需创建一个活动 NewsContentActivity，其布局 news_content.xml 中的代码如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;LinearLayout xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    android:orientation=<span class="string">"vertical"</span></span><br><span class="line">    android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">    android:layout_height=<span class="string">"match_parent"</span>&gt;</span><br><span class="line"></span><br><span class="line">    &lt;fragment</span><br><span class="line">        android:id=<span class="string">"@+id/news_content_fragment"</span></span><br><span class="line">        android:name=<span class="string">"com.wonderful.myfirstcode.chapter4.simple_news.NewsContentFragment"</span></span><br><span class="line">        android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">        android:layout_height=<span class="string">"match_parent"</span></span><br><span class="line">        /&gt;</span><br><span class="line"></span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
+<p>  这里直接在布局中引入了 NewsContentFragment，相当于把 news_content_frag 布局的内容自动加了进来。<br>然后编写 NewsContentActivity 的代码，如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">public class NewsContentActivity extends AppCompatActivity &#123;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 构建Intent，传递所需数据</span><br><span class="line">     * @param context</span><br><span class="line">     * @param newsTitle</span><br><span class="line">     * @param newsContent</span><br><span class="line">     */</span><br><span class="line">    public static void actionStart(Context context, String newsTitle, String newsContent) &#123;</span><br><span class="line">        Intent intent = new Intent(context, NewsContentActivity.class);</span><br><span class="line">        intent.putExtra(<span class="string">"news_title"</span>, newsTitle);</span><br><span class="line">        intent.putExtra(<span class="string">"news_content"</span>, newsContent);</span><br><span class="line">        context.startActivity(intent);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        <span class="built_in">set</span>ContentView(R.layout.news_content);</span><br><span class="line">        // 获取传入的新闻标题、新闻内容</span><br><span class="line">        String newsTitle = getIntent().getStringExtra(<span class="string">"news_title"</span>);</span><br><span class="line">        String newsContent = getIntent().getStringExtra(<span class="string">"news_content"</span>);</span><br><span class="line">        // 获取 NewsContentFragment 实例</span><br><span class="line">        NewsContentFragment newsContentFragment = (NewsContentFragment) getSupportFragmentManager()</span><br><span class="line">                .findFragmentById(R.id.news_content_fragment);</span><br><span class="line">        // 刷新 NewsContentFragment 界面</span><br><span class="line">        newsContentFragment.refresh(newsTitle, newsContent); </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  上述代码，在 onCreate() 方法中通过 Intent 获取传入的新闻标题和内容，然后调用 FragmentManager 的 findFragmentById() 方法得到 NewsContentFragment 的实例，接着调用它的 refresh() 方法，并将新闻的标题和内容传入，显示数据。（关于 actionStart() 方法可以阅读前面的探究活动2.5.2相关笔记。）</p>
+<p>  接下来还需再创建显示新闻列表的布局 news_title_frag.xml，如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;LinearLayout xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    android:orientation=<span class="string">"vertical"</span></span><br><span class="line">    android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">    android:layout_height=<span class="string">"match_parent"</span>&gt;</span><br><span class="line"></span><br><span class="line">    &lt;android.support.v7.widget.RecyclerView</span><br><span class="line">        android:id=<span class="string">"@+id/news_title_recycler_view"</span></span><br><span class="line">        android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">        android:layout_height=<span class="string">"match_parent"</span> /&gt;</span><br><span class="line"></span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
+<p>  新建 news_item.xml 作为 上述 RecyclerView 子项的布局：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;TextView</span><br><span class="line">    xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    android:id=<span class="string">"@+id/news_title"</span></span><br><span class="line">    android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">    android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">    android:singleLine=<span class="string">"true"</span></span><br><span class="line">    android:ellipsize=<span class="string">"end"</span></span><br><span class="line">    android:textSize=<span class="string">"18sp"</span></span><br><span class="line">    android:padding=<span class="string">"10dp"</span>/&gt;</span><br></pre></td></tr></table></figure>
+<p>  子项的布局就只有一个 TextView。</p>
+<p>  新闻列表和子项布局都创建好了，接下来就需要一个用于展示新闻列表的地方。这里新建 NewsTitleFragment 作为展示新闻列表的碎片：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 新闻列表fragment</span><br><span class="line"> * Created by KXwon on 2016/12/12.</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">public class NewsTitleFragment extends Fragment&#123;</span><br><span class="line"></span><br><span class="line">    private boolean isTowPane;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public View onCreateView(LayoutInflater inflater,  ViewGroup container,  Bundle savedInstanceState) &#123;</span><br><span class="line">        View view = inflater.inflate(R.layout.news_content_frag, container, <span class="literal">false</span>);</span><br><span class="line">        <span class="built_in">return</span> view;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onActivityCreated(@Nullable Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onActivityCreated(savedInstanceState);</span><br><span class="line">        <span class="keyword">if</span> (getActivity().findViewById(R.id.news_content_layout)!= null)&#123;</span><br><span class="line">            // 可以找到 news_content_layout 布局时，为双页模式</span><br><span class="line">            isTowPane = <span class="literal">true</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            // 找不到 news_content_layout 布局时，为单页模式</span><br><span class="line">            isTowPane = <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  为实现上述 onActivityCreated() 方法中判断当前时双页还是单页模式，需要借助限定符，首先修改主布局 activity_news.xml 中的代码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;FrameLayout xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    android:id=<span class="string">"@+id/news_title_layout"</span></span><br><span class="line">    android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">    android:layout_height=<span class="string">"match_parent"</span> &gt;</span><br><span class="line"></span><br><span class="line">    &lt;fragment</span><br><span class="line">        android:id=<span class="string">"@+id/news_title_fragment"</span></span><br><span class="line">        android:name=<span class="string">"com.wonderful.myfirstcode.chapter4.simple_news.NewsTitleFragment"</span></span><br><span class="line">        android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">        android:layout_height=<span class="string">"match_parent"</span> /&gt;</span><br><span class="line"></span><br><span class="line">&lt;/FrameLayout&gt;</span><br></pre></td></tr></table></figure>
+<p>  上述代码表示，在单页模式下只会加载一个新闻标题的碎片。</p>
+<p>  然后在 res 目录下新建 layout-sw600dp 文件夹，在这个文件夹下再新建一个 activity_news.xml 文件，代码如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;LinearLayout xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    android:orientation=<span class="string">"horizontal"</span></span><br><span class="line">    android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">    android:layout_height=<span class="string">"match_parent"</span> &gt;</span><br><span class="line"></span><br><span class="line">    &lt;fragment</span><br><span class="line">        android:id=<span class="string">"@+id/news_title_fragment"</span></span><br><span class="line">        android:name=<span class="string">"com.wonderful.myfirstcode.chapter4.simple_news.NewsTitleFragment"</span></span><br><span class="line">        android:layout_width=<span class="string">"0dp"</span></span><br><span class="line">        android:layout_height=<span class="string">"match_parent"</span></span><br><span class="line">        android:layout_weight=<span class="string">"1"</span> /&gt;</span><br><span class="line"></span><br><span class="line">    &lt;FrameLayout</span><br><span class="line">        android:id=<span class="string">"@+id/news_content_layout"</span></span><br><span class="line">        android:layout_width=<span class="string">"0dp"</span></span><br><span class="line">        android:layout_height=<span class="string">"match_parent"</span></span><br><span class="line">        android:layout_weight=<span class="string">"3"</span> &gt;</span><br><span class="line"></span><br><span class="line">        &lt;fragment</span><br><span class="line">            android:id=<span class="string">"@+id/news_content_fragment"</span></span><br><span class="line">            android:name=<span class="string">"com.wonderful.myfirstcode.chapter4.simple_news.NewsContentFragment"</span></span><br><span class="line">            android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">            android:layout_height=<span class="string">"match_parent"</span> /&gt;</span><br><span class="line">    &lt;/FrameLayout&gt;</span><br><span class="line"></span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
+<p>  上述代码表示，在双页模式下会同时加载两个碎片，并将新闻内容碎片放在 FrameLayout 布局下，这个布局 id 正是 news_content_layout。因此能找到这个 id 的时候就是双页模式，否则就是单页模式。</p>
+<p>  现在已经将绝大多数工作完成了，剩下至关重要的一点，就是在 NewsTitleFragemt 中通过 RecyclerView 将新闻列表展示出来。接下来在 NewsTitleFragemt 中新建一个内部类 NewsAdapter 来作为 RecyclerView 的适配器，如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">public class NewsTitleFragment extends Fragment&#123;</span><br><span class="line"></span><br><span class="line">    private boolean isTowPane;</span><br><span class="line"></span><br><span class="line">    . . .</span><br><span class="line"></span><br><span class="line">    class NewsAdapter extends RecyclerView.Adapter&lt;NewsAdapter.ViewHolder&gt; &#123;</span><br><span class="line"></span><br><span class="line">        private List&lt;News&gt; mNewsList;</span><br><span class="line"></span><br><span class="line">        class ViewHolder extends RecyclerView.ViewHolder &#123;</span><br><span class="line"></span><br><span class="line">            TextView newsTitleText;</span><br><span class="line"></span><br><span class="line">            public ViewHolder(View view) &#123;</span><br><span class="line">                super(view);</span><br><span class="line">                newsTitleText = (TextView) view.findViewById(R.id.news_title);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public NewsAdapter(List&lt;News&gt; newsList) &#123;</span><br><span class="line">            mNewsList = newsList;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) &#123;</span><br><span class="line">            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.news_item, parent, <span class="literal">false</span>);</span><br><span class="line">            final ViewHolder holder = new ViewHolder(view);</span><br><span class="line">            view.setOnClickListener(new View.<span class="function"><span class="title">OnClickListener</span></span>() &#123;</span><br><span class="line">                @Override</span><br><span class="line">                public void onClick(View v) &#123;</span><br><span class="line">                    News news = mNewsList.get(holder.getAdapterPosition());</span><br><span class="line">                    <span class="keyword">if</span> (isTwoPane) &#123;</span><br><span class="line">                        // 若是双页模式，则刷新 NewsContentFragment 中的内容</span><br><span class="line">                        NewsContentFragment newsContentFragment = (NewsContentFragment)</span><br><span class="line">                                getFragmentManager().findFragmentById(R.id.news_content_fragment);</span><br><span class="line">                        newsContentFragment.refresh(news.getTitle(), news.getContent());</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        // 若是单页模式，则直接启动 NewsContentActivity</span><br><span class="line">                        NewsContentActivity.actionStart(getActivity(), news.getTitle(), news.getContent());</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">            <span class="built_in">return</span> holder;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public void onBindViewHolder(ViewHolder holder, int position) &#123;</span><br><span class="line">            News news = mNewsList.get(position);</span><br><span class="line">            holder.newsTitleText.setText(news.getTitle());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public int <span class="function"><span class="title">getItemCount</span></span>() &#123;</span><br><span class="line">            <span class="built_in">return</span> mNewsList.size();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>  需要注意的是，这里把适配器写成内部类是为了直接访问 NewsTitleFragment 的变量，比如 isTowPane 。</p>
+<p>  现在还剩最后一步收尾工作，就是向 RecyclerView 中填充数据了。修改 NewsTitleFragment 中的代码，如下所示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">public class NewsTitleFragment extends Fragment&#123;</span><br><span class="line"></span><br><span class="line">    . . .</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) &#123;</span><br><span class="line">        View view = inflater.inflate(R.layout.news_title_frag, container, <span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line">        RecyclerView newsTitleRecyclerView = (RecyclerView) view.findViewById(R.id.news_title_recycler_view);</span><br><span class="line">        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());</span><br><span class="line">        newsTitleRecyclerView.setLayoutManager(layoutManager);</span><br><span class="line">        NewsAdapter adapter = new NewsAdapter(getNews());</span><br><span class="line">        newsTitleRecyclerView.setAdapter(adapter);</span><br><span class="line"></span><br><span class="line">        <span class="built_in">return</span> view;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onActivityCreated(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onActivityCreated(savedInstanceState);</span><br><span class="line">        <span class="keyword">if</span> (getActivity().findViewById(R.id.news_content_layout) != null) &#123;</span><br><span class="line">            // 可以找到news_content_layout布局时，为双页模式</span><br><span class="line">            isTwoPane = <span class="literal">true</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            // 找不到news_content_layout布局时，为单页模式</span><br><span class="line">            isTwoPane = <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 初始化50条模拟新闻数据</span><br><span class="line">     * @<span class="built_in">return</span></span><br><span class="line">     */</span><br><span class="line">    private List&lt;News&gt; <span class="function"><span class="title">getNews</span></span>() &#123;</span><br><span class="line">        List&lt;News&gt; newsList = new ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (int i = 1; i &lt;= 50; i++) &#123;</span><br><span class="line">            News news = new News();</span><br><span class="line">            news.setTitle(<span class="string">"This is news title "</span> + i);</span><br><span class="line">            news.setContent(getRandomLengthContent(<span class="string">"新闻内容吼吼吼"</span> + i + <span class="string">"!"</span>));</span><br><span class="line">            newsList.add(news);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> newsList;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 随机生成不同长度的新闻内容</span><br><span class="line">     * @param content</span><br><span class="line">     * @<span class="built_in">return</span></span><br><span class="line">     */</span><br><span class="line">    private String getRandomLengthContent(String content) &#123;</span><br><span class="line">        Random random = new Random();</span><br><span class="line">        int length = random.nextInt(20) + 1;</span><br><span class="line">        StringBuilder builder = new StringBuilder();</span><br><span class="line">        <span class="keyword">for</span> (int i = 0; i &lt; length; i++) &#123;</span><br><span class="line">            builder.append(content);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> builder.toString();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    . . . </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  到这里，所有的代码编写工作就完成了，运行程序，效果如下：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0409%E5%8D%95%E9%A1%B5%E6%A8%A1%E5%BC%8F%E7%9A%84%E6%96%B0%E9%97%BB%E5%88%97%E8%A1%A8%E7%95%8C%E9%9D%A2.png" alt="" title="单页模式的新闻列表界面"><br>  点击一条新闻，会启动一个新的活动来显示新闻内容：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0410%E5%8D%95%E9%A1%B5%E6%A8%A1%E5%BC%8F%E7%9A%84%E6%96%B0%E9%97%BB%E5%86%85%E5%AE%B9%E7%95%8C%E9%9D%A2.png" alt="" title="单页模式的新闻内容界面"><br>  接下来把程序在平板上运行，同样点击一条新闻，效果如下：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0411%E5%8F%8C%E9%A1%B5%E6%A8%A1%E5%BC%8F%E7%9A%84%E6%96%B0%E9%97%BB%E6%A0%87%E9%A2%98%E5%92%8C%E5%86%85%E5%AE%B9%E7%95%8C%E9%9D%A2.png" alt="" title="双页模式的新闻标题和内容界面"><br>  好了，关于碎片的内容学习到这，下篇文章将学习广播机制…</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/wechat-qcode.jpg" alt="Jason Xu wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>如果我的文章对您有用，请打赏我一个红包吧！鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat.png" alt="Jason Xu WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.jpg" alt="Jason Xu Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+            <a href="/tags/Android-Studio/" rel="tag"># Android Studio</a>
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+            <a href="/tags/《第一行代码》（第2版）/" rel="tag"># 《第一行代码》（第2版）</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/09/20/Android开发基础03-UI 开发/" rel="next" title="Android开发基础3 - UI 开发">
+                <i class="fa fa-chevron-left"></i> Android开发基础3 - UI 开发
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/10/01/Android开发基础05-广播机制/" rel="prev" title="Android开发基础5 - 广播机制">
+                Android开发基础5 - 广播机制 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/09/25/Android开发基础04-探究碎片/"
+           data-title="Android开发基础4 - 探究碎片" data-url="http://xuqianzheng.com/2015/09/25/Android开发基础04-探究碎片/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Jason Xu" />
+          <p class="site-author-name" itemprop="name">Jason Xu</p>
+          <p class="site-description motion-element" itemprop="description">About Life, Books and Code.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">29</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">53</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/rss2.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/xuqianzheng" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://7xsb4k.com1.z0.glb.clouddn.com/%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%AD%A6.jpg" target="_blank" title="WeChat">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  WeChat
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.quora.com/profile/Jason-Xu%EF%BC%88%E5%BE%90%E8%BF%81%E5%BE%81%EF%BC%89" target="_blank" title="Quora">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Quora
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#4-1-碎片是什么"><span class="nav-number">1.</span> <span class="nav-text">4.1 碎片是什么</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-2-碎片的使用方式"><span class="nav-number">2.</span> <span class="nav-text">4.2 碎片的使用方式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-1-碎片的简单用法"><span class="nav-number">2.1.</span> <span class="nav-text">4.2.1 碎片的简单用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-2-动态添加碎片"><span class="nav-number">2.2.</span> <span class="nav-text">4.2.2 动态添加碎片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-3-在碎片中模拟返回栈"><span class="nav-number">2.3.</span> <span class="nav-text">4.2.3 在碎片中模拟返回栈</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-4-碎片和活动之间进行通信"><span class="nav-number">2.4.</span> <span class="nav-text">4.2.4 碎片和活动之间进行通信</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-3-碎片的生命周期"><span class="nav-number">3.</span> <span class="nav-text">4.3 碎片的生命周期</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-4-动态加载布局的技巧"><span class="nav-number">4.</span> <span class="nav-text">4.4 动态加载布局的技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-1-使用限定符"><span class="nav-number">4.1.</span> <span class="nav-text">4.4.1 使用限定符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-2-使用最小宽度限定符"><span class="nav-number">4.2.</span> <span class="nav-text">4.4.2 使用最小宽度限定符</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-5-碎片的最佳实践——一个简易版的新闻应用"><span class="nav-number">5.</span> <span class="nav-text">4.5 碎片的最佳实践——一个简易版的新闻应用</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jason Xu</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"xuqianzheng"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+</body>
+</html>

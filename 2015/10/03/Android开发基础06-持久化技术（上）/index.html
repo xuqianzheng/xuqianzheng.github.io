@@ -1,0 +1,1026 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android,Android Studio,java,《第一行代码》（第2版）," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="Third Type Of Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="本篇文章主要介绍以下几个知识点：
+
+文件存储；
+SharedPreference 存储；
+实战：实现记住密码功能。
+
+
+  数据持久化是指将那些内存中的瞬时数据保存到存储设备中，保证即使在手机或电脑关机的情况下，这些数据仍然不会丢失。保存在内存中的数据是处于瞬时状态的，而保存在存储设备中的数据是处于持久状态的，持久化技术则是提供了一种机制可以让数据在瞬时状态和持久状态之间进行转换。
+  Andr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android开发基础6 - 持久化技术（上）">
+<meta property="og:url" content="http://xuqianzheng.com/2015/10/03/Android开发基础06-持久化技术（上）/index.html">
+<meta property="og:site_name" content="Third Type Of Blog">
+<meta property="og:description" content="本篇文章主要介绍以下几个知识点：
+
+文件存储；
+SharedPreference 存储；
+实战：实现记住密码功能。
+
+
+  数据持久化是指将那些内存中的瞬时数据保存到存储设备中，保证即使在手机或电脑关机的情况下，这些数据仍然不会丢失。保存在内存中的数据是处于瞬时状态的，而保存在存储设备中的数据是处于持久状态的，持久化技术则是提供了一种机制可以让数据在瞬时状态和持久状态之间进行转换。
+  Andr">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0601%E8%BF%98%E5%8E%9F%E4%BF%9D%E5%AD%98%E6%88%90%E5%8A%9F%E7%9A%84%E5%86%85%E5%AE%B9.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0602%E7%94%9F%E6%88%90%E7%9A%84%20wonderful.xml%20%E6%96%87%E4%BB%B6.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0603wonderful.xml%20%E6%96%87%E4%BB%B6%E4%B8%AD%E7%9A%84%E5%86%85%E5%AE%B9.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0604%E8%AF%BB%E5%8F%96%E6%95%B0%E6%8D%AE%E5%B9%B6%E6%98%BE%E7%A4%BA%E6%95%88%E6%9E%9C.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0605%E8%AE%B0%E4%BD%8F%E5%AF%86%E7%A0%81%E5%8A%9F%E8%83%BD%E6%95%88%E6%9E%9C.gif">
+<meta property="og:updated_time" content="2016-12-19T15:14:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android开发基础6 - 持久化技术（上）">
+<meta name="twitter:description" content="本篇文章主要介绍以下几个知识点：
+
+文件存储；
+SharedPreference 存储；
+实战：实现记住密码功能。
+
+
+  数据持久化是指将那些内存中的瞬时数据保存到存储设备中，保证即使在手机或电脑关机的情况下，这些数据仍然不会丢失。保存在内存中的数据是处于瞬时状态的，而保存在存储设备中的数据是处于持久状态的，持久化技术则是提供了一种机制可以让数据在瞬时状态和持久状态之间进行转换。
+  Andr">
+<meta name="twitter:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/0601%E8%BF%98%E5%8E%9F%E4%BF%9D%E5%AD%98%E6%88%90%E5%8A%9F%E7%9A%84%E5%86%85%E5%AE%B9.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://xuqianzheng.com/2015/10/03/Android开发基础06-持久化技术（上）/"/>
+
+
+
+
+
+  <title> Android开发基础6 - 持久化技术（上） | Third Type Of Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?3f7ae1fa714b160af9e4a2f1cc75d137";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=56301679";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Third Type Of Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Machine Learning</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://xuqianzheng.com/2015/10/03/Android开发基础06-持久化技术（上）/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Jason Xu">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Third Type Of Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Third Type Of Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android开发基础6 - 持久化技术（上）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-10-03T09:17:36+08:00">
+                2015-10-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2015/10/03/Android开发基础06-持久化技术（上）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/03/Android开发基础06-持久化技术（上）/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p><strong>本篇文章主要介绍以下几个知识点：</strong></p>
+<ul>
+<li>文件存储；</li>
+<li>SharedPreference 存储；</li>
+<li>实战：实现记住密码功能。</li>
+</ul>
+</blockquote>
+<p>  数据持久化是指将那些内存中的瞬时数据保存到存储设备中，保证即使在手机或电脑关机的情况下，这些数据仍然不会丢失。保存在内存中的数据是处于瞬时状态的，而保存在存储设备中的数据是处于持久状态的，持久化技术则是提供了一种机制可以让数据在瞬时状态和持久状态之间进行转换。</p>
+<p>  Android 系统中主要提供了三种方式实现数据持久化功能， 即文件存储、SharedPreference 存储以及数据库存储。当然，也可以将数据保存在手机的 SD 卡中，但相对会复杂一些，而且不安全。</p>
+<h1 id="6-1-文件存储"><a href="#6-1-文件存储" class="headerlink" title="6.1 文件存储"></a>6.1 文件存储</h1><p>  文件存储是 Android 中最基本的一种数据存储方式，它不对存储的内容进行任何的格式化处理，所有数据都是原封不动地保存到文件当中的，因而它比较适合用于存储一些简单的文本数据或二进制数据。<a id="more"></a></p>
+<p>  Context 类中提供了一个 openFileOutput () 方法，用于将数据存储到指定的文件中。Context 类中还提供了一个 openFileInput() 方法，用于从文件中读取数据。</p>
+<p>  下面通过一个例子学习下在 Android 项目中使用文件存储的技术。首先创建一个项目，并修改其布局代码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;RelativeLayout xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">    android:layout_height=<span class="string">"match_parent"</span>  &gt;</span><br><span class="line"></span><br><span class="line">    &lt;EditText</span><br><span class="line">        android:id=<span class="string">"@+id/edit_test"</span></span><br><span class="line">        android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">        android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">        android:hint=<span class="string">"Type something here"</span>/&gt;</span><br><span class="line"></span><br><span class="line">&lt;/RelativeLayout&gt;</span><br></pre></td></tr></table></figure>
+<p>  这里只是在布局中加入了一个 EditText，用于输入文本内容。我们的目的是在文本输入框中随意输入内容，然后按下 Back 键，将输入的内容保存到文件中，再重新启动程序，刚才输入的内容不丢失。</p>
+<p>  修改 activity 中的代码（具体内容见注解），如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line">public class FilePersistenceActivity extends AppCompatActivity &#123;</span><br><span class="line"></span><br><span class="line">    private EditText editText;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        <span class="built_in">set</span>ContentView(R.layout.activity_file_persistence);</span><br><span class="line"></span><br><span class="line">        editText = (EditText) findViewById(R.id.edit_<span class="built_in">test</span>);</span><br><span class="line">        String inputText = load();</span><br><span class="line">        <span class="keyword">if</span> (!TextUtils.isEmpty(inputText))&#123;</span><br><span class="line">            editText.setText(inputText);</span><br><span class="line">            editText.setSelection(inputText.length()); // 将输入光标移到文本末尾位置</span><br><span class="line">            ToastUtils.showShort(<span class="string">"重启读取存储的内容成功"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void <span class="function"><span class="title">onDestroy</span></span>() &#123;</span><br><span class="line">        super.onDestroy();</span><br><span class="line">        String inputText = editText.getText().toString();</span><br><span class="line">        // 在活动销毁前把输入的内容存储到文件中</span><br><span class="line">        save(inputText);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 把内容存储到文件</span><br><span class="line">     * @param inputText 存储的内容</span><br><span class="line">     */</span><br><span class="line">    public void save(String inputText) &#123;</span><br><span class="line">        FileOutputStream out = null;</span><br><span class="line">        BufferedWriter writer = null;</span><br><span class="line">        try &#123;</span><br><span class="line">            // openFileOutput方法接收两个参数：</span><br><span class="line">            // 第一个是不包含路径的文件名 (默认存储到/data/data/&lt;package name&gt;/files/目录下)</span><br><span class="line">            // 第二个是文件的操作模式,有两种可选：</span><br><span class="line">            // 1.MODE_PRIVATE(默认)：当指定同样文件名的时候,所写入的内容将会覆盖原文件中的内容</span><br><span class="line">            // 2.MODE_APPEND：若该文件已存在就往文件里面追加内容,不存在就创建新文件。</span><br><span class="line">            // (注：其他操作模式过于危险,在 Android 4.2 已被废弃)</span><br><span class="line">            // openFileOutput方法返回的是一个FileOutputStream对象</span><br><span class="line">            out = openFileOutput(<span class="string">"data"</span>, Context.MODE_PRIVATE);</span><br><span class="line">            // 构建OutputStreamWriter对象后,构建BufferedWriter对象</span><br><span class="line">            writer = new BufferedWriter(new OutputStreamWriter(out));</span><br><span class="line">            // 将文本写入文件</span><br><span class="line">            writer.write(inputText);</span><br><span class="line">        &#125; catch (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; finally &#123;</span><br><span class="line">            <span class="keyword">if</span> (writer != null)&#123;</span><br><span class="line">                try &#123;</span><br><span class="line">                    writer.close();</span><br><span class="line">                &#125; catch (IOException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 从文件中读取数据</span><br><span class="line">     * @<span class="built_in">return</span> 读取的内容</span><br><span class="line">     */</span><br><span class="line">    public String <span class="function"><span class="title">load</span></span>()&#123;</span><br><span class="line">        FileInputStream <span class="keyword">in</span> = null;</span><br><span class="line">        BufferedReader reader = null;</span><br><span class="line">        StringBuilder content = new StringBuilder();</span><br><span class="line">        try &#123;</span><br><span class="line">            // openFileInput只接收一个参数，即要读取的文件名,然后系统会自动到</span><br><span class="line">            // /data/data/&lt;package name&gt;/files/目录下去加载这个文件,并返回一个FileInputStream对象.</span><br><span class="line">            <span class="keyword">in</span> = openFileInput(<span class="string">"data"</span>);</span><br><span class="line">            // 构建InputStreamReader对象后,构建BufferedReader对象</span><br><span class="line">            reader = new BufferedReader(new InputStreamReader(<span class="keyword">in</span>));</span><br><span class="line">            String line = <span class="string">""</span>;</span><br><span class="line">            // 读取内容</span><br><span class="line">            <span class="keyword">while</span> ((line = reader.readLine())!= null)&#123;</span><br><span class="line">                content.append(line);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; catch (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; finally &#123;</span><br><span class="line">            <span class="keyword">if</span> (reader != null)&#123;</span><br><span class="line">                try &#123;</span><br><span class="line">                    reader.close();</span><br><span class="line">                &#125; catch (IOException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> content.toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  运行程序，输入wonderful 后退出程序再重启，刚输入的内容并不会丢失，还原到了输入框中，如图所示：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0601%E8%BF%98%E5%8E%9F%E4%BF%9D%E5%AD%98%E6%88%90%E5%8A%9F%E7%9A%84%E5%86%85%E5%AE%B9.png" alt="" title="还原保存成功的内容"><br>  文件存储所用到的核心技术就是 Context 类中提供的 openFileInput() 和 openFileOutput() 方法，之后就是利用 Java 的各种流来进行读写操作就可以了。</p>
+<p>  文件存储的方式并不适合用于保存一些较为复杂的文本数据，因此，下面就来学习一下 Android 中另一种数据持久化的方式，它比文件存储更加简单易用，而且可以很方便地对某一指定的数据进行读写操作。</p>
+<h1 id="6-2-SharedPreferences-存储"><a href="#6-2-SharedPreferences-存储" class="headerlink" title="6.2 SharedPreferences 存储"></a>6.2 SharedPreferences 存储</h1><p>  不同于文件的存储方式，SharedPreferences 是使用键值对的方式来存储数据的。</p>
+<h2 id="6-2-1-将数据存储到-SharedPreferences-中"><a href="#6-2-1-将数据存储到-SharedPreferences-中" class="headerlink" title="6.2.1 将数据存储到 SharedPreferences 中"></a>6.2.1 将数据存储到 SharedPreferences 中</h2><p>  要想使用 SharedPreferences 来存储数据，首先需要获取到 SharedPreferences 对象。Android 提供了三种方法得到 SharedPreferences 对象：</p>
+<ul>
+<li><p>Context 类中的 getSharedPreferences()方法<br>  此方法接收两个参数，第一个参数指定 SharedPreferences 文件的名称，第二个参数指定操作模式，目前只有 MODE_PRIVATE 一种模式，和直接传入 0 效果相同。其他几种模式已被废弃。</p>
+</li>
+<li><p>Activity 类中的 getPreferences()方法<br>  此方法和上面的方法相似，但只接收一个操作模式参数，使用这个方法时会自动将当前活动的类名作为 SharedPreferences 的文件名。</p>
+</li>
+<li><p>PreferenceManager 类中的 getDefaultSharedPreferences()方法<br>  这是一个静态方法，它接收一个 Context 参数，并自动使用当前应用程序的包名作为前缀来命名 SharedPreferences 文件。</p>
+</li>
+</ul>
+<p>  得到了 SharedPreferences 对象之后，分为三步实现向 SharedPreferences 文件中存储数据：<br>  （1）调用 SharedPreferences 对象的 edit()方法来获取一个 SharedPreferences.Editor 对象。<br>  （2）向 SharedPreferences.Editor 对象中添加数据，如添加一个布尔型数据使用 putBoolean 方法，添加一个字符串使用 putString()方法，以此类推。<br>  （3） 调用 apply()方法将添加的数据提交，完成数据存储。</p>
+<blockquote>
+<p>当然，SharedPreference在提交数据时也可用 Editor 的 commit 方法，两者区别如下：</p>
+<ul>
+<li>apply() 没有返回值而 commit() 返回 boolean 表明修改是否提交成功</li>
+<li>apply() 将修改提交到内存，然后再异步提交到磁盘上;而 commit() 是同步提交到磁盘上。 谷歌建议：若在UI线程中，使用 apply() 减少UI线程的阻塞（写到磁盘上是耗时操作）引起的卡顿。</li>
+</ul>
+</blockquote>
+<p>  接下来通过个例子来体验下。新建一个项目，修改其布局文件代码，如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;LinearLayout xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">    android:layout_height=<span class="string">"match_parent"</span></span><br><span class="line">    android:orientation=<span class="string">"vertical"</span> &gt;</span><br><span class="line"></span><br><span class="line">    &lt;Button</span><br><span class="line">        android:id=<span class="string">"@+id/save_data"</span></span><br><span class="line">        android:layout_width=<span class="string">"wrap_content"</span></span><br><span class="line">        android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">        android:text=<span class="string">"保存数据"</span> /&gt;</span><br><span class="line"></span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
+<p>  放一个按钮，将一些数据存储到SharedPreferences 文件当中。然后修改 Activity 中的代码，如下所示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">public class SharePreferencesActivity extends AppCompatActivity &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        <span class="built_in">set</span>ContentView(R.layout.activity_share_preferences);</span><br><span class="line"></span><br><span class="line">        Button save_data = (Button) findViewById(R.id.save_data);</span><br><span class="line">        save_data.setOnClickListener(new View.<span class="function"><span class="title">OnClickListener</span></span>() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(View view) &#123;</span><br><span class="line">                // 1.指定文件名为 wonderful，并得到 SharedPreferences.Editor 对象</span><br><span class="line">                SharedPreferences.Editor editor = getSharedPreferences(<span class="string">"wonderful"</span>,MODE_PRIVATE).edit();</span><br><span class="line">                // 2.添加数据</span><br><span class="line">                editor.putString(<span class="string">"name"</span>,<span class="string">"开心wonderful"</span>);</span><br><span class="line">                editor.putInt(<span class="string">"age"</span>,20);</span><br><span class="line">                editor.putBoolean(<span class="string">"married"</span>,<span class="literal">false</span>);</span><br><span class="line">                // 3.数据提交</span><br><span class="line">                editor.apply();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  运行程序，点击按钮后，这时数据已保存成功了。接下来借助 File Explorer 来进行查看：打开 Android Device Monitor→点击 File Explorer 标签页→进入/data/data/com. wonderful.myfirstcode/shared_prefs /目录，可以看到生成了一个 wonderful.xml 文件，如下：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0602%E7%94%9F%E6%88%90%E7%9A%84%20wonderful.xml%20%E6%96%87%E4%BB%B6.png" alt="" title="生成的 wonderful.xml 文件"><br>  用记事本打开这个文件，里面内容如图所示：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0603wonderful.xml%20%E6%96%87%E4%BB%B6%E4%B8%AD%E7%9A%84%E5%86%85%E5%AE%B9.png" alt="" title="wonderful.xml 文件中的内容"><br>  可以看到，在按钮的点击事件中添加的所有数据都已经成功保存下来了，并且SharedPreferences 文件是使用 XML 格式来对数据进行管理的。</p>
+<h2 id="6-2-2-从-SharedPreferences-中读取数据"><a href="#6-2-2-从-SharedPreferences-中读取数据" class="headerlink" title="6.2.2 从 SharedPreferences 中读取数据"></a>6.2.2 从 SharedPreferences 中读取数据</h2><p>  SharedPreferences 对象中提供了一系列的 get 方法用于对存储的数据进行读取，每种 get 方法都对应了 SharedPreferences. Editor 中的一种 put 方法。这些 get 方法接收两个参数，第一个参数是键，即传入存储数据时使用的键；第二个参数是默认值，即当传入的键找不到对应的值时，返回默认值。</p>
+<p>  还是例子实在，修改上面项目中的布局代码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;LinearLayout xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">    android:layout_height=<span class="string">"match_parent"</span></span><br><span class="line">    android:orientation=<span class="string">"vertical"</span>  &gt;</span><br><span class="line"></span><br><span class="line">    &lt;Button</span><br><span class="line">        android:id=<span class="string">"@+id/save_data"</span></span><br><span class="line">        android:layout_width=<span class="string">"wrap_content"</span></span><br><span class="line">        android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">        android:text=<span class="string">"保存数据"</span> /&gt;</span><br><span class="line"></span><br><span class="line">    &lt;Button</span><br><span class="line">        android:id=<span class="string">"@+id/restore_data"</span></span><br><span class="line">        android:layout_width=<span class="string">"wrap_content"</span></span><br><span class="line">        android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">        android:text=<span class="string">"读取数据"</span> /&gt;</span><br><span class="line"></span><br><span class="line">    &lt;TextView</span><br><span class="line">        android:id=<span class="string">"@+id/show_data"</span></span><br><span class="line">        android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">        android:layout_height=<span class="string">"wrap_content"</span> /&gt;</span><br><span class="line"></span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
+<p>  这里增加了一个还原数据的按钮和 TextView，点击按钮来从 SharedPreferences 文件中读取数据并在 TextView 中显示读取的数据。修改 Activity 中的代码，如下所示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">public class SharePreferencesActivity extends AppCompatActivity &#123;</span><br><span class="line"></span><br><span class="line">    private Button save_data,restore_data;</span><br><span class="line"></span><br><span class="line">    private TextView textView;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        <span class="built_in">set</span>ContentView(R.layout.activity_share_preferences);</span><br><span class="line"></span><br><span class="line">        save_data = (Button) findViewById(R.id.save_data);</span><br><span class="line">        save_data.setOnClickListener(new View.<span class="function"><span class="title">OnClickListener</span></span>() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(View view) &#123;</span><br><span class="line">                // 1.指定文件名为 wonderful，并得到 SharedPreferences.Editor 对象</span><br><span class="line">                SharedPreferences.Editor editor = getSharedPreferences(<span class="string">"wonderful"</span>,MODE_PRIVATE).edit();</span><br><span class="line">                // 2.添加不同类型的数据</span><br><span class="line">                editor.putString(<span class="string">"name"</span>,<span class="string">"开心wonderful"</span>);</span><br><span class="line">                editor.putInt(<span class="string">"age"</span>,20);</span><br><span class="line">                editor.putBoolean(<span class="string">"married"</span>,<span class="literal">false</span>);</span><br><span class="line">                // 3.数据提交</span><br><span class="line">                editor.apply();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        textView = (TextView) findViewById(R.id.show_data);</span><br><span class="line">        restore_data = (Button) findViewById(R.id.restore_data);</span><br><span class="line">        restore_data.setOnClickListener(new View.<span class="function"><span class="title">OnClickListener</span></span>() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(View view) &#123;</span><br><span class="line">                // 获得 SharedPreferences 对象</span><br><span class="line">                SharedPreferences pref = getSharedPreferences(<span class="string">"wonderful"</span>,MODE_PRIVATE);</span><br><span class="line">                // 获取相应的值</span><br><span class="line">                String name = pref.getString(<span class="string">"name"</span>,<span class="string">""</span>);</span><br><span class="line">                int age = pref.getInt(<span class="string">"age"</span>,0);</span><br><span class="line">                boolean married = pref.getBoolean(<span class="string">"married"</span>,<span class="literal">false</span>);</span><br><span class="line">                // 将获取到的值显示</span><br><span class="line">                textView.setText(<span class="string">"name is "</span> + name + <span class="string">",age is "</span>+ age + <span class="string">",married is "</span>+ married);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  重新运行一下程序，并点击界面上的 读取数据 按钮，然后查看 TextView中显示的信息，如下：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0604%E8%AF%BB%E5%8F%96%E6%95%B0%E6%8D%AE%E5%B9%B6%E6%98%BE%E7%A4%BA%E6%95%88%E6%9E%9C.png" alt="" title="读取数据并显示效果"><br>  所有之前存储的数据都成功读取出来了！相比之下，SharedPreferences 存储要比文件存储简单方便了许多。</p>
+<h2 id="6-2-3-实现记住密码功能"><a href="#6-2-3-实现记住密码功能" class="headerlink" title="6.2.3 实现记住密码功能"></a>6.2.3 实现记住密码功能</h2><p>  接下来，通过一个实现记住密码功能，来加深对 SharedPreferences 的学习。这里继续用上一章广播的强制下线的例子。</p>
+<p>  修改项目前，先来简单封装下关于 SharedPreferences 的工具类，如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * SharePreference封装</span><br><span class="line"> * Created by KXwon on 2016/7/1.</span><br><span class="line"> */</span><br><span class="line">public class PrefUtils &#123;</span><br><span class="line"></span><br><span class="line">    private static final String PREF_NAME = <span class="string">"config"</span>;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 读取布尔数据</span><br><span class="line">     * @param ctx 上下文</span><br><span class="line">     * @param key 键</span><br><span class="line">     * @param defaultValue 默认值</span><br><span class="line">     * @<span class="built_in">return</span></span><br><span class="line">     */</span><br><span class="line">    public static boolean getBoolean(Context ctx, String key,</span><br><span class="line">                                     boolean defaultValue) &#123;</span><br><span class="line">        SharedPreferences sp = ctx.getSharedPreferences(PREF_NAME,</span><br><span class="line">                Context.MODE_PRIVATE);</span><br><span class="line">        <span class="built_in">return</span> sp.getBoolean(key, defaultValue);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 添加布尔数据</span><br><span class="line">     * @param ctx 上下文</span><br><span class="line">     * @param key 键</span><br><span class="line">     * @param value 添加的数据</span><br><span class="line">     */</span><br><span class="line">    public static void <span class="built_in">set</span>Boolean(Context ctx, String key, boolean value) &#123;</span><br><span class="line">        SharedPreferences sp = ctx.getSharedPreferences(PREF_NAME,</span><br><span class="line">                Context.MODE_PRIVATE);</span><br><span class="line">        sp.edit().putBoolean(key, value).apply();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 读取字符串</span><br><span class="line">     * @param ctx</span><br><span class="line">     * @param key</span><br><span class="line">     * @param defaultValue</span><br><span class="line">     * @<span class="built_in">return</span></span><br><span class="line">     */</span><br><span class="line">    public static String getString(Context ctx, String key, String defaultValue) &#123;</span><br><span class="line">        SharedPreferences sp = ctx.getSharedPreferences(PREF_NAME,</span><br><span class="line">                Context.MODE_PRIVATE);</span><br><span class="line">        <span class="built_in">return</span> sp.getString(key, defaultValue);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 添加字符串</span><br><span class="line">     * @param ctx</span><br><span class="line">     * @param key</span><br><span class="line">     * @param value</span><br><span class="line">     */</span><br><span class="line">    public static void <span class="built_in">set</span>String(Context ctx, String key, String value) &#123;</span><br><span class="line">        SharedPreferences sp = ctx.getSharedPreferences(PREF_NAME,</span><br><span class="line">                Context.MODE_PRIVATE);</span><br><span class="line">        sp.edit().putString(key, value).apply();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 读取int类型数据</span><br><span class="line">     * @param ctx</span><br><span class="line">     * @param key</span><br><span class="line">     * @param defaultValue</span><br><span class="line">     * @<span class="built_in">return</span></span><br><span class="line">     */</span><br><span class="line">    public static int getInt(Context ctx, String key, int defaultValue) &#123;</span><br><span class="line">        SharedPreferences sp = ctx.getSharedPreferences(PREF_NAME,</span><br><span class="line">                Context.MODE_PRIVATE);</span><br><span class="line">        <span class="built_in">return</span> sp.getInt(key, defaultValue);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 添加int类型数据</span><br><span class="line">     * @param ctx</span><br><span class="line">     * @param key</span><br><span class="line">     * @param value</span><br><span class="line">     */</span><br><span class="line">    public static void <span class="built_in">set</span>Int(Context ctx, String key, int value)&#123;</span><br><span class="line">        SharedPreferences sp = ctx.getSharedPreferences(PREF_NAME,</span><br><span class="line">                Context.MODE_PRIVATE);</span><br><span class="line">        sp.edit().putInt(key, value).apply();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 将数据全部清除掉</span><br><span class="line">     * @param ctx</span><br><span class="line">     */</span><br><span class="line">    public static void clear(Context ctx)&#123;</span><br><span class="line">        SharedPreferences sp = ctx.getSharedPreferences(PREF_NAME,</span><br><span class="line">                Context.MODE_PRIVATE);</span><br><span class="line">        sp.edit().clear().apply();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  然后来编辑下登录界面，修改 activity_login.xml 中的代码如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line">&lt;LinearLayout xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">    android:layout_height=<span class="string">"match_parent"</span></span><br><span class="line">    android:orientation=<span class="string">"vertical"</span>&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!--***************** 账号 *********************--&gt;</span><br><span class="line">    &lt;LinearLayout</span><br><span class="line">        android:orientation=<span class="string">"horizontal"</span></span><br><span class="line">        android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">        android:layout_height=<span class="string">"60dp"</span>&gt;</span><br><span class="line">        &lt;TextView</span><br><span class="line">            android:layout_width=<span class="string">"90dp"</span></span><br><span class="line">            android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">            android:layout_gravity=<span class="string">"center_vertical"</span></span><br><span class="line">            android:gravity=<span class="string">"center"</span></span><br><span class="line">            android:textSize=<span class="string">"18sp"</span></span><br><span class="line">            android:text=<span class="string">"账号："</span>/&gt;</span><br><span class="line"></span><br><span class="line">        &lt;EditText</span><br><span class="line">            android:id=<span class="string">"@+id/et_account"</span></span><br><span class="line">            android:layout_width=<span class="string">"0dp"</span></span><br><span class="line">            android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">            android:layout_weight=<span class="string">"1"</span></span><br><span class="line">            android:layout_gravity=<span class="string">"center_vertical"</span>/&gt;</span><br><span class="line">    &lt;/LinearLayout&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!--***************** 密码 *********************--&gt;</span><br><span class="line">    &lt;LinearLayout</span><br><span class="line">        android:orientation=<span class="string">"horizontal"</span></span><br><span class="line">        android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">        android:layout_height=<span class="string">"60dp"</span>&gt;</span><br><span class="line">        &lt;TextView</span><br><span class="line">            android:layout_width=<span class="string">"90dp"</span></span><br><span class="line">            android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">            android:layout_gravity=<span class="string">"center_vertical"</span></span><br><span class="line">            android:gravity=<span class="string">"center"</span></span><br><span class="line">            android:textSize=<span class="string">"18sp"</span></span><br><span class="line">            android:text=<span class="string">"密码："</span>/&gt;</span><br><span class="line"></span><br><span class="line">        &lt;EditText</span><br><span class="line">            android:id=<span class="string">"@+id/et_password"</span></span><br><span class="line">            android:layout_width=<span class="string">"0dp"</span></span><br><span class="line">            android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">            android:layout_weight=<span class="string">"1"</span></span><br><span class="line">            android:layout_gravity=<span class="string">"center_vertical"</span></span><br><span class="line">            android:inputType=<span class="string">"textPassword"</span>/&gt;</span><br><span class="line">    &lt;/LinearLayout&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!--***************** 是否记住密码 *********************--&gt;</span><br><span class="line">    &lt;LinearLayout</span><br><span class="line">        android:orientation=<span class="string">"horizontal"</span></span><br><span class="line">        android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">        android:layout_height=<span class="string">"wrap_content"</span>&gt;</span><br><span class="line"></span><br><span class="line">        &lt;CheckBox</span><br><span class="line">            android:id=<span class="string">"@+id/cb_remember_pass"</span></span><br><span class="line">            android:layout_width=<span class="string">"wrap_content"</span></span><br><span class="line">            android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">            android:layout_margin=<span class="string">"10dp"</span>/&gt;</span><br><span class="line"></span><br><span class="line">        &lt;TextView</span><br><span class="line">            android:layout_width=<span class="string">"wrap_content"</span></span><br><span class="line">            android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">            android:textSize=<span class="string">"18sp"</span></span><br><span class="line">            android:layout_gravity=<span class="string">"center_vertical"</span></span><br><span class="line">            android:text=<span class="string">"记住密码"</span>/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;/LinearLayout&gt;</span><br><span class="line"></span><br><span class="line">    &lt;Button</span><br><span class="line">        android:id=<span class="string">"@+id/btn_login"</span></span><br><span class="line">        android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">        android:layout_height=<span class="string">"60dp"</span></span><br><span class="line">        android:layout_margin=<span class="string">"10dp"</span></span><br><span class="line">        android:text=<span class="string">"登录"</span>/&gt;</span><br><span class="line"></span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
+<p>  只是添加了个 CheckBox 来勾选记住密码，接着修改 LoginActivity 的代码，如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">public class LoginActivity extends BaseActivity &#123;</span><br><span class="line"></span><br><span class="line">    private EditText et_account, et_password;</span><br><span class="line">    private CheckBox cb_remember_pass;</span><br><span class="line">    private Button btn_login;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line"></span><br><span class="line">        et_account = (EditText) findViewById(R.id.et_account);</span><br><span class="line">        et_password = (EditText) findViewById(R.id.et_password);</span><br><span class="line">        cb_remember_pass = (CheckBox) findViewById(R.id.cb_remember_pass);</span><br><span class="line">        btn_login = (Button) findViewById(R.id.btn_login);</span><br><span class="line"></span><br><span class="line">        Boolean isRemember = PrefUtils.getBoolean(this,<span class="string">"remember_pass"</span>,<span class="literal">false</span>);</span><br><span class="line">        <span class="keyword">if</span> (isRemember)&#123;</span><br><span class="line">            // 将账号和密码都设置到文本框中</span><br><span class="line">            String account = PrefUtils.getString(this,<span class="string">"account"</span>,<span class="string">""</span>);</span><br><span class="line">            String password = PrefUtils.getString(this,<span class="string">"password"</span>,<span class="string">""</span>);</span><br><span class="line">            et_account.setText(account);</span><br><span class="line">            et_password.setText(password);</span><br><span class="line">            cb_remember_pass.setChecked(<span class="literal">true</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        btn_login.setOnClickListener(new View.<span class="function"><span class="title">OnClickListener</span></span>() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(View view) &#123;</span><br><span class="line">                String account = et_account.getText().toString();</span><br><span class="line">                String password = et_password.getText().toString();</span><br><span class="line">                // 若账号是 wonderful 且密码是 123456，就认为登录成功</span><br><span class="line">                <span class="keyword">if</span> (account.equals(<span class="string">"wonderful"</span>) &amp;&amp; password.equals(<span class="string">"123456"</span>))&#123;</span><br><span class="line">                    // 检查复选框是否被勾选</span><br><span class="line">                    <span class="keyword">if</span> (cb_remember_pass.isChecked())&#123;</span><br><span class="line">                        // 保存数据到SharePreference文件中</span><br><span class="line">                        PrefUtils.setBoolean(LoginActivity.this,<span class="string">"remember_pass"</span>,<span class="literal">true</span>);</span><br><span class="line">                        PrefUtils.setString(LoginActivity.this,<span class="string">"account"</span>,account);</span><br><span class="line">                        PrefUtils.setString(LoginActivity.this,<span class="string">"password"</span>,password);</span><br><span class="line">                    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                        // 清除SharePreference文件中的数据</span><br><span class="line">                        PrefUtils.clear(LoginActivity.this);</span><br><span class="line">                    &#125;</span><br><span class="line">                    // 登录成功跳转到主界面</span><br><span class="line">                    IntentUtils.myIntent(LoginActivity.this,ForceOfflineActivity.class);</span><br><span class="line">                    finish();</span><br><span class="line">                &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                    ToastUtils.showShort(<span class="string">"账号或密码无效！"</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected int <span class="function"><span class="title">initLayoutId</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> R.layout.activity_login;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  具体代码就不解释了，看注释。</p>
+<p>  现在运行下程序，输入账号和密码并选中记住密码复选框后，点击登录，就会跳转到 ForceOfflineActivity。接着在 ForceOfflineActivity 中发出一条强制下线广播会让程序重新回到登录界面， 此时你会发现，账号密码都已经自动填充到界面上了，如下：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0605%E8%AE%B0%E4%BD%8F%E5%AF%86%E7%A0%81%E5%8A%9F%E8%83%BD%E6%95%88%E6%9E%9C.gif" alt="" title="记住密码功能效果"><br>  这样我们就使用 SharedPreferences 技术将记住密码功能成功实现了。当然这只是个简单的示例，实际项目中将密码以明文的形式存储在 SharedPreferences 文件中是不安全的，还需配合加密算法进行保护。</p>
+<p>  关于 SharedPreferences 的学习就到这，接下来会在下一篇文章中学习 Android 中的数据库技术。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/wechat-qcode.jpg" alt="Jason Xu wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>如果我的文章对您有用，请打赏我一个红包吧！鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat.png" alt="Jason Xu WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.jpg" alt="Jason Xu Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+            <a href="/tags/Android-Studio/" rel="tag"># Android Studio</a>
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+            <a href="/tags/《第一行代码》（第2版）/" rel="tag"># 《第一行代码》（第2版）</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/10/01/Android开发基础05-广播机制/" rel="next" title="Android开发基础5 - 广播机制">
+                <i class="fa fa-chevron-left"></i> Android开发基础5 - 广播机制
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/10/04/Android开发基础12-Material Design 实战/" rel="prev" title="Android开发基础12-Material Design 实战">
+                Android开发基础12-Material Design 实战 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/10/03/Android开发基础06-持久化技术（上）/"
+           data-title="Android开发基础6 - 持久化技术（上）" data-url="http://xuqianzheng.com/2015/10/03/Android开发基础06-持久化技术（上）/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Jason Xu" />
+          <p class="site-author-name" itemprop="name">Jason Xu</p>
+          <p class="site-description motion-element" itemprop="description">About Life, Books and Code.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">29</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">53</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/rss2.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/xuqianzheng" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://7xsb4k.com1.z0.glb.clouddn.com/%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%AD%A6.jpg" target="_blank" title="WeChat">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  WeChat
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.quora.com/profile/Jason-Xu%EF%BC%88%E5%BE%90%E8%BF%81%E5%BE%81%EF%BC%89" target="_blank" title="Quora">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Quora
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#6-1-文件存储"><span class="nav-number">1.</span> <span class="nav-text">6.1 文件存储</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-2-SharedPreferences-存储"><span class="nav-number">2.</span> <span class="nav-text">6.2 SharedPreferences 存储</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2-1-将数据存储到-SharedPreferences-中"><span class="nav-number">2.1.</span> <span class="nav-text">6.2.1 将数据存储到 SharedPreferences 中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2-2-从-SharedPreferences-中读取数据"><span class="nav-number">2.2.</span> <span class="nav-text">6.2.2 从 SharedPreferences 中读取数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2-3-实现记住密码功能"><span class="nav-number">2.3.</span> <span class="nav-text">6.2.3 实现记住密码功能</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jason Xu</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"xuqianzheng"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+</body>
+</html>
