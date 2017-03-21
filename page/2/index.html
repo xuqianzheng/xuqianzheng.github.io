@@ -714,7 +714,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://xuqianzheng.com/2015/11/12/Android开发基础09-网络技术/">
+  <link itemprop="mainEntityOfPage" href="http://xuqianzheng.com/2015/12/02/第一行代码 阅读笔记(5-9章)/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Jason Xu">
@@ -739,8 +739,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/11/12/Android开发基础09-网络技术/" itemprop="url">
-                  第一行代码读书笔记 9 - 网络技术
+                <a class="post-title-link" href="/2015/12/02/第一行代码 阅读笔记(5-9章)/" itemprop="url">
+                  《第一行代码》阅读笔记(5-9章)
                 </a>
               
             
@@ -754,8 +754,8 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-11-12T13:20:44+08:00">
-                2015-11-12
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-12-02T23:04:45+08:00">
+                2015-12-02
               </time>
             
 
@@ -770,8 +770,8 @@
             
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
-                <a href="/2015/11/12/Android开发基础09-网络技术/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/12/Android开发基础09-网络技术/" itemprop="commentCount"></span>
+                <a href="/2015/12/02/第一行代码 阅读笔记(5-9章)/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/02/第一行代码 阅读笔记(5-9章)/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -798,23 +798,38 @@
 
       
         
-          <blockquote>
-<p><strong>本篇文章主要介绍以几下个知识点：</strong></p>
-<ul>
-<li>使用 HTTP 协议访问网络：使用 HttpURLConnection 和 OKHttp；</li>
-<li>解析 XML 格式数据：Pull 和 SAX 解析；</li>
-<li>解析 JSON 数据： JSONObject 和 GSON 解析。</li>
-</ul>
-</blockquote>
-<h1 id="9-1-使用-HTTP-协议访问网络"><a href="#9-1-使用-HTTP-协议访问网络" class="headerlink" title="9.1 使用 HTTP 协议访问网络"></a>9.1 使用 HTTP 协议访问网络</h1><p>  HTTP 协议，其工作原理很简单：客户端向服务器发出一条 HTTP 请求，服务器收到请求后会返回一些数据给客户端，然后客户端再对这些数据进行解析和处理。</p>
-<h2 id="9-1-1-使用-HttpURLConnection"><a href="#9-1-1-使用-HttpURLConnection" class="headerlink" title="9.1.1 使用 HttpURLConnection"></a>9.1.1 使用 HttpURLConnection</h2><p>  下面学习 HttpURLConnection 的用法，其请求步骤代码如下：
-          <!--noindex-->
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/11/12/Android开发基础09-网络技术/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
+            <h1 id="一-第五章"><a href="#一-第五章" class="headerlink" title="一.第五章"></a>一.第五章</h1><p>(本章只理解了大概)</p>
+<h2 id="1-广播机制"><a href="#1-广播机制" class="headerlink" title="1.广播机制"></a>1.广播机制</h2><p>广播分为标准广播与有序广播<br>标准广播直接分发到所有广播接收器<br>有序广播依次分发到各个接收器</p>
+<h1 id="二-第六章"><a href="#二-第六章" class="headerlink" title="二.第六章"></a>二.第六章</h1><h2 id="1-将数据存入-取出文件"><a href="#1-将数据存入-取出文件" class="headerlink" title="1.将数据存入/取出文件"></a>1.将数据存入/取出文件</h2><p>两种模式MODE_PRIVATE(覆盖 默认用此)和MODE_APPEND(追加)，其余两种在4.2版被废弃不做介绍。<br>注意：读取权限的申请？这里没提到，不过可能需要SD卡的读取权限。</p>
+<h2 id="2-SharedPreferences"><a href="#2-SharedPreferences" class="headerlink" title="2.SharedPreferences"></a>2.SharedPreferences</h2><p>调用Activity中的getSharedPreferences(“name”,模式)方法获取到SharedPreferences.Editor对象</p>
+<p>通过设置 key , value 方式存储键值对，最后调用apply方法保存。<br>同理于取，不做介绍。</p>
+<h2 id="3-SQLite"><a href="#3-SQLite" class="headerlink" title="3.SQLite"></a>3.SQLite</h2><p>新建类继承于SQLiteOpenHelper，在onCreate方法中新建表</p>
+<p>在onUpgrade方法中更新表，每次更新都会导致数据库数据清除，通过传入比之前更大的版本号自动调用onUpgrade方法。</p>
+<p><strong>添加数据</strong></p>
+<p>调用getWritableDatabase()方法获取数据库db<br>实例化ContentValues插入键值对后再调用db直接插入<br>其他不做介绍</p>
+<p>同样也可以直接使用sql语句操作数据库<br>eg.db.execSQL(“delete from xx where number &gt; ?”,new String[]{“500”});</p>
+<h2 id="4-LitePal-数据库开源操作库"><a href="#4-LitePal-数据库开源操作库" class="headerlink" title="4.LitePal 数据库开源操作库"></a>4.LitePal 数据库开源操作库</h2><p>(重点) 同样的有GreenDao<br>首先导入库，’org.litepal.android.core:1.3.2’<br>接着在main目录下新建assets目录下新建litepal.xml</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;litepal&gt;</span><br><span class="line">        &lt;dbname value = <span class="string">"name"</span>&gt;&lt;/dbname&gt;</span><br><span class="line">        &lt;version value = <span class="string">"1"</span>&gt;&lt;/version&gt;</span><br><span class="line"></span><br><span class="line">        &lt;list&gt;</span><br><span class="line">        &lt;/list&gt;</span><br><span class="line">&lt;litepal&gt;</span><br></pre></td></tr></table></figure>
+<p>接下来配置 AndroidManifest.xml ,在application标签下面的 android:name=”org.litepal.LitePalApplication”</p>
+<p><strong>使用</strong></p>
+<p>首先，新建对应表的实体类(类—&gt;表 一个类对应一张表)。<br>接着在litepal.xml中配置<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;litepal&gt;</span><br><span class="line">        &lt;dbname value = <span class="string">"name"</span>&gt;&lt;/dbname&gt;</span><br><span class="line">        &lt;version value = <span class="string">"1"</span>&gt;&lt;/version&gt;</span><br><span class="line"></span><br><span class="line">        &lt;list&gt;</span><br><span class="line">                &lt;mapping class = <span class="string">"com.example.xxx.class"</span>&gt;&lt;/mapping&gt;</span><br><span class="line">        &lt;/list&gt;</span><br><span class="line">&lt;litepal&gt;</span><br></pre></td></tr></table></figure></p>
+<p>eg.<br>创建数据库 Connector.getDatabase()<br>插入数据<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Class xx = new Class();</span><br><span class="line">....(设置数据)</span><br><span class="line">xx.save();</span><br></pre></td></tr></table></figure></p>
+<p>同理于其他 不予列举</p>
+<h1 id="三-第七章"><a href="#三-第七章" class="headerlink" title="三.第七章"></a>三.第七章</h1><h2 id="1-内容提供器"><a href="#1-内容提供器" class="headerlink" title="1.内容提供器"></a>1.内容提供器</h2><p>内容提供器是不同应用之间共享数据的渠道</p>
+<h2 id="2-Android权限机制"><a href="#2-Android权限机制" class="headerlink" title="2.Android权限机制"></a>2.Android权限机制</h2><p>Android权限分为普通权限和危险权限，普通权限由系统之间授权，危险权限需要示意用户是否给予权限。</p>
+<h1 id="四-第八章"><a href="#四-第八章" class="headerlink" title="四.第八章"></a>四.第八章</h1><p>本章讲调用系统组件(相机，相册等)，未仔细阅读。</p>
+<h1 id="五-第九章"><a href="#五-第九章" class="headerlink" title="五.第九章"></a>五.第九章</h1><p>注意本章要申请网络权限</p>
+<h2 id="1-WebView使用方法"><a href="#1-WebView使用方法" class="headerlink" title="1.WebView使用方法"></a>1.WebView使用方法</h2><h2 id="2-HTTP协议访问"><a href="#2-HTTP协议访问" class="headerlink" title="2.HTTP协议访问"></a>2.HTTP协议访问</h2><p>HTTP协议访问网络属于底层实现，现在常用封装好的库来代替 ，但也必须了解。<br>首先，网络属于耗时操作，只能在子线程中运行<br>几个主要的点<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Url url = new Url(<span class="string">""</span>);</span><br><span class="line">HttpConnection connection = new HttpConnection ();</span><br><span class="line">connection .setRequestMethod(<span class="string">"GET/POST"</span>);</span><br><span class="line">connection .setConnectionTimeout(8000(ms));</span><br><span class="line">connection .setReadTimeout(8000(ms));</span><br><span class="line">InputStream <span class="keyword">in</span> = connection.getInputStream();</span><br><span class="line">BufferedReader reader = new BufferedReader( new InputStreamReader(<span class="keyword">in</span>) );</span><br><span class="line">//处理reader就可以了</span><br></pre></td></tr></table></figure></p>
+<h2 id="3-使用OkHttp"><a href="#3-使用OkHttp" class="headerlink" title="3.使用OkHttp"></a>3.使用OkHttp</h2><p>okhttp是Square公司的开源网络库，类似的有Retrofit。<br>主要操作<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">OkHttpClient client = new OkHttpClient();//请求主体</span><br><span class="line">Request request = new Request.Builder()  //request对象</span><br><span class="line">              .url(<span class="string">"url"</span>)</span><br><span class="line">              .builder();</span><br><span class="line">Response response = client.newCall(request).execute();    //发送请求</span><br><span class="line"></span><br><span class="line">//-------------------------Post提交------------------------------------//</span><br><span class="line">RequestBody requestBody = new FormBody.Builder()</span><br><span class="line">                        .add(<span class="string">"key"</span>,<span class="string">"value"</span>)</span><br><span class="line">                        .builder();</span><br><span class="line">Request request = new Request.Builder()  </span><br><span class="line">              .url(<span class="string">"url"</span>)</span><br><span class="line">              .post(requestBody )</span><br><span class="line">              .builder();</span><br></pre></td></tr></table></figure></p>
+<h2 id="4-解析XML"><a href="#4-解析XML" class="headerlink" title="4.解析XML"></a>4.解析XML</h2><p>三种方式：Pull，SAX，DOM(此书未提及)</p>
+<h2 id="5-解析Json"><a href="#5-解析Json" class="headerlink" title="5.解析Json"></a>5.解析Json</h2><p>多种方式，书上主要写JSONObject，GSON还有一种常用的为FastJson<br>由于我习惯用Gson所以这里我稍微介绍下Gson。</p>
+<p>用Gson解析Json首先要先根据Json构造对应的实体类，如果用Android Studio的话可以添加插件GsonFormat根据Json自动生成对应的实体类。</p>
+<p>其次是用法<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Class JsonClass = new Gson().fromJson(String,Class.class);</span><br></pre></td></tr></table></figure></p>
+<p>如果的List的话较为麻烦 (此处凭记忆打的可能有错,具体请百度)<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;T&gt; list = new Gson().fromJson(json,new TypeToken&lt; List&lt;T&gt; &gt;() &#123;&#125;.getType() );</span><br></pre></td></tr></table></figure></p>
+<p><strong>完结</strong></p>
+
+          
         
       
     </div>
@@ -851,7 +866,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://xuqianzheng.com/2015/10/28/Android开发基础08-手机多媒体/">
+  <link itemprop="mainEntityOfPage" href="http://xuqianzheng.com/2015/11/25/第一行代码 阅读笔记(1-4章)/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Jason Xu">
@@ -876,8 +891,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/10/28/Android开发基础08-手机多媒体/" itemprop="url">
-                  Android开发基础8-手机多媒体
+                <a class="post-title-link" href="/2015/11/25/第一行代码 阅读笔记(1-4章)/" itemprop="url">
+                  《第一行代码》阅读笔记(1-4章)
                 </a>
               
             
@@ -891,8 +906,8 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-10-28T14:03:04+08:00">
-                2015-10-28
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-11-25T22:34:00+08:00">
+                2015-11-25
               </time>
             
 
@@ -907,8 +922,8 @@
             
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
-                <a href="/2015/10/28/Android开发基础08-手机多媒体/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/28/Android开发基础08-手机多媒体/" itemprop="commentCount"></span>
+                <a href="/2015/11/25/第一行代码 阅读笔记(1-4章)/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/25/第一行代码 阅读笔记(1-4章)/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -935,21 +950,29 @@
 
       
         
-          <blockquote>
-<p><strong>本篇文章主要介绍以下几个知识点：</strong></p>
-<p><em>通知的使用；
-</em>调用系统相机拍照或调用相册选取照片；<br>*播放多媒体文件。</p>
-</blockquote>
-<h1 id="8-1-使用通知"><a href="#8-1-使用通知" class="headerlink" title="8.1 使用通知"></a>8.1 使用通知</h1><p>  当某个应用程序希望向用户发送一些提示消息，而该应用程序又不在前台运行时，就可借助通知（Notification）来实现。</p>
-<h2 id="8-1-1-通知的基本用法"><a href="#8-1-1-通知的基本用法" class="headerlink" title="8.1.1 通知的基本用法"></a>8.1.1 通知的基本用法</h2><p>  通知的用法灵活，既可以在活动里创建，也可在广播接收器里创建，还可在服务里创建。</p>
-<p>  无论在哪里创建通知，整体的步骤都是相同的。接下来学习下创建通知的步骤，代码如下：
-          <!--noindex-->
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/10/28/Android开发基础08-手机多媒体/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
+            <h1 id="一-第一章"><a href="#一-第一章" class="headerlink" title="一.第一章"></a>一.第一章</h1><h2 id="1-四大组件"><a href="#1-四大组件" class="headerlink" title="1. 四大组件"></a>1. 四大组件</h2><p>活动(Activity):活动是与用户交互的界面</p>
+<p>服务(Service):在后台运行，当用户退出应用的时候也能继续运行</p>
+<p>广播接收器(broadcast receive):接受来自各处的广播，例如电话，短信。同时也能发出广播</p>
+<p>内容提供器(Content Provider):应用之间的数据共享</p>
+<h1 id="二-第二章"><a href="#二-第二章" class="headerlink" title="二.第二章"></a>二.第二章</h1><h2 id="1-活动"><a href="#1-活动" class="headerlink" title="1.活动"></a>1.活动</h2><p>活动是与用户交互的界面，同时活动应在AndroidManiFest注册才能被打开</p>
+<h2 id="2-Toast"><a href="#2-Toast" class="headerlink" title="2.Toast"></a>2.Toast</h2><h2 id="3-Menu"><a href="#3-Menu" class="headerlink" title="3.Menu"></a>3.Menu</h2><p>在res下新建文件夹menu，新建菜单</p>
+<p>重写onCreateOptionsMenu方法，导入菜单XML文件</p>
+<p>在onOptionItemSelect方法下添加点击事件</p>
+<h2 id="4-Intent-显式-隐式-其他"><a href="#4-Intent-显式-隐式-其他" class="headerlink" title="4.Intent(显式/隐式/其他)"></a>4.Intent(显式/隐式/其他)</h2><h2 id="5-活动-Activity-的生命周期！！！-这个很重要"><a href="#5-活动-Activity-的生命周期！！！-这个很重要" class="headerlink" title="5.活动(Activity)的生命周期！！！ 这个很重要"></a>5.活动(Activity)的生命周期！！！ 这个很重要</h2><p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%201-4%E7%AB%A0%E7%AC%94%E8%AE%B0%20img01.jpg" alt="" title="活动(Activity)的生命周期"><br>当切换Activity的时候会执行onPause-&gt;onStop-&gt;onRestart-&gt;onStart-&gt;onResume<br>当Dialog悬浮前端时执行 onPause-&gt;onResume</p>
+<h2 id="6-活动的启动模式"><a href="#6-活动的启动模式" class="headerlink" title="6.活动的启动模式"></a>6.活动的启动模式</h2><p>我的理解:<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%201-4%E7%AB%A0%E7%AC%94%E8%AE%B0%20img02.png" alt="" title="活动的启动模式"></p>
+<h2 id="7-随时随地退出程序-活动管理器"><a href="#7-随时随地退出程序-活动管理器" class="headerlink" title="7.随时随地退出程序(活动管理器)"></a>7.随时随地退出程序(活动管理器)</h2><p>专门创建一个活动管理器类，当要退出程序时<br>遍历所有的活动，依次finish并从List中移除</p>
+<h1 id="第三章"><a href="#第三章" class="headerlink" title="第三章"></a>第三章</h1><h2 id="1-百分比布局"><a href="#1-百分比布局" class="headerlink" title="1.百分比布局"></a>1.百分比布局</h2><p>compile com.android.support:percent:24.2.1</p>
+<p>只有PercentFrameLayout与RelativeLayout 可以设置百分比宽高 方便自适应屏幕</p>
+<h2 id="2-自定义控件"><a href="#2-自定义控件" class="headerlink" title="2.自定义控件"></a>2.自定义控件</h2><p>首先，创建自定义控件，继承于ViewGroup或者其子类 在构造方法中加载布局<br>其次，若要在XML中设置属性，必须在某个(我忘了)XML中设置属性，并在类中对应设置</p>
+<h2 id="3-ListView的使用"><a href="#3-ListView的使用" class="headerlink" title="3.ListView的使用"></a>3.ListView的使用</h2><p>首先，每个Item都是一个布局，使用先写item.xml<br>其次，要新建适配器，继承BaseAdapter 重写对应方法<br>接着，在getView中加载子项Item布局，同时填充Item数据</p>
+<p>如何提升ListView效率?<br>新建内部类对应Item视图的ViewHolder<br>通过判断converView觉得是否加载布局(复用converView)，同时也是这一步经常会出现复用bug<br>同时，每次将ViewHolder设置入converView中。</p>
+<p>关于ListView的点击事件，直接在onItemClickListener中设置对应Item的点击数据</p>
+<h2 id="4-RecyclerView的使用"><a href="#4-RecyclerView的使用" class="headerlink" title="4.RecyclerView的使用"></a>4.RecyclerView的使用</h2><p>参考我另一篇文章RecyclerView的基本用法</p>
+<h1 id="四-第四章"><a href="#四-第四章" class="headerlink" title="四.第四章"></a>四.第四章</h1><h2 id="1-Fragment的生命周期"><a href="#1-Fragment的生命周期" class="headerlink" title="1.Fragment的生命周期"></a>1.Fragment的生命周期</h2><p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%201-4%E7%AB%A0%E7%AC%94%E8%AE%B0%20img03.png" alt="" title="Fragment的生命周期"></p>
+<h2 id="2-关于FragmentManager与FragmentTransaction"><a href="#2-关于FragmentManager与FragmentTransaction" class="headerlink" title="2.关于FragmentManager与FragmentTransaction"></a>2.关于FragmentManager与FragmentTransaction</h2><p><strong>完结</strong></p>
+
+          
         
       
     </div>
@@ -981,7 +1004,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1022,7 +1045,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">29</span>
+              <span class="site-state-item-count">31</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>

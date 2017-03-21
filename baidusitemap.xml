@@ -4,12 +4,58 @@
 
     
   <url>
-    <loc>http://xuqianzheng.com/2015/11/12/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%8009-%E7%BD%91%E7%BB%9C%E6%8A%80%E6%9C%AF/</loc>
+    <loc>http://xuqianzheng.com/2015/11/25/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%20%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0(1-4%E7%AB%A0)/</loc>
+    <lastmod>2017-03-21T13:59:14.000Z</lastmod>
+    <data>
+        <display>
+        <title>《第一行代码》阅读笔记(1-4章)</title>
+        <pubTime>2015-11-25T14:34:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>Android Studio</tag>
+         
+        <tag>java</tag>
+         
+        <tag>《第一行代码》（第2版）</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://xuqianzheng.com/2015/12/02/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%20%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0(5-9%E7%AB%A0)/</loc>
+    <lastmod>2017-03-21T13:59:14.000Z</lastmod>
+    <data>
+        <display>
+        <title>《第一行代码》阅读笔记(5-9章)</title>
+        <pubTime>2015-12-02T15:04:45.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>Android Studio</tag>
+         
+        <tag>java</tag>
+         
+        <tag>《第一行代码》（第2版）</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://xuqianzheng.com/2016/01/07/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%8011-%E5%9F%BA%E4%BA%8E%E4%BD%8D%E7%BD%AE%E7%9A%84%E6%9C%8D%E5%8A%A1/</loc>
     <lastmod>2017-03-21T13:55:25.000Z</lastmod>
     <data>
         <display>
-        <title>第一行代码读书笔记 9 - 网络技术</title>
-        <pubTime>2015-11-12T05:20:44.000Z</pubTime>
+        <title>Android开发基础11-基于位置的服务</title>
+        <pubTime>2016-01-07T11:36:22.000Z</pubTime>
         
         <tag>Android</tag>
          
@@ -73,12 +119,35 @@
 
     
   <url>
-    <loc>http://xuqianzheng.com/2016/01/07/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%8011-%E5%9F%BA%E4%BA%8E%E4%BD%8D%E7%BD%AE%E7%9A%84%E6%9C%8D%E5%8A%A1/</loc>
+    <loc>http://xuqianzheng.com/2015/12/15/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%8010-%E6%8E%A2%E7%A9%B6%E6%9C%8D%E5%8A%A1%EF%BC%88%E4%B8%8A%EF%BC%89/</loc>
     <lastmod>2017-03-21T13:55:25.000Z</lastmod>
     <data>
         <display>
-        <title>Android开发基础11-基于位置的服务</title>
-        <pubTime>2016-01-07T11:36:22.000Z</pubTime>
+        <title>Android开发基础10-探究服务（上）</title>
+        <pubTime>2015-12-14T16:17:29.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>Android Studio</tag>
+         
+        <tag>java</tag>
+         
+        <tag>《第一行代码》（第2版）</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://xuqianzheng.com/2015/11/12/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%8009-%E7%BD%91%E7%BB%9C%E6%8A%80%E6%9C%AF/</loc>
+    <lastmod>2017-03-21T13:55:25.000Z</lastmod>
+    <data>
+        <display>
+        <title>第一行代码读书笔记 9 - 网络技术</title>
+        <pubTime>2015-11-12T05:20:44.000Z</pubTime>
         
         <tag>Android</tag>
          
@@ -102,29 +171,6 @@
         <display>
         <title>Android开发基础10-探究服务（中）</title>
         <pubTime>2015-12-21T12:43:48.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>Android Studio</tag>
-         
-        <tag>java</tag>
-         
-        <tag>《第一行代码》（第2版）</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://xuqianzheng.com/2015/12/15/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%8010-%E6%8E%A2%E7%A9%B6%E6%9C%8D%E5%8A%A1%EF%BC%88%E4%B8%8A%EF%BC%89/</loc>
-    <lastmod>2017-03-21T13:55:25.000Z</lastmod>
-    <data>
-        <display>
-        <title>Android开发基础10-探究服务（上）</title>
-        <pubTime>2015-12-14T16:17:29.000Z</pubTime>
         
         <tag>Android</tag>
          
@@ -281,6 +327,31 @@
 
     
   <url>
+    <loc>http://xuqianzheng.com/2015/09/08/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%8001-%E5%90%AF%E7%A8%8B/</loc>
+    <lastmod>2016-12-18T17:16:10.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android开发基础1 - 启程</title>
+        <pubTime>2015-09-08T05:11:03.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>gradle</tag>
+         
+        <tag>Android Studio</tag>
+         
+        <tag>java</tag>
+         
+        <tag>《第一行代码》（第2版）</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://xuqianzheng.com/2015/09/15/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%8002-%E6%8E%A2%E7%A9%B6%E6%B4%BB%E5%8A%A8/</loc>
     <lastmod>2016-12-18T17:16:10.000Z</lastmod>
     <data>
@@ -320,31 +391,6 @@
         <tag>《第一行代码》（第2版）</tag>
          
         <tag>UI</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://xuqianzheng.com/2015/09/08/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%8001-%E5%90%AF%E7%A8%8B/</loc>
-    <lastmod>2016-12-18T17:16:10.000Z</lastmod>
-    <data>
-        <display>
-        <title>Android开发基础1 - 启程</title>
-        <pubTime>2015-09-08T05:11:03.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>gradle</tag>
-         
-        <tag>Android Studio</tag>
-         
-        <tag>java</tag>
-         
-        <tag>《第一行代码》（第2版）</tag>
          
          
            
@@ -403,9 +449,9 @@
         
         <tag>工业机器人</tag>
          
-        <tag>控制硬件</tag>
-         
         <tag>设计</tag>
+         
+        <tag>控制硬件</tag>
          
          
            
@@ -474,11 +520,11 @@
         
         <tag>生活</tag>
          
-        <tag>职业规划</tag>
-         
         <tag>读书</tag>
          
         <tag>思考</tag>
+         
+        <tag>职业规划</tag>
          
          
            
@@ -499,11 +545,11 @@
          
         <tag>机械设计</tag>
          
+        <tag>读书</tag>
+         
         <tag>职业规划</tag>
          
         <tag>机械工程师</tag>
-         
-        <tag>读书</tag>
          
          
            
@@ -655,9 +701,9 @@
         <title>详解伺服电机选型中的惯量匹配</title>
         <pubTime>2014-02-16T16:25:20.000Z</pubTime>
         
-        <tag>伺服电机</tag>
-         
         <tag>控制硬件</tag>
+         
+        <tag>伺服电机</tag>
          
         <tag>惯量匹配</tag>
          
