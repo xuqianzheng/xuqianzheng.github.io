@@ -4,6 +4,29 @@
 
     
   <url>
+    <loc>http://xuqianzheng.com/2015/10/28/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%8008-%E6%89%8B%E6%9C%BA%E5%A4%9A%E5%AA%92%E4%BD%93/</loc>
+    <lastmod>2017-03-21T14:34:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android开发基础8-手机多媒体</title>
+        <pubTime>2015-10-28T06:03:04.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>Android Studio</tag>
+         
+        <tag>java</tag>
+         
+        <tag>《第一行代码》（第2版）</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://xuqianzheng.com/2015/11/12/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%8009-%E7%BD%91%E7%BB%9C%E6%8A%80%E6%9C%AF/</loc>
     <lastmod>2017-03-21T14:10:49.000Z</lastmod>
     <data>
@@ -104,11 +127,11 @@
         
         <tag>生活</tag>
          
-        <tag>职业规划</tag>
-         
         <tag>读书</tag>
          
         <tag>思考</tag>
+         
+        <tag>职业规划</tag>
          
          
            
@@ -187,29 +210,6 @@
 
     
   <url>
-    <loc>http://xuqianzheng.com/2015/12/21/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%8010-%E6%8E%A2%E7%A9%B6%E6%9C%8D%E5%8A%A1%EF%BC%88%E4%B8%AD%EF%BC%89/</loc>
-    <lastmod>2017-03-21T13:55:25.000Z</lastmod>
-    <data>
-        <display>
-        <title>Android开发基础10-探究服务（中）</title>
-        <pubTime>2015-12-21T12:43:48.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>Android Studio</tag>
-         
-        <tag>java</tag>
-         
-        <tag>《第一行代码》（第2版）</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://xuqianzheng.com/2015/12/15/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%8010-%E6%8E%A2%E7%A9%B6%E6%9C%8D%E5%8A%A1%EF%BC%88%E4%B8%8A%EF%BC%89/</loc>
     <lastmod>2017-03-21T13:55:25.000Z</lastmod>
     <data>
@@ -256,12 +256,12 @@
 
     
   <url>
-    <loc>http://xuqianzheng.com/2016/01/07/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%8011-%E5%9F%BA%E4%BA%8E%E4%BD%8D%E7%BD%AE%E7%9A%84%E6%9C%8D%E5%8A%A1/</loc>
+    <loc>http://xuqianzheng.com/2015/12/21/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%8010-%E6%8E%A2%E7%A9%B6%E6%9C%8D%E5%8A%A1%EF%BC%88%E4%B8%AD%EF%BC%89/</loc>
     <lastmod>2017-03-21T13:55:25.000Z</lastmod>
     <data>
         <display>
-        <title>Android开发基础11-基于位置的服务</title>
-        <pubTime>2016-01-07T11:36:22.000Z</pubTime>
+        <title>Android开发基础10-探究服务（中）</title>
+        <pubTime>2015-12-21T12:43:48.000Z</pubTime>
         
         <tag>Android</tag>
          
@@ -279,12 +279,12 @@
 
     
   <url>
-    <loc>http://xuqianzheng.com/2015/10/28/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%8008-%E6%89%8B%E6%9C%BA%E5%A4%9A%E5%AA%92%E4%BD%93/</loc>
-    <lastmod>2017-03-21T13:54:03.000Z</lastmod>
+    <loc>http://xuqianzheng.com/2016/01/07/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%8011-%E5%9F%BA%E4%BA%8E%E4%BD%8D%E7%BD%AE%E7%9A%84%E6%9C%8D%E5%8A%A1/</loc>
+    <lastmod>2017-03-21T13:55:25.000Z</lastmod>
     <data>
         <display>
-        <title>Android开发基础8-手机多媒体</title>
-        <pubTime>2015-10-28T06:03:04.000Z</pubTime>
+        <title>Android开发基础11-基于位置的服务</title>
+        <pubTime>2016-01-07T11:36:22.000Z</pubTime>
         
         <tag>Android</tag>
          
@@ -441,31 +441,6 @@
 
     
   <url>
-    <loc>http://xuqianzheng.com/2015/09/08/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%8001-%E5%90%AF%E7%A8%8B/</loc>
-    <lastmod>2016-12-18T17:16:10.000Z</lastmod>
-    <data>
-        <display>
-        <title>Android开发基础1 - 启程</title>
-        <pubTime>2015-09-08T05:11:03.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>gradle</tag>
-         
-        <tag>Android Studio</tag>
-         
-        <tag>java</tag>
-         
-        <tag>《第一行代码》（第2版）</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://xuqianzheng.com/2015/09/20/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%8003-UI%20%E5%BC%80%E5%8F%91/</loc>
     <lastmod>2016-12-18T17:16:10.000Z</lastmod>
     <data>
@@ -482,6 +457,31 @@
         <tag>《第一行代码》（第2版）</tag>
          
         <tag>UI</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://xuqianzheng.com/2015/09/08/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%8001-%E5%90%AF%E7%A8%8B/</loc>
+    <lastmod>2016-12-18T17:16:10.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android开发基础1 - 启程</title>
+        <pubTime>2015-09-08T05:11:03.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>Android Studio</tag>
+         
+        <tag>java</tag>
+         
+        <tag>《第一行代码》（第2版）</tag>
+         
+        <tag>gradle</tag>
          
          
            
@@ -582,11 +582,11 @@
          
         <tag>机械设计</tag>
          
+        <tag>读书</tag>
+         
         <tag>职业规划</tag>
          
         <tag>机械工程师</tag>
-         
-        <tag>读书</tag>
          
          
            
