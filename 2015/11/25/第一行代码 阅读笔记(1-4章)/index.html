@@ -103,7 +103,7 @@
 <meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%201-4%E7%AB%A0%E7%AC%94%E8%AE%B0%20img01.jpg">
 <meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%201-4%E7%AB%A0%E7%AC%94%E8%AE%B0%20img02.png">
 <meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%201-4%E7%AB%A0%E7%AC%94%E8%AE%B0%20img03.png">
-<meta property="og:updated_time" content="2017-03-21T13:59:14.000Z">
+<meta property="og:updated_time" content="2017-03-21T14:00:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《第一行代码》阅读笔记(1-4章)">
 <meta name="twitter:description" content="一.第一章1. 四大组件活动(Activity):活动是与用户交互的界面
@@ -405,7 +405,7 @@
 <h1 id="二-第二章"><a href="#二-第二章" class="headerlink" title="二.第二章"></a>二.第二章</h1><h2 id="1-活动"><a href="#1-活动" class="headerlink" title="1.活动"></a>1.活动</h2><p>活动是与用户交互的界面，同时活动应在AndroidManiFest注册才能被打开</p>
 <h2 id="2-Toast"><a href="#2-Toast" class="headerlink" title="2.Toast"></a>2.Toast</h2><h2 id="3-Menu"><a href="#3-Menu" class="headerlink" title="3.Menu"></a>3.Menu</h2><p>在res下新建文件夹menu，新建菜单</p>
 <p>重写onCreateOptionsMenu方法，导入菜单XML文件</p>
-<p>在onOptionItemSelect方法下添加点击事件</p>
+<p>在onOptionItemSelect方法下添加点击事件<a id="more"></a></p>
 <h2 id="4-Intent-显式-隐式-其他"><a href="#4-Intent-显式-隐式-其他" class="headerlink" title="4.Intent(显式/隐式/其他)"></a>4.Intent(显式/隐式/其他)</h2><h2 id="5-活动-Activity-的生命周期！！！-这个很重要"><a href="#5-活动-Activity-的生命周期！！！-这个很重要" class="headerlink" title="5.活动(Activity)的生命周期！！！ 这个很重要"></a>5.活动(Activity)的生命周期！！！ 这个很重要</h2><p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%201-4%E7%AB%A0%E7%AC%94%E8%AE%B0%20img01.jpg" alt="" title="活动(Activity)的生命周期"><br>当切换Activity的时候会执行onPause-&gt;onStop-&gt;onRestart-&gt;onStart-&gt;onResume<br>当Dialog悬浮前端时执行 onPause-&gt;onResume</p>
 <h2 id="6-活动的启动模式"><a href="#6-活动的启动模式" class="headerlink" title="6.活动的启动模式"></a>6.活动的启动模式</h2><p>我的理解:<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%201-4%E7%AB%A0%E7%AC%94%E8%AE%B0%20img02.png" alt="" title="活动的启动模式"></p>
 <h2 id="7-随时随地退出程序-活动管理器"><a href="#7-随时随地退出程序-活动管理器" class="headerlink" title="7.随时随地退出程序(活动管理器)"></a>7.随时随地退出程序(活动管理器)</h2><p>专门创建一个活动管理器类，当要退出程序时<br>遍历所有的活动，依次finish并从List中移除</p>

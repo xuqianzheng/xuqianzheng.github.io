@@ -1,0 +1,1068 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android,JavaScript,Java,Python,ruby,C,Golang,Haskell,PHP,Swift,C#," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="Third Type Of Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="前言：大多数人的编程之旅都是从搜索引擎开始的。例如搜索“XX语言入门教程”。但要怎么决定从哪门语言开始呢？或者当我们不知所措的时候，只能搜：”入门学什么编程语言比较好？”初学者顾虑的问题通常就那么几个，下面这张图很好地回答了这些疑惑：
+选择第一门编程语言的过程十分有趣，这就好像是个人的信仰选择问题一样。也许因为你像个孩子一样喜欢玩橡皮泥，稀里糊涂都打算开始学 Ruby 。我还是要提醒你，不要草率做">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小白如何选择自己的第一门编程语言">
+<meta property="og:url" content="http://xuqianzheng.com/2016/05/01/小白如何选择自己的第一门编程语言/index.html">
+<meta property="og:site_name" content="Third Type Of Blog">
+<meta property="og:description" content="前言：大多数人的编程之旅都是从搜索引擎开始的。例如搜索“XX语言入门教程”。但要怎么决定从哪门语言开始呢？或者当我们不知所措的时候，只能搜：”入门学什么编程语言比较好？”初学者顾虑的问题通常就那么几个，下面这张图很好地回答了这些疑惑：
+选择第一门编程语言的过程十分有趣，这就好像是个人的信仰选择问题一样。也许因为你像个孩子一样喜欢玩橡皮泥，稀里糊涂都打算开始学 Ruby 。我还是要提醒你，不要草率做">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/640%E7%BC%96%E7%A8%8B.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/640.webp%20%2801%29.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/640.webp.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/640.webp%20%281%29.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/640.webp%20%282%29.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/640.webp%20%283%29.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/640.webp%20%284%29.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/640.webp%20%285%29.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/640.webp%20%286%29.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/640.webp%20%287%29.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/640.webp%20%288%29.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/640.webp%20%289%29.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/640.webp%20%2810%29.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/640.webp%20%2811%29.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/640.webp%20%2812%29.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/640.webp%20%2813%29.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/640.webp%20%2814%29.jpg">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/640.webp%20%2815%29.jpg">
+<meta property="og:updated_time" content="2017-03-21T14:05:15.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="小白如何选择自己的第一门编程语言">
+<meta name="twitter:description" content="前言：大多数人的编程之旅都是从搜索引擎开始的。例如搜索“XX语言入门教程”。但要怎么决定从哪门语言开始呢？或者当我们不知所措的时候，只能搜：”入门学什么编程语言比较好？”初学者顾虑的问题通常就那么几个，下面这张图很好地回答了这些疑惑：
+选择第一门编程语言的过程十分有趣，这就好像是个人的信仰选择问题一样。也许因为你像个孩子一样喜欢玩橡皮泥，稀里糊涂都打算开始学 Ruby 。我还是要提醒你，不要草率做">
+<meta name="twitter:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/640%E7%BC%96%E7%A8%8B.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://xuqianzheng.com/2016/05/01/小白如何选择自己的第一门编程语言/"/>
+
+
+
+
+
+  <title> 小白如何选择自己的第一门编程语言 | Third Type Of Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?3f7ae1fa714b160af9e4a2f1cc75d137";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=56301679";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Third Type Of Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Machine Learning</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://xuqianzheng.com/2016/05/01/小白如何选择自己的第一门编程语言/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Jason Xu">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Third Type Of Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Third Type Of Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                小白如何选择自己的第一门编程语言
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-05-01T23:11:03+08:00">
+                2016-05-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2016/05/01/小白如何选择自己的第一门编程语言/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/01/小白如何选择自己的第一门编程语言/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h1><p>大多数人的编程之旅都是从搜索引擎开始的。例如搜索“XX语言入门教程”。<br>但要怎么决定从哪门语言开始呢？或者当我们不知所措的时候，只能搜：”入门学什么编程语言比较好？”初学者顾虑的问题通常就那么几个，下面这张图很好地回答了这些疑惑：<br><span itemprop="image" itemscope="" itemtype="http://schema.org/ImageObject"><img itemprop="url image" src="http://7xsb4k.com1.z0.glb.clouddn.com/640%E7%BC%96%E7%A8%8B.jpg" class="full-image" alt="alt"><meta itemprop="width" content="auto"><meta itemprop="height" content="auto"></span></p>
+<p>选择第一门编程语言的过程十分有趣，这就好像是个人的信仰选择问题一样。也许因为你像个孩子一样喜欢玩橡皮泥，稀里糊涂都打算开始学 <font color="#1E90FF">Ruby</font> 。我还是要提醒你，不要草率做决定。想要真正掌握你的第一门编程语言，你需要投入成千上百小时来学习实践。所以你要考虑清楚以下这几个方面：<br><a id="more"></a></p>
+<ul>
+<li>这门语言的岗位需求大不大；</li>
+<li>这门语言有没有发展前景；</li>
+<li>语言的学习难度；</li>
+<li>在学习过程中你能运用它开发什么样的练手项目（把你的成果分享给周围的朋友才能激励你坚持学习下去）。</li>
+</ul>
+<h1 id="主流编程语言的热度"><a href="#主流编程语言的热度" class="headerlink" title="主流编程语言的热度"></a>主流编程语言的热度</h1><p>每年都会有新的编程语言出现，以及随着而来的学术论文亦或者是搞笑段子：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/640.webp%20%2801%29.jpg" alt=""><br>第一门编程语言可选择的范围很广。下面这张图很清晰地显示了过去12年几门语言学习的Google搜索热度变化：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/640.webp.jpg" alt=""></p>
+<p><font color="#1E90FF"> Java </font> 有起有落，而<font color="#1E90FF"> Python </font>逐渐成为了最受欢迎的入门语言。除此之外，还有最近几年逐步火起来的JavaScript。（新手请注意，Java和JavaScript之间的区别就像是周杰和周杰伦之间的区别。）在我展开讨论之前，先明确几点：</p>
+<ul>
+<li>我并不会在这里争论哪门语言要比哪门优越；</li>
+<li>我认同一名合格的程序员最终应该掌握不止一门编程语言；</li>
+<li>我想说明的是，对于刚入门的初学者来说，还是应该先专注于一门语言的学习。而这门语言，我想你可能早就在文章标签中发现了 —— 就是JavaScript。</li>
+</ul>
+<h1 id="高校的编程教学现状"><a href="#高校的编程教学现状" class="headerlink" title="高校的编程教学现状"></a>高校的编程教学现状</h1><p>我们先来聊聊现在学校里的编程教学是什么情况。</p>
+<p><strong>计算机基础教学</strong><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/640.webp%20%281%29.jpg" alt=""><br>一般在大学教授编程课程的都是计算机系，而计算机专业一般数学和电子方面的内容又比较多。当然你可能早就听说过：</p>
+<blockquote>
+<p>计算机科学的教育无法使任何人成为专业的程序员，就好像学习怎么使用刷子和颜料无法让任何人成为画家一样 —— Eric S.Raymond（《大教堂与集市》作者）</p>
+</blockquote>
+<p>即使在2016年的今天，许多大学还像教计算机科学一样教编程，像教数学一样教计算机编程。所以许多课程中编排的入门语言是<font color="#1E90FF"> C </font>这样底层抽象的语言，或者是专门针对数学的<font color="#1E90FF"> MATLAB </font>。一些专业权威的机构也推出了他们的编程语言年度排行榜，例如<a href="http://www.tiobe.com/tiobe-index/" target="_blank" rel="external">TIOBE Index</a>，又或者是下面这个来自<a href="http://spectrum.ieee.org/computing/software/the-2016-top-programming-languages" target="_blank" rel="external">IEEE</a>的榜单：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/640.webp%20%282%29.jpg" alt=""></p>
+<p>大多数这类榜单10年来都没有什么变化。但事实上不是这样的，包括在学术界。早在2014年，Python就超过了Java，成为了最受美国各大<font color="#1E90FF"> CS </font>(Computer Science)机构欢迎的教学语言。<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/640.webp%20%283%29.jpg" alt=""></p>
+<p>而在实际上的生产工作中，也发生了和权威机构发布的完全不一样的变化（数据来自49,397开发者参与的<font color="#1E90FF"> StackOverflow </font> 2016年度调查）：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/640.webp%20%284%29.jpg" alt=""></p>
+<p>多一半的开发者都在使用JavaScript。它最早只在前端开发应用，现在也逐步在后端流行开来。甚至开始延伸到游戏开发和物联网领域。工作岗位上对JavaScript的需求也仅次于Java（数据来自<a href="http://www.indeed.com/jobtrends/q-java-q-python-q-javascript-q-ruby-q-php-q-android-q-ios.html" target="_blank" rel="external">Indeed.com</a>）：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/640.webp%20%285%29.jpg" alt=""></p>
+<p>所以我推荐初学者将JavaScript作为自己的第一门语言。我再推荐一个免费的JavaScript开源社区<a href="https://freecodecamp.cn/home" target="_blank" rel="external">FreeCodeCamp</a>，这个社区已经帮助<font color="#1E90FF"> 5k+ </font>名JavaScript初学者找到了工作。</p>
+<h1 id="JavaScript-的市场分析"><a href="#JavaScript-的市场分析" class="headerlink" title="JavaScript 的市场分析"></a>JavaScript 的市场分析</h1><p>不过，JavaScript是否适合你？它是否值得你为之献出第一次？我们来继续分析：</p>
+<h2 id="事实一：岗位需求"><a href="#事实一：岗位需求" class="headerlink" title="事实一：岗位需求"></a>事实一：岗位需求</h2><p>如果你只是为了好奇好玩而学编程的话，可以忽略这一点。但如果你和大多数人一样，想通过掌握编程技能找到工作的话，这点对你就非常重要了。像我之前提到的，JavaScript是除Java之外需求量最大的编程语言。另外还有一点：JavaScript已经发展了20多年，而直到最近，一些诸如<font color="#1E90FF"> Netflix </font>, <font color="#1E90FF"> Walmart </font>和<font color="#1E90FF"> PayPal </font>一类的大公司才开始全栈应用JS构建他们的应用。所以就造成了市场上JavaScript开发者供不应求的状况（数据来自<a href="http://www.indeed.com/jobtrends/q-java-q-python-q-javascript-q-ruby-q-php-q-android-q-ios.html" target="_blank" rel="external">Indeed.com</a>）。<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/640.webp%20%286%29.jpg" alt=""></p>
+<p>从图上来看，每个Java岗位大概有2.7人在竞争，<font color="#1E90FF"> IOS </font>和<font color="#1E90FF"> PHP </font>也平均都有2人以上竞争。而通过计算，每个JavaScript岗位只有0.7，这就成了属于JavaScript开发者的卖家市场。为了更具说服力，特此补充国内的编程语言岗位情况（数据来源<a href="http://www.oschina.net/question/58387_246846" target="_blank" rel="external">2015年8月 中国版的编程语言排行榜</a>）：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/640.webp%20%287%29.jpg" alt=""></p>
+<h2 id="事实二：发展前景"><a href="#事实二：发展前景" class="headerlink" title="事实二：发展前景"></a>事实二：发展前景</h2><p>在<font color="#1E90FF"> Github </font>上，平均每个JavaScript的项目收到的<font color="#1E90FF"> pull requests </font>要比其他语言多两倍以上。其增长速度也远超别的流行语言。<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/640.webp%20%288%29.jpg" alt=""></p>
+<p>JavaScript的整个生态体系也因为<font color="#1E90FF"> Google </font>, <font color="#1E90FF"> Microsoft </font>, <font color="#1E90FF"> Facebook </font>, <font color="#1E90FF"> Netflix </font>这类大公司的投资而受益匪浅。例如<font color="#1E90FF"> TypeScript </font>（一种JavaScript的超集，提供更丰富特性，可编译为普通JavaScript）有着超过100名开源贡献者，而这里面大多数都是微软和谷歌的员工。而且这类集团公司很少有使用Java的。因为Java的所有者<font color="#1E90FF"> Oracle </font>经常会因为各种有关Java开发的原因起诉别的公司。</p>
+<h2 id="事实三：学习难度"><a href="#事实三：学习难度" class="headerlink" title="事实三：学习难度"></a>事实三：学习难度</h2><p><img src="http://7xsb4k.com1.z0.glb.clouddn.com/640.webp%20%289%29.jpg" alt=""></p>
+<p>大多数的程序员应该都会认同，高级的脚本语言通常比较好学。JavaScript当然属于此类，也包括Ruby和Python。即便很多大学课程教授的都是Java或<font color="#1E90FF"> C++ </font>，这类语言也真的很难上手。</p>
+<h2 id="事实四：你能实践的练手项目"><a href="#事实四：你能实践的练手项目" class="headerlink" title="事实四：你能实践的练手项目"></a>事实四：你能实践的练手项目</h2><p>这是JavaScript最大的优势。JavaScript可以运行在任何有浏览器的设备上。你几乎可以用JS开发任何应用，而且很方便就能分享发布到任何地方。正是由于JavaScript无处不在，StackOverflow的联合创始人<font color="#1E90FF"> Jeff Atwood </font>才说出他的那句经典定律：</p>
+<blockquote>
+<p>任何可以用JavaScript写成的应用，最终都会使用JavaScript写成。</p>
+</blockquote>
+<p><strong>现实也在不断的佐证</strong>，<a href="https://www.reddit.com/r/atwoodslaw/" target="_blank" rel="external">证据在此</a>。<br>Java也曾号称是跨平台语言。可也许你了解到，Oracle官方在今年早些时候终止了<a href="http://motherboard.vice.com/read/a-brief-history-of-the-java-applet" target="_blank" rel="external">Java Applets</a>的支持。</p>
+<p>Python也经常会遇到类似的问题：</p>
+<p>我怎么才能把我写的这个游戏发给我的朋友？或者能够不安装什么应用就在手机上运行么？ - <a href="http://prog21.dadgum.com/203.html" target="_blank" rel="external">James Hague in Retiring Python as a TeachingLanguage</a></p>
+<p>相比之下，JavaScript要方便很多。下面的这些应用来自JavaScript开发者的开源项目，你只需要在浏览器里打开链接就能开始玩啦：</p>
+<p><a href="http://s.codepen.io/adambeagle/debug/qOamaz" target="_blank" rel="external">1970s style Simon game</a><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/640.webp%20%2810%29.jpg" alt=""><br><a href="http://s.codepen.io/safx/debug/Ewcym" target="_blank" rel="external">Conway’s Game of Life</a><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/640.webp%20%2811%29.jpg" alt=""><br><a href="http://s.codepen.io/duttakapil/debug/BKGjOa" target="_blank" rel="external">Star Wars-themed Wikipedia Search</a><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/640.webp%20%2812%29.jpg" alt=""><br><a href="http://s.codepen.io/Megabyteceer/debug/qbXJMQ" target="_blank" rel="external">A roguelike dungeon crawler game</a><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/640.webp%20%2813%29.jpg" alt=""><br>先专注学好一门语言，再去学别的。如果你总是在各个语言之间摇摆不定，你很难取得什么实质上的进步。为了避免在入门阶段止步不前，你需要扎实学好你的第一门语言。之后再学习别的语言你就会感觉到异常轻松。等到那个阶段，你就可以逐步成长为一名掌握许多语言的全面的开发者啦：</p>
+<ul>
+<li>C 对于你理解计算机原理特别有帮助，例如内存管理之类的。在高性能计算中非常有用；</li>
+<li>C++ 在游戏开发中运用广泛；</li>
+<li>Python 在科学研究和数据分析中应用广泛；</li>
+<li>如果你想在大型的科技公司中工作，Java就非常重要。</li>
+</ul>
+<h1 id="小白的顾虑："><a href="#小白的顾虑：" class="headerlink" title="小白的顾虑："></a>小白的顾虑：</h1><p><strong>Q1：JavaScript运行速度不是很慢么？</strong></p>
+<p>在很多实际运用场景中，JavaScript和一些高性能语言运行一样快。<font color="#1E90FF"> Node.js </font>要比Python, Ruby, <font color="#1E90FF"> PHP </font>快上好几个数量级。甚至已经接近了C++, Java, <font color="#1E90FF"> Go </font>的性能。下面是一个比较全面的编程语言“跑分评测”：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/640.webp%20%2814%29.jpg" alt=""></p>
+<p><strong>Q2：JavaScript连静态语言都不是！</strong></p>
+<p>和Python/Ruby一样，JavaScript属于动态语言，使用起来也很方便。举个例子，假如我想把变量<font color="#1E90FF"> exampleArray </font>设为数组，我会先给它赋值，然后通<font color="#1E90FF"> length </font>函数来获取数组中元素的数量。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">exampleArray = [1, 2]</span><br><span class="line">-&gt; [1, 2]</span><br><span class="line">exampleArray.length</span><br><span class="line">-&gt; 2</span><br></pre></td></tr></table></figure>
+<p>但假如我不小心赋值给了它一个字符串，代码照样运行不会报错，可并不是我想要的结果：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">exampleArray = <span class="string">"text"</span></span><br><span class="line">-&gt; <span class="string">"text"</span></span><br><span class="line">exampleArray.length</span><br><span class="line">-&gt; 4</span><br></pre></td></tr></table></figure>
+<p>这一类错误在动态类型的语言中经常会遇到。大多数的开发者都会专门写一些检查和测试来避免此类错误的发生。如果你非要学一门静态语言的话，我依旧推荐你学习JavaScript，之后再开始学习TypeScript。</p>
+<blockquote>
+<p>TypeScript是有学习曲线的，但在掌握了JavaScript之后，你的学习会很顺利。— Alex Ewerlöf on TypeScript</p>
+</blockquote>
+<p><strong>Q3：我想要学的是怎么开发移动<font color="#1E90FF"> App </font></strong></p>
+<p>那你也还应该先学JavaScript呀~</p>
+<p>JavaScript有一些很棒的工具可以开发原生的移动应用，例如<a href="http://ngcordova.com/" target="_blank" rel="external">Angular Cordova</a>和<a href="https://facebook.github.io/react-native/" target="_blank" rel="external">React Native</a>。</p>
+<p>为了让你的移动App真的像模像样，它至少得有个后端，你用一些合适的Web开发框架可以很轻松地实现，例如<font color="#1E90FF"> Node.js </font>+<font color="#1E90FF"> Express.js </font>。</p>
+<p>而且移动开发的春天也正是 JavaScript 的流行带来的。在StackOverflow的调查中，有近一半的开发者的岗位都是Web开发，移动开发岗只占了8%。<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/640.webp%20%2815%29.jpg" alt=""></p>
+<p>“为某事专门下一个App”的境况也已不再，大多数的<a href="http://www.recode.net/2016/9/16/12933780/average-app-downloads-per-month-comscore" target="_blank" rel="external">智能手机用户开始趋于不下载新的App了</a>。</p>
+<p>当然，人们还在用着App。绝大多数都是大厂的<font color="#1E90FF"> 微信 </font>、<font color="#1E90FF"> 支付宝 </font>一类（原文：Mostly Facebook, Google Maps, and handful of others）。市场对移动开发的需求也越来越小。</p>
+<p>移动开发的前景也难以预期。而且在许多方面，使用JavaScript来开发维护和部署移动应用要更加轻松简单。所以像<font color="#1E90FF"> Facebook </font>和<font color="#1E90FF"> Google </font>这样的公司在研发更好的JavaScript工具上投入的越来越多。</p>
+<p>在2016年，几乎所有的开发都和Web开发有关。所有的事情都依附着互联网这个大平台。而且下一波将要崛起的设备 —— <font color="#1E90FF"> 智能家居 </font>、<font color="#1E90FF"> 自动驾驶 </font>汽车等也都需要依附于网络。</p>
+<p><strong>Q4：JavaScript不是一个只花10天写着玩的语言么？</strong></p>
+<p>JavaScript有一段<a href="http://www.w3school.com.cn/js/pro_js_history.asp" target="_blank" rel="external">简史</a>。程序员们也经常会拿JavaScript开<a href="http://blog.csdn.net/bitfan/article/details/10362461" target="_blank" rel="external">各种各样的玩笑</a>。同样人们也喜欢吐槽C++，可不管有多少人吐槽，C++依然很成功。这就和PHP是全世界最好的语言是一个道理。</p>
+<p>所以如果再有人在你面前说JavaScript怎么怎么不好的话，请记住C++之父的那句名言：</p>
+<blockquote>
+<p>世界上只有两种编程语言：一种是天天被人喷的，另一种是没人用的。— Bjarne Stroustrup</p>
+</blockquote>
+<h1 id="JavaScript-学习："><a href="#JavaScript-学习：" class="headerlink" title="JavaScript 学习："></a>JavaScript 学习：</h1><h2 id="学习方法"><a href="#学习方法" class="headerlink" title="学习方法"></a>学习方法</h2><ul>
+<li><a href="https://zhuanlan.zhihu.com/p/23334342?refer=icode" target="_blank" rel="external">在2016年如何学习JavaScript？</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/23412169?refer=icode" target="_blank" rel="external">6周学习计划，攻克JavaScript难关(React/Redux/ES6 etc.)</a></li>
+</ul>
+<h2 id="成功案例"><a href="#成功案例" class="headerlink" title="成功案例"></a>成功案例</h2><ul>
+<li><a href="https://segmentfault.com/a/1190000004292245" target="_blank" rel="external">科班狗的前端之路</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/23272560?refer=icode" target="_blank" rel="external">非计算机专业出身的我是如何在两年内成长为前端工程师</a></li>
+<li><a href="http://mp.weixin.qq.com/s/0v_shkJm5i9PwzFyjTJleA" target="_blank" rel="external">平面模特的转行之路(IOS开发)</a></li>
+</ul>
+<h2 id="完整的-Web-开发学习"><a href="#完整的-Web-开发学习" class="headerlink" title="完整的 Web 开发学习"></a>完整的 Web 开发学习</h2><ul>
+<li><a href="https://zhuanlan.zhihu.com/p/22978846?refer=icode" target="_blank" rel="external">Come on Baby！你也可以成为Web开发工程师！——Web开发工程师完全成长指南</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/22213177?refer=icode" target="_blank" rel="external">如何在一年之内通过自学找到Web开发工作</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/21935921?refer=icode" target="_blank" rel="external">前端学习路径</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/22080792?refer=icode" target="_blank" rel="external">2016/2017 Web 开发者路线图</a></li>
+</ul>
+<h2 id="FreeCodeCamp-前端学习社区"><a href="#FreeCodeCamp-前端学习社区" class="headerlink" title="FreeCodeCamp 前端学习社区"></a>FreeCodeCamp 前端学习社区</h2><ul>
+<li><a href="https://zhuanlan.zhihu.com/p/22841310?refer=icode" target="_blank" rel="external">FreeCodeCamp学习资料</a></li>
+</ul>
+<blockquote>
+<p>原文链接：<a href="https://medium.com/m/global-identity?redirectUrl=https://medium.freecodecamp.com/what-programming-language-should-i-learn-first-%CA%87d%C4%B1%C9%B9%C9%94s%C9%90%CA%8C%C9%90%C9%BE-%C9%B9%C7%9D%CA%8Dsu%C9%90-19a33b0a467d" target="_blank" rel="external">What programming language should you learn first?</a><br>作者：<a href="https://medium.com/m/global-identity?redirectUrl=https://medium.freecodecamp.com/@quincylarson?source=post_header_lockup" target="_blank" rel="external">Quincy Larson</a> (<a href="https://freecodecamp.cn/home" target="_blank" rel="external">FreeCodeCamp</a> 创始人)</p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/wechat-qcode.jpg" alt="Jason Xu wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>如果我的文章对您有用，请打赏我一个红包吧！鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat.png" alt="Jason Xu WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.jpg" alt="Jason Xu Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+            <a href="/tags/ruby/" rel="tag"># ruby</a>
+          
+            <a href="/tags/C/" rel="tag"># C</a>
+          
+            <a href="/tags/Golang/" rel="tag"># Golang</a>
+          
+            <a href="/tags/Haskell/" rel="tag"># Haskell</a>
+          
+            <a href="/tags/PHP/" rel="tag"># PHP</a>
+          
+            <a href="/tags/Swift/" rel="tag"># Swift</a>
+          
+            <a href="/tags/C/" rel="tag"># C#</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/02/编程小白的Android自学之路/" rel="next" title="编程小白的Android自学之路">
+                <i class="fa fa-chevron-left"></i> 编程小白的Android自学之路
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/30/前端小白的养成记（自学）/" rel="prev" title="前端小白的自学养成记">
+                前端小白的自学养成记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/01/小白如何选择自己的第一门编程语言/"
+           data-title="小白如何选择自己的第一门编程语言" data-url="http://xuqianzheng.com/2016/05/01/小白如何选择自己的第一门编程语言/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Jason Xu" />
+          <p class="site-author-name" itemprop="name">Jason Xu</p>
+          <p class="site-description motion-element" itemprop="description">About Life, Books and Code.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">31</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">53</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/rss2.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/xuqianzheng" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://7xsb4k.com1.z0.glb.clouddn.com/%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%AD%A6.jpg" target="_blank" title="WeChat">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  WeChat
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.quora.com/profile/Jason-Xu%EF%BC%88%E5%BE%90%E8%BF%81%E5%BE%81%EF%BC%89" target="_blank" title="Quora">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Quora
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言："><span class="nav-number">1.</span> <span class="nav-text">前言：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#主流编程语言的热度"><span class="nav-number">2.</span> <span class="nav-text">主流编程语言的热度</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#高校的编程教学现状"><span class="nav-number">3.</span> <span class="nav-text">高校的编程教学现状</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JavaScript-的市场分析"><span class="nav-number">4.</span> <span class="nav-text">JavaScript 的市场分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#事实一：岗位需求"><span class="nav-number">4.1.</span> <span class="nav-text">事实一：岗位需求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事实二：发展前景"><span class="nav-number">4.2.</span> <span class="nav-text">事实二：发展前景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事实三：学习难度"><span class="nav-number">4.3.</span> <span class="nav-text">事实三：学习难度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事实四：你能实践的练手项目"><span class="nav-number">4.4.</span> <span class="nav-text">事实四：你能实践的练手项目</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#小白的顾虑："><span class="nav-number">5.</span> <span class="nav-text">小白的顾虑：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JavaScript-学习："><span class="nav-number">6.</span> <span class="nav-text">JavaScript 学习：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#学习方法"><span class="nav-number">6.1.</span> <span class="nav-text">学习方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#成功案例"><span class="nav-number">6.2.</span> <span class="nav-text">成功案例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#完整的-Web-开发学习"><span class="nav-number">6.3.</span> <span class="nav-text">完整的 Web 开发学习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FreeCodeCamp-前端学习社区"><span class="nav-number">6.4.</span> <span class="nav-text">FreeCodeCamp 前端学习社区</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jason Xu</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"xuqianzheng"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+</body>
+</html>
