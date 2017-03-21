@@ -116,7 +116,7 @@
 <meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B08-04.png">
 <meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B08-05.png">
 <meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B08-06.png">
-<meta property="og:updated_time" content="2017-03-21T14:34:00.000Z">
+<meta property="og:updated_time" content="2017-03-21T14:36:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android开发基础8-手机多媒体">
 <meta name="twitter:description" content="本篇文章主要介绍以下几个知识点：
@@ -440,9 +440,13 @@
 <li>在通知发出时播放一段音频，调用 setSound() 方法：</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Notification notification = new NotificationCompat.Builder(this)</span><br><span class="line">      . . .</span><br><span class="line">      .setSound(Uri.fromFile(new File(<span class="string">"/system/media/audio/ringtones/Luna.ogg"</span>))) // 在音频目录下选个音频文件</span><br><span class="line">      .build();</span><br></pre></td></tr></table></figure>
-<p>在通知到来时让手机振动，设置 vibrate 属性：</p>
+<ul>
+<li>在通知到来时让手机振动，设置 vibrate 属性：</li>
+</ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Notification notification = new NotificationCompat.Builder(this)</span><br><span class="line">        . . .</span><br><span class="line">        .setVibrate(new long[]&#123;0,1000,1000,1000&#125;) // 数组下标0表静止的时长，下标1表振动的时长，下标2表静止的时长，以此类推</span><br><span class="line">        .build();</span><br></pre></td></tr></table></figure>
-<p>  当然别忘了声明振动权限：</p>
+<ul>
+<li>当然别忘了声明振动权限：</li>
+</ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;uses-permission android:name=<span class="string">"android.permission.VIBRATE"</span> /&gt;</span><br></pre></td></tr></table></figure>
 <p>在通知到来时显式手机 LED 灯，调用 setLights() 方法：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Notification notification = new NotificationCompat.Builder(this)</span><br><span class="line">        . . .</span><br><span class="line">        .setLights(Color.GREEN,1000,1000) // 三个参数：LED 灯的颜色、灯亮时长、灯暗时长</span><br><span class="line">        .build();</span><br></pre></td></tr></table></figure>
