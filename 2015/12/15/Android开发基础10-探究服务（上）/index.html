@@ -112,7 +112,7 @@
 <meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B010-02.png">
 <meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B010-03.gif">
 <meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B010-03.png">
-<meta property="og:updated_time" content="2017-03-21T13:32:50.000Z">
+<meta property="og:updated_time" content="2017-03-21T13:55:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android开发基础10-探究服务（上）">
 <meta name="twitter:description" content="本篇文章主要介绍以下几个知识点：
@@ -421,7 +421,7 @@
 </blockquote>
 <h1 id="10-1-Android-多线程编程"><a href="#10-1-Android-多线程编程" class="headerlink" title="10.1 Android 多线程编程"></a>10.1 Android 多线程编程</h1><p>  当我们执行一些耗时操作，如发起一条网络请求时，考虑到网速等其他原因，服务器未必会立刻响应我们的请求，若不将这类操作放在子线程中运行，会导致主线程被阻塞，从而影响软件的使用。下面就来学习下 Android 多线程编程。</p>
 <h2 id="10-1-1-线程的基本用法"><a href="#10-1-1-线程的基本用法" class="headerlink" title="10.1.1 线程的基本用法"></a>10.1.1 线程的基本用法</h2><p>  Android 多线程编程并不比 Java 多线程编程特殊，基本都是使用相同的语法。</p>
-<p><strong>继承 Thread 类</strong><br> 新建一个类继承自 Thread，然后重写父类的 run() 方法：</p>
+<p><strong>继承 Thread 类</strong><br> 新建一个类继承自 Thread，然后重写父类的 run() 方法：<a id="more"></a></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class MyThread extends Thread&#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void <span class="function"><span class="title">run</span></span>() &#123;</span><br><span class="line">        // 处理具体的逻辑</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 启动线程，run()方法中的代码就会在子线程中运行了</span><br><span class="line">new MyThread().run();</span><br></pre></td></tr></table></figure>
 <p><strong>实现 Runnable 接口</strong><br> 新建一个类实现 Runnable 接口，启动再 new Thread()：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class MyThread2 implements Runnable&#123;</span><br><span class="line">     @Override</span><br><span class="line">     public void <span class="function"><span class="title">run</span></span>() &#123;</span><br><span class="line">         // 处理具体的逻辑</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> // 启动线程</span><br><span class="line"> MyThread2 myThread2 = new MyThread2();</span><br><span class="line"> new Thread(myThread2).start();</span><br></pre></td></tr></table></figure>
