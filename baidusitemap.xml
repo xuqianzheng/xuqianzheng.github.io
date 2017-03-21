@@ -3,6 +3,29 @@
 
 
     
+  <url>
+    <loc>http://xuqianzheng.com/2015/11/12/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%809-%E7%BD%91%E7%BB%9C%E6%8A%80%E6%9C%AF/</loc>
+    <lastmod>2017-03-21T13:24:02.000Z</lastmod>
+    <data>
+        <display>
+        <title>第一行代码读书笔记 9 - 网络技术</title>
+        <pubTime>2015-11-12T05:20:44.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>Android Studio</tag>
+         
+        <tag>java</tag>
+         
+        <tag>《第一行代码》（第2版）</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
     
   <url>
     <loc>http://xuqianzheng.com/2015/09/25/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%8004%20-%20%E6%8E%A2%E7%A9%B6%E7%A2%8E%E7%89%87/</loc>
@@ -120,31 +143,6 @@
 
     
   <url>
-    <loc>http://xuqianzheng.com/2015/09/20/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%8003%20-%20UI%20%E5%BC%80%E5%8F%91/</loc>
-    <lastmod>2016-12-18T17:16:10.000Z</lastmod>
-    <data>
-        <display>
-        <title>Android开发基础3 - UI 开发</title>
-        <pubTime>2015-09-20T11:29:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>Android Studio</tag>
-         
-        <tag>java</tag>
-         
-        <tag>《第一行代码》（第2版）</tag>
-         
-        <tag>UI</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://xuqianzheng.com/2015/09/15/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%8002%20-%20%E6%8E%A2%E7%A9%B6%E6%B4%BB%E5%8A%A8/</loc>
     <lastmod>2016-12-18T17:16:10.000Z</lastmod>
     <data>
@@ -184,6 +182,31 @@
         <tag>java</tag>
          
         <tag>《第一行代码》（第2版）</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://xuqianzheng.com/2015/09/20/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%8003%20-%20UI%20%E5%BC%80%E5%8F%91/</loc>
+    <lastmod>2016-12-18T17:16:10.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android开发基础3 - UI 开发</title>
+        <pubTime>2015-09-20T11:29:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>Android Studio</tag>
+         
+        <tag>java</tag>
+         
+        <tag>《第一行代码》（第2版）</tag>
+         
+        <tag>UI</tag>
          
          
            
@@ -313,11 +336,11 @@
         
         <tag>生活</tag>
          
-        <tag>职业规划</tag>
-         
         <tag>读书</tag>
          
         <tag>思考</tag>
+         
+        <tag>职业规划</tag>
          
          
            
@@ -338,11 +361,11 @@
          
         <tag>机械设计</tag>
          
+        <tag>读书</tag>
+         
         <tag>职业规划</tag>
          
         <tag>机械工程师</tag>
-         
-        <tag>读书</tag>
          
          
            

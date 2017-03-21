@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Machine Learning,Machine Learning Blog,Python博客,机械博客,javascript博客,前端博客,开发博客,IT博客,web开发博客,机器人学,Robotics blog,嵌入式博客,机器人博客,机械设计博客,徐迁征,工业控制博客,现代控制博客,IT技术博客,Android开发博客,编程博客,机器学习博客,深度学习博客,人工智能博客" />
+  <meta name="keywords" content="Android,Android Studio,java,《第一行代码》（第2版）," />
 
 
 
@@ -86,15 +86,45 @@
 
 
 
-<meta name="description" content="About Life, Books and Code.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Third Type Of Blog">
-<meta property="og:url" content="http://xuqianzheng.com/index.html">
+<meta name="description" content="本篇文章主要介绍以几下个知识点：
+
+使用 HTTP 协议访问网络：使用 HttpURLConnection 和 OKHttp；
+解析 XML 格式数据：Pull 和 SAX 解析；
+解析 JSON 数据： JSONObject 和 GSON 解析。
+
+
+9.1 使用 HTTP 协议访问网络  HTTP 协议，其工作原理很简单：客户端向服务器发出一条 HTTP 请求，服务器收到请求后会返回一些数据">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第一行代码读书笔记 9 - 网络技术">
+<meta property="og:url" content="http://xuqianzheng.com/2015/11/12/Android开发基础9-网络技术/index.html">
 <meta property="og:site_name" content="Third Type Of Blog">
-<meta property="og:description" content="About Life, Books and Code.">
+<meta property="og:description" content="本篇文章主要介绍以几下个知识点：
+
+使用 HTTP 协议访问网络：使用 HttpURLConnection 和 OKHttp；
+解析 XML 格式数据：Pull 和 SAX 解析；
+解析 JSON 数据： JSONObject 和 GSON 解析。
+
+
+9.1 使用 HTTP 协议访问网络  HTTP 协议，其工作原理很简单：客户端向服务器发出一条 HTTP 请求，服务器收到请求后会返回一些数据">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B09-01.gif">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B09-02.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B09-03.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B09-04.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B09-05.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B09-06.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B09-07.png">
+<meta property="og:updated_time" content="2017-03-21T13:24:02.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Third Type Of Blog">
-<meta name="twitter:description" content="About Life, Books and Code.">
+<meta name="twitter:title" content="第一行代码读书笔记 9 - 网络技术">
+<meta name="twitter:description" content="本篇文章主要介绍以几下个知识点：
+
+使用 HTTP 协议访问网络：使用 HttpURLConnection 和 OKHttp；
+解析 XML 格式数据：Pull 和 SAX 解析；
+解析 JSON 数据： JSONObject 和 GSON 解析。
+
+
+9.1 使用 HTTP 协议访问网络  HTTP 协议，其工作原理很简单：客户端向服务器发出一条 HTTP 请求，服务器收到请求后会返回一些数据">
+<meta name="twitter:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B09-01.gif">
 
 
 
@@ -122,13 +152,13 @@
 
 
 
-  <link rel="canonical" href="http://xuqianzheng.com/"/>
+  <link rel="canonical" href="http://xuqianzheng.com/2015/11/12/Android开发基础9-网络技术/"/>
 
 
 
 
 
-  <title> Third Type Of Blog </title>
+  <title> 第一行代码读书笔记 9 - 网络技术 | Third Type Of Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -168,9 +198,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -292,541 +320,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://xuqianzheng.com/2016/09/30/前端小白的养成记（自学）/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Jason Xu">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.png">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Third Type Of Blog">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Third Type Of Blog" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/30/前端小白的养成记（自学）/" itemprop="url">
-                  前端小白的自学养成记
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-09-30T20:30:13+08:00">
-                2016-09-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <a href="/2016/09/30/前端小白的养成记（自学）/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/30/前端小白的养成记（自学）/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>随着今年9月 <font color=#1E90FF>微信小程序</font> 的推出，前端开发工程师一跃成为市场上供不应求的香饽饽。为什么很多公司开到 <font color=#1E90FF>20K+</font> 的月薪都招不到一个优秀的前端工程师？这个问题不在本文的讨论范围内，想知道的同学可以转到 <font color=#1E90FF>100offer</font> 这篇文章 <a href="https://zhuanlan.zhihu.com/p/20700836?refer=100offer">为什么整个互联网行业都缺前端工程师？</a></p>
-<p>很多同学，包括以前做机械的、UI的、Java的、或者对于IT完全零基础的同学都想自学前端。下图是我整理的一份Web前端的技能树，很多初学者表示看到这些密密麻麻的知识点就已经晕了。确实，前端是一门涵盖面很广的学科。但是想学好前端找到一份好工作的你也不用慌张，内容虽多但有迹可循，只要循序渐进就不怕学不好前端！<br><span itemprop="image" itemscope itemtype="http://schema.org/ImageObject"><img itemprop="url image" src="http://7xsb4k.com1.z0.glb.clouddn.com/Web%E5%89%8D%E7%AB%AF%E6%8A%80%E8%83%BD%E6%A0%91.jpg" class="full-image" alt="alt" /><meta itemprop="width" content="auto"><meta itemprop="height" content="auto"></span></p>
-<h3 id="什么是前端"><a href="#什么是前端" class="headerlink" title="什么是前端"></a>什么是<font color=#1E90FF>前端</font></h3><blockquote>
-<p>前端是对于网站或者网络应用来说的，前端是相对 <font color=#1E90FF>后端</font> 来说的。前端对于网站来说，通常是指，网站的前台部分包括网站的表现层和结构层。后端对于网站来说，通常是指网站的后台部分包括网站的业务逻辑层、数据持久层、负载均衡等。现在还出来个新名词叫全栈，就是前后端的大多数技能都掌握，不过真能达到那是牛人值得仰望。<br>
-          <!--noindex-->
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/30/前端小白的养成记（自学）/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://xuqianzheng.com/2016/03/08/小白如何选择自己的第一门编程语言/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Jason Xu">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.png">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Third Type Of Blog">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Third Type Of Blog" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/08/小白如何选择自己的第一门编程语言/" itemprop="url">
-                  小白如何选择自己的第一门编程语言
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-03-08T23:11:03+08:00">
-                2016-03-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <a href="/2016/03/08/小白如何选择自己的第一门编程语言/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/08/小白如何选择自己的第一门编程语言/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h1><p>大多数人的编程之旅都是从搜索引擎开始的。例如搜索“XX语言入门教程”。<br>但要怎么决定从哪门语言开始呢？或者当我们不知所措的时候，只能搜：”入门学什么编程语言比较好？”初学者顾虑的问题通常就那么几个，下面这张图很好地回答了这些疑惑：<br><span itemprop="image" itemscope itemtype="http://schema.org/ImageObject"><img itemprop="url image" src="http://7xsb4k.com1.z0.glb.clouddn.com/640%E7%BC%96%E7%A8%8B.jpg" class="full-image" alt="alt" /><meta itemprop="width" content="auto"><meta itemprop="height" content="auto"></span></p>
-<p>选择第一门编程语言的过程十分有趣，这就好像是个人的信仰选择问题一样。也许因为你像个孩子一样喜欢玩橡皮泥，稀里糊涂都打算开始学 <font color="#1E90FF">Ruby</font> 。我还是要提醒你，不要草率做决定。想要真正掌握你的第一门编程语言，你需要投入成千上百小时来学习实践。所以你要考虑清楚以下这几个方面：<br>
-          <!--noindex-->
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/03/08/小白如何选择自己的第一门编程语言/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://xuqianzheng.com/2016/02/02/编程小白的Android自学之路/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Jason Xu">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.png">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Third Type Of Blog">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Third Type Of Blog" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/02/02/编程小白的Android自学之路/" itemprop="url">
-                  编程小白的Android自学之路
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-02-02T08:39:43+08:00">
-                2016-02-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <a href="/2016/02/02/编程小白的Android自学之路/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/02/编程小白的Android自学之路/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h1><p>自学是一项很苦逼的差事，自学的人很多，但能真正坚持下去的很少，在准备自学 <font color=#1E90FF>Android</font> 之前你需要具备以下基本能力能帮助你坚持到最后。</p>
-<ul>
-<li>对Android开发、对互联网感兴趣，兴趣是最好的老师，只有发自内心的感兴趣才能真正坚持下去；</li>
-<li>强大的学习能力，既然自学那学习能力肯定是必备，要有很强的求知欲，持续不断的学习能力才有机会走的更远，注意，是持续不断的学习能力；</li>
-<li>解决问题的能力，自学过程中肯定会遇到各种各样的坑，这个时候不要急躁，不要气馁，不要怕耗时间，一步一个脚印去解决问题，这会为你今后走上工作岗位带来极大的优势；</li>
-<li>设定一个目标，比如我是从机械转行编程，自学Android的目标简单直接，因为搞编程比搞机械工资高，我转行就是为了多挣钱。我想大部分人的目标应该都跟我同感。</li>
-</ul>
-<p>Android开发要学的技能非常多，技术更新速度还快，但是总的来说：掌握最核心的技术，最规范的开发流程，成为专业、出色的安卓开发工程师也不是遥不可及。为了解决大家的疑问，我专门整理了一张思维导图，用来梳理合格的安卓开发工程师应该具备的开发知识体系。<br><span itemprop="image" itemscope itemtype="http://schema.org/ImageObject"><img itemprop="url image" src="http://7xsb4k.com1.z0.glb.clouddn.com/Android%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA.jpg" class="full-image" alt="alt" /><meta itemprop="width" content="auto"><meta itemprop="height" content="auto"></span></p>
-<h1 id="Java基础"><a href="#Java基础" class="headerlink" title="Java基础"></a>Java基础</h1><p>Android开发是基于 <font color=#1E90FF>Java</font> 语言的，所以毫无疑问的是必须要掌握Java基础，如果你完全没有任何Java基础，这步是必须要好好学习的，如果已经有Java基础的，这步可略过。
-          <!--noindex-->
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/02/02/编程小白的Android自学之路/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://xuqianzheng.com/2016/01/03/如何有效的扫除迷茫？/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Jason Xu">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.png">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Third Type Of Blog">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Third Type Of Blog" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/01/03/如何有效的扫除迷茫？/" itemprop="url">
-                  如何有效的扫除迷茫？
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-01-03T21:04:47+08:00">
-                2016-01-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <a href="/2016/01/03/如何有效的扫除迷茫？/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/03/如何有效的扫除迷茫？/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>本文旨在帮助这个行业的年轻人于前进道路上少走弯路。</p>
-<blockquote class="blockquote-center">谁的人生，都有一个慢慢修炼的过程。这个成长的修炼从来都是千转百回。在这样一个浮躁急速的时代，容易迷茫的个体很多，不要怕，不要否定自己，只要随时保持自省和行动才是对未来最好的承担。</blockquote>
-
-<span itemprop="image" itemscope itemtype="http://schema.org/ImageObject"><img itemprop="url image" src="http://7xsb4k.com1.z0.glb.clouddn.com/%E5%A6%82%E4%BD%95%E6%9C%89%E6%95%88%E7%9A%84%E6%89%AB%E9%99%A4%E8%BF%B7%E8%8C%AB%EF%BC%9F.jpg" class="full-image" alt="alt" /><meta itemprop="width" content="auto"><meta itemprop="height" content="auto"></span>
-<p>你在二十岁到三十岁之间，在生命力最旺盛的时候，要想清楚几件事。</p>
-<ul>
-<li><strong>第一件事你要想清楚，这辈子最喜欢的工作是什么，热爱什么东西，这个是最关键的事情；</strong></li>
-<li><strong>第二要让自己成为一个专业的人；</strong></li>
-<li><strong>第三你愿意用未来的二十年时间去完成这件你喜欢的工作和专业的事情。</strong>
-          <!--noindex-->
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/03/如何有效的扫除迷茫？/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
 
   
 
@@ -859,10 +355,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2015/11/12/Android开发基础9-网络技术/" itemprop="url">
-                  第一行代码读书笔记 9 - 网络技术
-                </a>
+                第一行代码读书笔记 9 - 网络技术
               
             
           </h1>
@@ -918,9 +411,7 @@
       
 
       
-        
-          
-            <blockquote>
+        <blockquote>
 <p><strong>本篇文章主要介绍以几下个知识点：</strong></p>
 <ul>
 <li>使用 HTTP 协议访问网络：使用 HttpURLConnection 和 OKHttp；</li>
@@ -990,41 +481,121 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">public class ParseJSONActivity extends AppCompatActivity implements View.OnClickListener &#123;</span><br><span class="line"></span><br><span class="line">    private Button btn_object,btn_gson;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        <span class="built_in">set</span>ContentView(R.layout.activity_parse_json);</span><br><span class="line"></span><br><span class="line">        btn_object = (Button) findViewById(R.id.btn_object);</span><br><span class="line">        btn_gson = (Button) findViewById(R.id.btn_gson);</span><br><span class="line"></span><br><span class="line">        btn_object.setOnClickListener(this);</span><br><span class="line">        btn_gson.setOnClickListener(this);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onClick(View v) &#123;</span><br><span class="line">        switch (v.getId())&#123;</span><br><span class="line">            <span class="keyword">case</span> R.id.btn_object:</span><br><span class="line">                HttpUtil.sendOKHttpRequest(<span class="string">"http://10.0.2.2/get_data.json"</span>, new <span class="function"><span class="title">Callback</span></span>() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void onFailure(Call call, IOException e) &#123;&#125;</span><br><span class="line"></span><br><span class="line">                    @Override</span><br><span class="line">                    public void onResponse(Call call, Response response) throws IOException &#123;</span><br><span class="line">                          String responseData = response.body().string();</span><br><span class="line">                        parseJSONWithJSONObject(responseData);   // 用 JSONObject 解析</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line">                <span class="built_in">break</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">case</span> R.id.btn_gson:</span><br><span class="line">                HttpUtil.sendOKHttpRequest(<span class="string">"http://10.0.2.2/get_data.json"</span>, new <span class="function"><span class="title">Callback</span></span>() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void onFailure(Call call, IOException e) &#123;&#125;</span><br><span class="line"></span><br><span class="line">                    @Override</span><br><span class="line">                    public void onResponse(Call call, Response response) throws IOException &#123;</span><br><span class="line">                        String responseData = response.body().string();</span><br><span class="line">                        parseJSONWithGSON(responseData);  // 用 GSON 解析</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line">                <span class="built_in">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 用 JSONObject 解析</span><br><span class="line">     * @param jsonData 需要解析的数据</span><br><span class="line">     */</span><br><span class="line">    private void parseJSONWithJSONObject(String jsonData) &#123; . . . &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     *  用 GSON 解析</span><br><span class="line">     * @param jsonData</span><br><span class="line">     */</span><br><span class="line">    private void parseJSONWithGSON(String jsonData)&#123; . . . &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>  运行程序，打印的日志分别如下：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B09-06.png" alt="" title="JSONObject 解析"><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B09-07.png" alt="" title="GSON 解析"><br>  关于网络编程先学习到这，下篇文章将进入安卓四大组件之服务的学习。</p>
 
-          
+      
+    </div>
+
+    <div>
+      
         
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/wechat-qcode.jpg" alt="Jason Xu wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+
       
     </div>
 
     <div>
       
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>如果我的文章对您有用，请打赏我一个红包吧！鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat.png" alt="Jason Xu WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.jpg" alt="Jason Xu Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
     </div>
+  </div>
 
-    <div>
+
       
     </div>
 
 
     <footer class="post-footer">
       
-
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+            <a href="/tags/Android-Studio/" rel="tag"># Android Studio</a>
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+            <a href="/tags/《第一行代码》（第2版）/" rel="tag"># 《第一行代码》（第2版）</a>
+          
+        </div>
       
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/10/07/Android开发基础07 - 内容提供器/" rel="next" title="Android开发基础7 - 内容提供器">
+                <i class="fa fa-chevron-left"></i> Android开发基础7 - 内容提供器
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/01/03/如何有效的扫除迷茫？/" rel="prev" title="如何有效的扫除迷茫？">
+                如何有效的扫除迷茫？ <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
       
-        <div class="post-eof"></div>
+
+      
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
+      
+    </div>
+  </div>
 
 
           </div>
@@ -1032,6 +603,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/11/12/Android开发基础9-网络技术/"
+           data-title="第一行代码读书笔记 9 - 网络技术" data-url="http://xuqianzheng.com/2015/11/12/Android开发基础9-网络技术/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -1051,8 +630,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
@@ -1134,6 +722,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#9-1-使用-HTTP-协议访问网络"><span class="nav-number">1.</span> <span class="nav-text">9.1 使用 HTTP 协议访问网络</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#9-1-1-使用-HttpURLConnection"><span class="nav-number">1.1.</span> <span class="nav-text">9.1.1 使用 HttpURLConnection</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-1-2-使用-OKHttp"><span class="nav-number">1.2.</span> <span class="nav-text">9.1.2 使用 OKHttp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-1-3-网络编程的最佳实践"><span class="nav-number">1.3.</span> <span class="nav-text">9.1.3 网络编程的最佳实践</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#9-2-解析-XML-格式数据"><span class="nav-number">2.</span> <span class="nav-text">9.2 解析 XML 格式数据</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#9-2-1-Pull-解析方式"><span class="nav-number">2.1.</span> <span class="nav-text">9.2.1 Pull 解析方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-2-2-SAX-解析方式"><span class="nav-number">2.2.</span> <span class="nav-text">9.2.2 SAX 解析方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-2-3-举个例子实在点"><span class="nav-number">2.3.</span> <span class="nav-text">9.2.3 举个例子实在点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#9-3-解析-JSON-数据"><span class="nav-number">3.</span> <span class="nav-text">9.3 解析 JSON 数据</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#9-3-1-使用-JSONObject"><span class="nav-number">3.1.</span> <span class="nav-text">9.3.1 使用 JSONObject</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-3-2-使用-GSON"><span class="nav-number">3.2.</span> <span class="nav-text">9.3.2 使用 GSON</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-3-3-举个例子实在点"><span class="nav-number">3.3.</span> <span class="nav-text">9.3.3 举个例子实在点</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>
@@ -1232,6 +836,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
 
   
 
