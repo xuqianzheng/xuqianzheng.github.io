@@ -1,0 +1,1013 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android,Android Studio,java,《第一行代码》（第2版）," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="Third Type Of Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="本篇文章主要介绍以下几个知识点：
+通知的使用；
+调用系统相机拍照或调用相册选取照片；*播放多媒体文件。
+
+8.1 使用通知  当某个应用程序希望向用户发送一些提示消息，而该应用程序又不在前台运行时，就可借助通知（Notification）来实现。
+8.1.1 通知的基本用法  通知的用法灵活，既可以在活动里创建，也可在广播接收器里创建，还可在服务里创建。
+  无论在哪里创建通知，整体的步骤都是相">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android开发基础8-手机多媒体">
+<meta property="og:url" content="http://xuqianzheng.com/2015/10/28/Android开发基础08-手机多媒体/index.html">
+<meta property="og:site_name" content="Third Type Of Blog">
+<meta property="og:description" content="本篇文章主要介绍以下几个知识点：
+通知的使用；
+调用系统相机拍照或调用相册选取照片；*播放多媒体文件。
+
+8.1 使用通知  当某个应用程序希望向用户发送一些提示消息，而该应用程序又不在前台运行时，就可借助通知（Notification）来实现。
+8.1.1 通知的基本用法  通知的用法灵活，既可以在活动里创建，也可在广播接收器里创建，还可在服务里创建。
+  无论在哪里创建通知，整体的步骤都是相">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B08-01.gif">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B08-02.gif">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B08-03.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B08-04.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B08-05.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B08-06.png">
+<meta property="og:updated_time" content="2017-03-21T13:32:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android开发基础8-手机多媒体">
+<meta name="twitter:description" content="本篇文章主要介绍以下几个知识点：
+通知的使用；
+调用系统相机拍照或调用相册选取照片；*播放多媒体文件。
+
+8.1 使用通知  当某个应用程序希望向用户发送一些提示消息，而该应用程序又不在前台运行时，就可借助通知（Notification）来实现。
+8.1.1 通知的基本用法  通知的用法灵活，既可以在活动里创建，也可在广播接收器里创建，还可在服务里创建。
+  无论在哪里创建通知，整体的步骤都是相">
+<meta name="twitter:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B08-01.gif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://xuqianzheng.com/2015/10/28/Android开发基础08-手机多媒体/"/>
+
+
+
+
+
+  <title> Android开发基础8-手机多媒体 | Third Type Of Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?3f7ae1fa714b160af9e4a2f1cc75d137";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=56301679";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Third Type Of Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Machine Learning</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://xuqianzheng.com/2015/10/28/Android开发基础08-手机多媒体/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Jason Xu">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Third Type Of Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Third Type Of Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android开发基础8-手机多媒体
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-10-28T14:03:04+08:00">
+                2015-10-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2015/10/28/Android开发基础08-手机多媒体/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/28/Android开发基础08-手机多媒体/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p><strong>本篇文章主要介绍以下几个知识点：</strong></p>
+<p><em>通知的使用；
+</em>调用系统相机拍照或调用相册选取照片；<br>*播放多媒体文件。</p>
+</blockquote>
+<h1 id="8-1-使用通知"><a href="#8-1-使用通知" class="headerlink" title="8.1 使用通知"></a>8.1 使用通知</h1><p>  当某个应用程序希望向用户发送一些提示消息，而该应用程序又不在前台运行时，就可借助通知（Notification）来实现。</p>
+<h2 id="8-1-1-通知的基本用法"><a href="#8-1-1-通知的基本用法" class="headerlink" title="8.1.1 通知的基本用法"></a>8.1.1 通知的基本用法</h2><p>  通知的用法灵活，既可以在活动里创建，也可在广播接收器里创建，还可在服务里创建。</p>
+<p>  无论在哪里创建通知，整体的步骤都是相同的。接下来学习下创建通知的步骤，代码如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">public class NotificationActivity extends AppCompatActivity implements View.OnClickListener &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        <span class="built_in">set</span>ContentView(R.layout.activity_notification);</span><br><span class="line"></span><br><span class="line">        Button btn_send_notice = (Button) findViewById(R.id.btn_send_notice);</span><br><span class="line">        btn_send_notice.setOnClickListener(this);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onClick(View v) &#123;</span><br><span class="line">        switch (v.getId())&#123;</span><br><span class="line">            <span class="keyword">case</span> R.id.btn_send_notice:</span><br><span class="line">                // 1. 获取 NotificationManager 实例来对通知进行管理</span><br><span class="line">                NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);</span><br><span class="line">                // 2. 使用 Builder 构造器来创建 Notification 对象</span><br><span class="line">                Notification notification = new NotificationCompat.Builder(this)</span><br><span class="line">                        .setContentTitle(<span class="string">"This is content title"</span>)  // 标题内容</span><br><span class="line">                        .setContentText(<span class="string">"This is content text"</span>)   // 正文内容</span><br><span class="line">                        .setWhen(System.currentTimeMillis())     // 通知被创建的时间</span><br><span class="line">                        .setSmallIcon(R.mipmap.ic_launcher)     // 通知的小图标</span><br><span class="line">                        .setLargeIcon(BitmapFactory.decodeResource(getResources(),R.mipmap.ic_launcher))// 通知的大图标</span><br><span class="line">                        .build();</span><br><span class="line">                // 3. 显示通知. 其中notify()的两个参数：第一个是id,要保证为每个通知所指定的id都是不同的;</span><br><span class="line">                // 第二个参数是 Notification 对象</span><br><span class="line">                manager.notify(1,notification);</span><br><span class="line">                <span class="built_in">break</span>;</span><br><span class="line"></span><br><span class="line">            default:</span><br><span class="line">                <span class="built_in">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  上述代码，界面上就一个 发送通知 按钮，在按钮的点击事件里面完成了通知的创建工作。运行程序，点击按钮效果如下：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B08-01.gif" alt="" title="通知的基本用法"><br>  接下来实现通知的点击效果，这里要用到 PendingIntent ，即在某个合适的时机去执行某个动作。PendingIntent 实例可由 getActivity()、getBroadcast()、getServices() 等方法获取，其接收的参数：第一个是 Context；第二个一般用不到传0即可；第三个是 Intent 对象；第四个用于确定 PendingIntent 的行为，一般传0即可。</p>
+<p>  首先，准备好一个点击通知跳转的活动 NotificationTestActivity ，然后，修改 NotificationActivity 的代码如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">public class NotificationActivity extends AppCompatActivity implements View.OnClickListener &#123;</span><br><span class="line"></span><br><span class="line">    . . . </span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onClick(View v) &#123;</span><br><span class="line">        switch (v.getId())&#123;</span><br><span class="line">            <span class="keyword">case</span> R.id.btn_send_notice:</span><br><span class="line">                Intent intent = new Intent(this,NotificationTestActivity.class);</span><br><span class="line">                PendingIntent pi = PendingIntent.getActivity(this,0,intent,0);</span><br><span class="line"></span><br><span class="line">                // 1. 获取 NotificationManager 实例来对通知进行管理</span><br><span class="line">                NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);</span><br><span class="line">                // 2. 使用 Builder 构造器来创建 Notification 对象</span><br><span class="line">                Notification notification = new NotificationCompat.Builder(this)</span><br><span class="line">                        .setContentTitle(<span class="string">"This is content title"</span>) </span><br><span class="line">                        .setContentText(<span class="string">"This is content text"</span>)   </span><br><span class="line">                        .setWhen(System.currentTimeMillis())     </span><br><span class="line">                        .setSmallIcon(R.mipmap.ic_launcher)     </span><br><span class="line">                        .setLargeIcon(BitmapFactory.decodeResource(getResources(),R.mipmap.ic_launcher))</span><br><span class="line">                        .setContentIntent(pi) // 传入pi</span><br><span class="line">                        .build();</span><br><span class="line">                // 3. 显示通知</span><br><span class="line">                manager.notify(1,notification);</span><br><span class="line">                <span class="built_in">break</span>;</span><br><span class="line"></span><br><span class="line">            default:</span><br><span class="line">                <span class="built_in">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  现在重新运行程序并点击按钮，效果如下：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B08-02.gif" alt="" title="点击通知后的效果"><br>  细心的你会发现系统状态栏上的通知图标还没消失，解决方法有两种，一种是在 NotificationCompat.Builder 中再连缀一个 setAutoCancel() 方法，如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Notification notification = new NotificationCompat.Builder(this)</span><br><span class="line">        . . .</span><br><span class="line">        .setAutoCancel(<span class="literal">true</span>)</span><br><span class="line">        .build();</span><br></pre></td></tr></table></figure>
+<p>  另外一种是显式调用 NotificationManager 的 cancel()方法，在点击通知跳转的活动 NotificationTestActivity 中添加如下代码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class NotificationTestActivity extends AppCompatActivity &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        <span class="built_in">set</span>ContentView(R.layout.activity_notification_<span class="built_in">test</span>);</span><br><span class="line"></span><br><span class="line">        NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);</span><br><span class="line">        manager.cancel(1); // 传入创建通知时指定的id</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="8-1-2-通知的进阶用法"><a href="#8-1-2-通知的进阶用法" class="headerlink" title="8.1.2 通知的进阶用法"></a>8.1.2 通知的进阶用法</h2><p>  上面提到了通知的基本用法，接下来介绍一些通知的其他技巧，比如：</p>
+<p>在通知发出时播放一段音频，调用 setSound() 方法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Notification notification = new NotificationCompat.Builder(this)</span><br><span class="line">      . . .</span><br><span class="line">      .setSound(Uri.fromFile(new File(<span class="string">"/system/media/audio/ringtones/Luna.ogg"</span>))) // 在音频目录下选个音频文件</span><br><span class="line">      .build();</span><br></pre></td></tr></table></figure>
+<p>在通知到来时让手机振动，设置 vibrate 属性：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Notification notification = new NotificationCompat.Builder(this)</span><br><span class="line">        . . .</span><br><span class="line">        .setVibrate(new long[]&#123;0,1000,1000,1000&#125;) // 数组下标0表静止的时长，下标1表振动的时长，下标2表静止的时长，以此类推</span><br><span class="line">        .build();</span><br></pre></td></tr></table></figure>
+<p>  当然别忘了声明振动权限：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;uses-permission android:name=<span class="string">"android.permission.VIBRATE"</span> /&gt;</span><br></pre></td></tr></table></figure>
+<p>在通知到来时显式手机 LED 灯，调用 setLights() 方法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Notification notification = new NotificationCompat.Builder(this)</span><br><span class="line">        . . .</span><br><span class="line">        .setLights(Color.GREEN,1000,1000) // 三个参数：LED 灯的颜色、灯亮时长、灯暗时长</span><br><span class="line">        .build();</span><br></pre></td></tr></table></figure>
+<p>当然也可直接使用默认效果，如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Notification notification = new NotificationCompat.Builder(this)</span><br><span class="line">        . . .</span><br><span class="line">        .setDefaults(NotificationCompat.DEFAULT_ALL)</span><br><span class="line">        .build();</span><br></pre></td></tr></table></figure>
+<h2 id="8-1-3-通知的高级功能"><a href="#8-1-3-通知的高级功能" class="headerlink" title="8.1.3 通知的高级功能"></a>8.1.3 通知的高级功能</h2><p>  上面提到了通知的进阶用法，接下来介绍一些通知的高级功能，比如：</p>
+<p>NotificationCompat.Builder 类中的 setStyle() 方法<br>  这个方法允许我们构建出富文本的通知内容，setStyle() 方法接收一个 NotificationCompat.style 参数，这个参数用来构造具体的富文本信息，如长文字、图片等。<br>  在通知当中显示一段长文字，代码如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Notification notification = new NotificationCompat.Builder(this)</span><br><span class="line">        . . .</span><br><span class="line">        // 在<span class="built_in">set</span>Style方法中创建NotificationCompat.BigTextStyle对象，调用其bigText()方法传入文字即可</span><br><span class="line">        .setStyle(new NotificationCompat.BigTextStyle().bigText(<span class="string">"红红火火恍恍惚惚，"</span> +</span><br><span class="line">                 <span class="string">"哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈呵呵，红红火火恍恍惚惚"</span> +</span><br><span class="line">                 <span class="string">"哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈"</span>))   </span><br><span class="line">        .build();</span><br></pre></td></tr></table></figure>
+<p>  效果如图所示：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B08-03.png" alt="" title="通知中显示长文字的效果"><br>  在通知当中显示一张图片，代码如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Notification notification = new NotificationCompat.Builder(this)</span><br><span class="line">        . . .</span><br><span class="line">        .setStyle(new NotificationCompat.BigPictureStyle().bigPicture(BitmapFactory.</span><br><span class="line">                    decodeResource(getResources(),R.drawable.big_image)))))   </span><br><span class="line">        .build();</span><br></pre></td></tr></table></figure>
+<p>  效果如图所示：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B08-04.png" alt="" title="通知中显示图片的效果"><br>NotificationCompat.Builder 类中的 setPriority() 方法<br>  这个方法用于设置通知的重要程度，setPriority() 方法接收一个整型参数。<br>  将通知的重要程度设置最高，代码如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Notification notification = new NotificationCompat.Builder(this)</span><br><span class="line">        . . </span><br><span class="line">        // 一共有5个常量可选：PRIORITY_DEFAULT默认、PRIORITY_MIN最低、PRIORITY_LOW较低、</span><br><span class="line">        // PRIORITY_HIGH较高、PRIORITY_MAX最高</span><br><span class="line">        .setPriority(NotificationCompat.PRIORITY_MAX)   </span><br><span class="line">        .build();</span><br></pre></td></tr></table></figure>
+<p>  效果如图所示：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B08-05.png" alt="" title="发送一条重要通知的效果"></p>
+<h1 id="8-2-调用摄像头和相册"><a href="#8-2-调用摄像头和相册" class="headerlink" title="8.2 调用摄像头和相册"></a>8.2 调用摄像头和相册</h1><p>  调用摄像头拍照以及从相册中选择照片的相关代码如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br></pre></td><td class="code"><pre><span class="line">public class TakePhotoActivity extends AppCompatActivity &#123;</span><br><span class="line"></span><br><span class="line">    private Button btn_take_photo;   // 调用摄像头拍照</span><br><span class="line">    private Button btn_select_photo; // 从相册中选照片</span><br><span class="line">    private ImageView iv_show_photo; // 展示照片</span><br><span class="line"></span><br><span class="line">    public static final int TAKE_PHOTO = 1;</span><br><span class="line">    public static final int CHOOSE_PHOTO = 2;</span><br><span class="line">    private Uri imageUri;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        <span class="built_in">set</span>ContentView(R.layout.activity_take_photo);</span><br><span class="line"></span><br><span class="line">        btn_take_photo = (Button) findViewById(R.id.btn_take_photo);</span><br><span class="line">        btn_select_photo = (Button) findViewById(R.id.btn_select_photo);</span><br><span class="line">        iv_show_photo = (ImageView) findViewById(R.id.iv_show_photo);</span><br><span class="line"></span><br><span class="line">        // 调用相机拍照</span><br><span class="line">        btn_take_photo.setOnClickListener(new View.<span class="function"><span class="title">OnClickListener</span></span>() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(View v) &#123;</span><br><span class="line">                // 创建File对象，用于存储拍照后的图片</span><br><span class="line">                File outputImage = new File(getExternalCacheDir(),<span class="string">"output_image.jpg"</span>);</span><br><span class="line">                try&#123;</span><br><span class="line">                    <span class="keyword">if</span> (outputImage.exists())&#123;</span><br><span class="line">                        outputImage.delete();</span><br><span class="line">                    &#125;</span><br><span class="line">                    outputImage.createNewFile();</span><br><span class="line">                &#125;catch (IOException e)&#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">                // 将File对象转换成Uri对象</span><br><span class="line">                <span class="keyword">if</span> (Build.VERSION.SDK_INT &gt;= 24)&#123;</span><br><span class="line">                    // getUriForFile() 方法接收三个参数：Context对象、任意唯一的字符串、File对象</span><br><span class="line">                    imageUri = FileProvider.getUriForFile(TakePhotoActivity.this, <span class="string">"com.wonderful."</span> +</span><br><span class="line">                            <span class="string">"myfirstcode.chapter8.TakePhotoActivity.fileprovider"</span>,outputImage);</span><br><span class="line">                &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                    imageUri = Uri.fromFile(outputImage);</span><br><span class="line">                &#125;</span><br><span class="line">                // 启动相机程序</span><br><span class="line">                Intent intent = new Intent(<span class="string">"android.media.action.IMAGE_CAPTURE"</span>);</span><br><span class="line">                intent.putExtra(MediaStore.EXTRA_OUTPUT,imageUri);</span><br><span class="line">                startActivityForResult(intent,TAKE_PHOTO);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        // 打开相册选照片</span><br><span class="line">        btn_select_photo.setOnClickListener(new View.<span class="function"><span class="title">OnClickListener</span></span>() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(View v) &#123;</span><br><span class="line">                <span class="keyword">if</span> (ActivityCompat.checkSelfPermission(TakePhotoActivity.this,</span><br><span class="line">                        Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) &#123;</span><br><span class="line">                    ActivityCompat.requestPermissions(TakePhotoActivity.this,</span><br><span class="line">                            new String[]&#123;android.Manifest.permission.WRITE_EXTERNAL_STORAGE&#125;, 1);</span><br><span class="line">                &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                    // 若已授权，则直接执行打开相册的逻辑</span><br><span class="line">                    openAlbum();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 打开相册</span><br><span class="line">     */</span><br><span class="line">    private void <span class="function"><span class="title">openAlbum</span></span>() &#123;</span><br><span class="line">        Intent intent = new Intent(<span class="string">"android.intent.action.GET_CONTENT"</span>);</span><br><span class="line">        intent.setType(<span class="string">"image/*"</span>);</span><br><span class="line">        startActivityForResult(intent,CHOOSE_PHOTO);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) &#123;</span><br><span class="line">        switch (requestCode)&#123;</span><br><span class="line">            <span class="keyword">case</span> 1:</span><br><span class="line">                <span class="keyword">if</span> (grantResults.length &gt; 0 &amp;&amp; grantResults[0] == PackageManager.PERMISSION_GRANTED)&#123;</span><br><span class="line">                    openAlbum();</span><br><span class="line">                &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                    ToastUtils.showShort(<span class="string">"你拒绝了权限请求"</span>);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="built_in">break</span>;</span><br><span class="line"></span><br><span class="line">            default:</span><br><span class="line">                <span class="built_in">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onActivityResult(int requestCode, int resultCode, Intent data) &#123;</span><br><span class="line">        switch (requestCode)&#123;</span><br><span class="line">            <span class="keyword">case</span> TAKE_PHOTO:</span><br><span class="line">                <span class="keyword">if</span> (resultCode == RESULT_OK)&#123;</span><br><span class="line">                    try&#123;</span><br><span class="line">                        // 将拍摄的照片显示出来</span><br><span class="line">                        Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri));</span><br><span class="line">                        iv_show_photo.setImageBitmap(bitmap);</span><br><span class="line">                    &#125;catch (FileNotFoundException e)&#123;</span><br><span class="line">                        e.printStackTrace();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">case</span> CHOOSE_PHOTO:</span><br><span class="line">                <span class="keyword">if</span> (resultCode == RESULT_OK)&#123;</span><br><span class="line">                    // 判断手机系统版本号</span><br><span class="line">                    <span class="keyword">if</span> (Build.VERSION.SDK_INT &gt;= 19)&#123;</span><br><span class="line">                        // 4.4及以上系统使用这个方法处理图片</span><br><span class="line">                        handleImageOnKitKat(data);</span><br><span class="line">                    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                        // 4.4以下系统使用这个方法处理图片</span><br><span class="line">                        handleImageBeforeKitKat(data);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            default:</span><br><span class="line">                <span class="built_in">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     *  4.4及以上系统处理图片方法</span><br><span class="line">     * @param data</span><br><span class="line">     */</span><br><span class="line">    @TargetApi(19)</span><br><span class="line">    private void handleImageOnKitKat(Intent data) &#123;</span><br><span class="line">        String imagePath = null;</span><br><span class="line">        Uri uri = data.getData();</span><br><span class="line">        <span class="keyword">if</span> (DocumentsContract.isDocumentUri(this,uri))&#123;</span><br><span class="line">            // 若是document类型的Uri，则通过document id 处理</span><br><span class="line">            String docId = DocumentsContract.getDocumentId(uri);</span><br><span class="line">            <span class="keyword">if</span> (<span class="string">"com.android.providers.media.documents"</span>.equals(uri.getAuthority()))&#123;</span><br><span class="line">                String id = docId.split(<span class="string">":"</span>)[1];// 解析出数字格式的id</span><br><span class="line">                String selection = MediaStore.Images.Media._ID + <span class="string">"="</span> + id;</span><br><span class="line">                imagePath = getImagePath(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,selection);</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"com.android.providers.downloads.documents"</span>.equals(uri.getAuthority()))&#123;</span><br><span class="line">                Uri contentUri = ContentUris.withAppendedId(Uri.parse(</span><br><span class="line">                        <span class="string">"content://downloads/public_downloads"</span>),Long.valueOf(docId));</span><br><span class="line">                imagePath = getImagePath(contentUri,null);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"content"</span>.equalsIgnoreCase(uri.getScheme()))&#123;</span><br><span class="line">            // 若是content类型的Uri，则使用普通方法处理</span><br><span class="line">            imagePath = getImagePath(uri,null);</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"file"</span>.equalsIgnoreCase(uri.getScheme()))&#123;</span><br><span class="line">            // 若是file类型到1Uri，则直接获取图片路径即可</span><br><span class="line">            imagePath = uri.getPath();</span><br><span class="line">        &#125;</span><br><span class="line">        // 根据图片路径显示图片</span><br><span class="line">        displayImage(imagePath);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     *  4.4以下系统处理图片方法</span><br><span class="line">     * @param data</span><br><span class="line">     */</span><br><span class="line">    private void handleImageBeforeKitKat(Intent data) &#123;</span><br><span class="line">        Uri uri = data.getData();</span><br><span class="line">        String imagePath = getImagePath(uri,null);</span><br><span class="line">        displayImage(imagePath);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 通过Uri和selection来获取真实的图片路径</span><br><span class="line">     * @param uri</span><br><span class="line">     * @param selection</span><br><span class="line">     * @<span class="built_in">return</span></span><br><span class="line">     */</span><br><span class="line">    private String getImagePath(Uri uri,String selection)&#123;</span><br><span class="line">        String path = null;</span><br><span class="line">        Cursor cursor = getContentResolver().query(uri,null,selection,null,null);</span><br><span class="line">        <span class="keyword">if</span> (cursor != null)&#123;</span><br><span class="line">            <span class="keyword">if</span> (cursor.moveToFirst())&#123;</span><br><span class="line">                path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));</span><br><span class="line">            &#125;</span><br><span class="line">            cursor.close();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> path;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     *  根据图片路径显示图片</span><br><span class="line">     * @param imagePath</span><br><span class="line">     */</span><br><span class="line">    private void displayImage(String imagePath)&#123;</span><br><span class="line">        <span class="keyword">if</span> (imagePath != null)&#123;</span><br><span class="line">            Bitmap bitmap = BitmapFactory.decodeFile(imagePath);</span><br><span class="line">            iv_show_photo.setImageBitmap(bitmap);</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            ToastUtils.showShort(<span class="string">"选取图片失败"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  上述代码中，调用摄像头拍照时用到了内容提供器，所以别忘了在 AndroidManifest.xml 中对内容提供器进行注册，如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- android:name 属性的值是固定的</span><br><span class="line">     android:authorities 属性的值要和FileProvider.getUriForFile()方法中的第二个参数一致</span><br><span class="line">     &lt;meta-data&gt;来指定Uri的共享路径 --&gt;</span><br><span class="line">&lt;provider</span><br><span class="line">    android:authorities=<span class="string">"com.wonderful.myfirstcode.chapter8.TakePhotoActivity.fileprovider"</span></span><br><span class="line">    android:name=<span class="string">"android.support.v4.content.FileProvider"</span></span><br><span class="line">    android:exported=<span class="string">"false"</span></span><br><span class="line">    android:grantUriPermissions=<span class="string">"true"</span>&gt;</span><br><span class="line">    &lt;meta-data</span><br><span class="line">       android:name=<span class="string">"android.support.FILE_PROVIDER_PATHS"</span></span><br><span class="line">       android:resource=<span class="string">"@xml/file_paths"</span> /&gt;</span><br><span class="line"> &lt;/provider&gt;</span><br></pre></td></tr></table></figure>
+<p>  上面引用了一个 @xml/file_paths 资源是不存在的，需要另外创建它。新建 file_paths.xml 文件，内容如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"utf-8"</span>?&gt;</span><br><span class="line">&lt;paths xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span>&gt;</span><br><span class="line">    &lt;!-- external_path指定Uri共享，其name的值可随便填，path是指共享的具体路径 --&gt;</span><br><span class="line">    &lt;external_path name = <span class="string">"my_images"</span> path = <span class="string">""</span>/&gt;</span><br><span class="line">&lt;/paths&gt;</span><br></pre></td></tr></table></figure>
+<p>  当然也别忘了声明访问SD卡的权限：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;uses-permission android:name=<span class="string">"android.permission.WRITE_EXTERNAL_STORAGE"</span> /&gt;</span><br></pre></td></tr></table></figure>
+<p>  注意事项：在实际开发中最好根据项目的需求先对照片进行适当的压缩，然后再加载到内存中。</p>
+<h1 id="8-3-播放多媒体文件"><a href="#8-3-播放多媒体文件" class="headerlink" title="8.3 播放多媒体文件"></a>8.3 播放多媒体文件</h1><p>  在安卓中播放音频文件一般用 MediaPlayer 类来实现，播放视频文件主要用 VideoView 类来实现。以下是两个类的常用方法：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B08-06.png" alt="" title="播放多媒体文件方法"></p>
+<p>  实现播放多媒体代码相对简单，这里播放音频和视频写在一块了，代码如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br></pre></td><td class="code"><pre><span class="line">public class MediaPlayActivity extends AppCompatActivity implements View.OnClickListener &#123;</span><br><span class="line"></span><br><span class="line">    private Button music_play,music_pause,music_stop;// 音频播放、暂停、停止</span><br><span class="line">    private Button video_play,video_pause,video_replay;// 视频播放、暂停、重新播放</span><br><span class="line"></span><br><span class="line">    // 音频播放 创建MediaPlayer实例</span><br><span class="line">    private MediaPlayer mediaPlayer = new MediaPlayer();</span><br><span class="line"></span><br><span class="line">    // 视频播放显示</span><br><span class="line">    private VideoView videoView;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        <span class="built_in">set</span>ContentView(R.layout.activity_media_play);</span><br><span class="line"></span><br><span class="line">        initMediaPlayerView();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (ActivityCompat.checkSelfPermission(MediaPlayActivity.this,</span><br><span class="line">                Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) &#123;</span><br><span class="line">            ActivityCompat.requestPermissions(MediaPlayActivity.this,</span><br><span class="line">                    new String[]&#123;Manifest.permission.WRITE_EXTERNAL_STORAGE&#125;, 1);</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            initMediaPlayer(); // 初始化MediaPlayer</span><br><span class="line">            initVideoPath(); // 初始化MediaPlayer</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,</span><br><span class="line">                                           @NonNull int[] grantResults) &#123;</span><br><span class="line">        switch (requestCode)&#123;</span><br><span class="line">            <span class="keyword">case</span> 1:</span><br><span class="line">                <span class="keyword">if</span> (grantResults.length &gt; 0 &amp;&amp; grantResults[0] == PackageManager.PERMISSION_GRANTED)&#123;</span><br><span class="line">                    initMediaPlayer();</span><br><span class="line">                    initVideoPath();</span><br><span class="line">                &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                    ToastUtils.showShort(<span class="string">"你拒绝了权限请求"</span>);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="built_in">break</span>;</span><br><span class="line"></span><br><span class="line">            default:</span><br><span class="line">                <span class="built_in">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 初始化音频播放器</span><br><span class="line">     */</span><br><span class="line">    private void <span class="function"><span class="title">initMediaPlayer</span></span>() &#123;</span><br><span class="line">        File file = new File(Environment.getExternalStorageDirectory(),<span class="string">"music.mp3"</span>);//事先放好的音频文件</span><br><span class="line">        try &#123;</span><br><span class="line">            mediaPlayer.setDataSource(file.getPath()); // 指定音频文件的路径</span><br><span class="line">            mediaPlayer.prepare();// 让 MediaPlayer 进入到准备状态</span><br><span class="line">        &#125; catch (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 初始化视频播放器</span><br><span class="line">     */</span><br><span class="line">    private void <span class="function"><span class="title">initVideoPath</span></span>() &#123;</span><br><span class="line">        File file = new File(Environment.getExternalStorageDirectory(),<span class="string">"movie.mp4"</span>);//事先放好的视频文件</span><br><span class="line">        videoView.setVideoPath(file.getPath());   // 指定视频文件的路径</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    private void <span class="function"><span class="title">initMediaPlayerView</span></span>() &#123;</span><br><span class="line">        music_play = (Button) findViewById(R.id.music_play);</span><br><span class="line">        music_pause = (Button) findViewById(R.id.music_pause);</span><br><span class="line">        music_stop = (Button) findViewById(R.id.music_stop);</span><br><span class="line"></span><br><span class="line">        music_play.setOnClickListener(this);</span><br><span class="line">        music_pause.setOnClickListener(this);</span><br><span class="line">        music_stop.setOnClickListener(this);</span><br><span class="line"></span><br><span class="line">        videoView = (VideoView) findViewById(R.id.video_view);</span><br><span class="line">        video_play = (Button) findViewById(R.id.video_play);</span><br><span class="line">        video_pause = (Button) findViewById(R.id.video_pause);</span><br><span class="line">        video_replay = (Button) findViewById(R.id.video_replay);</span><br><span class="line"></span><br><span class="line">        video_play.setOnClickListener(this);</span><br><span class="line">        video_pause.setOnClickListener(this);</span><br><span class="line">        video_replay.setOnClickListener(this);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onClick(View v) &#123;</span><br><span class="line">        switch (v.getId())&#123;</span><br><span class="line">            // 音频播放</span><br><span class="line">            <span class="keyword">case</span> R.id.music_play:</span><br><span class="line">                <span class="keyword">if</span> (!mediaPlayer.isPlaying())&#123;</span><br><span class="line">                    mediaPlayer.start(); // 开始播放</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="built_in">break</span>;</span><br><span class="line">            <span class="keyword">case</span> R.id.music_pause:</span><br><span class="line">                <span class="keyword">if</span> (!mediaPlayer.isPlaying())&#123;</span><br><span class="line">                    mediaPlayer.pause(); // 暂停播放</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="built_in">break</span>;</span><br><span class="line">            <span class="keyword">case</span> R.id.music_stop:</span><br><span class="line">                <span class="keyword">if</span> (!mediaPlayer.isPlaying())&#123;</span><br><span class="line">                    mediaPlayer.stop(); // 停止播放</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="built_in">break</span>;</span><br><span class="line"></span><br><span class="line">            // 视频播放</span><br><span class="line">            <span class="keyword">case</span> R.id.video_play:</span><br><span class="line">                <span class="keyword">if</span> (!videoView.isPlaying())&#123;</span><br><span class="line">                    videoView.start(); // 开始播放</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="built_in">break</span>;</span><br><span class="line">            <span class="keyword">case</span> R.id.video_pause:</span><br><span class="line">                <span class="keyword">if</span> (!videoView.isPlaying())&#123;</span><br><span class="line">                    videoView.pause(); // 暂停播放</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="built_in">break</span>;</span><br><span class="line">            <span class="keyword">case</span> R.id.video_replay:</span><br><span class="line">                <span class="keyword">if</span> (!videoView.isPlaying())&#123;</span><br><span class="line">                    videoView.resume(); // 重新播放</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="built_in">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void <span class="function"><span class="title">onDestroy</span></span>() &#123;</span><br><span class="line">        super.onDestroy();</span><br><span class="line">        <span class="keyword">if</span> (mediaPlayer != null)&#123;</span><br><span class="line">            mediaPlayer.stop();</span><br><span class="line">            mediaPlayer.release();// 释放资源</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (videoView != null)&#123;</span><br><span class="line">            videoView.suspend();  // 释放资源</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  当然别忘了声明权限：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 访问SD卡权限 --&gt;</span><br><span class="line"> &lt;uses-permission android:name=<span class="string">"android.permission.WRITE_EXTERNAL_STORAGE"</span> /&gt;</span><br></pre></td></tr></table></figure>
+<p>  本章内容相对简单，下一章将学习网络编程的知识。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/wechat-qcode.jpg" alt="Jason Xu wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>如果我的文章对您有用，请打赏我一个红包吧！鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat.png" alt="Jason Xu WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.jpg" alt="Jason Xu Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+            <a href="/tags/Android-Studio/" rel="tag"># Android Studio</a>
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+            <a href="/tags/《第一行代码》（第2版）/" rel="tag"># 《第一行代码》（第2版）</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/10/07/Android开发基础07 - 内容提供器/" rel="next" title="Android开发基础7 - 内容提供器">
+                <i class="fa fa-chevron-left"></i> Android开发基础7 - 内容提供器
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/11/12/Android开发基础09-网络技术/" rel="prev" title="第一行代码读书笔记 9 - 网络技术">
+                第一行代码读书笔记 9 - 网络技术 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/10/28/Android开发基础08-手机多媒体/"
+           data-title="Android开发基础8-手机多媒体" data-url="http://xuqianzheng.com/2015/10/28/Android开发基础08-手机多媒体/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Jason Xu" />
+          <p class="site-author-name" itemprop="name">Jason Xu</p>
+          <p class="site-description motion-element" itemprop="description">About Life, Books and Code.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">29</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">53</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/rss2.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/xuqianzheng" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://7xsb4k.com1.z0.glb.clouddn.com/%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%AD%A6.jpg" target="_blank" title="WeChat">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  WeChat
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.quora.com/profile/Jason-Xu%EF%BC%88%E5%BE%90%E8%BF%81%E5%BE%81%EF%BC%89" target="_blank" title="Quora">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Quora
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#8-1-使用通知"><span class="nav-number">1.</span> <span class="nav-text">8.1 使用通知</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#8-1-1-通知的基本用法"><span class="nav-number">1.1.</span> <span class="nav-text">8.1.1 通知的基本用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-1-2-通知的进阶用法"><span class="nav-number">1.2.</span> <span class="nav-text">8.1.2 通知的进阶用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-1-3-通知的高级功能"><span class="nav-number">1.3.</span> <span class="nav-text">8.1.3 通知的高级功能</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-2-调用摄像头和相册"><span class="nav-number">2.</span> <span class="nav-text">8.2 调用摄像头和相册</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-3-播放多媒体文件"><span class="nav-number">3.</span> <span class="nav-text">8.3 播放多媒体文件</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jason Xu</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"xuqianzheng"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+</body>
+</html>

@@ -1,0 +1,1010 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android,Android Studio,java,《第一行代码》（第2版）," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="Third Type Of Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="本篇文章主要介绍以下几个知识点：
+
+线程的基本用法。
+异步消息处理机制。
+使用 AsyncTask。
+
+
+10.1 Android 多线程编程  当我们执行一些耗时操作，如发起一条网络请求时，考虑到网速等其他原因，服务器未必会立刻响应我们的请求，若不将这类操作放在子线程中运行，会导致主线程被阻塞，从而影响软件的使用。下面就来学习下 Android 多线程编程。
+10.1.1 线程的基本用法  A">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android开发基础10-探究服务（上）">
+<meta property="og:url" content="http://xuqianzheng.com/2015/12/15/Android开发基础10-探究服务（上）/index.html">
+<meta property="og:site_name" content="Third Type Of Blog">
+<meta property="og:description" content="本篇文章主要介绍以下几个知识点：
+
+线程的基本用法。
+异步消息处理机制。
+使用 AsyncTask。
+
+
+10.1 Android 多线程编程  当我们执行一些耗时操作，如发起一条网络请求时，考虑到网速等其他原因，服务器未必会立刻响应我们的请求，若不将这类操作放在子线程中运行，会导致主线程被阻塞，从而影响软件的使用。下面就来学习下 Android 多线程编程。
+10.1.1 线程的基本用法  A">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B010-01.gif">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B010-02.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B010-03.gif">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B010-03.png">
+<meta property="og:updated_time" content="2017-03-21T13:32:50.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android开发基础10-探究服务（上）">
+<meta name="twitter:description" content="本篇文章主要介绍以下几个知识点：
+
+线程的基本用法。
+异步消息处理机制。
+使用 AsyncTask。
+
+
+10.1 Android 多线程编程  当我们执行一些耗时操作，如发起一条网络请求时，考虑到网速等其他原因，服务器未必会立刻响应我们的请求，若不将这类操作放在子线程中运行，会导致主线程被阻塞，从而影响软件的使用。下面就来学习下 Android 多线程编程。
+10.1.1 线程的基本用法  A">
+<meta name="twitter:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B010-01.gif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://xuqianzheng.com/2015/12/15/Android开发基础10-探究服务（上）/"/>
+
+
+
+
+
+  <title> Android开发基础10-探究服务（上） | Third Type Of Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?3f7ae1fa714b160af9e4a2f1cc75d137";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=56301679";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Third Type Of Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Machine Learning</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://xuqianzheng.com/2015/12/15/Android开发基础10-探究服务（上）/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Jason Xu">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Third Type Of Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Third Type Of Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android开发基础10-探究服务（上）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-12-15T00:17:29+08:00">
+                2015-12-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2015/12/15/Android开发基础10-探究服务（上）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/15/Android开发基础10-探究服务（上）/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p><strong>本篇文章主要介绍以下几个知识点：</strong></p>
+<ul>
+<li>线程的基本用法。</li>
+<li>异步消息处理机制。</li>
+<li>使用 AsyncTask。</li>
+</ul>
+</blockquote>
+<h1 id="10-1-Android-多线程编程"><a href="#10-1-Android-多线程编程" class="headerlink" title="10.1 Android 多线程编程"></a>10.1 Android 多线程编程</h1><p>  当我们执行一些耗时操作，如发起一条网络请求时，考虑到网速等其他原因，服务器未必会立刻响应我们的请求，若不将这类操作放在子线程中运行，会导致主线程被阻塞，从而影响软件的使用。下面就来学习下 Android 多线程编程。</p>
+<h2 id="10-1-1-线程的基本用法"><a href="#10-1-1-线程的基本用法" class="headerlink" title="10.1.1 线程的基本用法"></a>10.1.1 线程的基本用法</h2><p>  Android 多线程编程并不比 Java 多线程编程特殊，基本都是使用相同的语法。</p>
+<p><strong>继承 Thread 类</strong><br> 新建一个类继承自 Thread，然后重写父类的 run() 方法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class MyThread extends Thread&#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void <span class="function"><span class="title">run</span></span>() &#123;</span><br><span class="line">        // 处理具体的逻辑</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 启动线程，run()方法中的代码就会在子线程中运行了</span><br><span class="line">new MyThread().run();</span><br></pre></td></tr></table></figure>
+<p><strong>实现 Runnable 接口</strong><br> 新建一个类实现 Runnable 接口，启动再 new Thread()：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class MyThread2 implements Runnable&#123;</span><br><span class="line">     @Override</span><br><span class="line">     public void <span class="function"><span class="title">run</span></span>() &#123;</span><br><span class="line">         // 处理具体的逻辑</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> // 启动线程</span><br><span class="line"> MyThread2 myThread2 = new MyThread2();</span><br><span class="line"> new Thread(myThread2).start();</span><br></pre></td></tr></table></figure>
+<p>  当然也可用匿名类方式实现 Runnable 接口：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 匿名类方式实现</span><br><span class="line">new Thread(new <span class="function"><span class="title">Runnable</span></span>() &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void <span class="function"><span class="title">run</span></span>() &#123;</span><br><span class="line">        // 处理具体的逻辑</span><br><span class="line">    &#125;</span><br><span class="line">&#125;).start();</span><br></pre></td></tr></table></figure>
+<h2 id="10-1-2-在子线程中更新-UI"><a href="#10-1-2-在子线程中更新-UI" class="headerlink" title="10.1.2 在子线程中更新 UI"></a>10.1.2 在子线程中更新 UI</h2><p>  Android 的 UI 是线程不安全的，若想要更新应用程序的 UI 元素，必须在主线程中进行，否则会出现异常。</p>
+<p>  下面通过个例子来验证下。在布局中添加一个 TextView用于显示内容，一个 Button 用于点击后改变显示的内容：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">public class UpdateUITestActivity extends AppCompatActivity implements View.OnClickListener &#123;</span><br><span class="line"></span><br><span class="line">    private Button btn_change_text;</span><br><span class="line">    private TextView tv_text;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        <span class="built_in">set</span>ContentView(R.layout.activity_update_uitest);</span><br><span class="line"></span><br><span class="line">        tv_text = (TextView) findViewById(R.id.tv_text);</span><br><span class="line">        btn_change_text = (Button) findViewById(R.id.btn_change_text);</span><br><span class="line">        btn_change_text.setOnClickListener(this);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onClick(View v) &#123;</span><br><span class="line">         switch (v.getId())&#123;</span><br><span class="line">             <span class="keyword">case</span> R.id.btn_change_text:</span><br><span class="line">                 new Thread(new <span class="function"><span class="title">Runnable</span></span>() &#123;</span><br><span class="line">                     @Override</span><br><span class="line">                     public void <span class="function"><span class="title">run</span></span>() &#123;</span><br><span class="line">                         // 把显示内容“Hello world”改成“你好世界”</span><br><span class="line">                         tv_text.setText(<span class="string">"你好世界"</span>);</span><br><span class="line">                     &#125;</span><br><span class="line">                 &#125;).start();</span><br><span class="line">                 <span class="built_in">break</span>;</span><br><span class="line"></span><br><span class="line">             default:</span><br><span class="line">                 <span class="built_in">break</span>;</span><br><span class="line">         &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  上述代码在 Button 的点击事件里开启了一个子线程，然后在子线程中更新 UI，运行程序，效果如下：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B010-01.gif" alt="" title="在子线程中更新UI导致崩溃"><br>  程序果然崩溃了，观察错误日志，可以看出是由于在子线程中更新UI导致的：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B010-02.png" alt="" title="崩溃的错误信息"><br>  由此证实了 Android 不允许在子线程中进行 UI 操作。但有时候，必须在子线程中执行耗时操作，然后根据执行结果进行 UI 操作，这种情况就需要使用异步消息处理的方法。</p>
+<p>  Android 提供了一套异步消息处理机制，完美地解决了在子线程中进行 UI 操作地问题。修改上面代码如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">public class UpdateUITestActivity extends AppCompatActivity implements View.OnClickListener &#123;</span><br><span class="line"></span><br><span class="line">    private Button btn_change_text;</span><br><span class="line">    private TextView tv_text;</span><br><span class="line"></span><br><span class="line">    // 定义一个整型常量用于表示更新TextView这个动作</span><br><span class="line">    public static final int UPDATE_TEXT = 1;</span><br><span class="line"></span><br><span class="line">    private Handler handler = new <span class="function"><span class="title">Handler</span></span>()&#123;</span><br><span class="line">        @Override</span><br><span class="line">        public void handleMessage(Message msg) &#123;</span><br><span class="line">            switch (msg.what)&#123;</span><br><span class="line">                <span class="keyword">case</span>  UPDATE_TEXT:</span><br><span class="line">                    // 在这里可以进行 UI 操作</span><br><span class="line">                    tv_text.setText(<span class="string">"你好世界"</span>);</span><br><span class="line">                    <span class="built_in">break</span>;</span><br><span class="line"></span><br><span class="line">                 default:</span><br><span class="line">                     <span class="built_in">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        <span class="built_in">set</span>ContentView(R.layout.activity_update_uitest);</span><br><span class="line"></span><br><span class="line">        tv_text = (TextView) findViewById(R.id.tv_text);</span><br><span class="line">        btn_change_text = (Button) findViewById(R.id.btn_change_text);</span><br><span class="line">        btn_change_text.setOnClickListener(this);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onClick(View v) &#123;</span><br><span class="line">         switch (v.getId())&#123;</span><br><span class="line">             <span class="keyword">case</span> R.id.btn_change_text:</span><br><span class="line">                 new Thread(new <span class="function"><span class="title">Runnable</span></span>() &#123;</span><br><span class="line">                     @Override</span><br><span class="line">                     public void <span class="function"><span class="title">run</span></span>() &#123;</span><br><span class="line">                         // 创建Message对象，并将它的what字段指定为UPDATE_TEXT</span><br><span class="line">                         Message message = new Message();</span><br><span class="line">                         message.what = UPDATE_TEXT;</span><br><span class="line">                         handler.sendMessage(message);//将Message对象发送出去</span><br><span class="line">                     &#125;</span><br><span class="line">                 &#125;).start();</span><br><span class="line">                 <span class="built_in">break</span>;</span><br><span class="line"></span><br><span class="line">             default:</span><br><span class="line">                 <span class="built_in">break</span>;</span><br><span class="line">         &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  重新运行程序，效果如下：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B010-03.gif" alt="" title="成功替换显示的文字"><br>  上面就是 Android 异步消息处理的基本用法，下面来分析下它的工作原理。</p>
+<h2 id="10-1-3-解析异步消息处理机制"><a href="#10-1-3-解析异步消息处理机制" class="headerlink" title="10.1.3 解析异步消息处理机制"></a>10.1.3 解析异步消息处理机制</h2><p>  Android 异步消息处理主要由4个部分组成：Message、Handler、MessageQueue、Looper。</p>
+<p><strong>Message</strong><br> Message 是在线程之间传递的消息，它可在内部携带少量的信息，用于在不同线程之间交换数据。</p>
+<p><strong>Handler</strong><br> Handler 主要是用于发送和处理消息的。发送消息一般用它的 sendMessage() 方法，发送的消息经过一系列地辗转处理后，最终传递到它的 handleMessage() 方法中。</p>
+<p><strong>MessageQueue</strong><br> MessageQueue是消息队列，主要用于存放所有通过 Handler 发送地消息。这部分消息会一直存放于消息队列中，等待被处理。每个线程中只会有一个 MessageQueue 对象。</p>
+<p><strong>Looper</strong><br> Looper 是每个线程中 MessageQueue 的管家，调用 Looper.loop() 方法后，就会进入到一个无限循环中，然后每当发现 MessageQueue 中存在一条消息，就会将它取出，并传递到 Handler 的 handleMessage() 方法中。每个线程中也只会有一个 Looper 对象。</p>
+<p>  整个异步消息处理机制的流程如下：<br> （1）在主线程中创建 Handler 对象，重写 handleMessage() 方法<br> （2）子线程进行UI操作时，创建 Message 对象，通过 Handler 发送这条消息<br> （3）Looper 从MessageQueue 中取出待处理消息<br> （4）最后分发回 Handler 的 handleMessage() 方法中。<br>  由于 Handler 是在主线程中创建的，所以此时 handleMessage() 方法中的代码也会在主线程中运行，就可以进行 UI 操作了。</p>
+<p>   整个异步消息处理机制的流程示意图如下：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B010-03.png" alt="" title="异步消息处理机制流程示意图"><br>   其核心思想就是一条 Message 经过一系列的辗转调用后，也就从子线程进入到主线程，从不能更新 UI 变成了可以更新 UI。</p>
+<h2 id="10-1-4-使用-AsyncTask"><a href="#10-1-4-使用-AsyncTask" class="headerlink" title="10.1.4 使用 AsyncTask"></a>10.1.4 使用 AsyncTask</h2><p>   为了更方便在子线程中进行 UI 操作，Android 基于异步处理消息机制帮我们封装了一个工具：AsyncTask。</p>
+<p>   AsyncTask是个抽象类，使用它需要创建一个子类去继承它。在继承时可以为它指定3个泛型参数，用途如下：</p>
+<p><strong>Params</strong><br>在执行 AsyncTask 时传入的参数，用于后台任务中使用</p>
+<p><strong>Progress</strong><br>后台任务执行时，若需在界面显示当前进度，则使用这里指定的泛型作为进度单位</p>
+<p><strong>Result</strong><br>当任务执行完毕后，若需对结果进行返回，则使用这里指定的泛型作为返回值类型</p>
+<p>   如一个简单的自定义 AsyncTask 如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 第一个泛型参数Void 表示在执行AsyncTask时不需要传入参数给后台任务</span><br><span class="line">// 第二个泛型参数Integer 表示使用整型数据作为进度条显示单位</span><br><span class="line">// 第三个泛型参数Boolean 表示使用布尔型数据来反馈执行结果</span><br><span class="line">class DownloadTask extends AsyncTask&lt;Void,Integer,Boolean&gt;&#123;</span><br><span class="line">    . . .</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  若要完善上面对任务的定制，还需要重写 AsyncTask 的几个方法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">public class DownloadTask extends AsyncTask&lt;Void,Integer,Boolean&gt; &#123;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 在后台任务执行前调用，用于一些界面上的初始化操作</span><br><span class="line">     */</span><br><span class="line">    @Override</span><br><span class="line">    protected void <span class="function"><span class="title">onPreExecute</span></span>() &#123;</span><br><span class="line">        progressDialog.show(); // 显示进度对话框</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 在子线程中运行，在这处理所有耗时操作</span><br><span class="line">     * 注意：不可进行 UI 操作，若需要可调用 publishProgress(Progress...)方法来完成</span><br><span class="line">     * @param params</span><br><span class="line">     * @<span class="built_in">return</span></span><br><span class="line">     */</span><br><span class="line">    @Override</span><br><span class="line">    protected Boolean <span class="keyword">do</span>InBackground(Void... params) &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            <span class="keyword">while</span> (<span class="literal">true</span>)&#123;</span><br><span class="line">                int downloadPercent = <span class="keyword">do</span>Download();// 这是一个虚构的方法</span><br><span class="line">                publishProgress(downloadPercent);</span><br><span class="line">                <span class="keyword">if</span> (downloadPercent &gt;= 100)&#123;</span><br><span class="line">                    <span class="built_in">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;catch (Exception e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 当后台任务中调用了 publishProgress(Progress...)方法后调用</span><br><span class="line">     * 返回的数据会作为参数传递到此方法中，可利用返回的数据进行一些 UI 操作</span><br><span class="line">     * @param values</span><br><span class="line">     */</span><br><span class="line">    @Override</span><br><span class="line">    protected void onProgressUpdate(Integer... values) &#123;</span><br><span class="line">        // 在这里更新下载速度</span><br><span class="line">        progressDialog.setMessage(<span class="string">"Download "</span> + values[0] + <span class="string">"%"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 当后台任务执行完毕并通过 <span class="built_in">return</span> 语句进行返回时调用</span><br><span class="line">     * @param result</span><br><span class="line">     */</span><br><span class="line">    @Override</span><br><span class="line">    protected void onPostExecute(Boolean result) &#123;</span><br><span class="line">        progressDialog.dismiss();// 关闭进度对话框</span><br><span class="line">        <span class="keyword">if</span> (result)&#123;</span><br><span class="line">            ToastUtils.showShort(<span class="string">"下载成功"</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            ToastUtils.showShort(<span class="string">"下载失败"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  简单来说，使用 AsyncTask 的诀窍就是，在 doInBackground() 方法中执行具体的耗时任务，在 onProgressUpdate() 方法中进行 UI 操作，在 onPostExecute() 方法中执行一些任务的收尾工作。</p>
+<p>  想要启动这个任务，添加如下代码即可：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">new DownloadTask().execute();</span><br></pre></td></tr></table></figure>
+<p>  本小节就介绍到这，后面会对下载这个功能完整的实现，下面一节会进入到本章的正题，服务。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/wechat-qcode.jpg" alt="Jason Xu wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>如果我的文章对您有用，请打赏我一个红包吧！鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat.png" alt="Jason Xu WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.jpg" alt="Jason Xu Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+            <a href="/tags/Android-Studio/" rel="tag"># Android Studio</a>
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+            <a href="/tags/《第一行代码》（第2版）/" rel="tag"># 《第一行代码》（第2版）</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/11/12/Android开发基础09-网络技术/" rel="next" title="第一行代码读书笔记 9 - 网络技术">
+                <i class="fa fa-chevron-left"></i> 第一行代码读书笔记 9 - 网络技术
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/12/21/Android开发基础10-探究服务（中）/" rel="prev" title="Android开发基础10-探究服务（中）">
+                Android开发基础10-探究服务（中） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/12/15/Android开发基础10-探究服务（上）/"
+           data-title="Android开发基础10-探究服务（上）" data-url="http://xuqianzheng.com/2015/12/15/Android开发基础10-探究服务（上）/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Jason Xu" />
+          <p class="site-author-name" itemprop="name">Jason Xu</p>
+          <p class="site-description motion-element" itemprop="description">About Life, Books and Code.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">29</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">53</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/rss2.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/xuqianzheng" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://7xsb4k.com1.z0.glb.clouddn.com/%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%AD%A6.jpg" target="_blank" title="WeChat">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  WeChat
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.quora.com/profile/Jason-Xu%EF%BC%88%E5%BE%90%E8%BF%81%E5%BE%81%EF%BC%89" target="_blank" title="Quora">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Quora
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#10-1-Android-多线程编程"><span class="nav-number">1.</span> <span class="nav-text">10.1 Android 多线程编程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#10-1-1-线程的基本用法"><span class="nav-number">1.1.</span> <span class="nav-text">10.1.1 线程的基本用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-1-2-在子线程中更新-UI"><span class="nav-number">1.2.</span> <span class="nav-text">10.1.2 在子线程中更新 UI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-1-3-解析异步消息处理机制"><span class="nav-number">1.3.</span> <span class="nav-text">10.1.3 解析异步消息处理机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-1-4-使用-AsyncTask"><span class="nav-number">1.4.</span> <span class="nav-text">10.1.4 使用 AsyncTask</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jason Xu</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"xuqianzheng"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+</body>
+</html>
