@@ -306,16 +306,14 @@
 
     
   <url>
-    <loc>http://xuqianzheng.com/2015/09/08/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%8001-%E5%90%AF%E7%A8%8B/</loc>
+    <loc>http://xuqianzheng.com/2015/09/15/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%8002-%E6%8E%A2%E7%A9%B6%E6%B4%BB%E5%8A%A8/</loc>
     <lastmod>2016-12-18T17:16:10.000Z</lastmod>
     <data>
         <display>
-        <title>Android开发基础1 - 启程</title>
-        <pubTime>2015-09-08T05:11:03.000Z</pubTime>
+        <title>Android开发基础2 - 探究活动</title>
+        <pubTime>2015-09-15T14:47:43.000Z</pubTime>
         
         <tag>Android</tag>
-         
-        <tag>gradle</tag>
          
         <tag>Android Studio</tag>
          
@@ -331,14 +329,16 @@
 
     
   <url>
-    <loc>http://xuqianzheng.com/2015/09/15/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%8002-%E6%8E%A2%E7%A9%B6%E6%B4%BB%E5%8A%A8/</loc>
+    <loc>http://xuqianzheng.com/2015/09/08/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%8001-%E5%90%AF%E7%A8%8B/</loc>
     <lastmod>2016-12-18T17:16:10.000Z</lastmod>
     <data>
         <display>
-        <title>Android开发基础2 - 探究活动</title>
-        <pubTime>2015-09-15T14:47:43.000Z</pubTime>
+        <title>Android开发基础1 - 启程</title>
+        <pubTime>2015-09-08T05:11:03.000Z</pubTime>
         
         <tag>Android</tag>
+         
+        <tag>gradle</tag>
          
         <tag>Android Studio</tag>
          
@@ -522,8 +522,6 @@
         
         <tag>Android</tag>
          
-        <tag>JavaScript</tag>
-         
         <tag>Java</tag>
          
         <tag>Python</tag>
@@ -531,6 +529,8 @@
         <tag>ruby</tag>
          
         <tag>C</tag>
+         
+        <tag>JavaScript</tag>
          
         <tag>Golang</tag>
          
@@ -624,6 +624,8 @@
         <title>前端小白的自学养成记</title>
         <pubTime>2016-09-30T12:30:13.000Z</pubTime>
         
+        <tag>JavaScript</tag>
+         
         <tag>前端学习</tag>
          
         <tag>html5</tag>
@@ -631,8 +633,6 @@
         <tag>CSS3</tag>
          
         <tag>Bootstrap</tag>
-         
-        <tag>JavaScript</tag>
          
         <tag>JQuery</tag>
          
