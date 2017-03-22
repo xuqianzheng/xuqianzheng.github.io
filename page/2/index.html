@@ -396,8 +396,12 @@
 </blockquote>
 <h1 id="11-1-基于位置的服务简介"><a href="#11-1-基于位置的服务简介" class="headerlink" title="11.1 基于位置的服务简介"></a>11.1 基于位置的服务简介</h1><p>  基于位置的服务简称 LBS（Location Based Service），主要的工作原理是利用无线电通讯网络或 GPS 等定位方式来确定出移动设备所在的位置。</p>
 <p>  LBS 所围绕的核心就是要确定出用户所在的位置。通常有两种技术：</p>
-<p><strong>GPS 定位：</strong><br> 基于手机内置的 GPS 硬件直接和卫星交互来获取当前的经纬度信息，精确度高，但只能室外使用，室内基本无法接收到卫星的信号。</p>
-<p><strong>网络定位：</strong><br> 根据手机当前网络附近的三个基站进行测速，以此计算出手机和每个基站之间的距离，再通过三角定位确定一个大概位置，精确度一般，但室内外均可使用。</p>
+<ul>
+<li><p><strong>GPS 定位：</strong><br> 基于手机内置的 GPS 硬件直接和卫星交互来获取当前的经纬度信息，精确度高，但只能室外使用，室内基本无法接收到卫星的信号。</p>
+</li>
+<li><p><strong>网络定位：</strong><br> 根据手机当前网络附近的三个基站进行测速，以此计算出手机和每个基站之间的距离，再通过三角定位确定一个大概位置，精确度一般，但室内外均可使用。</p>
+</li>
+</ul>
 <p>  本章主要学习百度在 LBS 方面提供的一些功能。
           <!--noindex-->
           <div class="post-more-link text-center">
@@ -809,7 +813,8 @@
 </blockquote>
 <h1 id="10-1-Android-多线程编程"><a href="#10-1-Android-多线程编程" class="headerlink" title="10.1 Android 多线程编程"></a>10.1 Android 多线程编程</h1><p>  当我们执行一些耗时操作，如发起一条网络请求时，考虑到网速等其他原因，服务器未必会立刻响应我们的请求，若不将这类操作放在子线程中运行，会导致主线程被阻塞，从而影响软件的使用。下面就来学习下 Android 多线程编程。</p>
 <h2 id="10-1-1-线程的基本用法"><a href="#10-1-1-线程的基本用法" class="headerlink" title="10.1.1 线程的基本用法"></a>10.1.1 线程的基本用法</h2><p>  Android 多线程编程并不比 Java 多线程编程特殊，基本都是使用相同的语法。</p>
-<p><strong>继承 Thread 类</strong><br> 新建一个类继承自 Thread，然后重写父类的 run() 方法：
+<ul>
+<li><strong>继承 Thread 类</strong><br> 新建一个类继承自 Thread，然后重写父类的 run() 方法：
           <!--noindex-->
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/12/15/Android开发基础10-探究服务（上）/#more" rel="contents">
@@ -938,9 +943,9 @@
       
         
           <h1 id="一-第五章"><a href="#一-第五章" class="headerlink" title="一.第五章"></a>一.第五章</h1><p>(本章只理解了大概)</p>
-<h2 id="1-广播机制"><a href="#1-广播机制" class="headerlink" title="1.广播机制"></a>1.广播机制</h2><p>广播分为标准广播与有序广播<br>标准广播直接分发到所有广播接收器<br>有序广播依次分发到各个接收器</p>
-<h1 id="二-第六章"><a href="#二-第六章" class="headerlink" title="二.第六章"></a>二.第六章</h1><h2 id="1-将数据存入-取出文件"><a href="#1-将数据存入-取出文件" class="headerlink" title="1.将数据存入/取出文件"></a>1.将数据存入/取出文件</h2><p>两种模式MODE_PRIVATE(覆盖 默认用此)和MODE_APPEND(追加)，其余两种在4.2版被废弃不做介绍。<br>注意：读取权限的申请？这里没提到，不过可能需要SD卡的读取权限。</p>
-<h2 id="2-SharedPreferences"><a href="#2-SharedPreferences" class="headerlink" title="2.SharedPreferences"></a>2.SharedPreferences</h2><p>调用Activity中的getSharedPreferences(“name”,模式)方法获取到SharedPreferences.Editor对象</p>
+<h2 id="1-广播机制"><a href="#1-广播机制" class="headerlink" title="1.广播机制"></a>1.广播机制</h2><p>广播分为<strong>标准广播</strong>与<strong>有序广播</strong><br>标准广播直接分发到所有广播接收器<br>有序广播依次分发到各个接收器</p>
+<h1 id="二-第六章"><a href="#二-第六章" class="headerlink" title="二.第六章"></a>二.第六章</h1><h2 id="1-将数据存入-取出文件"><a href="#1-将数据存入-取出文件" class="headerlink" title="1.将数据存入/取出文件"></a>1.将数据存入/取出文件</h2><p>两种模式<strong>MODE_PRIVATE(覆盖 默认用此)</strong>和<strong>MODE_APPEND(追加)</strong>，其余两种在4.2版被废弃不做介绍。<br>注意：读取权限的申请？这里没提到，不过可能需要SD卡的读取权限。</p>
+<h2 id="2-SharedPreferences"><a href="#2-SharedPreferences" class="headerlink" title="2.SharedPreferences"></a>2.SharedPreferences</h2><p>调用Activity中的<strong>getSharedPreferences(“name”,模式)</strong>方法获取到<strong>SharedPreferences.Editor</strong>对象</p>
 <p>通过设置 key , value 方式存储键值对，最后调用apply方法保存。<br>同理于取，不做介绍。
           <!--noindex-->
           <div class="post-more-link text-center">
@@ -1021,7 +1026,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">31</span>
+              <span class="site-state-item-count">33</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>

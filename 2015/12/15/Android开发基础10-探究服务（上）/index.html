@@ -112,7 +112,7 @@
 <meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B010-02.png">
 <meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B010-03.gif">
 <meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B010-03.png">
-<meta property="og:updated_time" content="2017-03-21T13:55:25.000Z">
+<meta property="og:updated_time" content="2017-03-21T15:24:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android开发基础10-探究服务（上）">
 <meta name="twitter:description" content="本篇文章主要介绍以下几个知识点：
@@ -421,9 +421,13 @@
 </blockquote>
 <h1 id="10-1-Android-多线程编程"><a href="#10-1-Android-多线程编程" class="headerlink" title="10.1 Android 多线程编程"></a>10.1 Android 多线程编程</h1><p>  当我们执行一些耗时操作，如发起一条网络请求时，考虑到网速等其他原因，服务器未必会立刻响应我们的请求，若不将这类操作放在子线程中运行，会导致主线程被阻塞，从而影响软件的使用。下面就来学习下 Android 多线程编程。</p>
 <h2 id="10-1-1-线程的基本用法"><a href="#10-1-1-线程的基本用法" class="headerlink" title="10.1.1 线程的基本用法"></a>10.1.1 线程的基本用法</h2><p>  Android 多线程编程并不比 Java 多线程编程特殊，基本都是使用相同的语法。</p>
-<p><strong>继承 Thread 类</strong><br> 新建一个类继承自 Thread，然后重写父类的 run() 方法：<a id="more"></a></p>
+<ul>
+<li><strong>继承 Thread 类</strong><br> 新建一个类继承自 Thread，然后重写父类的 run() 方法：<a id="more"></a></li>
+</ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class MyThread extends Thread&#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void <span class="function"><span class="title">run</span></span>() &#123;</span><br><span class="line">        // 处理具体的逻辑</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 启动线程，run()方法中的代码就会在子线程中运行了</span><br><span class="line">new MyThread().run();</span><br></pre></td></tr></table></figure>
-<p><strong>实现 Runnable 接口</strong><br> 新建一个类实现 Runnable 接口，启动再 new Thread()：</p>
+<ul>
+<li><strong>实现 Runnable 接口</strong><br> 新建一个类实现 Runnable 接口，启动再 new Thread()：</li>
+</ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class MyThread2 implements Runnable&#123;</span><br><span class="line">     @Override</span><br><span class="line">     public void <span class="function"><span class="title">run</span></span>() &#123;</span><br><span class="line">         // 处理具体的逻辑</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> // 启动线程</span><br><span class="line"> MyThread2 myThread2 = new MyThread2();</span><br><span class="line"> new Thread(myThread2).start();</span><br></pre></td></tr></table></figure>
 <p>  当然也可用匿名类方式实现 Runnable 接口：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 匿名类方式实现</span><br><span class="line">new Thread(new <span class="function"><span class="title">Runnable</span></span>() &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void <span class="function"><span class="title">run</span></span>() &#123;</span><br><span class="line">        // 处理具体的逻辑</span><br><span class="line">    &#125;</span><br><span class="line">&#125;).start();</span><br></pre></td></tr></table></figure>
@@ -435,17 +439,28 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">public class UpdateUITestActivity extends AppCompatActivity implements View.OnClickListener &#123;</span><br><span class="line"></span><br><span class="line">    private Button btn_change_text;</span><br><span class="line">    private TextView tv_text;</span><br><span class="line"></span><br><span class="line">    // 定义一个整型常量用于表示更新TextView这个动作</span><br><span class="line">    public static final int UPDATE_TEXT = 1;</span><br><span class="line"></span><br><span class="line">    private Handler handler = new <span class="function"><span class="title">Handler</span></span>()&#123;</span><br><span class="line">        @Override</span><br><span class="line">        public void handleMessage(Message msg) &#123;</span><br><span class="line">            switch (msg.what)&#123;</span><br><span class="line">                <span class="keyword">case</span>  UPDATE_TEXT:</span><br><span class="line">                    // 在这里可以进行 UI 操作</span><br><span class="line">                    tv_text.setText(<span class="string">"你好世界"</span>);</span><br><span class="line">                    <span class="built_in">break</span>;</span><br><span class="line"></span><br><span class="line">                 default:</span><br><span class="line">                     <span class="built_in">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        <span class="built_in">set</span>ContentView(R.layout.activity_update_uitest);</span><br><span class="line"></span><br><span class="line">        tv_text = (TextView) findViewById(R.id.tv_text);</span><br><span class="line">        btn_change_text = (Button) findViewById(R.id.btn_change_text);</span><br><span class="line">        btn_change_text.setOnClickListener(this);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onClick(View v) &#123;</span><br><span class="line">         switch (v.getId())&#123;</span><br><span class="line">             <span class="keyword">case</span> R.id.btn_change_text:</span><br><span class="line">                 new Thread(new <span class="function"><span class="title">Runnable</span></span>() &#123;</span><br><span class="line">                     @Override</span><br><span class="line">                     public void <span class="function"><span class="title">run</span></span>() &#123;</span><br><span class="line">                         // 创建Message对象，并将它的what字段指定为UPDATE_TEXT</span><br><span class="line">                         Message message = new Message();</span><br><span class="line">                         message.what = UPDATE_TEXT;</span><br><span class="line">                         handler.sendMessage(message);//将Message对象发送出去</span><br><span class="line">                     &#125;</span><br><span class="line">                 &#125;).start();</span><br><span class="line">                 <span class="built_in">break</span>;</span><br><span class="line"></span><br><span class="line">             default:</span><br><span class="line">                 <span class="built_in">break</span>;</span><br><span class="line">         &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>  重新运行程序，效果如下：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B010-03.gif" alt="" title="成功替换显示的文字"><br>  上面就是 Android 异步消息处理的基本用法，下面来分析下它的工作原理。</p>
 <h2 id="10-1-3-解析异步消息处理机制"><a href="#10-1-3-解析异步消息处理机制" class="headerlink" title="10.1.3 解析异步消息处理机制"></a>10.1.3 解析异步消息处理机制</h2><p>  Android 异步消息处理主要由4个部分组成：Message、Handler、MessageQueue、Looper。</p>
-<p><strong>Message</strong><br> Message 是在线程之间传递的消息，它可在内部携带少量的信息，用于在不同线程之间交换数据。</p>
-<p><strong>Handler</strong><br> Handler 主要是用于发送和处理消息的。发送消息一般用它的 sendMessage() 方法，发送的消息经过一系列地辗转处理后，最终传递到它的 handleMessage() 方法中。</p>
-<p><strong>MessageQueue</strong><br> MessageQueue是消息队列，主要用于存放所有通过 Handler 发送地消息。这部分消息会一直存放于消息队列中，等待被处理。每个线程中只会有一个 MessageQueue 对象。</p>
-<p><strong>Looper</strong><br> Looper 是每个线程中 MessageQueue 的管家，调用 Looper.loop() 方法后，就会进入到一个无限循环中，然后每当发现 MessageQueue 中存在一条消息，就会将它取出，并传递到 Handler 的 handleMessage() 方法中。每个线程中也只会有一个 Looper 对象。</p>
+<ul>
+<li><p><strong>Message</strong><br> Message 是在线程之间传递的消息，它可在内部携带少量的信息，用于在不同线程之间交换数据。</p>
+</li>
+<li><p><strong>Handler</strong><br> Handler 主要是用于发送和处理消息的。发送消息一般用它的 sendMessage() 方法，发送的消息经过一系列地辗转处理后，最终传递到它的 handleMessage() 方法中。</p>
+</li>
+<li><p><strong>MessageQueue</strong><br> MessageQueue是消息队列，主要用于存放所有通过 Handler 发送地消息。这部分消息会一直存放于消息队列中，等待被处理。每个线程中只会有一个 MessageQueue 对象。</p>
+</li>
+<li><p><strong>Looper</strong><br> Looper 是每个线程中 MessageQueue 的管家，调用 Looper.loop() 方法后，就会进入到一个无限循环中，然后每当发现 MessageQueue 中存在一条消息，就会将它取出，并传递到 Handler 的 handleMessage() 方法中。每个线程中也只会有一个 Looper 对象。</p>
+</li>
+</ul>
 <p>  整个异步消息处理机制的流程如下：<br> （1）在主线程中创建 Handler 对象，重写 handleMessage() 方法<br> （2）子线程进行UI操作时，创建 Message 对象，通过 Handler 发送这条消息<br> （3）Looper 从MessageQueue 中取出待处理消息<br> （4）最后分发回 Handler 的 handleMessage() 方法中。<br>  由于 Handler 是在主线程中创建的，所以此时 handleMessage() 方法中的代码也会在主线程中运行，就可以进行 UI 操作了。</p>
 <p>   整个异步消息处理机制的流程示意图如下：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B010-03.png" alt="" title="异步消息处理机制流程示意图"><br>   其核心思想就是一条 Message 经过一系列的辗转调用后，也就从子线程进入到主线程，从不能更新 UI 变成了可以更新 UI。</p>
 <h2 id="10-1-4-使用-AsyncTask"><a href="#10-1-4-使用-AsyncTask" class="headerlink" title="10.1.4 使用 AsyncTask"></a>10.1.4 使用 AsyncTask</h2><p>   为了更方便在子线程中进行 UI 操作，Android 基于异步处理消息机制帮我们封装了一个工具：AsyncTask。</p>
 <p>   AsyncTask是个抽象类，使用它需要创建一个子类去继承它。在继承时可以为它指定3个泛型参数，用途如下：</p>
-<p><strong>Params</strong><br>在执行 AsyncTask 时传入的参数，用于后台任务中使用</p>
-<p><strong>Progress</strong><br>后台任务执行时，若需在界面显示当前进度，则使用这里指定的泛型作为进度单位</p>
-<p><strong>Result</strong><br>当任务执行完毕后，若需对结果进行返回，则使用这里指定的泛型作为返回值类型</p>
+<ul>
+<li><p><strong>Params</strong><br>在执行 AsyncTask 时传入的参数，用于后台任务中使用</p>
+</li>
+<li><p><strong>Progress</strong><br>后台任务执行时，若需在界面显示当前进度，则使用这里指定的泛型作为进度单位</p>
+</li>
+<li><p><strong>Result</strong><br>当任务执行完毕后，若需对结果进行返回，则使用这里指定的泛型作为返回值类型</p>
+</li>
+</ul>
 <p>   如一个简单的自定义 AsyncTask 如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 第一个泛型参数Void 表示在执行AsyncTask时不需要传入参数给后台任务</span><br><span class="line">// 第二个泛型参数Integer 表示使用整型数据作为进度条显示单位</span><br><span class="line">// 第三个泛型参数Boolean 表示使用布尔型数据来反馈执行结果</span><br><span class="line">class DownloadTask extends AsyncTask&lt;Void,Integer,Boolean&gt;&#123;</span><br><span class="line">    . . .</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>  若要完善上面对任务的定制，还需要重写 AsyncTask 的几个方法：</p>
@@ -625,7 +640,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">31</span>
+              <span class="site-state-item-count">33</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
