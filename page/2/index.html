@@ -303,6 +303,287 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://xuqianzheng.com/2016/01/28/Android开发基础13-Android 中的一些高级技巧/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Jason Xu">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Third Type Of Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Third Type Of Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/01/28/Android开发基础13-Android 中的一些高级技巧/" itemprop="url">
+                  Android开发基础13-Android 中的一些高级技巧
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-01-28T13:28:42+08:00">
+                2016-01-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2016/01/28/Android开发基础13-Android 中的一些高级技巧/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/28/Android开发基础13-Android 中的一些高级技巧/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p><strong>本篇文章主要介绍以几下个知识点：</strong></p>
+<ul>
+<li>获取全局 Context</li>
+<li>使用 Intent 传递对象</li>
+<li>定制日志工具</li>
+<li>创建定时任务</li>
+<li>多窗口模式编程</li>
+</ul>
+</blockquote>
+<h1 id="13-1-全局获取-Context-的技巧"><a href="#13-1-全局获取-Context-的技巧" class="headerlink" title="13.1 全局获取 Context 的技巧"></a>13.1 全局获取 Context 的技巧</h1><p>  在某些情况下，获取 Context 并非是一件容易事，下面就来学习让你在项目的任何地方都能轻松获取到 Context 的一种技巧。</p>
+<p>  Android 提供了一个 <strong>Application</strong> 类，每当应用程序启动时，系统就会自动将这个类进行初始化。我们可以定制一个自己的 Application 类，以便管理程序内一些全局的状态信息，比如全局的 Context。</p>
+<p>  定制一个自己的 Application 并不复杂，首先需要创建一个 MyApplication 类继承自 Application，如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public class MyApplication extends Application &#123;</span><br><span class="line"></span><br><span class="line">    private static Context context;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void <span class="function"><span class="title">onCreate</span></span>() &#123;</span><br><span class="line">        context = getApplicationContext();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static Context <span class="function"><span class="title">getContext</span></span>()&#123;</span><br><span class="line">        <span class="built_in">return</span> context;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/01/28/Android开发基础13-Android 中的一些高级技巧/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://xuqianzheng.com/2016/01/14/Android开发基础12-Material Design 实战/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Jason Xu">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Third Type Of Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Third Type Of Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/01/14/Android开发基础12-Material Design 实战/" itemprop="url">
+                  Android开发基础12-Material Design 实战
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-01-14T17:35:55+08:00">
+                2016-01-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2016/01/14/Android开发基础12-Material Design 实战/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/14/Android开发基础12-Material Design 实战/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p><strong>本篇文章主要介绍以下几个知识点：</strong></p>
+<ul>
+<li>Toolbar</li>
+<li>滑动菜单</li>
+<li>悬浮按钮</li>
+<li>卡片式布局 </li>
+<li>下拉刷新 </li>
+<li>可折叠式标题栏</li>
+</ul>
+</blockquote>
+<p>  <strong>Material Design</strong> 是由谷歌的设计工程师基于优秀的设计原则，结合丰富的创意和科学技术所发明的一套全新的界面设计语言，包含了视觉、运动、互动效果等特性。</p>
+<p>  在2015年的 Google I/O 大会上推出了一个 <strong>Design Support</strong> 库，这个库将 Material Design 中最具代表性的一些控件和效果进行了封装，使开发者能轻松地将自己的应用 Material 化。本篇文章就来学习下 Design Support 这个库，实现以下效果：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B012-01.gif" alt="" title="Material Design">
+          <!--noindex-->
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/01/14/Android开发基础12-Material Design 实战/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://xuqianzheng.com/2016/01/07/Android开发基础11-基于位置的服务/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -679,277 +960,6 @@
           <!--noindex-->
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/12/21/Android开发基础10-探究服务（中）/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://xuqianzheng.com/2015/12/15/Android开发基础10-探究服务（上）/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Jason Xu">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.png">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Third Type Of Blog">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Third Type Of Blog" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/12/15/Android开发基础10-探究服务（上）/" itemprop="url">
-                  Android开发基础10-探究服务（上）
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-12-15T00:17:29+08:00">
-                2015-12-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <a href="/2015/12/15/Android开发基础10-探究服务（上）/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/15/Android开发基础10-探究服务（上）/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p><strong>本篇文章主要介绍以下几个知识点：</strong></p>
-<ul>
-<li>线程的基本用法。</li>
-<li>异步消息处理机制。</li>
-<li>使用 AsyncTask。</li>
-</ul>
-</blockquote>
-<h1 id="10-1-Android-多线程编程"><a href="#10-1-Android-多线程编程" class="headerlink" title="10.1 Android 多线程编程"></a>10.1 Android 多线程编程</h1><p>  当我们执行一些耗时操作，如发起一条网络请求时，考虑到网速等其他原因，服务器未必会立刻响应我们的请求，若不将这类操作放在子线程中运行，会导致主线程被阻塞，从而影响软件的使用。下面就来学习下 Android 多线程编程。</p>
-<h2 id="10-1-1-线程的基本用法"><a href="#10-1-1-线程的基本用法" class="headerlink" title="10.1.1 线程的基本用法"></a>10.1.1 线程的基本用法</h2><p>  Android 多线程编程并不比 Java 多线程编程特殊，基本都是使用相同的语法。</p>
-<ul>
-<li><strong>继承 Thread 类</strong><br> 新建一个类继承自 Thread，然后重写父类的 run() 方法：
-          <!--noindex-->
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/12/15/Android开发基础10-探究服务（上）/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://xuqianzheng.com/2015/12/02/第一行代码 阅读笔记(5-9章)/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Jason Xu">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.png">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Third Type Of Blog">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Third Type Of Blog" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/12/02/第一行代码 阅读笔记(5-9章)/" itemprop="url">
-                  《第一行代码》阅读笔记(5-9章)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-12-02T23:04:45+08:00">
-                2015-12-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <a href="/2015/12/02/第一行代码 阅读笔记(5-9章)/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/02/第一行代码 阅读笔记(5-9章)/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="一-第五章"><a href="#一-第五章" class="headerlink" title="一.第五章"></a>一.第五章</h1><p>(本章只理解了大概)</p>
-<h2 id="1-广播机制"><a href="#1-广播机制" class="headerlink" title="1.广播机制"></a>1.广播机制</h2><p>广播分为<strong>标准广播</strong>与<strong>有序广播</strong><br>标准广播直接分发到所有广播接收器<br>有序广播依次分发到各个接收器</p>
-<h1 id="二-第六章"><a href="#二-第六章" class="headerlink" title="二.第六章"></a>二.第六章</h1><h2 id="1-将数据存入-取出文件"><a href="#1-将数据存入-取出文件" class="headerlink" title="1.将数据存入/取出文件"></a>1.将数据存入/取出文件</h2><p>两种模式<strong>MODE_PRIVATE(覆盖 默认用此)</strong>和<strong>MODE_APPEND(追加)</strong>，其余两种在4.2版被废弃不做介绍。<br>注意：读取权限的申请？这里没提到，不过可能需要SD卡的读取权限。</p>
-<h2 id="2-SharedPreferences"><a href="#2-SharedPreferences" class="headerlink" title="2.SharedPreferences"></a>2.SharedPreferences</h2><p>调用Activity中的<strong>getSharedPreferences(“name”,模式)</strong>方法获取到<strong>SharedPreferences.Editor</strong>对象</p>
-<p>通过设置 key , value 方式存储键值对，最后调用apply方法保存。<br>同理于取，不做介绍。
-          <!--noindex-->
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/12/02/第一行代码 阅读笔记(5-9章)/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>

@@ -835,7 +835,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://xuqianzheng.com/2016/01/14/Android开发基础12-Material Design 实战/">
+  <link itemprop="mainEntityOfPage" href="http://xuqianzheng.com/2016/02/11/Android开发基础14-开发一个简单的天气软件/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Jason Xu">
@@ -860,8 +860,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/01/14/Android开发基础12-Material Design 实战/" itemprop="url">
-                  Android开发基础12-Material Design 实战
+                <a class="post-title-link" href="/2016/02/11/Android开发基础14-开发一个简单的天气软件/" itemprop="url">
+                  Android开发基础14-开发一个简单的天气软件
                 </a>
               
             
@@ -875,8 +875,8 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-01-14T17:35:55+08:00">
-                2016-01-14
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-02-11T14:23:03+08:00">
+                2016-02-11
               </time>
             
 
@@ -891,8 +891,8 @@
             
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
-                <a href="/2016/01/14/Android开发基础12-Material Design 实战/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/14/Android开发基础12-Material Design 实战/" itemprop="commentCount"></span>
+                <a href="/2016/02/11/Android开发基础14-开发一个简单的天气软件/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/11/Android开发基础14-开发一个简单的天气软件/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -922,19 +922,23 @@
           <blockquote>
 <p><strong>本篇文章主要介绍以下几个知识点：</strong></p>
 <ul>
-<li>Toolbar</li>
-<li>滑动菜单</li>
-<li>悬浮按钮</li>
-<li>卡片式布局 </li>
-<li>下拉刷新 </li>
-<li>可折叠式标题栏</li>
+<li>实现一个简单的天气应用</li>
+<li>仿小米天气界面效果</li>
 </ul>
 </blockquote>
-<p>  <strong>Material Design</strong> 是由谷歌的设计工程师基于优秀的设计原则，结合丰富的创意和科学技术所发明的一套全新的界面设计语言，包含了视觉、运动、互动效果等特性。</p>
-<p>  在2015年的 Google I/O 大会上推出了一个 <strong>Design Support</strong> 库，这个库将 Material Design 中最具代表性的一些控件和效果进行了封装，使开发者能轻松地将自己的应用 Material 化。本篇文章就来学习下 Design Support 这个库，实现以下效果：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B012-01.gif" alt="" title="Material Design">
+<p>  本篇文章主要来实现一个天气应用 —— 必应天气。具备以下功能：</p>
+<ul>
+<li>定位城市，查看城市天气信息</li>
+<li>播报语音天气</li>
+<li>切换城市</li>
+<li>后台自动更新天气<br>  效果如下：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B014-01.gif" alt="" title="必应天气效果"><br>  天气 api 接口来自和风天气，数据相对简单，返回的数据有限（只返回3条未来几天天气预报和每小时预报的数据）：<br>  <a href="http://docs.heweather.com/224489">http://docs.heweather.com/224489</a><br>  它提供了天气预报集合接口、城市查询等接口。</li>
+</ul>
+<p>  全国省市县数据 api 接口来自郭神提供的：<br>  <a href="http://guolin.tech/api/china">http://guolin.tech/api/china</a></p>
+<p>  必应图片 api 接口也是来自郭神提供的：<br>  <a href="http://guolin.tech/api/bing_pic">http://guolin.tech/api/bing_pic</a></p>
+<p>  本项目结构比较简单，如下：
           <!--noindex-->
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/14/Android开发基础12-Material Design 实战/#more" rel="contents">
+            <a class="btn" href="/2016/02/11/Android开发基础14-开发一个简单的天气软件/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>

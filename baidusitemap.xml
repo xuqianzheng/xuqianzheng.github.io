@@ -4,12 +4,12 @@
 
     
   <url>
-    <loc>http://xuqianzheng.com/2015/10/04/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%8014-%E5%BC%80%E5%8F%91%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%A4%A9%E6%B0%94%E8%BD%AF%E4%BB%B6/</loc>
-    <lastmod>2017-03-22T10:11:50.000Z</lastmod>
+    <loc>http://xuqianzheng.com/2016/01/28/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%8013-Android%20%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E9%AB%98%E7%BA%A7%E6%8A%80%E5%B7%A7/</loc>
+    <lastmod>2017-03-22T12:25:25.000Z</lastmod>
     <data>
         <display>
-        <title>Android开发基础14-开发一个简单的天气软件</title>
-        <pubTime>2015-10-04T03:58:04.000Z</pubTime>
+        <title>Android开发基础13-Android 中的一些高级技巧</title>
+        <pubTime>2016-01-28T05:28:42.000Z</pubTime>
         
         <tag>Android</tag>
          
@@ -27,12 +27,12 @@
 
     
   <url>
-    <loc>http://xuqianzheng.com/2015/10/04/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%8013-Android%20%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E9%AB%98%E7%BA%A7%E6%8A%80%E5%B7%A7/</loc>
-    <lastmod>2017-03-22T10:11:50.000Z</lastmod>
+    <loc>http://xuqianzheng.com/2016/02/11/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%8014-%E5%BC%80%E5%8F%91%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%A4%A9%E6%B0%94%E8%BD%AF%E4%BB%B6/</loc>
+    <lastmod>2017-03-22T12:25:25.000Z</lastmod>
     <data>
         <display>
-        <title>Android开发基础13-Android 中的一些高级技巧</title>
-        <pubTime>2015-10-04T03:58:04.000Z</pubTime>
+        <title>Android开发基础14-开发一个简单的天气软件</title>
+        <pubTime>2016-02-11T06:23:03.000Z</pubTime>
         
         <tag>Android</tag>
          
@@ -464,6 +464,29 @@
 
     
   <url>
+    <loc>http://xuqianzheng.com/2015/09/15/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%8002-%E6%8E%A2%E7%A9%B6%E6%B4%BB%E5%8A%A8/</loc>
+    <lastmod>2016-12-18T17:16:10.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android开发基础2 - 探究活动</title>
+        <pubTime>2015-09-15T14:47:43.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>Android Studio</tag>
+         
+        <tag>java</tag>
+         
+        <tag>《第一行代码》（第2版）</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://xuqianzheng.com/2015/09/20/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%8003-UI%20%E5%BC%80%E5%8F%91/</loc>
     <lastmod>2016-12-18T17:16:10.000Z</lastmod>
     <data>
@@ -480,29 +503,6 @@
         <tag>《第一行代码》（第2版）</tag>
          
         <tag>UI</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://xuqianzheng.com/2015/09/15/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%8002-%E6%8E%A2%E7%A9%B6%E6%B4%BB%E5%8A%A8/</loc>
-    <lastmod>2016-12-18T17:16:10.000Z</lastmod>
-    <data>
-        <display>
-        <title>Android开发基础2 - 探究活动</title>
-        <pubTime>2015-09-15T14:47:43.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>Android Studio</tag>
-         
-        <tag>java</tag>
-         
-        <tag>《第一行代码》（第2版）</tag>
          
          
            
@@ -605,9 +605,9 @@
         <title>工业机器人常用精密减速器技术分析</title>
         <pubTime>2014-09-12T02:24:08.000Z</pubTime>
         
-        <tag>减速机</tag>
-         
         <tag>工业机器人</tag>
+         
+        <tag>减速机</tag>
          
          
            

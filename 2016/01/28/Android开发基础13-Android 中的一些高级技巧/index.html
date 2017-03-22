@@ -1,0 +1,1056 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android,Android Studio,java,《第一行代码》（第2版）," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="Third Type Of Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="本篇文章主要介绍以几下个知识点：
+
+获取全局 Context
+使用 Intent 传递对象
+定制日志工具
+创建定时任务
+多窗口模式编程
+
+
+13.1 全局获取 Context 的技巧  在某些情况下，获取 Context 并非是一件容易事，下面就来学习让你在项目的任何地方都能轻松获取到 Context 的一种技巧。
+  Android 提供了一个 Application 类，每当应用程序启动时，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android开发基础13-Android 中的一些高级技巧">
+<meta property="og:url" content="http://xuqianzheng.com/2016/01/28/Android开发基础13-Android 中的一些高级技巧/index.html">
+<meta property="og:site_name" content="Third Type Of Blog">
+<meta property="og:description" content="本篇文章主要介绍以几下个知识点：
+
+获取全局 Context
+使用 Intent 传递对象
+定制日志工具
+创建定时任务
+多窗口模式编程
+
+
+13.1 全局获取 Context 的技巧  在某些情况下，获取 Context 并非是一件容易事，下面就来学习让你在项目的任何地方都能轻松获取到 Context 的一种技巧。
+  Android 提供了一个 Application 类，每当应用程序启动时，">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B013-01.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B013-02.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B013-03.png">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B013-04.png">
+<meta property="og:updated_time" content="2017-03-22T12:25:25.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android开发基础13-Android 中的一些高级技巧">
+<meta name="twitter:description" content="本篇文章主要介绍以几下个知识点：
+
+获取全局 Context
+使用 Intent 传递对象
+定制日志工具
+创建定时任务
+多窗口模式编程
+
+
+13.1 全局获取 Context 的技巧  在某些情况下，获取 Context 并非是一件容易事，下面就来学习让你在项目的任何地方都能轻松获取到 Context 的一种技巧。
+  Android 提供了一个 Application 类，每当应用程序启动时，">
+<meta name="twitter:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B013-01.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://xuqianzheng.com/2016/01/28/Android开发基础13-Android 中的一些高级技巧/"/>
+
+
+
+
+
+  <title> Android开发基础13-Android 中的一些高级技巧 | Third Type Of Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?3f7ae1fa714b160af9e4a2f1cc75d137";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=56301679";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Third Type Of Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Machine Learning</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://xuqianzheng.com/2016/01/28/Android开发基础13-Android 中的一些高级技巧/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Jason Xu">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Third Type Of Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Third Type Of Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android开发基础13-Android 中的一些高级技巧
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-01-28T13:28:42+08:00">
+                2016-01-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2016/01/28/Android开发基础13-Android 中的一些高级技巧/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/28/Android开发基础13-Android 中的一些高级技巧/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p><strong>本篇文章主要介绍以几下个知识点：</strong></p>
+<ul>
+<li>获取全局 Context</li>
+<li>使用 Intent 传递对象</li>
+<li>定制日志工具</li>
+<li>创建定时任务</li>
+<li>多窗口模式编程</li>
+</ul>
+</blockquote>
+<h1 id="13-1-全局获取-Context-的技巧"><a href="#13-1-全局获取-Context-的技巧" class="headerlink" title="13.1 全局获取 Context 的技巧"></a>13.1 全局获取 Context 的技巧</h1><p>  在某些情况下，获取 Context 并非是一件容易事，下面就来学习让你在项目的任何地方都能轻松获取到 Context 的一种技巧。</p>
+<p>  Android 提供了一个 <strong>Application</strong> 类，每当应用程序启动时，系统就会自动将这个类进行初始化。我们可以定制一个自己的 Application 类，以便管理程序内一些全局的状态信息，比如全局的 Context。</p>
+<p>  定制一个自己的 Application 并不复杂，首先需要创建一个 MyApplication 类继承自 Application，如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public class MyApplication extends Application &#123;</span><br><span class="line"></span><br><span class="line">    private static Context context;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void <span class="function"><span class="title">onCreate</span></span>() &#123;</span><br><span class="line">        context = getApplicationContext();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static Context <span class="function"><span class="title">getContext</span></span>()&#123;</span><br><span class="line">        <span class="built_in">return</span> context;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>  接下来在 AndroidManifest.xml 文件的<application>标签下进行指定就可以了，如下：</application></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> &lt;application</span><br><span class="line">     android:name=<span class="string">".MyApplication"</span></span><br><span class="line">     android:allowBackup=<span class="string">"true"</span></span><br><span class="line">     android:icon=<span class="string">"@mipmap/ic_launcher"</span></span><br><span class="line">     android:label=<span class="string">"@string/app_name"</span></span><br><span class="line">     android:supportsRtl=<span class="string">"true"</span></span><br><span class="line">     android:theme=<span class="string">"@style/AppTheme"</span>&gt;</span><br><span class="line">     . . .</span><br><span class="line">&lt;/application&gt;</span><br></pre></td></tr></table></figure>
+<p>  这样就实现了一种全局获取 Context 的机制，之后在项目的任何地方想要获取 Context，只需调用 MyApplication.getContext() 就可以了，如弹吐司：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Toast.makeText(MyApplication.getContext(),<span class="string">"提示内容"</span>,Toast.LENGTH_SHORT).show();</span><br></pre></td></tr></table></figure>
+<p>  任何一个项目都只能配置一个 Application，当引用第三方库如 LitePal 时要配置 LitePalApplication 就会起冲突了，这种情况就要在自己的 Application 中去调用 LitePal 的初始化方法，如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public class MyApplication extends Application &#123;</span><br><span class="line"></span><br><span class="line">    private static Context context;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void <span class="function"><span class="title">onCreate</span></span>() &#123;</span><br><span class="line">        context = getApplicationContext();</span><br><span class="line">        // 调用 LitePal 的初始化方法</span><br><span class="line">        LitePal.initialize(context);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static Context <span class="function"><span class="title">getContext</span></span>()&#123;</span><br><span class="line">        <span class="built_in">return</span> context;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  使用上面的写法，把 Context 对象通过参数传递给 LitePal，效果和在 AndroidManifest.xml 中配置 LitePalApplication 是一样的。</p>
+<p>  当然，我个人是更习惯于通过获取全局类实例的方法来定制自己的 Application 类，如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public class MyApplication extends Application &#123;</span><br><span class="line"></span><br><span class="line">    private static MyApplication mInstance;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void <span class="function"><span class="title">onCreate</span></span>() &#123;</span><br><span class="line">        super.onCreate();</span><br><span class="line">        mInstance = this;</span><br><span class="line">        // 调用 LitePal 的初始化方法</span><br><span class="line">        LitePal.initialize(this);        </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * Singleton main method. Provides the global static instance of the helper class.</span><br><span class="line">     * @<span class="built_in">return</span> The MyApplication instance.</span><br><span class="line">     */</span><br><span class="line">    public static synchronized MyApplication <span class="function"><span class="title">getInstance</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> mInstance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="13-2-使用-Intent-传递对象"><a href="#13-2-使用-Intent-传递对象" class="headerlink" title="13.2 使用 Intent 传递对象"></a>13.2 使用 Intent 传递对象</h1><p>  使用 Intent 时，可以在 Intent 中添加一些附加数据，以达到传值的效果，如在第一个活动中添加如下代码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Intent intent = new Intent(FirstActivity.this,SecondActivity.class);</span><br><span class="line">intent.putExtra(<span class="string">"string_data"</span>,<span class="string">"hello"</span>);</span><br><span class="line">intent.putExtra(<span class="string">"int_data"</span>,100);</span><br><span class="line">startActivity(intent);</span><br></pre></td></tr></table></figure>
+<p>  然后在第二个活动中就可以获得这些值了，如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">getIntent().getStringExtra(<span class="string">"string_data"</span>);</span><br><span class="line">getIntent().getIntExtra(<span class="string">"int_data"</span>,0);</span><br></pre></td></tr></table></figure>
+<p>  但上面的 putExtra() 方法中所支持的数据类型是有限的，若要传递一些自定义对象时就无从下手了，下面就来学习下用 Intent 来传递对象的技巧：<strong>Serializable</strong> 和 <strong>Parcelable</strong>。</p>
+<h2 id="13-2-1-Serializable-方式"><a href="#13-2-1-Serializable-方式" class="headerlink" title="13.2.1 Serializable 方式"></a>13.2.1 Serializable 方式</h2><p>  <strong>Serializable</strong> 是序列化的意思，表示将一个对象转化成可储存或可传输的状态。序列化的对象可在网络上传输也可存储到本地。将一个类序列化只要去实现 Serializable 接口就可以了。</p>
+<p>  比如一个 Person 类，将它序列化可以这样写：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public class Person implements Serializable&#123;</span><br><span class="line"></span><br><span class="line">    private String name;</span><br><span class="line"></span><br><span class="line">    private int age;</span><br><span class="line"></span><br><span class="line">    public String <span class="function"><span class="title">getName</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void <span class="built_in">set</span>Name(String name) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int <span class="function"><span class="title">getAge</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void <span class="built_in">set</span>Age(int age) &#123;</span><br><span class="line">        this.age = age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  接下来在第一个活动中的写法非常简单：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Person person = new Person();</span><br><span class="line">person.setName(<span class="string">"Tom"</span>);</span><br><span class="line">person.setAge(18);</span><br><span class="line">Intent intent = new Intent(FirstActivity.this,SecondActivity.class);</span><br><span class="line">intent.putExtra(<span class="string">"person_data"</span>,person);</span><br><span class="line">startActivity(intent);</span><br></pre></td></tr></table></figure>
+<p>  然后在第二个活动中获取对象也非常简单：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Person person = (Person) getIntent().getSerializableExtra(<span class="string">"person_data"</span>);</span><br></pre></td></tr></table></figure>
+<p>  这样就实现了使用 Intent 传递对象了。</p>
+<h2 id="13-2-2-Parcelable-方式"><a href="#13-2-2-Parcelable-方式" class="headerlink" title="13.2.2 Parcelable 方式"></a>13.2.2 Parcelable 方式</h2><p>  <strong>Parcelable</strong> 方式的实现原理是将一个完整的对象进行分解，而分解后的每一部分都是 Intent 所支持的数据类型，这样也就实现传递对象的功能了。</p>
+<p>  Parcelable 的实现方式要稍微复杂一些，修改 Person 中的代码如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">public class Person implements Parcelable &#123;</span><br><span class="line"></span><br><span class="line">    private String name;</span><br><span class="line"></span><br><span class="line">    private int age;</span><br><span class="line"></span><br><span class="line">    public String <span class="function"><span class="title">getName</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void <span class="built_in">set</span>Name(String name) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int <span class="function"><span class="title">getAge</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void <span class="built_in">set</span>Age(int age) &#123;</span><br><span class="line">        this.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public int <span class="function"><span class="title">describeContents</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> 0;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void writeToParcel(Parcel dest, int flags) &#123;</span><br><span class="line">        // 写出数据：将 Person 类中的字段一一写出</span><br><span class="line">        dest.writeString(name);// 写出 name</span><br><span class="line">        dest.writeInt(age);// 写出 age</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static final Parcelable.Creator&lt;Person&gt;CREATOR = new Parcelable.Creator&lt;Person&gt;()&#123;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public Person createFromParcel(Parcel <span class="built_in">source</span>) &#123;</span><br><span class="line">            // 读取数据：读取的顺序要和写出的顺序完全相同</span><br><span class="line">            Person person = new Person();</span><br><span class="line">            person.name = source.readString();//读取 name</span><br><span class="line">            person.age = source.readInt();//读取 age</span><br><span class="line">            <span class="built_in">return</span> person;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public Person[] newArray(int size) &#123;</span><br><span class="line">            <span class="built_in">return</span> new Person[size];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  接下来在第一个活动中的写法不变，在第二个活动中获取对象稍加改动：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Person person = (Person)getIntent().getParcelableExtra(<span class="string">"person_data"</span>);</span><br></pre></td></tr></table></figure>
+<p>  这样就也实现使用 Intent 传递对象了。</p>
+<p>  对比一下，Serializable 的方式较为简单，但由于把整个对象进行序列化，效率会比 Parcelable 方式低。一般推荐使用 Parcelable 的方式来实现 Intent 传递对象的功能。</p>
+<h1 id="13-3-定制自己的日志工具"><a href="#13-3-定制自己的日志工具" class="headerlink" title="13.3 定制自己的日志工具"></a>13.3 定制自己的日志工具</h1><p>  开发一个项目时，定制一个自己的日志工具能够自由的控制日志的打印，当程序处于开发阶段时让日志打印出来，当程序上线后把日志屏蔽。</p>
+<p>  新建日志工具类 LogUtils 如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">public class LogUtils &#123;</span><br><span class="line"></span><br><span class="line">    public static final int VERBOSE = 1;</span><br><span class="line"></span><br><span class="line">    public static final int DEBUG = 2;</span><br><span class="line"></span><br><span class="line">    public static final int INFO = 3;</span><br><span class="line"></span><br><span class="line">    public static final int WARN = 4;</span><br><span class="line"></span><br><span class="line">    public static final int ERROR = 5;</span><br><span class="line"></span><br><span class="line">    public static final int NOTHING = 6;</span><br><span class="line"></span><br><span class="line">    public static int level = VERBOSE;</span><br><span class="line"></span><br><span class="line">    public static void v(String tag,String msg)&#123;</span><br><span class="line">        <span class="keyword">if</span> (level &lt;= VERBOSE)&#123;</span><br><span class="line">            Log.v(tag,msg);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void d(String tag,String msg)&#123;</span><br><span class="line">        <span class="keyword">if</span> (level &lt;= DEBUG)&#123;</span><br><span class="line">            Log.d(tag,msg);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void i(String tag,String msg)&#123;</span><br><span class="line">        <span class="keyword">if</span> (level &lt;= INFO)&#123;</span><br><span class="line">            Log.i(tag,msg);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void w(String tag,String msg)&#123;</span><br><span class="line">        <span class="keyword">if</span> (level &lt;= WARN)&#123;</span><br><span class="line">            Log.w(tag,msg);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void e(String tag,String msg)&#123;</span><br><span class="line">        <span class="keyword">if</span> (level &lt;= ERROR)&#123;</span><br><span class="line">            Log.e(tag,msg);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  上述代码提供了5个自定义的日志方法，其内部分别调用了 Android 自带的打印日志方法，在项目里使用就像使用普通日志工具一样，如打印一行 DEBUG 级别的日志可以这样写：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LogUtils.d(<span class="string">"TAG"</span>,<span class="string">"debug log"</span>);</span><br></pre></td></tr></table></figure>
+<p>  值得注意的是，LogUtils 定义了一个静态变量 level，在开发阶段将 level 指定成 VERBOSE，当项目正式上线时将 level 指定成 NOTHING，将所有日志屏蔽。</p>
+<h1 id="13-4-创建定时任务"><a href="#13-4-创建定时任务" class="headerlink" title="13.4 创建定时任务"></a>13.4 创建定时任务</h1><p>  Android 中的定时任务一般有两种实现方式，一种是使用 Java API 里提供的 Timer 类（不太适用于需要长期在后台运行的定时任务），一种是使用 Android 的 Alarm 机制（具有唤醒 CPU 功能，可以保证大多数情况下执行定时任务时 CPU 能正常工作）。</p>
+<h2 id="13-4-1-Alarm-机制"><a href="#13-4-1-Alarm-机制" class="headerlink" title="13.4.1 Alarm 机制"></a>13.4.1 Alarm 机制</h2><p>  Alarm 机制的用法不复杂，主要是借助 AlarmManager 类来实现的。比如想要设定一个任务在 10 秒钟后执行，可写成：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// 获取 AlarmManager 的实例</span><br><span class="line">AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);</span><br><span class="line"></span><br><span class="line">// 设置触发时间</span><br><span class="line">// SystemClock.elapsedRealtime() 获取系统开机至今所经历时间的毫秒数</span><br><span class="line">// SystemClock.currentTimeMillis() 获取1970年1月1日0点至今所经历时间的毫秒数</span><br><span class="line">long triggerAtTime = SystemClock.elapsedRealtime() + 10 * 1000;</span><br><span class="line"></span><br><span class="line">// 3个参数：指定 AlarmManager 的工作类型、定时任务的触发时间、PendingIntent</span><br><span class="line">// 其中AlarmManager 的工作类型有四种：</span><br><span class="line">// ELAPSED_REALTIME 定时任务的触发时间从系统开机开始时算起，不会唤醒 CPU</span><br><span class="line">// ELAPSED_REALTIME_WAKEUP 系统开机开始时算起，会唤醒 CPU</span><br><span class="line">// RTC 从1970年1月1日0点开始算起，不会唤醒 CPU</span><br><span class="line">// RTC_WAKEUP 从1970年1月1日0点开始算起，会唤醒 CPU</span><br><span class="line">manager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,triggerAtTime,pandingIntent);</span><br></pre></td></tr></table></figure>
+<p>  举个例子，实现一个长时间在后台定时运行的服务，首先新建一个普通的服务 LongRunningService，将触发定时任务的代码写到 onStartCommand() 方法中，如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">public class LongRunningService extends Service &#123;</span><br><span class="line">    public <span class="function"><span class="title">LongRunningService</span></span>() &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public IBinder onBind(Intent intent) &#123;</span><br><span class="line">        throw new UnsupportedOperationException(<span class="string">"Not yet implemented"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public int onStartCommand(Intent intent, int flags, int startId) &#123;</span><br><span class="line">        new Thread(new <span class="function"><span class="title">Runnable</span></span>() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void <span class="function"><span class="title">run</span></span>() &#123;</span><br><span class="line">                // 在这里执行具体的逻辑操作</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;).start();</span><br><span class="line">        AlarmManager manager = (AlarmManager) getSystemService(ALARM_SERVICE);</span><br><span class="line">        int anHour = 60 * 60 * 1000;//1小时的毫秒数</span><br><span class="line">        long triggerAtTime = SystemClock.elapsedRealtime() + anHour;</span><br><span class="line">        Intent i = new Intent(this,LongRunningService.class);</span><br><span class="line">        PendingIntent pi = PendingIntent.getService(this,0,i,0);</span><br><span class="line">        manager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,triggerAtTime,pi);</span><br><span class="line">        <span class="built_in">return</span> super.onStartCommand(intent, flags, startId);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  然后，要启动定时服务时调用如下代码即可：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Intent intent = new Intent(context,LongRunningService.class);</span><br><span class="line">context.startService(intent);</span><br></pre></td></tr></table></figure>
+<p>  值得注意的是，从 Android 4.4开始，由于系统在耗电方面的优化，Alarm 任务的触发时间变得不准确，可能会延迟一段时间后再执行。当然，使用 AlarmManager 的 setExact() 方法来替代 set() 方法，基本上可以保证任务准时执行。</p>
+<h2 id="13-4-2-Doze-模式"><a href="#13-4-2-Doze-模式" class="headerlink" title="13.4.2 Doze 模式"></a>13.4.2 Doze 模式</h2><p>  在 Android 6.0中，谷歌加入了一个全新的 <strong>Doze</strong> 模式，可以极大幅度地延长电池的使用寿命。下面就来了解下这个模式，掌握一些编程时注意事项。</p>
+<p>  在 6.0 及以上系统的设备上，若未插接电源，处于静止状态（7.0中删除了这一条件），且屏幕关闭了一段时间之后，就会进入到 Doze 模式。在 Doze 模式下，系统会对 CPU、网络、Alarm 等活动进行限制，从而延长电池的使用寿命。</p>
+<p>  当然，系统不会一直处于 Doze 模式，而是会间歇性的退出一小段时间，在这段时间应用可以去完成它们的同步操作、Alarm 任务等，其工作过程如下：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B013-01.png" alt="" title="Doze 模式的工作过程"><br>  Doze 模式下受限的功能有：<br> （1）网络访问被禁止<br> （2）系统忽略唤醒CPU或屏幕操作<br> （3）系统不再执行WIFI扫描<br> （4）系统不再执行同步任务<br> （5）<strong>Alarm 任务将会在下次退出 Doze 模式时执行</strong></p>
+<p>  特殊需求，要 Alarm 任务在 Doze 模式下也必须正常执行，则可以调用 AlarmManager 的 setAndAllowWhileIdle() 或 setExactAndAllowWhileIdle() 方法。</p>
+<h1 id="13-5-多窗口模式编程"><a href="#13-5-多窗口模式编程" class="headerlink" title="13.5 多窗口模式编程"></a>13.5 多窗口模式编程</h1><p>  Android 7.0中引入了一个非常有特色的功能——多窗口模式，允许在同一个屏幕中同时打开两个应用程序。</p>
+<h2 id="13-5-1-进入多窗口模式"><a href="#13-5-1-进入多窗口模式" class="headerlink" title="13.5.1 进入多窗口模式"></a>13.5.1 进入多窗口模式</h2><p>  手机的导航栏上有3个按钮：左边 Back 按钮、中间 Home 按钮、右边 OverView 按钮，如下所示：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B013-02.png" alt="" title="手机导航栏"><br>  OverView 按钮的作用是打开一个最近访问过的活动或任务的列表界面，进入多窗口模式需要用到 OverView 按钮，并且有两种方式：</p>
+<ul>
+<li><p>在 OverView 列表界面长按任意一个活动的标题，将该活动拖到屏幕突出显示的区域，则可以进入多窗口模式。</p>
+</li>
+<li><p>打开任意一个程序，长按 OverView 按钮，也可以进入多窗口模式。</p>
+</li>
+</ul>
+<p>  多窗口模式效果如下：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B013-03.png" alt="" title="上下分屏的多窗口模式"><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B013-04.png" alt="" title="左右分屏的多窗口模式"><br>  可以看出多窗口模式下，应用界面缩小很多，编写程序时要多考虑使用 match_parent 属性、RecyclerView、ScrollView 等控件，适配各种不同尺寸的屏幕。</p>
+<h2 id="13-5-2-多窗口模式下的生命周期"><a href="#13-5-2-多窗口模式下的生命周期" class="headerlink" title="13.5.2 多窗口模式下的生命周期"></a>13.5.2 多窗口模式下的生命周期</h2><p>  多窗口模式并不会改变活动原有的生命周期，只是会将用户最近交互过的那个活动设置为运行状态，而将多窗口模式下另外一个可见的活动设置为暂停状态。若这时用户又去和暂停的活动进行交互，那么该活动就变成运行状态，之前处于运行状态的活动变成暂停状态。</p>
+<p>  进入多窗口模式时活动会被重新创建，若要改变这一默认行为，可以在 AndroidManifest.xml 中对活动添加如下配置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android:configChanges=<span class="string">"orientation|keyboardHidden|screenSize|screenLayout"</span></span><br></pre></td></tr></table></figure>
+<p>  添加这行配置后，不管是进入多窗口模式还是横竖屏切换，活动都不会被重新创建，而是会将屏幕发生变化的事件通知到 Activity 的 onConfigurationChanged() 方法中。因此，若要在屏幕发生变化时进行相应的逻辑处理，那么在活动中重写 onConfigurationChanged() 方法即可。</p>
+<h2 id="13-5-3-禁用多窗口模式"><a href="#13-5-3-禁用多窗口模式" class="headerlink" title="13.5.3 禁用多窗口模式"></a>13.5.3 禁用多窗口模式</h2><p>  禁用多窗口模式的方法很简单，只需在 AndroidManifest.xml 的<application>或<activity>标签中加入如下属性即可：</activity></application></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android:resizeableActivity=[<span class="string">"true"</span>|<span class="string">"false"</span>]</span><br></pre></td></tr></table></figure>
+<p>  其中，true 表示支持多窗口模式，false 表示不支持，若不配置这属性默认是 true。</p>
+<p>  虽说 android:resizeableActivity 这个属性的用法简单，但这个属性只适用于 targetSdkVersion 24 或更高的时候，若低于24则无效，可能会被告知此应用在多窗口模式下可能无法正常工作，并进入多窗口模式。</p>
+<p>  Android 规定，若项目指定的 targetSdkVersion 低于24，并且活动是不允许横竖屏切换时是不支持多窗口模式的。因此针对上面的情况，就需要在 AndroidManifest.xml 的<activity>标签中配置如下属性：</activity></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android:screenOrientation=[<span class="string">"portrait"</span>|<span class="string">"landscape"</span>]</span><br></pre></td></tr></table></figure>
+<p>  其中，portrait 表示只支持竖屏，landscape 表示只支持横屏。</p>
+<p>  本篇文章就介绍到这。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/wechat-qcode.jpg" alt="Jason Xu wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>如果我的文章对您有用，请打赏我一个红包吧！鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat.png" alt="Jason Xu WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.jpg" alt="Jason Xu Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+            <a href="/tags/Android-Studio/" rel="tag"># Android Studio</a>
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+            <a href="/tags/《第一行代码》（第2版）/" rel="tag"># 《第一行代码》（第2版）</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/14/Android开发基础12-Material Design 实战/" rel="next" title="Android开发基础12-Material Design 实战">
+                <i class="fa fa-chevron-left"></i> Android开发基础12-Material Design 实战
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/02/11/Android开发基础14-开发一个简单的天气软件/" rel="prev" title="Android开发基础14-开发一个简单的天气软件">
+                Android开发基础14-开发一个简单的天气软件 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/01/28/Android开发基础13-Android 中的一些高级技巧/"
+           data-title="Android开发基础13-Android 中的一些高级技巧" data-url="http://xuqianzheng.com/2016/01/28/Android开发基础13-Android 中的一些高级技巧/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Jason Xu" />
+          <p class="site-author-name" itemprop="name">Jason Xu</p>
+          <p class="site-description motion-element" itemprop="description">About Life, Books and Code.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">33</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">53</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/rss2.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/xuqianzheng" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://7xsb4k.com1.z0.glb.clouddn.com/%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%AD%A6.jpg" target="_blank" title="WeChat">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  WeChat
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.quora.com/profile/Jason-Xu%EF%BC%88%E5%BE%90%E8%BF%81%E5%BE%81%EF%BC%89" target="_blank" title="Quora">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Quora
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#13-1-全局获取-Context-的技巧"><span class="nav-number">1.</span> <span class="nav-text">13.1 全局获取 Context 的技巧</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#13-2-使用-Intent-传递对象"><span class="nav-number">2.</span> <span class="nav-text">13.2 使用 Intent 传递对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#13-2-1-Serializable-方式"><span class="nav-number">2.1.</span> <span class="nav-text">13.2.1 Serializable 方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-2-2-Parcelable-方式"><span class="nav-number">2.2.</span> <span class="nav-text">13.2.2 Parcelable 方式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#13-3-定制自己的日志工具"><span class="nav-number">3.</span> <span class="nav-text">13.3 定制自己的日志工具</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#13-4-创建定时任务"><span class="nav-number">4.</span> <span class="nav-text">13.4 创建定时任务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#13-4-1-Alarm-机制"><span class="nav-number">4.1.</span> <span class="nav-text">13.4.1 Alarm 机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-4-2-Doze-模式"><span class="nav-number">4.2.</span> <span class="nav-text">13.4.2 Doze 模式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#13-5-多窗口模式编程"><span class="nav-number">5.</span> <span class="nav-text">13.5 多窗口模式编程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#13-5-1-进入多窗口模式"><span class="nav-number">5.1.</span> <span class="nav-text">13.5.1 进入多窗口模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-5-2-多窗口模式下的生命周期"><span class="nav-number">5.2.</span> <span class="nav-text">13.5.2 多窗口模式下的生命周期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-5-3-禁用多窗口模式"><span class="nav-number">5.3.</span> <span class="nav-text">13.5.3 禁用多窗口模式</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jason Xu</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"xuqianzheng"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+</body>
+</html>

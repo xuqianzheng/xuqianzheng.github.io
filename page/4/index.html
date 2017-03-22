@@ -303,7 +303,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://xuqianzheng.com/2015/10/04/Android开发基础13-Android 中的一些高级技巧/">
+  <link itemprop="mainEntityOfPage" href="http://xuqianzheng.com/2015/10/07/Android开发基础07-内容提供器/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Jason Xu">
@@ -328,8 +328,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/10/04/Android开发基础13-Android 中的一些高级技巧/" itemprop="url">
-                  Android开发基础13-Android 中的一些高级技巧
+                <a class="post-title-link" href="/2015/10/07/Android开发基础07-内容提供器/" itemprop="url">
+                  Android开发基础7 - 内容提供器
                 </a>
               
             
@@ -343,8 +343,8 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-10-04T11:58:04+08:00">
-                2015-10-04
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-10-07T11:58:04+08:00">
+                2015-10-07
               </time>
             
 
@@ -359,8 +359,8 @@
             
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
-                <a href="/2015/10/04/Android开发基础13-Android 中的一些高级技巧/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/04/Android开发基础13-Android 中的一些高级技巧/" itemprop="commentCount"></span>
+                <a href="/2015/10/07/Android开发基础07-内容提供器/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/07/Android开发基础07-内容提供器/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -387,91 +387,27 @@
 
       
         
-          
-            <blockquote>
-<p><strong>本篇文章主要介绍以几下个知识点：</strong></p>
+          <blockquote>
+<p><strong>本篇文章主要介绍以下几个知识点：</strong></p>
 <ul>
-<li>获取全局 Context</li>
-<li>使用 Intent 传递对象</li>
-<li>定制日志工具</li>
-<li>创建定时任务</li>
-<li>多窗口模式编程</li>
+<li>Android 运行时权限；</li>
+<li>内容提供器。</li>
 </ul>
 </blockquote>
-<h1 id="13-1-全局获取-Context-的技巧"><a href="#13-1-全局获取-Context-的技巧" class="headerlink" title="13.1 全局获取 Context 的技巧"></a>13.1 全局获取 Context 的技巧</h1><p>  在某些情况下，获取 Context 并非是一件容易事，下面就来学习让你在项目的任何地方都能轻松获取到 Context 的一种技巧。</p>
-<p>  Android 提供了一个 <strong>Application</strong> 类，每当应用程序启动时，系统就会自动将这个类进行初始化。我们可以定制一个自己的 Application 类，以便管理程序内一些全局的状态信息，比如全局的 Context。</p>
-<p>  定制一个自己的 Application 并不复杂，首先需要创建一个 MyApplication 类继承自 Application，如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public class MyApplication extends Application &#123;</span><br><span class="line"></span><br><span class="line">    private static Context context;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void <span class="function"><span class="title">onCreate</span></span>() &#123;</span><br><span class="line">        context = getApplicationContext();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static Context <span class="function"><span class="title">getContext</span></span>()&#123;</span><br><span class="line">        <span class="built_in">return</span> context;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>  接下来在 AndroidManifest.xml 文件的<application>标签下进行指定就可以了，如下：</application></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> &lt;application</span><br><span class="line">     android:name=<span class="string">".MyApplication"</span></span><br><span class="line">     android:allowBackup=<span class="string">"true"</span></span><br><span class="line">     android:icon=<span class="string">"@mipmap/ic_launcher"</span></span><br><span class="line">     android:label=<span class="string">"@string/app_name"</span></span><br><span class="line">     android:supportsRtl=<span class="string">"true"</span></span><br><span class="line">     android:theme=<span class="string">"@style/AppTheme"</span>&gt;</span><br><span class="line">     . . .</span><br><span class="line">&lt;/application&gt;</span><br></pre></td></tr></table></figure>
-<p>  这样就实现了一种全局获取 Context 的机制，之后在项目的任何地方想要获取 Context，只需调用 MyApplication.getContext() 就可以了，如弹吐司：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Toast.makeText(MyApplication.getContext(),<span class="string">"提示内容"</span>,Toast.LENGTH_SHORT).show();</span><br></pre></td></tr></table></figure>
-<p>  任何一个项目都只能配置一个 Application，当引用第三方库如 LitePal 时要配置 LitePalApplication 就会起冲突了，这种情况就要在自己的 Application 中去调用 LitePal 的初始化方法，如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public class MyApplication extends Application &#123;</span><br><span class="line"></span><br><span class="line">    private static Context context;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void <span class="function"><span class="title">onCreate</span></span>() &#123;</span><br><span class="line">        context = getApplicationContext();</span><br><span class="line">        // 调用 LitePal 的初始化方法</span><br><span class="line">        LitePal.initialize(context);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static Context <span class="function"><span class="title">getContext</span></span>()&#123;</span><br><span class="line">        <span class="built_in">return</span> context;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>  使用上面的写法，把 Context 对象通过参数传递给 LitePal，效果和在 AndroidManifest.xml 中配置 LitePalApplication 是一样的。</p>
-<p>  当然，我个人是更习惯于通过获取全局类实例的方法来定制自己的 Application 类，如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public class MyApplication extends Application &#123;</span><br><span class="line"></span><br><span class="line">    private static MyApplication mInstance;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void <span class="function"><span class="title">onCreate</span></span>() &#123;</span><br><span class="line">        super.onCreate();</span><br><span class="line">        mInstance = this;</span><br><span class="line">        // 调用 LitePal 的初始化方法</span><br><span class="line">        LitePal.initialize(this);        </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * Singleton main method. Provides the global static instance of the helper class.</span><br><span class="line">     * @<span class="built_in">return</span> The MyApplication instance.</span><br><span class="line">     */</span><br><span class="line">    public static synchronized MyApplication <span class="function"><span class="title">getInstance</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> mInstance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="13-2-使用-Intent-传递对象"><a href="#13-2-使用-Intent-传递对象" class="headerlink" title="13.2 使用 Intent 传递对象"></a>13.2 使用 Intent 传递对象</h1><p>  使用 Intent 时，可以在 Intent 中添加一些附加数据，以达到传值的效果，如在第一个活动中添加如下代码：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Intent intent = new Intent(FirstActivity.this,SecondActivity.class);</span><br><span class="line">intent.putExtra(<span class="string">"string_data"</span>,<span class="string">"hello"</span>);</span><br><span class="line">intent.putExtra(<span class="string">"int_data"</span>,100);</span><br><span class="line">startActivity(intent);</span><br></pre></td></tr></table></figure>
-<p>  然后在第二个活动中就可以获得这些值了，如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">getIntent().getStringExtra(<span class="string">"string_data"</span>);</span><br><span class="line">getIntent().getIntExtra(<span class="string">"int_data"</span>,0);</span><br></pre></td></tr></table></figure>
-<p>  但上面的 putExtra() 方法中所支持的数据类型是有限的，若要传递一些自定义对象时就无从下手了，下面就来学习下用 Intent 来传递对象的技巧：<strong>Serializable</strong> 和 <strong>Parcelable</strong>。</p>
-<h2 id="13-2-1-Serializable-方式"><a href="#13-2-1-Serializable-方式" class="headerlink" title="13.2.1 Serializable 方式"></a>13.2.1 Serializable 方式</h2><p>  <strong>Serializable</strong> 是序列化的意思，表示将一个对象转化成可储存或可传输的状态。序列化的对象可在网络上传输也可存储到本地。将一个类序列化只要去实现 Serializable 接口就可以了。</p>
-<p>  比如一个 Person 类，将它序列化可以这样写：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public class Person implements Serializable&#123;</span><br><span class="line"></span><br><span class="line">    private String name;</span><br><span class="line"></span><br><span class="line">    private int age;</span><br><span class="line"></span><br><span class="line">    public String <span class="function"><span class="title">getName</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void <span class="built_in">set</span>Name(String name) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int <span class="function"><span class="title">getAge</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void <span class="built_in">set</span>Age(int age) &#123;</span><br><span class="line">        this.age = age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>  接下来在第一个活动中的写法非常简单：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Person person = new Person();</span><br><span class="line">person.setName(<span class="string">"Tom"</span>);</span><br><span class="line">person.setAge(18);</span><br><span class="line">Intent intent = new Intent(FirstActivity.this,SecondActivity.class);</span><br><span class="line">intent.putExtra(<span class="string">"person_data"</span>,person);</span><br><span class="line">startActivity(intent);</span><br></pre></td></tr></table></figure>
-<p>  然后在第二个活动中获取对象也非常简单：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Person person = (Person) getIntent().getSerializableExtra(<span class="string">"person_data"</span>);</span><br></pre></td></tr></table></figure>
-<p>  这样就实现了使用 Intent 传递对象了。</p>
-<h2 id="13-2-2-Parcelable-方式"><a href="#13-2-2-Parcelable-方式" class="headerlink" title="13.2.2 Parcelable 方式"></a>13.2.2 Parcelable 方式</h2><p>  <strong>Parcelable</strong> 方式的实现原理是将一个完整的对象进行分解，而分解后的每一部分都是 Intent 所支持的数据类型，这样也就实现传递对象的功能了。</p>
-<p>  Parcelable 的实现方式要稍微复杂一些，修改 Person 中的代码如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">public class Person implements Parcelable &#123;</span><br><span class="line"></span><br><span class="line">    private String name;</span><br><span class="line"></span><br><span class="line">    private int age;</span><br><span class="line"></span><br><span class="line">    public String <span class="function"><span class="title">getName</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void <span class="built_in">set</span>Name(String name) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int <span class="function"><span class="title">getAge</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void <span class="built_in">set</span>Age(int age) &#123;</span><br><span class="line">        this.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public int <span class="function"><span class="title">describeContents</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> 0;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void writeToParcel(Parcel dest, int flags) &#123;</span><br><span class="line">        // 写出数据：将 Person 类中的字段一一写出</span><br><span class="line">        dest.writeString(name);// 写出 name</span><br><span class="line">        dest.writeInt(age);// 写出 age</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static final Parcelable.Creator&lt;Person&gt;CREATOR = new Parcelable.Creator&lt;Person&gt;()&#123;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public Person createFromParcel(Parcel <span class="built_in">source</span>) &#123;</span><br><span class="line">            // 读取数据：读取的顺序要和写出的顺序完全相同</span><br><span class="line">            Person person = new Person();</span><br><span class="line">            person.name = source.readString();//读取 name</span><br><span class="line">            person.age = source.readInt();//读取 age</span><br><span class="line">            <span class="built_in">return</span> person;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public Person[] newArray(int size) &#123;</span><br><span class="line">            <span class="built_in">return</span> new Person[size];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>  接下来在第一个活动中的写法不变，在第二个活动中获取对象稍加改动：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Person person = (Person)getIntent().getParcelableExtra(<span class="string">"person_data"</span>);</span><br></pre></td></tr></table></figure>
-<p>  这样就也实现使用 Intent 传递对象了。</p>
-<p>  对比一下，Serializable 的方式较为简单，但由于把整个对象进行序列化，效率会比 Parcelable 方式低。一般推荐使用 Parcelable 的方式来实现 Intent 传递对象的功能。</p>
-<h1 id="13-3-定制自己的日志工具"><a href="#13-3-定制自己的日志工具" class="headerlink" title="13.3 定制自己的日志工具"></a>13.3 定制自己的日志工具</h1><p>  开发一个项目时，定制一个自己的日志工具能够自由的控制日志的打印，当程序处于开发阶段时让日志打印出来，当程序上线后把日志屏蔽。</p>
-<p>  新建日志工具类 LogUtils 如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">public class LogUtils &#123;</span><br><span class="line"></span><br><span class="line">    public static final int VERBOSE = 1;</span><br><span class="line"></span><br><span class="line">    public static final int DEBUG = 2;</span><br><span class="line"></span><br><span class="line">    public static final int INFO = 3;</span><br><span class="line"></span><br><span class="line">    public static final int WARN = 4;</span><br><span class="line"></span><br><span class="line">    public static final int ERROR = 5;</span><br><span class="line"></span><br><span class="line">    public static final int NOTHING = 6;</span><br><span class="line"></span><br><span class="line">    public static int level = VERBOSE;</span><br><span class="line"></span><br><span class="line">    public static void v(String tag,String msg)&#123;</span><br><span class="line">        <span class="keyword">if</span> (level &lt;= VERBOSE)&#123;</span><br><span class="line">            Log.v(tag,msg);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void d(String tag,String msg)&#123;</span><br><span class="line">        <span class="keyword">if</span> (level &lt;= DEBUG)&#123;</span><br><span class="line">            Log.d(tag,msg);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void i(String tag,String msg)&#123;</span><br><span class="line">        <span class="keyword">if</span> (level &lt;= INFO)&#123;</span><br><span class="line">            Log.i(tag,msg);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void w(String tag,String msg)&#123;</span><br><span class="line">        <span class="keyword">if</span> (level &lt;= WARN)&#123;</span><br><span class="line">            Log.w(tag,msg);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void e(String tag,String msg)&#123;</span><br><span class="line">        <span class="keyword">if</span> (level &lt;= ERROR)&#123;</span><br><span class="line">            Log.e(tag,msg);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>  上述代码提供了5个自定义的日志方法，其内部分别调用了 Android 自带的打印日志方法，在项目里使用就像使用普通日志工具一样，如打印一行 DEBUG 级别的日志可以这样写：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LogUtils.d(<span class="string">"TAG"</span>,<span class="string">"debug log"</span>);</span><br></pre></td></tr></table></figure>
-<p>  值得注意的是，LogUtils 定义了一个静态变量 level，在开发阶段将 level 指定成 VERBOSE，当项目正式上线时将 level 指定成 NOTHING，将所有日志屏蔽。</p>
-<h1 id="13-4-创建定时任务"><a href="#13-4-创建定时任务" class="headerlink" title="13.4 创建定时任务"></a>13.4 创建定时任务</h1><p>  Android 中的定时任务一般有两种实现方式，一种是使用 Java API 里提供的 Timer 类（不太适用于需要长期在后台运行的定时任务），一种是使用 Android 的 Alarm 机制（具有唤醒 CPU 功能，可以保证大多数情况下执行定时任务时 CPU 能正常工作）。</p>
-<h2 id="13-4-1-Alarm-机制"><a href="#13-4-1-Alarm-机制" class="headerlink" title="13.4.1 Alarm 机制"></a>13.4.1 Alarm 机制</h2><p>  Alarm 机制的用法不复杂，主要是借助 AlarmManager 类来实现的。比如想要设定一个任务在 10 秒钟后执行，可写成：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// 获取 AlarmManager 的实例</span><br><span class="line">AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);</span><br><span class="line"></span><br><span class="line">// 设置触发时间</span><br><span class="line">// SystemClock.elapsedRealtime() 获取系统开机至今所经历时间的毫秒数</span><br><span class="line">// SystemClock.currentTimeMillis() 获取1970年1月1日0点至今所经历时间的毫秒数</span><br><span class="line">long triggerAtTime = SystemClock.elapsedRealtime() + 10 * 1000;</span><br><span class="line"></span><br><span class="line">// 3个参数：指定 AlarmManager 的工作类型、定时任务的触发时间、PendingIntent</span><br><span class="line">// 其中AlarmManager 的工作类型有四种：</span><br><span class="line">// ELAPSED_REALTIME 定时任务的触发时间从系统开机开始时算起，不会唤醒 CPU</span><br><span class="line">// ELAPSED_REALTIME_WAKEUP 系统开机开始时算起，会唤醒 CPU</span><br><span class="line">// RTC 从1970年1月1日0点开始算起，不会唤醒 CPU</span><br><span class="line">// RTC_WAKEUP 从1970年1月1日0点开始算起，会唤醒 CPU</span><br><span class="line">manager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,triggerAtTime,pandingIntent);</span><br></pre></td></tr></table></figure>
-<p>  举个例子，实现一个长时间在后台定时运行的服务，首先新建一个普通的服务 LongRunningService，将触发定时任务的代码写到 onStartCommand() 方法中，如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">public class LongRunningService extends Service &#123;</span><br><span class="line">    public <span class="function"><span class="title">LongRunningService</span></span>() &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public IBinder onBind(Intent intent) &#123;</span><br><span class="line">        throw new UnsupportedOperationException(<span class="string">"Not yet implemented"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public int onStartCommand(Intent intent, int flags, int startId) &#123;</span><br><span class="line">        new Thread(new <span class="function"><span class="title">Runnable</span></span>() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void <span class="function"><span class="title">run</span></span>() &#123;</span><br><span class="line">                // 在这里执行具体的逻辑操作</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;).start();</span><br><span class="line">        AlarmManager manager = (AlarmManager) getSystemService(ALARM_SERVICE);</span><br><span class="line">        int anHour = 60 * 60 * 1000;//1小时的毫秒数</span><br><span class="line">        long triggerAtTime = SystemClock.elapsedRealtime() + anHour;</span><br><span class="line">        Intent i = new Intent(this,LongRunningService.class);</span><br><span class="line">        PendingIntent pi = PendingIntent.getService(this,0,i,0);</span><br><span class="line">        manager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,triggerAtTime,pi);</span><br><span class="line">        <span class="built_in">return</span> super.onStartCommand(intent, flags, startId);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>  然后，要启动定时服务时调用如下代码即可：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Intent intent = new Intent(context,LongRunningService.class);</span><br><span class="line">context.startService(intent);</span><br></pre></td></tr></table></figure>
-<p>  值得注意的是，从 Android 4.4开始，由于系统在耗电方面的优化，Alarm 任务的触发时间变得不准确，可能会延迟一段时间后再执行。当然，使用 AlarmManager 的 setExact() 方法来替代 set() 方法，基本上可以保证任务准时执行。</p>
-<h2 id="13-4-2-Doze-模式"><a href="#13-4-2-Doze-模式" class="headerlink" title="13.4.2 Doze 模式"></a>13.4.2 Doze 模式</h2><p>  在 Android 6.0中，谷歌加入了一个全新的 <strong>Doze</strong> 模式，可以极大幅度地延长电池的使用寿命。下面就来了解下这个模式，掌握一些编程时注意事项。</p>
-<p>  在 6.0 及以上系统的设备上，若未插接电源，处于静止状态（7.0中删除了这一条件），且屏幕关闭了一段时间之后，就会进入到 Doze 模式。在 Doze 模式下，系统会对 CPU、网络、Alarm 等活动进行限制，从而延长电池的使用寿命。</p>
-<p>  当然，系统不会一直处于 Doze 模式，而是会间歇性的退出一小段时间，在这段时间应用可以去完成它们的同步操作、Alarm 任务等，其工作过程如下：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B013-01.png" alt="" title="Doze 模式的工作过程"><br>  Doze 模式下受限的功能有：<br> （1）网络访问被禁止<br> （2）系统忽略唤醒CPU或屏幕操作<br> （3）系统不再执行WIFI扫描<br> （4）系统不再执行同步任务<br> （5）<strong>Alarm 任务将会在下次退出 Doze 模式时执行</strong></p>
-<p>  特殊需求，要 Alarm 任务在 Doze 模式下也必须正常执行，则可以调用 AlarmManager 的 setAndAllowWhileIdle() 或 setExactAndAllowWhileIdle() 方法。</p>
-<h1 id="13-5-多窗口模式编程"><a href="#13-5-多窗口模式编程" class="headerlink" title="13.5 多窗口模式编程"></a>13.5 多窗口模式编程</h1><p>  Android 7.0中引入了一个非常有特色的功能——多窗口模式，允许在同一个屏幕中同时打开两个应用程序。</p>
-<h2 id="13-5-1-进入多窗口模式"><a href="#13-5-1-进入多窗口模式" class="headerlink" title="13.5.1 进入多窗口模式"></a>13.5.1 进入多窗口模式</h2><p>  手机的导航栏上有3个按钮：左边 Back 按钮、中间 Home 按钮、右边 OverView 按钮，如下所示：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B013-02.png" alt="" title="手机导航栏"><br>  OverView 按钮的作用是打开一个最近访问过的活动或任务的列表界面，进入多窗口模式需要用到 OverView 按钮，并且有两种方式：</p>
+<h1 id="7-1-运行时权限"><a href="#7-1-运行时权限" class="headerlink" title="7.1 运行时权限"></a>7.1 运行时权限</h1><p>  在介绍内容提供器之前先来了解了解 Android 运行时权限。</p>
+<h1 id="7-1-1-Android-权限机制"><a href="#7-1-1-Android-权限机制" class="headerlink" title="7.1.1 Android 权限机制"></a>7.1.1 Android 权限机制</h1><p>  Android 把所有的权限归成两类：普通权限和危险权限。</p>
 <ul>
-<li><p>在 OverView 列表界面长按任意一个活动的标题，将该活动拖到屏幕突出显示的区域，则可以进入多窗口模式。</p>
-</li>
-<li><p>打开任意一个程序，长按 OverView 按钮，也可以进入多窗口模式。</p>
-</li>
+<li>普通权限<br>  不会直接威胁到用户的安全和隐私的权限，对于这部分的权限申请，系统会自动帮我们进行授权。</li>
+<li>危险权限<br>  可能触及用户隐私，或对设备安全性造成影响的权限，如获取联系人信息、地理位置等，对于这部分的权限申请，必须由用户手动点击授权才可以，否则程序无法使用相应的功能。</li>
 </ul>
-<p>  多窗口模式效果如下：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B013-03.png" alt="" title="上下分屏的多窗口模式"><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B013-04.png" alt="" title="左右分屏的多窗口模式"><br>  可以看出多窗口模式下，应用界面缩小很多，编写程序时要多考虑使用 match_parent 属性、RecyclerView、ScrollView 等控件，适配各种不同尺寸的屏幕。</p>
-<h2 id="13-5-2-多窗口模式下的生命周期"><a href="#13-5-2-多窗口模式下的生命周期" class="headerlink" title="13.5.2 多窗口模式下的生命周期"></a>13.5.2 多窗口模式下的生命周期</h2><p>  多窗口模式并不会改变活动原有的生命周期，只是会将用户最近交互过的那个活动设置为运行状态，而将多窗口模式下另外一个可见的活动设置为暂停状态。若这时用户又去和暂停的活动进行交互，那么该活动就变成运行状态，之前处于运行状态的活动变成暂停状态。</p>
-<p>  进入多窗口模式时活动会被重新创建，若要改变这一默认行为，可以在 AndroidManifest.xml 中对活动添加如下配置：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android:configChanges=<span class="string">"orientation|keyboardHidden|screenSize|screenLayout"</span></span><br></pre></td></tr></table></figure>
-<p>  添加这行配置后，不管是进入多窗口模式还是横竖屏切换，活动都不会被重新创建，而是会将屏幕发生变化的事件通知到 Activity 的 onConfigurationChanged() 方法中。因此，若要在屏幕发生变化时进行相应的逻辑处理，那么在活动中重写 onConfigurationChanged() 方法即可。</p>
-<h2 id="13-5-3-禁用多窗口模式"><a href="#13-5-3-禁用多窗口模式" class="headerlink" title="13.5.3 禁用多窗口模式"></a>13.5.3 禁用多窗口模式</h2><p>  禁用多窗口模式的方法很简单，只需在 AndroidManifest.xml 的<application>或<activity>标签中加入如下属性即可：</activity></application></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android:resizeableActivity=[<span class="string">"true"</span>|<span class="string">"false"</span>]</span><br></pre></td></tr></table></figure>
-<p>  其中，true 表示支持多窗口模式，false 表示不支持，若不配置这属性默认是 true。</p>
-<p>  虽说 android:resizeableActivity 这个属性的用法简单，但这个属性只适用于 targetSdkVersion 24 或更高的时候，若低于24则无效，可能会被告知此应用在多窗口模式下可能无法正常工作，并进入多窗口模式。</p>
-<p>  Android 规定，若项目指定的 targetSdkVersion 低于24，并且活动是不允许横竖屏切换时是不支持多窗口模式的。因此针对上面的情况，就需要在 AndroidManifest.xml 的<activity>标签中配置如下属性：</activity></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android:screenOrientation=[<span class="string">"portrait"</span>|<span class="string">"landscape"</span>]</span><br></pre></td></tr></table></figure>
-<p>  其中，portrait 表示只支持竖屏，landscape 表示只支持横屏。</p>
-<p>  本篇文章就介绍到这。</p>
-
-          
+<p>  下面列出了 Android 中所有的危险权限：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/0701Android%E4%B8%AD%E7%9A%849%E7%BB%8424%E4%B8%AA%E5%8D%B1%E9%99%A9%E6%9D%83%E9%99%90.png" alt="" title="Android中的9组24个危险权限">
+          <!--noindex-->
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/07/Android开发基础07-内容提供器/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -508,7 +444,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://xuqianzheng.com/2015/10/04/Android开发基础14-开发一个简单的天气软件/">
+  <link itemprop="mainEntityOfPage" href="http://xuqianzheng.com/2015/10/05/Android开发基础06-持久化技术（下）/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Jason Xu">
@@ -533,8 +469,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/10/04/Android开发基础14-开发一个简单的天气软件/" itemprop="url">
-                  Android开发基础14-开发一个简单的天气软件
+                <a class="post-title-link" href="/2015/10/05/Android开发基础06-持久化技术（下）/" itemprop="url">
+                  Android开发基础6 - 持久化技术（下）
                 </a>
               
             
@@ -548,8 +484,8 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-10-04T11:58:04+08:00">
-                2015-10-04
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-10-05T17:31:48+08:00">
+                2015-10-05
               </time>
             
 
@@ -564,8 +500,8 @@
             
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
-                <a href="/2015/10/04/Android开发基础14-开发一个简单的天气软件/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/04/Android开发基础14-开发一个简单的天气软件/" itemprop="commentCount"></span>
+                <a href="/2015/10/05/Android开发基础06-持久化技术（下）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/05/Android开发基础06-持久化技术（下）/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -592,31 +528,24 @@
 
       
         
-          
-            <blockquote>
+          <blockquote>
 <p><strong>本篇文章主要介绍以下几个知识点：</strong></p>
 <ul>
-<li>实现一个简单的天气应用</li>
-<li>仿小米天气界面效果</li>
+<li>SQLite 数据库存储；</li>
+<li>开源数据库框架 LitePal。</li>
 </ul>
 </blockquote>
-<p>  本篇文章主要来实现一个天气应用 —— 必应天气。具备以下功能：</p>
-<ul>
-<li>定位城市，查看城市天气信息</li>
-<li>播报语音天气</li>
-<li>切换城市</li>
-<li>后台自动更新天气<br>  效果如下：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B014-01.gif" alt="" title="必应天气效果"><br>  天气 api 接口来自和风天气，数据相对简单，返回的数据有限（只返回3条未来几天天气预报和每小时预报的数据）：<br>  <a href="http://docs.heweather.com/224489" target="_blank" rel="external">http://docs.heweather.com/224489</a><br>  它提供了天气预报集合接口、城市查询等接口。</li>
-</ul>
-<p>  全国省市县数据 api 接口来自郭神提供的：<br>  <a href="http://guolin.tech/api/china" target="_blank" rel="external">http://guolin.tech/api/china</a></p>
-<p>  必应图片 api 接口也是来自郭神提供的：<br>  <a href="http://guolin.tech/api/bing_pic" target="_blank" rel="external">http://guolin.tech/api/bing_pic</a></p>
-<p>  本项目结构比较简单，如下：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B014-02.png" alt="" title="项目的结构"><br>  用到的第三方开源库有：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">compile <span class="string">'com.android.support:design:25.1.1'</span></span><br><span class="line">compile <span class="string">'com.jakewharton:butterknife:8.5.1'</span></span><br><span class="line">compile <span class="string">'org.litepal.android:core:1.4.1'</span>    </span><br><span class="line">compile <span class="string">'com.squareup.okhttp3:okhttp:3.5.0'</span></span><br><span class="line">compile <span class="string">'com.google.code.gson:gson:2.8.0'</span></span><br><span class="line">compile <span class="string">'com.github.bumptech.glide:glide:3.7.0'</span></span><br><span class="line">compile <span class="string">'com.yalantis:contextmenu:1.0.7'</span></span><br><span class="line">compile <span class="string">'com.liaoinstan.springview:library:1.2.7'</span> // 下拉刷新</span><br><span class="line">compile <span class="string">'com.github.lecho:hellocharts-android:v1.5.8'</span></span><br></pre></td></tr></table></figure>
-<p>  界面设计参照小米天气，Material Design 风格；代码开发基于郭神在文章中涉及到的代码，定位采用百度定位（模拟器上貌似定位不了），语音合成采用科大讯飞的。</p>
-<p>  总的来说，项目完成了天气信息展示、切换城市、下拉刷新等一些基本功能，还有很多功能不完善，整体界面也不够美观，仅供练习用。</p>
-<p>  app传送门：<br>  必应天气 app 下载</p>
-<p>  源码传送门：<br>  <a href="https://github.com/KXwonderful/BingWeather" target="_blank" rel="external">https://github.com/KXwonderful/BingWeather</a></p>
-
-          
+<h1 id="6-3-SQLite-数据库存储"><a href="#6-3-SQLite-数据库存储" class="headerlink" title="6.3 SQLite 数据库存储"></a>6.3 SQLite 数据库存储</h1><p>  前面介绍的两种存储方式很难应付得了需要存储大量复杂的关系型数据的时候，而使用数据库就可以做到。</p>
+<p>  SQLite 是一款轻量级的关系型数据库，它的运算速度非常快， 占用资源很少，通常只需几百 K 的内存就足够了，因而特别适合在移动设备上使用。SQLite 不仅支持标准的 SQL 语法，还遵循了数据库的 ACID 事务，只要你以前用过其他的关系型数据库，就可以很快地上手 SQLite。</p>
+<h2 id="6-3-1-创建数据库"><a href="#6-3-1-创建数据库" class="headerlink" title="6.3.1 创建数据库"></a>6.3.1 创建数据库</h2><p>  Android 为了让我们更加方便地管理数据库，专门提供了一个 SQLiteOpenHelper 帮助类，借助这个类可以非常简单地对数据库进行创建和升级。</p>
+<p>  SQLiteOpenHelper 是一个抽象类，意味着若要使用它的话， 就需要创建一个自己的帮助类去继承它并且重写它的两个抽象方法，即 onCreate() 和 onUpgrade()，去实现创建、升级数据库的逻辑。
+          <!--noindex-->
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/05/Android开发基础06-持久化技术（下）/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

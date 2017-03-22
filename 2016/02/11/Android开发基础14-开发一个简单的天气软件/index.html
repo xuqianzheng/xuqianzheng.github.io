@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Machine Learning,Machine Learning Blog,Python博客,机械博客,javascript博客,前端博客,开发博客,IT博客,web开发博客,机器人学,Robotics blog,嵌入式博客,机器人博客,机械设计博客,徐迁征,工业控制博客,现代控制博客,IT技术博客,Android开发博客,编程博客,机器学习博客,深度学习博客,人工智能博客" />
+  <meta name="keywords" content="Android,Android Studio,java,《第一行代码》（第2版）," />
 
 
 
@@ -86,15 +86,52 @@
 
 
 
-<meta name="description" content="About Life, Books and Code.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Third Type Of Blog">
-<meta property="og:url" content="http://xuqianzheng.com/archives/2016/index.html">
+<meta name="description" content="本篇文章主要介绍以下几个知识点：
+
+实现一个简单的天气应用
+仿小米天气界面效果
+
+
+  本篇文章主要来实现一个天气应用 —— 必应天气。具备以下功能：
+
+定位城市，查看城市天气信息
+播报语音天气
+切换城市
+后台自动更新天气  效果如下：  天气 api 接口来自和风天气，数据相对简单，返回的数据有限（只返回3条未来几天天气预报和每小时预报的数据）：  http://docs.heweather.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android开发基础14-开发一个简单的天气软件">
+<meta property="og:url" content="http://xuqianzheng.com/2016/02/11/Android开发基础14-开发一个简单的天气软件/index.html">
 <meta property="og:site_name" content="Third Type Of Blog">
-<meta property="og:description" content="About Life, Books and Code.">
+<meta property="og:description" content="本篇文章主要介绍以下几个知识点：
+
+实现一个简单的天气应用
+仿小米天气界面效果
+
+
+  本篇文章主要来实现一个天气应用 —— 必应天气。具备以下功能：
+
+定位城市，查看城市天气信息
+播报语音天气
+切换城市
+后台自动更新天气  效果如下：  天气 api 接口来自和风天气，数据相对简单，返回的数据有限（只返回3条未来几天天气预报和每小时预报的数据）：  http://docs.heweather.">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B014-01.gif">
+<meta property="og:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B014-02.png">
+<meta property="og:updated_time" content="2017-03-22T12:25:25.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Third Type Of Blog">
-<meta name="twitter:description" content="About Life, Books and Code.">
+<meta name="twitter:title" content="Android开发基础14-开发一个简单的天气软件">
+<meta name="twitter:description" content="本篇文章主要介绍以下几个知识点：
+
+实现一个简单的天气应用
+仿小米天气界面效果
+
+
+  本篇文章主要来实现一个天气应用 —— 必应天气。具备以下功能：
+
+定位城市，查看城市天气信息
+播报语音天气
+切换城市
+后台自动更新天气  效果如下：  天气 api 接口来自和风天气，数据相对简单，返回的数据有限（只返回3条未来几天天气预报和每小时预报的数据）：  http://docs.heweather.">
+<meta name="twitter:image" content="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B014-01.gif">
 
 
 
@@ -122,13 +159,13 @@
 
 
 
-  <link rel="canonical" href="http://xuqianzheng.com/archives/2016/"/>
+  <link rel="canonical" href="http://xuqianzheng.com/2016/02/11/Android开发基础14-开发一个简单的天气软件/"/>
 
 
 
 
 
-  <title> Archive | Third Type Of Blog </title>
+  <title> Android开发基础14-开发一个简单的天气软件 | Third Type Of Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -168,7 +205,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  page-archive  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -291,287 +328,234 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
-
-    <span class="archive-page-counter">
-      
-      
-       
-      
-      OK! 33 posts in total. Keep on posting.
-    </span>
-
+  <div id="posts" class="posts-expand">
     
-
-      
-      
-      
-
-      
-        
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2016">2016</h2>
-        </div>
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/09/30/前端小白的养成记（自学）/" itemprop="url">
-              
-                <span itemprop="name">前端小白的自学养成记</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-09-30T20:30:13+08:00"
-              content="2016-09-30" >
-          09-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/05/01/小白如何选择自己的第一门编程语言/" itemprop="url">
-              
-                <span itemprop="name">小白如何选择自己的第一门编程语言</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-05-01T23:11:03+08:00"
-              content="2016-05-01" >
-          05-01
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/04/02/编程小白的Android自学之路/" itemprop="url">
-              
-                <span itemprop="name">编程小白的Android自学之路</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-04-02T08:39:43+08:00"
-              content="2016-04-02" >
-          04-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/02/11/Android开发基础14-开发一个简单的天气软件/" itemprop="url">
-              
-                <span itemprop="name">Android开发基础14-开发一个简单的天气软件</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-02-11T14:23:03+08:00"
-              content="2016-02-11" >
-          02-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/01/28/Android开发基础13-Android 中的一些高级技巧/" itemprop="url">
-              
-                <span itemprop="name">Android开发基础13-Android 中的一些高级技巧</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-01-28T13:28:42+08:00"
-              content="2016-01-28" >
-          01-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/01/14/Android开发基础12-Material Design 实战/" itemprop="url">
-              
-                <span itemprop="name">Android开发基础12-Material Design 实战</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-01-14T17:35:55+08:00"
-              content="2016-01-14" >
-          01-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/01/07/Android开发基础11-基于位置的服务/" itemprop="url">
-              
-                <span itemprop="name">Android开发基础11-基于位置的服务</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-01-07T19:36:22+08:00"
-              content="2016-01-07" >
-          01-07
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-  </section>
 
   
 
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://xuqianzheng.com/2016/02/11/Android开发基础14-开发一个简单的天气软件/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Jason Xu">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Third Type Of Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Third Type Of Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android开发基础14-开发一个简单的天气软件
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-02-11T14:23:03+08:00">
+                2016-02-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2016/02/11/Android开发基础14-开发一个简单的天气软件/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/11/Android开发基础14-开发一个简单的天气软件/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p><strong>本篇文章主要介绍以下几个知识点：</strong></p>
+<ul>
+<li>实现一个简单的天气应用</li>
+<li>仿小米天气界面效果</li>
+</ul>
+</blockquote>
+<p>  本篇文章主要来实现一个天气应用 —— 必应天气。具备以下功能：</p>
+<ul>
+<li>定位城市，查看城市天气信息</li>
+<li>播报语音天气</li>
+<li>切换城市</li>
+<li>后台自动更新天气<br>  效果如下：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B014-01.gif" alt="" title="必应天气效果"><br>  天气 api 接口来自和风天气，数据相对简单，返回的数据有限（只返回3条未来几天天气预报和每小时预报的数据）：<br>  <a href="http://docs.heweather.com/224489" target="_blank" rel="external">http://docs.heweather.com/224489</a><br>  它提供了天气预报集合接口、城市查询等接口。</li>
+</ul>
+<p>  全国省市县数据 api 接口来自郭神提供的：<br>  <a href="http://guolin.tech/api/china" target="_blank" rel="external">http://guolin.tech/api/china</a></p>
+<p>  必应图片 api 接口也是来自郭神提供的：<br>  <a href="http://guolin.tech/api/bing_pic" target="_blank" rel="external">http://guolin.tech/api/bing_pic</a></p>
+<p>  本项目结构比较简单，如下：<a id="more"></a><br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B014-02.png" alt="" title="项目的结构"><br>  用到的第三方开源库有：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">compile <span class="string">'com.android.support:design:25.1.1'</span></span><br><span class="line">compile <span class="string">'com.jakewharton:butterknife:8.5.1'</span></span><br><span class="line">compile <span class="string">'org.litepal.android:core:1.4.1'</span>    </span><br><span class="line">compile <span class="string">'com.squareup.okhttp3:okhttp:3.5.0'</span></span><br><span class="line">compile <span class="string">'com.google.code.gson:gson:2.8.0'</span></span><br><span class="line">compile <span class="string">'com.github.bumptech.glide:glide:3.7.0'</span></span><br><span class="line">compile <span class="string">'com.yalantis:contextmenu:1.0.7'</span></span><br><span class="line">compile <span class="string">'com.liaoinstan.springview:library:1.2.7'</span> // 下拉刷新</span><br><span class="line">compile <span class="string">'com.github.lecho:hellocharts-android:v1.5.8'</span></span><br></pre></td></tr></table></figure>
+<p>  界面设计参照小米天气，Material Design 风格；代码开发基于郭神在文章中涉及到的代码，定位采用百度定位（模拟器上貌似定位不了），语音合成采用科大讯飞的。</p>
+<p>  总的来说，项目完成了天气信息展示、切换城市、下拉刷新等一些基本功能，还有很多功能不完善，整体界面也不够美观，仅供练习用。</p>
+<p>  app传送门：<br>  必应天气 app 下载</p>
+<p>  源码传送门：<br>  <a href="https://github.com/KXwonderful/BingWeather" target="_blank" rel="external">https://github.com/KXwonderful/BingWeather</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/wechat-qcode.jpg" alt="Jason Xu wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>如果我的文章对您有用，请打赏我一个红包吧！鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat.png" alt="Jason Xu WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.jpg" alt="Jason Xu Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+            <a href="/tags/Android-Studio/" rel="tag"># Android Studio</a>
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+            <a href="/tags/《第一行代码》（第2版）/" rel="tag"># 《第一行代码》（第2版）</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/28/Android开发基础13-Android 中的一些高级技巧/" rel="next" title="Android开发基础13-Android 中的一些高级技巧">
+                <i class="fa fa-chevron-left"></i> Android开发基础13-Android 中的一些高级技巧
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/04/02/编程小白的Android自学之路/" rel="prev" title="编程小白的Android自学之路">
+                编程小白的Android自学之路 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
 
 
           </div>
@@ -579,6 +563,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/02/11/Android开发基础14-开发一个简单的天气软件/"
+           data-title="Android开发基础14-开发一个简单的天气软件" data-url="http://xuqianzheng.com/2016/02/11/Android开发基础14-开发一个简单的天气软件/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -779,11 +771,9 @@
   
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
 
 
   
