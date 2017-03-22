@@ -956,7 +956,7 @@
 </ul>
 </blockquote>
 <h1 id="10-2-服务的基本用法"><a href="#10-2-服务的基本用法" class="headerlink" title="10.2 服务的基本用法"></a>10.2 服务的基本用法</h1><p>  服务（Service）是 Android 中实现程序后台运行的解决方案，它非常适合去执行那些不需要和用户交互而且还要求长期运行的任务。<br>  服务并不是运行在一个独立的进程当中的，而是依赖于创建服务时所在的应用程序进程。<br>  服务并不会自动开启线程，所有代码默认运行在主线程中。</p>
-<h2 id="10-2-1-定义一个服务"><a href="#10-2-1-定义一个服务" class="headerlink" title="10.2.1 定义一个服务"></a>10.2.1 定义一个服务</h2><p>  在项目中定义一个服务：在 Android Studio 中右击 com.wonderful.myfirstcode.chapter10.service包（你项目所在的包名）→New→Service→Service，会弹出如下窗口：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B010-04.png" alt="" title="创建服务的窗口"><br>  上面将服务命名为 MyService，Exported 表示是否允许除了当前程序之外的其他程序访问这个服务，Enabled 表示是否启用这个服务。完成创建后的 MyService 如下：
+<h2 id="10-2-1-定义一个服务"><a href="#10-2-1-定义一个服务" class="headerlink" title="10.2.1 定义一个服务"></a>10.2.1 定义一个服务</h2><p>  在项目中定义一个服务：在 Android Studio 中右击 com.wonderful.myfirstcode.chapter10.service包（你项目所在的包名）→New→Service→Service，会弹出如下窗口：<br><img src="http://7xsb4k.com1.z0.glb.clouddn.com/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B010-04.png" alt="" title="创建服务的窗口">
           <!--noindex-->
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/12/21/Android开发基础10-探究服务（中）/#more" rel="contents">
