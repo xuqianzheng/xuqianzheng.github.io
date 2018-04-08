@@ -220,8 +220,6 @@
         
         <tag>Android</tag>
          
-        <tag>JavaScript</tag>
-         
         <tag>Java</tag>
          
         <tag>Python</tag>
@@ -229,6 +227,8 @@
         <tag>ruby</tag>
          
         <tag>C</tag>
+         
+        <tag>JavaScript</tag>
          
         <tag>Golang</tag>
          
@@ -464,6 +464,31 @@
 
     
   <url>
+    <loc>http://xuqianzheng.com/2015/09/20/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%8003-UI%20%E5%BC%80%E5%8F%91/</loc>
+    <lastmod>2016-12-18T17:16:10.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android开发基础3 - UI 开发</title>
+        <pubTime>2015-09-20T11:29:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>Android Studio</tag>
+         
+        <tag>java</tag>
+         
+        <tag>《第一行代码》（第2版）</tag>
+         
+        <tag>UI</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://xuqianzheng.com/2015/09/15/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%8002-%E6%8E%A2%E7%A9%B6%E6%B4%BB%E5%8A%A8/</loc>
     <lastmod>2016-12-18T17:16:10.000Z</lastmod>
     <data>
@@ -503,31 +528,6 @@
         <tag>java</tag>
          
         <tag>《第一行代码》（第2版）</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://xuqianzheng.com/2015/09/20/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%8003-UI%20%E5%BC%80%E5%8F%91/</loc>
-    <lastmod>2016-12-18T17:16:10.000Z</lastmod>
-    <data>
-        <display>
-        <title>Android开发基础3 - UI 开发</title>
-        <pubTime>2015-09-20T11:29:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>Android Studio</tag>
-         
-        <tag>java</tag>
-         
-        <tag>《第一行代码》（第2版）</tag>
-         
-        <tag>UI</tag>
          
          
            
@@ -716,6 +716,8 @@
         <title>前端小白的自学养成记</title>
         <pubTime>2016-09-30T12:30:13.000Z</pubTime>
         
+        <tag>JavaScript</tag>
+         
         <tag>前端学习</tag>
          
         <tag>html5</tag>
@@ -723,8 +725,6 @@
         <tag>CSS3</tag>
          
         <tag>Bootstrap</tag>
-         
-        <tag>JavaScript</tag>
          
         <tag>JQuery</tag>
          
