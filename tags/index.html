@@ -5,11 +5,12 @@
   
 
 
-<html class="theme-next mist use-motion" lang="en">
+<html class="theme-next gemini use-motion" lang="en">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
 
 
 
@@ -36,36 +37,11 @@
 
 
 
+
   
   
   <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
 
 
 
@@ -74,7 +50,22 @@
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
 
 
   <meta name="keywords" content="Machine Learning,python,Machine Learning Blog,Python博客,机械博客,javascript博客,前端博客,开发博客,IT博客,web开发博客,机器人学,Robotics blog,嵌入式博客,机器人博客,机械设计博客,徐迁征,工业控制博客,现代控制博客,IT技术博客,Android开发博客,编程博客,机器学习博客,深度学习博客,人工智能博客" />
@@ -84,11 +75,6 @@
 
 
   <link rel="alternate" href="/rss2.xml" title="The Third Skill" type="application/atom+xml" />
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
 
 
 
@@ -112,12 +98,14 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Mist',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
-    motion: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
-      userId: 'undefined',
+      userId: '0',
       author: 'Author'
     },
     algolia: {
@@ -157,21 +145,6 @@
 
 
 
-  <script type="text/javascript">
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "//tajs.qq.com/stats?sId=56301679";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
-
-
-
-
-
-
-
 
 </head>
 
@@ -182,7 +155,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -228,28 +201,8 @@
         </li>
       
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            Archives
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            Tags
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
+          <a href="/about/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
@@ -258,8 +211,28 @@
         </li>
       
         
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-commonweal">
-          <a href="/404.html" rel="section">
+          <a href="/404/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
             
@@ -269,9 +242,43 @@
       
 
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
   
 </nav>
 
@@ -287,7 +294,11 @@
             
 
   <div id="posts" class="posts-expand">
-  <header class="post-header">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
 
 	<h1 class="post-title" itemprop="name headline">tags</h1>
 
@@ -295,16 +306,28 @@
 
 </header>
 
-    
-    
-      <div class="tag-cloud">
-        <div class="tag-cloud-title">
-            53 tags in total
-        </div>
-        <div class="tag-cloud-tags">
-          <a href="/tags/Android/" style="font-size: 30px; color: #111">Android</a> <a href="/tags/Android-Studio/" style="font-size: 26.4px; color: #363636">Android Studio</a> <a href="/tags/Arduino/" style="font-size: 15.6px; color: #a7a7a7">Arduino</a> <a href="/tags/Bootstrap/" style="font-size: 12px; color: #ccc">Bootstrap</a> <a href="/tags/C/" style="font-size: 12px; color: #ccc">C</a> <a href="/tags/C/" style="font-size: 12px; color: #ccc">C#</a> <a href="/tags/CNC/" style="font-size: 15.6px; color: #a7a7a7">CNC</a> <a href="/tags/CSS3/" style="font-size: 12px; color: #ccc">CSS3</a> <a href="/tags/Golang/" style="font-size: 12px; color: #ccc">Golang</a> <a href="/tags/Gradle/" style="font-size: 12px; color: #ccc">Gradle</a> <a href="/tags/Haskell/" style="font-size: 12px; color: #ccc">Haskell</a> <a href="/tags/JQuery/" style="font-size: 12px; color: #ccc">JQuery</a> <a href="/tags/Java/" style="font-size: 15.6px; color: #a7a7a7">Java</a> <a href="/tags/JavaScript/" style="font-size: 15.6px; color: #a7a7a7">JavaScript</a> <a href="/tags/Material-Design/" style="font-size: 12px; color: #ccc">Material Design</a> <a href="/tags/Node-js/" style="font-size: 12px; color: #ccc">Node.js</a> <a href="/tags/PHP/" style="font-size: 12px; color: #ccc">PHP</a> <a href="/tags/PID/" style="font-size: 12px; color: #ccc">PID</a> <a href="/tags/Python/" style="font-size: 12px; color: #ccc">Python</a> <a href="/tags/React-Native/" style="font-size: 12px; color: #ccc">React Native</a> <a href="/tags/StackOverFlow/" style="font-size: 12px; color: #ccc">StackOverFlow</a> <a href="/tags/Swift/" style="font-size: 12px; color: #ccc">Swift</a> <a href="/tags/UI/" style="font-size: 12px; color: #ccc">UI</a> <a href="/tags/Zepto-js/" style="font-size: 12px; color: #ccc">Zepto.js</a> <a href="/tags/github/" style="font-size: 12px; color: #ccc">github</a> <a href="/tags/gradle/" style="font-size: 12px; color: #ccc">gradle</a> <a href="/tags/html5/" style="font-size: 12px; color: #ccc">html5</a> <a href="/tags/java/" style="font-size: 22.8px; color: #5c5c5c">java</a> <a href="/tags/ruby/" style="font-size: 12px; color: #ccc">ruby</a> <a href="/tags/《第一行代码》（第2版）/" style="font-size: 22.8px; color: #5c5c5c">《第一行代码》（第2版）</a> <a href="/tags/伺服电机/" style="font-size: 12px; color: #ccc">伺服电机</a> <a href="/tags/减速机/" style="font-size: 12px; color: #ccc">减速机</a> <a href="/tags/前端学习/" style="font-size: 12px; color: #ccc">前端学习</a> <a href="/tags/学习/" style="font-size: 15.6px; color: #a7a7a7">学习</a> <a href="/tags/工业机器人/" style="font-size: 15.6px; color: #a7a7a7">工业机器人</a> <a href="/tags/工作/" style="font-size: 12px; color: #ccc">工作</a> <a href="/tags/思考/" style="font-size: 12px; color: #ccc">思考</a> <a href="/tags/总结/" style="font-size: 12px; color: #ccc">总结</a> <a href="/tags/惯量匹配/" style="font-size: 12px; color: #ccc">惯量匹配</a> <a href="/tags/控制理论/" style="font-size: 12px; color: #ccc">控制理论</a> <a href="/tags/控制硬件/" style="font-size: 15.6px; color: #a7a7a7">控制硬件</a> <a href="/tags/控制程序/" style="font-size: 12px; color: #ccc">控制程序</a> <a href="/tags/数控机床/" style="font-size: 15.6px; color: #a7a7a7">数控机床</a> <a href="/tags/机器人/" style="font-size: 12px; color: #ccc">机器人</a> <a href="/tags/机器人系统/" style="font-size: 12px; color: #ccc">机器人系统</a> <a href="/tags/机床/" style="font-size: 15.6px; color: #a7a7a7">机床</a> <a href="/tags/机械工程师/" style="font-size: 12px; color: #ccc">机械工程师</a> <a href="/tags/机械手/" style="font-size: 12px; color: #ccc">机械手</a> <a href="/tags/机械设计/" style="font-size: 19.2px; color: #818181">机械设计</a> <a href="/tags/生活/" style="font-size: 15.6px; color: #a7a7a7">生活</a> <a href="/tags/职业规划/" style="font-size: 15.6px; color: #a7a7a7">职业规划</a> <a href="/tags/设计/" style="font-size: 12px; color: #ccc">设计</a> <a href="/tags/读书/" style="font-size: 15.6px; color: #a7a7a7">读书</a>
-        </div>
+      
+      
+      
+      <div class="post-body">
+        
+        
+          <div class="tag-cloud">
+            <div class="tag-cloud-title">
+                53 tags in total
+            </div>
+            <div class="tag-cloud-tags">
+              <a href="/tags/Android/" style="font-size: 30px; color: #111">Android</a> <a href="/tags/Android-Studio/" style="font-size: 26.4px; color: #363636">Android Studio</a> <a href="/tags/Arduino/" style="font-size: 15.6px; color: #a7a7a7">Arduino</a> <a href="/tags/Bootstrap/" style="font-size: 12px; color: #ccc">Bootstrap</a> <a href="/tags/C/" style="font-size: 12px; color: #ccc">C</a> <a href="/tags/C/" style="font-size: 12px; color: #ccc">C#</a> <a href="/tags/CNC/" style="font-size: 15.6px; color: #a7a7a7">CNC</a> <a href="/tags/CSS3/" style="font-size: 12px; color: #ccc">CSS3</a> <a href="/tags/Golang/" style="font-size: 12px; color: #ccc">Golang</a> <a href="/tags/Gradle/" style="font-size: 12px; color: #ccc">Gradle</a> <a href="/tags/Haskell/" style="font-size: 12px; color: #ccc">Haskell</a> <a href="/tags/JQuery/" style="font-size: 12px; color: #ccc">JQuery</a> <a href="/tags/Java/" style="font-size: 15.6px; color: #a7a7a7">Java</a> <a href="/tags/JavaScript/" style="font-size: 15.6px; color: #a7a7a7">JavaScript</a> <a href="/tags/Material-Design/" style="font-size: 12px; color: #ccc">Material Design</a> <a href="/tags/Node-js/" style="font-size: 12px; color: #ccc">Node.js</a> <a href="/tags/PHP/" style="font-size: 12px; color: #ccc">PHP</a> <a href="/tags/PID/" style="font-size: 12px; color: #ccc">PID</a> <a href="/tags/Python/" style="font-size: 12px; color: #ccc">Python</a> <a href="/tags/React-Native/" style="font-size: 12px; color: #ccc">React Native</a> <a href="/tags/StackOverFlow/" style="font-size: 12px; color: #ccc">StackOverFlow</a> <a href="/tags/Swift/" style="font-size: 12px; color: #ccc">Swift</a> <a href="/tags/UI/" style="font-size: 12px; color: #ccc">UI</a> <a href="/tags/Zepto-js/" style="font-size: 12px; color: #ccc">Zepto.js</a> <a href="/tags/github/" style="font-size: 12px; color: #ccc">github</a> <a href="/tags/gradle/" style="font-size: 12px; color: #ccc">gradle</a> <a href="/tags/html5/" style="font-size: 12px; color: #ccc">html5</a> <a href="/tags/java/" style="font-size: 22.8px; color: #5c5c5c">java</a> <a href="/tags/ruby/" style="font-size: 12px; color: #ccc">ruby</a> <a href="/tags/《第一行代码》（第2版）/" style="font-size: 22.8px; color: #5c5c5c">《第一行代码》（第2版）</a> <a href="/tags/伺服电机/" style="font-size: 12px; color: #ccc">伺服电机</a> <a href="/tags/减速机/" style="font-size: 12px; color: #ccc">减速机</a> <a href="/tags/前端学习/" style="font-size: 12px; color: #ccc">前端学习</a> <a href="/tags/学习/" style="font-size: 15.6px; color: #a7a7a7">学习</a> <a href="/tags/工业机器人/" style="font-size: 15.6px; color: #a7a7a7">工业机器人</a> <a href="/tags/工作/" style="font-size: 12px; color: #ccc">工作</a> <a href="/tags/思考/" style="font-size: 12px; color: #ccc">思考</a> <a href="/tags/总结/" style="font-size: 12px; color: #ccc">总结</a> <a href="/tags/惯量匹配/" style="font-size: 12px; color: #ccc">惯量匹配</a> <a href="/tags/控制理论/" style="font-size: 12px; color: #ccc">控制理论</a> <a href="/tags/控制硬件/" style="font-size: 15.6px; color: #a7a7a7">控制硬件</a> <a href="/tags/控制程序/" style="font-size: 12px; color: #ccc">控制程序</a> <a href="/tags/数控机床/" style="font-size: 15.6px; color: #a7a7a7">数控机床</a> <a href="/tags/机器人/" style="font-size: 12px; color: #ccc">机器人</a> <a href="/tags/机器人系统/" style="font-size: 12px; color: #ccc">机器人系统</a> <a href="/tags/机床/" style="font-size: 15.6px; color: #a7a7a7">机床</a> <a href="/tags/机械工程师/" style="font-size: 12px; color: #ccc">机械工程师</a> <a href="/tags/机械手/" style="font-size: 12px; color: #ccc">机械手</a> <a href="/tags/机械设计/" style="font-size: 19.2px; color: #818181">机械设计</a> <a href="/tags/生活/" style="font-size: 15.6px; color: #a7a7a7">生活</a> <a href="/tags/职业规划/" style="font-size: 15.6px; color: #a7a7a7">职业规划</a> <a href="/tags/设计/" style="font-size: 12px; color: #ccc">设计</a> <a href="/tags/读书/" style="font-size: 15.6px; color: #a7a7a7">读书</a>
+            </div>
+          </div>
+        
       </div>
+      
+      
+      
+    </div>
+    
+    
     
   </div>
 
@@ -314,13 +337,16 @@
 
 
           
-  <div class="comments" id="comments">
-    
+
+  
+    <div class="comments" id="comments">
       <div class="ds-thread" data-thread-key="tags/index.html"
            data-title="tags" data-url="http://xuqianzheng.com/tags/index.html">
       </div>
-    
-  </div>
+    </div>
+
+  
+
 
 
         </div>
@@ -343,93 +369,82 @@
 
       
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/avatar.png"
-               alt="Jason Xu" />
-          <p class="site-author-name" itemprop="name">Jason Xu</p>
-           
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="Jason Xu" />
+            
+              <p class="site-author-name" itemprop="name">Jason Xu</p>
               <p class="site-description motion-element" itemprop="description">About Life, Books and Code.</p>
-          
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives">
-                <span class="site-state-item-count">33</span>
-                <span class="site-state-item-name">posts</span>
-              </a>
-            </div>
-          
-
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">53</span>
-                <span class="site-state-item-name">tags</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-          <div class="feed-link motion-element">
-            <a href="/rss2.xml" rel="alternate">
-              <i class="fa fa-rss"></i>
-              RSS
-            </a>
           </div>
-        
 
-        <div class="links-of-author motion-element">
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">53</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
           
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/xuqianzheng" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                  GitHub
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://7xsb4k.com1.z0.glb.clouddn.com/%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%AD%A6.jpg" target="_blank" title="WeChat">
-                  
-                    <i class="fa fa-fw fa-globe"></i>
-                  
-                  WeChat
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://www.quora.com/profile/Jason-Xu%EF%BC%88%E5%BE%90%E8%BF%81%E5%BE%81%EF%BC%89" target="_blank" title="Quora">
-                  
-                    <i class="fa fa-fw fa-globe"></i>
-                  
-                  Quora
-                </a>
-              </span>
-            
+            <div class="feed-link motion-element">
+              <a href="/rss2.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
           
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/xuqianzheng" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:xuqz911@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
         </div>
-
-        
-        
-
-        
-        
-
-        
-
-
       </section>
 
       
@@ -446,30 +461,45 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy;  2014 - 
-  <span itemprop="copyrightYear">2017</span>
+        <div class="copyright">&copy; 2014 &mdash; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Jason Xu</span>
+
+  
 </div>
 
 
-<div class="powered-by">
-  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
-</div>
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
-<div class="theme-info">
-  Theme -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
-</div>
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
 
 
         
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=56301679";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
 
         
       </div>
@@ -480,6 +510,8 @@
         <i class="fa fa-arrow-up"></i>
         
       </div>
+    
+
     
 
   </div>
@@ -503,7 +535,12 @@
   
 
 
+  
 
+
+
+  
+  
 
 
 
@@ -514,46 +551,80 @@
 
 
   
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
   
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
-
-
-
-  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
-
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
   
 
   
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
 
 
 
@@ -577,6 +648,15 @@
   </script>
 
   
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
 
 
 
@@ -593,29 +673,334 @@
 
   
 
-
-
-
-
-  
-
-  
-<script>
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
     }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
     }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
 
 
+
+
+
+  
+
+  
+
+  
+
+  
   
 
   
